@@ -73,7 +73,7 @@ def passes_copyright_prefilter(meta: dict) -> tuple[bool, str]:
 def scout_youtube(query: str, count: int = 5, max_duration: int = 65, ignore_history: bool = False) -> list[dict]:
     """Scouts YouTube via yt_dlp InnerTube/web extractor + Anti-CID pre-filter."""
     used = set() if ignore_history else _load_history()
-    probe_n = max(count * 5, 24)
+    probe_n = max(count * 3, 12)
     cmd = [
         sys.executable, "-m", "yt_dlp",
         "--dump-json", "--no-playlist", "--no-warnings",

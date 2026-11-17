@@ -219,8 +219,8 @@ def run_series_episode(series_path: Path, handle: str = "@CinePulse", dry_run: b
 
     ep_num = done + 1
     themes = cfg.get("query_themes") or [f"{cfg['topic']} edit shorts"]
-    # Rotate starting query theme per episode + provide 2 backup themes so 3 unique clips always harvest cleanly
-    rotated_queries = [themes[(done + offset) % len(themes)] for offset in range(min(3, len(themes)))]
+    # Rotate across 4 distinct query themes per episode so 3 fresh unique clips harvest fast without yt_dlp timeouts
+    rotated_queries = [themes[(done + offset) % len(themes)] for offset in range(min(4, len(themes)))]
 
     os.environ["CLIP_HISTORY_PATH"] = str(series_path.resolve())
     try:
