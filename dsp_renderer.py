@@ -260,7 +260,10 @@ def render_release_hype(
     for idx, clip in enumerate(clips):
         src = Path(clip["local_path"])
         seg = TEMP_DIR / f"hype_seg_{idx}.mp4"
-        dur = min(shot_dur, max(1.8, float(clip.get("duration") or shot_dur)))
+        src_dur = float(clip.get("duration") or shot_dur)
+        dur = min(shot_dur, max(1.8, src_dur))
+        # Skip studio intro logos (first 4-5s of promos/trailers) and land on hero action midpoint
+        ss = min(max(4.5, src_dur * 0.48), max(0.0, src_dur - dur - 0.5)) if src_dur > dur + 5.0 else 0.0
         vf = (
             f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=30,"
             f"scale=1080:1600:force_original_aspect_ratio=increase,crop=1080:1600,"
@@ -271,7 +274,7 @@ def render_release_hype(
         )
         cmd = [
             FFMPEG, "-y",
-            "-i", str(src), "-i", str(ov_normal),
+            "-ss", f"{ss:.2f}", "-i", str(src), "-i", str(ov_normal),
             "-filter_complex", vf, "-map", "[vout]", "-an",
             "-t", f"{dur:.3f}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-r", "30",
             str(seg),
