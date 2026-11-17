@@ -1,0 +1,449 @@
+"""Pure FFmpeg + Pillow 1080x1920 renderer (zero voiceover) with 4-layer Anti-CID shield."""
+
+import math
+import os
+import struct
+import subprocess
+import textwrap
+import wave
+from pathlib import Path
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
+
+ROOT = Path(__file__).resolve().parent
+BGM_DIR = ROOT / "assets" / "bgm"
+TEMP_DIR = ROOT / "temp"
+
+FFMPEG = r"C:\ffmpeg-7.1.1-full_build\bin\ffmpeg.exe" if os.path.exists(r"C:\ffmpeg-7.1.1-full_build\bin\ffmpeg.exe") else "ffmpeg"
+
+
+def _font(size: int, bold: bool = True) -> ImageFont.FreeTypeFont:
+    candidates = (
+        ["C:/Windows/Fonts/impact.ttf", "C:/Windows/Fonts/arialbd.ttf", "C:/Windows/Fonts/segoeuib.ttf"]
+        if bold
+        else ["C:/Windows/Fonts/segoeuib.ttf", "C:/Windows/Fonts/arial.ttf"]
+    )
+    for fp in candidates:
+        if os.path.exists(fp):
+            return ImageFont.truetype(fp, size)
+    return ImageFont.load_default()
+
+
+def ensure_royalty_free_bgm(style: str = "phonk") -> Path:
+    """Returns a user BGM track in assets/bgm/ if present, else synthesizes a clean 0%-CID stem."""
+    BGM_DIR.mkdir(parents=True, exist_ok=True)
+    # Prefer any user-provided mp3/wav matching the style
+    for ext in ("*.mp3", "*.wav"):
+        for f in sorted(BGM_DIR.glob(ext)):
+            if style in f.stem.lower() and f.stat().st_size > 30_000:
+                return f
+
+    out = BGM_DIR / f"synth_{style}.wav"
+    if out.exists() and out.stat().st_size > 30_000:
+        return out
+
+    # Procedural original 48kHz stereo WAV stems via stdlib wave (100% copyright-free, zero lavfi quoting bugs)
+    sr, dur_s = 48000, 30
+    total = sr * dur_s
+    buf = bytearray(total * 4)
+    for i in range(total):
+        t = i / sr
+        if style == "phonk":
+            v = (
+                0.32 * math.sin(2 * math.pi * 55.0 * t) * math.exp(-5.0 * (t % 0.5))
+                + 0.16 * math.sin(2 * math.pi * 110.0 * t) * math.exp(-9.0 * (t % 0.25))
+                + 0.08 * math.sin(2 * math.pi * 220.0 * t) * (0.5 + 0.5 * math.sin(2 * math.pi * 2.0 * t))
+            )
+        elif style == "rock":
+            v = (
+                0.26 * math.sin(2 * math.pi * 82.4 * t) * math.exp(-3.5 * (t % 0.375))
+                + 0.18 * math.sin(2 * math.pi * 123.5 * t) * math.exp(-6.0 * (t % 0.75))
+                + 0.07 * math.sin(2 * math.pi * 329.6 * t)
+            )
+        else:
+            v = (
+                0.20 * math.sin(2 * math.pi * 130.8 * t)
+                + 0.14 * math.sin(2 * math.pi * 196.0 * t)
+                + 0.10 * math.sin(2 * math.pi * 246.9 * t) * (0.5 + 0.5 * math.sin(2 * math.pi * 0.25 * t))
+            )
+        sample = max(-32767, min(32767, int(v * 26000)))
+        struct.pack_into("<hh", buf, i * 4, sample, sample)
+
+    with wave.open(str(out), "wb") as wf:
+        wf.setnchannels(2)
+        wf.setsampwidth(2)
+        wf.setframerate(sr)
+        wf.writeframes(buf)
+    return out
+
+
+def _draw_outlined_text(draw: ImageDraw.ImageDraw, pos: tuple[int, int], text: str, font, fill, stroke: int = 5, anchor: str = "mm"):
+    draw.text(pos, text, font=font, fill=fill, anchor=anchor, stroke_width=stroke, stroke_fill=(0, 0, 0))
+
+
+def _make_ranking_overlay(topic: str, rank: int, total: int, labels: list[str], handle: str, out_png: Path) -> Path:
+    """Krylo Ranks style: stacked colored top title + persistent left-side countdown ladder."""
+    img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img)
+
+    # Top title (stacked like Ref #9: "Ranking Best" / "<Topic> Edits")
+    f_top = _font(64, bold=True)
+    f_sub = _font(72, bold=True)
+    _draw_outlined_text(draw, (410, 145), "Ranking", f_top, (255, 255, 255), stroke=6)
+    _draw_outlined_text(draw, (650, 145), "Best", f_top, (57, 255, 20), stroke=6)
+    short_topic = topic[:18].strip()
+    _draw_outlined_text(draw, (540, 232), f"{short_topic} Edits", f_sub, (0, 229, 255), stroke=6)
+
+    # Left-side persistent ladder (1. .. total.) populating as countdown reaches rank
+    f_lad = _font(42, bold=True)
+    rank_colors = {1: (255, 65, 85), 2: (0, 229, 255), 3: (255, 230, 0), 4: (255, 255, 255), 5: (220, 220, 220)}
+    y0 = 640
+    for r in range(1, total + 1):
+        y = y0 + (r - 1) * 72
+        revealed = r >= rank
+        is_active = r == rank
+        lbl = labels[r - 1][:16] if (revealed and r - 1 < len(labels)) else ""
+        text = f"{r}. {lbl}" if lbl else f"{r}."
+        color = rank_colors.get(r, (255, 255, 255)) if is_active else ((235, 235, 235) if revealed else (160, 160, 160))
+        _draw_outlined_text(draw, (44, y), text, f_lad, color, stroke=4, anchor="lm")
+
+    # Subtle bottom-center watermark below 16:9 frame
+    _draw_outlined_text(draw, (540, 1490), handle, _font(34, bold=False), (255, 255, 255, 185), stroke=3)
+    out_png.parent.mkdir(parents=True, exist_ok=True)
+    img.save(out_png)
+    return out_png
+
+
+def _make_banner_overlay(headline: str, bottom_label: str, handle: str, out_png: Path, dark_mode: bool = False, impact_emoji: str = "") -> Path:
+    """Top white meme/hype bar (Refs #1, #2, #3, #11) OR black letterbox trivia header (Ref #4)."""
+    img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img)
+
+    wrapped = textwrap.wrap(headline.upper() if not dark_mode else headline, width=26)[:2]
+    if dark_mode:
+        f_h = _font(58, bold=True)
+        for i, line in enumerate(wrapped):
+            _draw_outlined_text(draw, (540, 420 + i * 70), line, f_h, (255, 255, 255), stroke=4)
+        if bottom_label:
+            _draw_outlined_text(draw, (540, 1345), bottom_label, _font(44, bold=False), (235, 235, 235), stroke=3)
+    else:
+        # Clean top white hook strip (Refs #1, #2, #11)
+        draw.rectangle([0, 0, 1080, 320], fill=(250, 250, 250, 255))
+        f_h = _font(56, bold=True)
+        y_start = 155 if len(wrapped) == 1 else 120
+        for i, line in enumerate(wrapped):
+            draw.text((540, y_start + i * 74), line, font=f_h, fill=(18, 18, 18), anchor="mm")
+        if bottom_label:
+            # Commentary / context bar below center frame (Ref #11 style)
+            for i, cline in enumerate(textwrap.wrap(bottom_label.upper(), width=34)[:2]):
+                _draw_outlined_text(draw, (540, 1510 + i * 52), cline, _font(36, bold=True), (255, 235, 90), stroke=4)
+
+    if impact_emoji:
+        _draw_outlined_text(draw, (540, 960), impact_emoji, _font(110, bold=True), (255, 255, 255), stroke=6)
+
+    _draw_outlined_text(draw, (540, 1785), handle, _font(30, bold=False), (255, 255, 255, 175), stroke=2)
+    out_png.parent.mkdir(parents=True, exist_ok=True)
+    img.save(out_png)
+    return out_png
+
+
+def _has_audio_stream(video_path: Path) -> bool:
+    proc = subprocess.run(
+        [FFMPEG.replace("ffmpeg.exe", "ffprobe.exe") if FFMPEG.endswith("ffmpeg.exe") else "ffprobe",
+         "-v", "error", "-select_streams", "a", "-show_entries", "stream=codec_type", "-of", "csv=p=0", str(video_path)],
+        capture_output=True, text=True, timeout=15,
+    )
+    return "audio" in (proc.stdout or "")
+
+
+def _safe_start_offset(video_path: Path, src_dur: float, target_dur: float) -> float:
+    """Skips dark fade-in intros (>0.2s black frames at start) so renders pass 0-black-frame QA."""
+    if src_dur <= target_dur + 2.5:
+        return 0.0
+    try:
+        proc = subprocess.run(
+            [FFMPEG, "-hide_banner", "-t", "5", "-i", str(video_path), "-vf", "blackdetect=d=0.15:pic_th=0.96", "-f", "null", "-"],
+            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=15,
+        )
+        import re as _re
+        m = _re.search(r"black_start:([0-9.]+)\s+black_end:([0-9.]+)", proc.stderr)
+        if m and float(m.group(1)) < 0.8:
+            return min(float(m.group(2)) + 0.25, src_dur - target_dur - 0.5)
+    except Exception:
+        pass
+    return 1.2 if src_dur > target_dur + 3.0 else 0.0
+
+
+def render_edit_ranking(
+    topic: str,
+    clips: list[dict],
+    output_mp4: Path,
+    handle: str = "@CinePulse",
+    clip_dur: float = 12.0,
+) -> Path:
+    """Format 1 (Ref #9): Dual-layer blurred BG + left countdown ladder + two-stage 48kHz audio shield."""
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+    output_mp4.parent.mkdir(parents=True, exist_ok=True)
+    bgm = ensure_royalty_free_bgm("phonk")
+    total = len(clips)
+    # clips[0] is Rank #1 (highest views), clips[-1] is Rank #N; play in countdown order #N -> #1!
+    labels = [c.get("short_label") or f"Edit #{i}" for i, c in enumerate(clips, 1)]
+
+    segment_paths = []
+    for rank in range(total, 0, -1):
+        clip = clips[rank - 1]
+        src = Path(clip["local_path"])
+        ov = _make_ranking_overlay(topic, rank, total, labels, handle, TEMP_DIR / f"rank_ov_{rank}.png")
+        seg = TEMP_DIR / f"rank_seg_{rank}.mp4"
+        src_dur = float(clip.get("duration") or clip_dur)
+        dur = min(clip_dur, max(5.0, src_dur - 1.0))
+        ss = _safe_start_offset(src, src_dur, dur)
+
+        # Two-stage 48kHz pitch/tempo audio shield prevents both Content ID audio match AND 44.1kHz early cutoff!
+        has_aud = _has_audio_stream(src)
+        if has_aud:
+            aud_chain = (
+                f"[0:a]aresample=48000,highpass=f=100,asetrate=48000*1.03,atempo=1/1.03,aresample=48000,"
+                f"aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,volume=0.92[vox];"
+                f"[2:a]volume=0.18,aresample=48000,aformat=channel_layouts=stereo[bed];"
+                f"[vox][bed]amix=inputs=2:duration=first:dropout_transition=0.2,"
+                f"atrim=0:{dur:.3f},asetpts=PTS-STARTPTS,loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000[aout]"
+            )
+        else:
+            aud_chain = (
+                f"[2:a]atrim=0:{dur:.3f},asetpts=PTS-STARTPTS,"
+                f"loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000,aformat=channel_layouts=stereo[aout]"
+            )
+
+        vf = (
+            f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=30,split=2[bg0][fg0];"
+            f"[bg0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=24,eq=brightness=-0.16[bg];"
+            f"[fg0]scale=1080:960:force_original_aspect_ratio=decrease,eq=contrast=1.08:saturation=1.15[fg];"
+            f"[bg][fg]overlay=(W-w)/2:(H-h)/2[comp];"
+            f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
+        )
+        cmd = [
+            FFMPEG, "-y",
+            "-ss", f"{ss:.2f}", "-i", str(src), "-i", str(ov), "-stream_loop", "-1", "-i", str(bgm),
+            "-filter_complex", f"{vf};{aud_chain}",
+            "-map", "[vout]", "-map", "[aout]",
+            "-t", f"{dur:.3f}",
+            "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-r", "30",
+            "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
+            str(seg),
+        ]
+        subprocess.run(cmd, capture_output=True, check=True, timeout=120)
+        segment_paths.append(seg)
+
+    return _concat_segments(segment_paths, output_mp4)
+
+
+def render_release_hype(
+    headline: str,
+    clips: list[dict],
+    output_mp4: Path,
+    handle: str = "@CinePulse",
+    shot_dur: float = 2.4,
+) -> Path:
+    """Format 2 (Ref #2 & #1/#3): Rapid 2.4s trailer/meme micro-cuts + white top hook + 100% royalty-free phonk."""
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+    output_mp4.parent.mkdir(parents=True, exist_ok=True)
+    bgm = ensure_royalty_free_bgm("phonk")
+    ov_normal = _make_banner_overlay(headline, "", handle, TEMP_DIR / "hype_ov.png", dark_mode=False)
+
+    segs = []
+    for idx, clip in enumerate(clips):
+        src = Path(clip["local_path"])
+        seg = TEMP_DIR / f"hype_seg_{idx}.mp4"
+        dur = min(shot_dur, max(1.8, float(clip.get("duration") or shot_dur)))
+        vf = (
+            f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=30,"
+            f"scale=1080:1600:force_original_aspect_ratio=increase,crop=1080:1600,"
+            f"eq=contrast=1.12:saturation=1.20[vclip];"
+            f"color=c=black:s=1080x1920:d={dur:.3f}:r=30[base];"
+            f"[base][vclip]overlay=0:320[comp];"
+            f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
+        )
+        cmd = [
+            FFMPEG, "-y",
+            "-i", str(src), "-i", str(ov_normal),
+            "-filter_complex", vf, "-map", "[vout]", "-an",
+            "-t", f"{dur:.3f}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-r", "30",
+            str(seg),
+        ]
+        subprocess.run(cmd, capture_output=True, check=True, timeout=90)
+        segs.append(seg)
+
+    silent_concat = TEMP_DIR / "hype_silent.mp4"
+    _concat_segments(segs, silent_concat, has_audio=False)
+    # Mux 100% royalty-free phonk (0% studio audio CID risk!)
+    subprocess.run(
+        [
+            FFMPEG, "-y", "-i", str(silent_concat), "-stream_loop", "-1", "-i", str(bgm),
+            "-map", "0:v:0", "-map", "1:a:0", "-shortest",
+            "-af", "loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000,aformat=channel_layouts=stereo",
+            "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
+            str(output_mp4),
+        ],
+        capture_output=True, check=True, timeout=90,
+    )
+    return output_mp4
+
+
+def render_movie_trivia_or_commentary(
+    headline: str,
+    clips: list[dict],
+    output_mp4: Path,
+    handle: str = "@CinePulse",
+    mode: str = "movie_trivia",
+) -> Path:
+    """Format 3: Ref #4 (black letterbox + 4.5s micro-clips + freeze fact) OR Ref #11 (commentary scene)."""
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+    output_mp4.parent.mkdir(parents=True, exist_ok=True)
+    bgm = ensure_royalty_free_bgm("rock" if mode == "movie_trivia" else "ambient")
+    dark_mode = mode == "movie_trivia"
+
+    segs = []
+    for idx, clip in enumerate(clips):
+        src = Path(clip["local_path"])
+        bottom = clip.get("fact_or_commentary") or clip.get("title", "")[:45]
+        ov = _make_banner_overlay(headline, bottom, handle, TEMP_DIR / f"triv_ov_{idx}.png", dark_mode=dark_mode)
+        seg = TEMP_DIR / f"triv_seg_{idx}.mp4"
+        dur = 5.0 if dark_mode else min(18.0, max(8.0, float(clip.get("duration") or 15.0)))
+
+        has_aud = _has_audio_stream(src) and not dark_mode
+        if has_aud:
+            aud = (
+                f"[0:a]aresample=48000,highpass=f=110,asetrate=48000*1.03,atempo=1/1.03,aresample=48000,"
+                f"aformat=channel_layouts=stereo,volume=0.90[vox];"
+                f"[2:a]volume=0.22,aresample=48000,aformat=channel_layouts=stereo[bed];"
+                f"[vox][bed]amix=inputs=2:duration=first,atrim=0:{dur:.3f},asetpts=PTS-STARTPTS,"
+                f"loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000[aout]"
+            )
+        else:
+            aud = (
+                f"[2:a]atrim=0:{dur:.3f},asetpts=PTS-STARTPTS,"
+                f"loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000,aformat=channel_layouts=stereo[aout]"
+            )
+
+        vf = (
+            f"color=c=black:s=1080x1920:d={dur:.3f}:r=30[base];"
+            f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=30,"
+            f"scale=1080:1080:force_original_aspect_ratio=decrease,eq=contrast=1.08:saturation=1.14[fg];"
+            f"[base][fg]overlay=(W-w)/2:(H-h)/2[comp];"
+            f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
+        )
+        subprocess.run(
+            [
+                FFMPEG, "-y", "-i", str(src), "-i", str(ov), "-stream_loop", "-1", "-i", str(bgm),
+                "-filter_complex", f"{vf};{aud}", "-map", "[vout]", "-map", "[aout]",
+                "-t", f"{dur:.3f}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-r", "30",
+                "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2", str(seg),
+            ],
+            capture_output=True, check=True, timeout=120,
+        )
+        segs.append(seg)
+
+    return _concat_segments(segs, output_mp4)
+
+
+def _render_news_card_png(headline: str, source: str, badge: str, img_path: Path | None, handle: str, out_png: Path) -> Path:
+    """Builds a high-contrast 1080x1920 press-still news slide (0% video Content-ID risk)."""
+    canvas = Image.new("RGB", (1080, 1920), (14, 16, 26))
+    if img_path and img_path.exists():
+        try:
+            pic = Image.open(img_path).convert("RGB")
+            # Blurred full-bleed backdrop
+            bg = pic.resize((1080, 1920), Image.Resampling.LANCZOS).filter(ImageFilter.GaussianBlur(26))
+            dark = Image.new("RGB", (1080, 1920), (8, 10, 18))
+            canvas = Image.blend(bg, dark, 0.55)
+            # Crisp centered poster/still inside rounded card area
+            pic.thumbnail((940, 880), Image.Resampling.LANCZOS)
+            px = (1080 - pic.width) // 2
+            py = 370 + (880 - pic.height) // 2
+            canvas.paste(pic, (px, py))
+        except Exception:
+            pass
+
+    draw = ImageDraw.Draw(canvas, "RGBA")
+    # Top breaking badge pill
+    draw.rounded_rectangle([140, 130, 940, 240], radius=24, fill=(225, 29, 72, 245))
+    _draw_outlined_text(draw, (540, 185), badge.upper(), _font(52, bold=True), (255, 255, 255), stroke=3)
+
+    # Bottom gradient scrim for headline legibility
+    draw.rectangle([0, 1270, 1080, 1920], fill=(8, 10, 18, 225))
+    lines = textwrap.wrap(headline, width=24)[:4]
+    f_head = _font(58, bold=True)
+    y0 = 1365
+    for i, ln in enumerate(lines):
+        _draw_outlined_text(draw, (540, y0 + i * 74), ln, f_head, (255, 255, 255), stroke=4)
+
+    _draw_outlined_text(draw, (540, 1720), f"SOURCE: {source.upper()[:32]}", _font(32, bold=False), (0, 229, 255), stroke=2)
+    _draw_outlined_text(draw, (540, 1805), handle, _font(30, bold=False), (220, 220, 220), stroke=2)
+    out_png.parent.mkdir(parents=True, exist_ok=True)
+    canvas.save(out_png, quality=92)
+    return out_png
+
+
+def render_news_slideshow(
+    slides: list[dict],
+    output_mp4: Path,
+    handle: str = "@CinePulse",
+    slide_dur: float = 3.5,
+) -> Path:
+    """Format 4 (Ref #8/#10 mechanic for Movie/Series News): Visual hook + rapid press-still slides (0% CID, no VO)."""
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+    output_mp4.parent.mkdir(parents=True, exist_ok=True)
+    bgm = ensure_royalty_free_bgm("ambient")
+    frames_per_slide = int(slide_dur * 30)
+
+    segs = []
+    for idx, s in enumerate(slides):
+        card = _render_news_card_png(
+            headline=s["headline"],
+            source=s.get("source", "Entertainment Radar"),
+            badge=s.get("badge", f"MOVIE NEWS #{idx + 1}"),
+            img_path=Path(s["image_path"]) if s.get("image_path") else None,
+            handle=handle,
+            out_png=TEMP_DIR / f"news_card_{idx}.png",
+        )
+        seg = TEMP_DIR / f"news_seg_{idx}.mp4"
+        # Smooth Ken Burns zoompan (exact frame count avoids infinite loop!)
+        vf = (
+            f"scale=1188:2112,zoompan=z='min(zoom+0.0005,1.06)':d={frames_per_slide}:"
+            f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1080x1920:fps=30,format=yuv420p"
+        )
+        subprocess.run(
+            [
+                FFMPEG, "-y", "-i", str(card),
+                "-vf", vf, "-t", f"{slide_dur:.3f}",
+                "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-r", "30", "-an",
+                str(seg),
+            ],
+            capture_output=True, check=True, timeout=60,
+        )
+        segs.append(seg)
+
+    silent = TEMP_DIR / "news_silent.mp4"
+    _concat_segments(segs, silent, has_audio=False)
+    subprocess.run(
+        [
+            FFMPEG, "-y", "-i", str(silent), "-stream_loop", "-1", "-i", str(bgm),
+            "-map", "0:v:0", "-map", "1:a:0", "-shortest",
+            "-af", "loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000,aformat=channel_layouts=stereo",
+            "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
+            str(output_mp4),
+        ],
+        capture_output=True, check=True, timeout=60,
+    )
+    return output_mp4
+
+
+def _concat_segments(seg_paths: list[Path], out_mp4: Path, has_audio: bool = True) -> Path:
+    list_file = TEMP_DIR / f"concat_{out_mp4.stem}.txt"
+    lines = [f"file '{p.resolve().as_posix()}'" for p in seg_paths]
+    list_file.write_text("\n".join(lines), encoding="utf-8")
+    cmd = [FFMPEG, "-y", "-f", "concat", "-safe", "0", "-i", str(list_file), "-c", "copy", str(out_mp4)]
+    if not has_audio:
+        cmd = [FFMPEG, "-y", "-f", "concat", "-safe", "0", "-i", str(list_file), "-c:v", "copy", "-an", str(out_mp4)]
+    subprocess.run(cmd, capture_output=True, check=True, timeout=60)
+    return out_mp4

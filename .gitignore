@@ -1,0 +1,22 @@
+# Media & pipeline outputs
+input/
+output/
+temp/
+*.mp4
+*.mkv
+*.webm
+*.m4a
+*.wav
+*.mp3
+!assets/bgm/.gitkeep
+
+# Secrets & OAuth tokens
+config/*token*.json
+config/*secret*.json
+.env
+
+# Runtime state & caches
+state/
+__pycache__/
+*.pyc
+.pytest_cache/

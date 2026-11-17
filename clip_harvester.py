@@ -1,0 +1,339 @@
+"""Multi-platform clip & meme harvester (YouTube, Reddit, TikTok, IG/FB) with Anti-CID pre-filter."""
+
+import json
+import re
+import subprocess
+import sys
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+INPUT_DIR = ROOT / "input"
+STATE_DIR = ROOT / "state"
+HISTORY_PATH = STATE_DIR / "used_history.json"
+
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+
+BLOCKED_CHANNEL_TERMS = ("vevo", "official audio", "topic", "records", "music video", "t-series", "sony music")
+BANNED_TITLE_TERMS = ("full movie", "full episode", "official audio", "music video", "lyric video", "reaction", "live stream")
+
+MEME_SUBREDDITS = ("movies", "marvelmemes", "MovieDetails", "television", "bollywoodmemes", "PrequelMemes")
+
+
+def _load_history() -> set[str]:
+    if HISTORY_PATH.exists():
+        try:
+            return set(json.loads(HISTORY_PATH.read_text(encoding="utf-8")))
+        except Exception:
+            pass
+    return set()
+
+
+def _save_history(ids: set[str]):
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    HISTORY_PATH.write_text(json.dumps(sorted(ids)[-500:], indent=2), encoding="utf-8")
+
+
+def passes_copyright_prefilter(meta: dict) -> tuple[bool, str]:
+    """Rejects candidates with YouTube-detected commercial music tracks or high-risk studio channels."""
+    title = (meta.get("title") or "").lower()
+    channel = (meta.get("channel") or meta.get("uploader") or "").lower()
+
+    if meta.get("track") or meta.get("artist"):
+        return False, f"Content-ID music detected ({meta.get('track')} / {meta.get('artist')})"
+    if any(b in channel for b in BLOCKED_CHANNEL_TERMS):
+        return False, f"Blocked music/label channel ({channel})"
+    if any(b in title for b in BANNED_TITLE_TERMS):
+        return False, f"Blocked title term ({title[:40]})"
+    dur = meta.get("duration") or 0
+    if dur < 4 or dur > 180:
+        return False, f"Duration out of bounds ({dur}s)"
+    return True, "ok"
+
+
+def scout_youtube(query: str, count: int = 5, max_duration: int = 65, ignore_history: bool = False) -> list[dict]:
+    """Scouts YouTube via yt_dlp InnerTube/web extractor + Anti-CID pre-filter."""
+    used = set() if ignore_history else _load_history()
+    probe_n = max(count * 3, 12)
+    cmd = [
+        sys.executable, "-m", "yt_dlp",
+        "--dump-json", "--no-playlist", "--no-warnings",
+        "--match-filter", f"duration <= {max_duration} & duration >= 5",
+        f"ytsearch{probe_n}:{query}",
+    ]
+    candidates, seen = [], set()
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=50)
+        for line in proc.stdout.splitlines():
+            if not line.strip():
+                continue
+            try:
+                d = json.loads(line)
+            except Exception:
+                continue
+            vid = d.get("id")
+            if not vid or vid in seen or vid in used:
+                continue
+            seen.add(vid)
+            ok, _ = passes_copyright_prefilter(d)
+            if not ok:
+                continue
+            candidates.append({
+                "id": f"yt_{vid}",
+                "platform": "youtube",
+                "title": d.get("title", ""),
+                "creator": d.get("channel") or d.get("uploader") or "Creator",
+                "views": int(d.get("view_count") or 0),
+                "duration": float(d.get("duration") or 15),
+                "url": d.get("webpage_url") or f"https://youtube.com/watch?v={vid}",
+            })
+    except Exception as e:
+        print(f"[Harvester] YouTube scout skipped ({query[:30]}): {e}", file=sys.stderr)
+
+    candidates.sort(key=lambda x: x["views"], reverse=True)
+    return candidates[:count]
+
+
+def scout_reddit_memes_and_clips(topic: str = "", count: int = 5, video_only: bool = False) -> list[dict]:
+    """Scouts Reddit public JSON API for movie/series memes (images) and clips (v.redd.it)."""
+    used = _load_history()
+    results = []
+    q = urllib.parse.quote_plus(topic) if topic else ""
+    urls = (
+        [f"https://www.reddit.com/search.json?q={q}&sort=top&t=week&limit=15"]
+        if topic
+        else [f"https://www.reddit.com/r/{sub}/hot.json?limit=12" for sub in MEME_SUBREDDITS[:4]]
+    )
+    rd_ua = "windows:movie-series-harvester:v1.0 (by /u/cinepulse_auto)"
+    for url in urls:
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": rd_ua})
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                data = json.loads(resp.read().decode("utf-8", errors="replace"))
+            for child in data.get("data", {}).get("children", []):
+                p = child.get("data", {})
+                pid = f"rd_{p.get('id')}"
+                if p.get("over_18") or p.get("stickied") or pid in used:
+                    continue
+                is_vid = bool(p.get("is_video"))
+                media_url = p.get("url_overridden_by_dest") or p.get("url") or ""
+                is_img = bool(re.search(r"\.(jpg|jpeg|png|webp)$", media_url, re.I))
+                if video_only and not is_vid:
+                    continue
+                if not is_vid and not is_img:
+                    continue
+                results.append({
+                    "id": pid,
+                    "platform": "reddit",
+                    "media_type": "video" if is_vid else "image",
+                    "title": p.get("title", ""),
+                    "creator": f"u/{p.get('author', 'redditor')} (r/{p.get('subreddit', 'movies')})",
+                    "views": int(p.get("score") or 0) * 100,
+                    "duration": float((p.get("media") or {}).get("reddit_video", {}).get("duration") or 12),
+                    "url": f"https://www.reddit.com{p.get('permalink', '')}" if is_vid else media_url,
+                })
+        except Exception as e:
+            print(f"[Harvester] Reddit scout skipped: {e}", file=sys.stderr)
+    results.sort(key=lambda x: x["views"], reverse=True)
+    return results[:count]
+
+
+def scout_tiktok_public(query: str, count: int = 3) -> list[dict]:
+    """Scouts public TikTok edit clips via TikWM public search API (no auth bypass; falls back gracefully)."""
+    used = _load_history()
+    results = []
+    try:
+        body = urllib.parse.urlencode({"keywords": query, "count": max(count * 2, 6)}).encode("utf-8")
+        req = urllib.request.Request(
+            "https://www.tikwm.com/api/feed/search",
+            data=body,
+            headers={"User-Agent": UA, "Content-Type": "application/x-www-form-urlencoded"},
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            data = json.loads(resp.read().decode("utf-8", errors="replace"))
+        for item in (data.get("data") or {}).get("videos", []):
+            vid = f"tt_{item.get('video_id')}"
+            dur = float(item.get("duration") or 0)
+            if vid in used or dur < 5 or dur > 65:
+                continue
+            play_url = item.get("play") or item.get("wmplay")
+            if not play_url:
+                continue
+            author = (item.get("author") or {}).get("unique_id") or "tiktok_creator"
+            results.append({
+                "id": vid,
+                "platform": "tiktok",
+                "title": (item.get("title") or query)[:90],
+                "creator": f"@{author}",
+                "views": int(item.get("play_count") or 0),
+                "duration": dur,
+                "url": play_url,
+                "direct_mp4": True,
+            })
+    except Exception as e:
+        print(f"[Harvester] TikTok public API skipped ({query[:24]}): {e}", file=sys.stderr)
+    results.sort(key=lambda x: x["views"], reverse=True)
+    return results[:count]
+
+
+def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, browser_cookies: str = "") -> Path | None:
+    """Downloads a public YouTube, TikTok, Reddit, Instagram Reel, or Facebook Watch video via yt_dlp."""
+    # shortcut: IG/FB public reels sometimes require local browser session cookies (--cookies-from-browser chrome)
+    target_dir = out_dir or INPUT_DIR
+    target_dir.mkdir(parents=True, exist_ok=True)
+    safe_id = re.sub(r"[^A-Za-z0-9_\-]", "_", tag_id)[:48]
+    out_mp4 = target_dir / f"{safe_id}.mp4"
+    if out_mp4.exists() and out_mp4.stat().st_size > 20_000:
+        return out_mp4
+
+    cmd = [
+        sys.executable, "-m", "yt_dlp",
+        "-f", "bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]/best[ext=mp4]/best",
+        "--merge-output-format", "mp4",
+        "--no-warnings",
+        "-o", str(target_dir / f"{safe_id}.%(ext)s"),
+    ]
+    if browser_cookies:
+        cmd.extend(["--cookies-from-browser", browser_cookies])
+    cmd.append(url)
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=90)
+        if proc.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
+            used = _load_history()
+            used.add(tag_id)
+            _save_history(used)
+            return out_mp4
+        print(f"[Harvester] Download failed ({safe_id}): {proc.stderr[:180]}", file=sys.stderr)
+    except Exception as e:
+        print(f"[Harvester] Download exception ({safe_id}): {e}", file=sys.stderr)
+    return None
+
+
+def download_clip(candidate: dict, out_dir: Path | None = None, browser_cookies: str = "") -> Path | None:
+    target_dir = out_dir or INPUT_DIR
+    target_dir.mkdir(parents=True, exist_ok=True)
+    safe_id = re.sub(r"[^A-Za-z0-9_\-]", "_", candidate["id"])[:48]
+    out_mp4 = target_dir / f"{safe_id}.mp4"
+    if out_mp4.exists() and out_mp4.stat().st_size > 20_000:
+        return out_mp4
+
+    if candidate.get("direct_mp4"):
+        try:
+            req = urllib.request.Request(candidate["url"], headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                out_mp4.write_bytes(resp.read())
+            if out_mp4.stat().st_size > 20_000:
+                used = _load_history()
+                used.add(candidate["id"])
+                _save_history(used)
+                return out_mp4
+        except Exception as e:
+            print(f"[Harvester] Direct MP4 download skipped ({safe_id}): {e}", file=sys.stderr)
+            return None
+
+    return download_social_url(candidate["url"], candidate["id"], target_dir, browser_cookies=browser_cookies)
+
+
+def _matches_topic(candidate: dict, required_topic: str) -> bool:
+    if not required_topic:
+        return True
+    hay = f"{candidate.get('title', '')} {candidate.get('creator', '')}".lower()
+    tokens = [t for t in re.findall(r"[a-z0-9]+", required_topic.lower()) if len(t) >= 3]
+    if not tokens:
+        return True
+    return any(t in hay for t in tokens)
+
+
+def harvest_video_pack(
+    queries: list[str],
+    target_count: int = 3,
+    max_duration: int = 65,
+    platforms: tuple[str, ...] = ("youtube", "tiktok", "reddit"),
+    extra_urls: list[str] | None = None,
+    browser_cookies: str = "",
+    required_topic: str = "",
+) -> list[dict]:
+    """Harvests N distinct copyright-screened clips across YouTube, TikTok, Reddit, and optional IG/FB URLs."""
+    picked, seen_ids = [], set()
+
+    # Optional explicit Instagram/Facebook/TikTok/YouTube URLs supplied by user or scout
+    for idx, u in enumerate(extra_urls or [], 1):
+        if len(picked) >= target_count:
+            break
+        cid = f"url_{idx}_{abs(hash(u)) % 100000}"
+        path = download_social_url(u, cid, browser_cookies=browser_cookies)
+        if path:
+            picked.append({
+                "id": cid, "platform": "social_url", "title": f"Clip {idx}",
+                "creator": "Social Creator", "views": 0, "duration": 15.0,
+                "url": u, "local_path": str(path),
+            })
+            seen_ids.add(cid)
+
+    pool: list[dict] = []
+    for q in queries:
+        if "youtube" in platforms:
+            pool.extend(scout_youtube(q, count=target_count * 2, max_duration=max_duration))
+        if "tiktok" in platforms and len(pool) < target_count * 2:
+            pool.extend(scout_tiktok_public(q, count=target_count))
+        if "reddit" in platforms and len(pool) < target_count * 2:
+            pool.extend(scout_reddit_memes_and_clips(q, count=target_count, video_only=True))
+
+    pool.sort(key=lambda x: x.get("views", 0), reverse=True)
+    for c in pool:
+        if len(picked) >= target_count:
+            break
+        if c["id"] in seen_ids or not _matches_topic(c, required_topic):
+            continue
+        path = download_clip(c, browser_cookies=browser_cookies)
+        if path:
+            seen_ids.add(c["id"])
+            c["local_path"] = str(path)
+            picked.append(c)
+            print(f"[Harvester] Ready ({len(picked)}/{target_count}) [{c['platform']}]: {c['title'][:50]} [{c['views']:,}]")
+    return picked
+
+
+def fetch_wikimedia_image(query: str, out_path: Path) -> Path | None:
+    """Fetches a high-res press/Wikipedia poster still, falling back to YouTube trailer thumbnail (0% video CID)."""
+    try:
+        q = urllib.parse.quote_plus(query)
+        url = (
+            "https://en.wikipedia.org/w/api.php?action=query&generator=search"
+            f"&gsrsearch={q}&gsrlimit=4&prop=pageimages&piprop=original&format=json"
+        )
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            data = json.loads(resp.read().decode("utf-8", errors="replace"))
+        for page in data.get("query", {}).get("pages", {}).values():
+            img_url = page.get("original", {}).get("source")
+            if img_url and re.search(r"\.(jpg|jpeg|png|webp)$", img_url, re.I):
+                img_req = urllib.request.Request(img_url, headers={"User-Agent": UA})
+                with urllib.request.urlopen(img_req, timeout=12) as ir:
+                    out_path.parent.mkdir(parents=True, exist_ok=True)
+                    out_path.write_bytes(ir.read())
+                if out_path.stat().st_size > 8_000:
+                    return out_path
+    except Exception:
+        pass
+
+    try:
+        proc = subprocess.run(
+            [sys.executable, "-m", "yt_dlp", "--dump-json", "--no-playlist", "--no-warnings", f"ytsearch1:{query} movie trailer"],
+            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=20,
+        )
+        for line in proc.stdout.splitlines():
+            if not line.strip():
+                continue
+            thumb = json.loads(line).get("thumbnail")
+            if thumb:
+                req = urllib.request.Request(thumb, headers={"User-Agent": UA})
+                with urllib.request.urlopen(req, timeout=10) as ir:
+                    out_path.parent.mkdir(parents=True, exist_ok=True)
+                    out_path.write_bytes(ir.read())
+                if out_path.stat().st_size > 8_000:
+                    return out_path
+    except Exception as e:
+        print(f"[Harvester] Still fetch skipped ({query[:24]}): {e}", file=sys.stderr)
+    return None
