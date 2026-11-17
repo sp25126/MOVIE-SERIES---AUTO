@@ -1,4 +1,4 @@
-"""Single CLI entrypoint for MOVIE-SERIES---AUTO (virality -> harvest -> DSP -> QA -> metadata)."""
+"""Single CLI entrypoint: 100% dynamic virality selector across 8 genre groups -> harvest -> DSP -> QA."""
 
 import argparse
 import json
@@ -6,12 +6,7 @@ import re
 import sys
 from pathlib import Path
 
-from clip_harvester import (
-    fetch_wikimedia_image,
-    harvest_video_pack,
-    passes_copyright_prefilter,
-    scout_reddit_memes_and_clips,
-)
+from clip_harvester import fetch_wikimedia_image, harvest_video_pack, passes_copyright_prefilter
 from dsp_renderer import (
     ensure_royalty_free_bgm,
     render_edit_ranking,
@@ -26,40 +21,81 @@ from virality_radar import compute_multi_horizon_score, compute_vph_score, scan_
 ROOT = Path(__file__).resolve().parent
 OUTPUT_DIR = ROOT / "output"
 TEMP_DIR = ROOT / "temp"
+CATALOG_PATH = ROOT / "niche_catalog.json"
 
 
 def _slug(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", text.lower()).strip("_")[:36] or "short"
 
 
+def select_fresh_viral_target(report: dict, genre_filter: str | None = None, fmt_override: str = "auto") -> dict:
+    """Picks highest-virality live topic not on cooldown, preferring a fresh genre when possible."""
+    cat = json.loads(CATALOG_PATH.read_text(encoding="utf-8")) if CATALOG_PATH.exists() else {}
+    recent_topics = {t.lower() for t in cat.get("recent_topics", [])}
+    last_genre = (cat.get("recent_genres") or [""])[-1]
+
+    pool = report.get("top_topics") or [report["winner"]]
+    if genre_filter:
+        filtered = [t for t in pool if t.get("genre") == genre_filter]
+        pool = filtered or pool
+
+    # 1. Highest-virality topic not recently used AND from a different genre than last run
+    for cand in pool:
+        if cand["topic"].lower() not in recent_topics and cand.get("genre") != last_genre:
+            target = dict(cand)
+            break
+    else:
+        # 2. Highest-virality topic not recently used (any genre)
+        target = dict(next((c for c in pool if c["topic"].lower() not in recent_topics), pool[0]))
+
+    if fmt_override != "auto":
+        target["recommended_format"] = fmt_override
+    return target
+
+
+def record_run_cooldown(topic: str, genre: str):
+    if not CATALOG_PATH.exists():
+        return
+    cat = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
+    rt = [t for t in cat.get("recent_topics", []) if t.lower() != topic.lower()]
+    rt.append(topic)
+    cat["recent_topics"] = rt[-12:]
+    rg = cat.get("recent_genres", [])
+    rg.append(genre)
+    cat["recent_genres"] = rg[-8:]
+    CATALOG_PATH.write_text(json.dumps(cat, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
 def run_self_test() -> int:
-    """Fast self-check: virality scoring, copyright pre-filter, and procedural BGM synthesis."""
-    # 1. Virality math sanity
+    """Fast self-check: virality math, Anti-CID filter, procedural BGM, and 8-genre dynamic catalog."""
     s_fresh = compute_vph_score(views=120_000, age_hours=6, channel_subs=5_000)
     s_stale = compute_vph_score(views=120_000, age_hours=160, channel_subs=500_000)
     assert s_fresh > s_stale * 5, f"Expected fresh breakout >> stale: {s_fresh} vs {s_stale}"
+    assert compute_multi_horizon_score(100, 50, 50, 50) == 70.0
 
-    mh = compute_multi_horizon_score(100, 50, 50, 50)
-    assert mh == 70.0, f"Weighted horizon mismatch: {mh}"
-
-    # 2. Anti-CID pre-filter sanity
-    ok1, _ = passes_copyright_prefilter({"title": "Patrick Jane Edit", "channel": "FanEdits", "duration": 22})
+    ok1, _ = passes_copyright_prefilter({"title": "Scene Edit", "channel": "FanEdits", "duration": 22})
     ok2, _ = passes_copyright_prefilter({"title": "Song", "channel": "FanEdits", "duration": 22, "track": "Hit Song"})
     ok3, _ = passes_copyright_prefilter({"title": "Full Movie HD", "channel": "MoviesHub", "duration": 22})
     ok4, _ = passes_copyright_prefilter({"title": "Clip", "channel": "ArtistVEVO", "duration": 22})
     assert ok1 and not ok2 and not ok3 and not ok4, "Copyright pre-filter failed!"
 
-    # 3. Royalty-free BGM synthesis check
+    cat = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
+    assert len(cat["groups"]) == 8, f"Expected 8 genre groups, got {len(cat['groups'])}"
+    for gid, g in cat["groups"].items():
+        for sc in g["subcategories"]:
+            assert "topics" not in sc, f"Static topics list found in {gid}/{sc['id']}!"
+
     bgm = ensure_royalty_free_bgm("phonk")
     assert bgm.exists() and bgm.stat().st_size > 30_000, "BGM generation failed!"
 
-    print("[SELF-TEST] ALL CHECKS PASSED (virality math, Anti-CID filter, royalty-free BGM).")
+    print("[SELF-TEST] ALL CHECKS PASSED (virality math, Anti-CID, 8 zero-static genre groups, royalty-free BGM).")
     return 0
 
 
 def run_pipeline(
     fmt: str = "auto",
     topic: str | None = None,
+    genre: str | None = None,
     handle: str = "@CinePulse",
     dry_run: bool = True,
     count: int = 3,
@@ -68,11 +104,23 @@ def run_pipeline(
 ) -> dict:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     report = scan_virality(skip_yt=bool(topic))
-    winner = report["winner"]
 
-    chosen_topic = topic or winner["topic"]
-    chosen_fmt = winner["recommended_format"] if fmt == "auto" else fmt
-    print(f"\n[Pipeline] Topic='{chosen_topic}' | Format='{chosen_fmt}' | DryRun={dry_run}")
+    if topic:
+        target = {
+            "topic": topic,
+            "genre": genre or "action_thriller",
+            "subcategory": "manual_override",
+            "recommended_format": "edit_ranking" if fmt == "auto" else fmt,
+            "query_suffix": "edit shorts",
+        }
+    else:
+        target = select_fresh_viral_target(report, genre_filter=genre, fmt_override=fmt)
+
+    chosen_topic = target["topic"]
+    chosen_genre = target.get("genre", "cinema_news_trivia")
+    chosen_fmt = target["recommended_format"]
+    q_sfx = target.get("query_suffix", "edit shorts")
+    print(f"\n[Pipeline] Dynamic Pick -> Genre='{chosen_genre}' | Topic='{chosen_topic}' | Format='{chosen_fmt}' | DryRun={dry_run}")
 
     out_mp4 = OUTPUT_DIR / f"{chosen_fmt}_{_slug(chosen_topic)}_master.mp4"
     clips: list[dict] = []
@@ -89,7 +137,6 @@ def run_pipeline(
             "image_path": str(hook_img) if hook_img else None,
         }]
         for idx, item in enumerate(feed[:4], 1):
-            # Extract compact movie/person query for crisp poster/still hit
             clean_q = " ".join(re.findall(r"[A-Za-z0-9]+", item["title"])[:4]) or chosen_topic
             img_p = fetch_wikimedia_image(clean_q, TEMP_DIR / f"still_{idx}.jpg")
             slides.append({
@@ -102,42 +149,49 @@ def run_pipeline(
         clips = feed[:4]
 
     elif chosen_fmt == "edit_ranking":
-        queries = [f"{chosen_topic} edit shorts", f"{chosen_topic} best scene edit shorts", f"{chosen_topic} moments edit"]
+        queries = [f"{chosen_topic} {q_sfx}", f"{chosen_topic} best scene edit shorts", f"{chosen_topic} moments edit"]
         clips = harvest_video_pack(
             queries, target_count=count, max_duration=65,
             extra_urls=extra_urls, browser_cookies=browser_cookies, required_topic=chosen_topic,
         )
         if not clips:
             print(f"[Pipeline] Video harvest empty for '{chosen_topic}' -> falling back to news_slideshow.")
-            return run_pipeline(fmt="news_slideshow", topic=chosen_topic, handle=handle, dry_run=dry_run, count=count)
-        # Short punchy rank labels for the left ladder
+            return run_pipeline(fmt="news_slideshow", topic=chosen_topic, genre=chosen_genre, handle=handle, dry_run=dry_run, count=count)
         for i, c in enumerate(clips, 1):
             words = re.findall(r"[A-Za-z0-9]+", c["title"])
             c["short_label"] = " ".join(words[:2]).title() if words else f"Clip {i}"
         render_edit_ranking(chosen_topic, clips, out_mp4, handle=handle, clip_dur=10.0)
 
     elif chosen_fmt == "release_hype":
-        queries = [f"{chosen_topic} trailer edit shorts", f"{chosen_topic} movie clip shorts"]
-        clips = harvest_video_pack(queries, target_count=max(count, 4), max_duration=65, extra_urls=extra_urls, browser_cookies=browser_cookies, required_topic=chosen_topic)
+        queries = [f"{chosen_topic} {q_sfx}", f"{chosen_topic} trailer edit shorts", f"{chosen_topic} movie clip shorts"]
+        clips = harvest_video_pack(
+            queries, target_count=max(count, 4), max_duration=65,
+            extra_urls=extra_urls, browser_cookies=browser_cookies, required_topic=chosen_topic,
+        )
         if not clips:
             print(f"[Pipeline] Video harvest empty for '{chosen_topic}' -> falling back to news_slideshow.")
-            return run_pipeline(fmt="news_slideshow", topic=chosen_topic, handle=handle, dry_run=dry_run, count=count)
+            return run_pipeline(fmt="news_slideshow", topic=chosen_topic, genre=chosen_genre, handle=handle, dry_run=dry_run, count=count)
         render_release_hype(f"THIS WEEK CAN'T HOLD THIS MUCH PEAK... ({chosen_topic})", clips, out_mp4, handle=handle)
 
     else:  # movie_trivia or scene_commentary
         is_triv = chosen_fmt == "movie_trivia"
-        queries = [f"{chosen_topic} scene shorts", f"{chosen_topic} movie clip edit"]
-        clips = harvest_video_pack(queries, target_count=3 if is_triv else 1, max_duration=65, extra_urls=extra_urls, browser_cookies=browser_cookies)
+        queries = [f"{chosen_topic} {q_sfx}", f"{chosen_topic} scene shorts", f"{chosen_topic} movie clip edit"]
+        clips = harvest_video_pack(
+            queries, target_count=3 if is_triv else 1, max_duration=65,
+            extra_urls=extra_urls, browser_cookies=browser_cookies, required_topic=chosen_topic,
+        )
         if not clips:
-            raise RuntimeError(f"No clean clips harvested for {chosen_fmt} '{chosen_topic}'")
+            print(f"[Pipeline] Video harvest empty for '{chosen_topic}' -> falling back to news_slideshow.")
+            return run_pipeline(fmt="news_slideshow", topic=chosen_topic, genre=chosen_genre, handle=handle, dry_run=dry_run, count=count)
         for c in clips:
             c["fact_or_commentary"] = c["title"][:60]
         render_movie_trivia_or_commentary(chosen_topic, clips, out_mp4, handle=handle, mode=chosen_fmt)
 
     qa = verify_video(out_mp4, make_proof=True)
     meta = build_metadata(chosen_topic, chosen_fmt, clips, handle=handle)
-    meta_path = out_mp4.with_suffix(".meta.json")
-    meta_path.write_text(json.dumps({"qa": qa, "metadata": meta}, indent=2, ensure_ascii=False), encoding="utf-8")
+    out_mp4.with_suffix(".meta.json").write_text(json.dumps({"target": target, "qa": qa, "metadata": meta}, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    record_run_cooldown(chosen_topic, chosen_genre)
 
     upload_res = None
     if not dry_run:
@@ -146,13 +200,14 @@ def run_pipeline(
         upload_res = upload_private_canary_and_schedule(out_mp4, meta)
 
     print(f"[Pipeline] Done -> {out_mp4} | QA={'PASS' if qa['passed'] else 'FAIL'} | Proof={qa.get('proof_sheet')}")
-    return {"video": str(out_mp4), "qa": qa, "metadata": meta, "upload": upload_res}
+    return {"video": str(out_mp4), "target": target, "qa": qa, "metadata": meta, "upload": upload_res}
 
 
 if __name__ == "__main__":
-    p = argparse.ArgumentParser(description="Virality-first Movies & Series Shorts Automation")
+    p = argparse.ArgumentParser(description="100% Dynamic Virality-First Movies & Series Shorts Automation")
     p.add_argument("--self-test", action="store_true")
     p.add_argument("--format", default="auto", choices=["auto", "edit_ranking", "release_hype", "movie_trivia", "scene_commentary", "news_slideshow"])
+    p.add_argument("--genre", default=None, help="Optional genre group ID from niche_catalog.json")
     p.add_argument("--topic", default=None)
     p.add_argument("--handle", default="@CinePulse")
     p.add_argument("--count", type=int, default=3)
@@ -168,6 +223,7 @@ if __name__ == "__main__":
     run_pipeline(
         fmt=args.format,
         topic=args.topic,
+        genre=args.genre,
         handle=args.handle,
         dry_run=not args.upload,
         count=args.count,

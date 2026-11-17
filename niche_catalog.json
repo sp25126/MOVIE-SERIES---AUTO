@@ -1,262 +1,576 @@
 {
-  "last_3day_sync_utc": "2026-11-17T20:17:29Z",
-  "rotation_cycle": [
-    "GROUP_A",
-    "GROUP_B",
-    "GROUP_C",
-    "GROUP_D"
+  "last_3day_sync_utc": "2026-11-17T20:28:09Z",
+  "recent_topics": [],
+  "recent_genres": [],
+  "live_genre_leaderboard": [
+    {
+      "genre": "action_thriller",
+      "label": "Action, Spy & Crime Thriller",
+      "total_score": 835.8,
+      "top_topic": "Brian Cashman Addresses",
+      "count": 58
+    },
+    {
+      "genre": "cinema_news_trivia",
+      "label": "Breaking Industry News, Box Office & Trivia",
+      "total_score": 536.0,
+      "top_topic": "Collection Day",
+      "count": 21
+    },
+    {
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 392.3,
+      "top_topic": "Ranbir Kapoor",
+      "count": 17
+    },
+    {
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 381.1,
+      "top_topic": "Good Partner 2",
+      "count": 24
+    },
+    {
+      "genre": "superhero_scifi",
+      "label": "Superhero & Sci-Fi",
+      "total_score": 310.1,
+      "top_topic": "Dr Doom Awakens",
+      "count": 14
+    },
+    {
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 253.7,
+      "top_topic": "Peacock Original",
+      "count": 14
+    },
+    {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 203.6,
+      "top_topic": "David Lynch",
+      "count": 13
+    },
+    {
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 118.6,
+      "top_topic": "Your Name",
+      "count": 10
+    }
   ],
-  "cycle_index": 0,
   "live_3day_top_topics": [
     {
-      "topic": "Ramayana",
-      "score": 90.0,
+      "topic": "Ranbir Kapoor",
+      "genre": "fantasy_mythology",
+      "subcategory": "fantasy_lore_news",
       "format": "news_slideshow",
+      "score": 86.4,
       "sources": [
-        "Deadline",
+        "Hindustan Times",
         "NDTV",
-        "Screen Daily",
-        "The Hindu"
-      ]
-    },
-    {
-      "topic": "VisionQuest",
-      "score": 75.27,
-      "format": "news_slideshow",
-      "sources": [
-        "Reddit-30d(r/marvelmemes)",
-        "Reddit-7d(r/marvelmemes)",
-        "Reddit-7d(r/marvelstudios)"
-      ]
-    },
-    {
-      "topic": "Avengers: Doomsday",
-      "score": 70.0,
-      "format": "news_slideshow",
-      "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "Reddit-7d(r/marvelstudios)"
-      ]
-    },
-    {
-      "topic": "Kevin Feige",
-      "score": 49.29,
-      "format": "news_slideshow",
-      "sources": [
-        "Reddit-7d(r/marvelstudios)"
-      ]
-    },
-    {
-      "topic": "Body Problem: Season",
-      "score": 35.85,
-      "format": "release_hype",
-      "sources": [
-        "Reddit-30d(r/television)",
-        "Reddit-7d(r/television)"
-      ]
-    },
-    {
-      "topic": "Hulu App Merger",
-      "score": 35.63,
-      "format": "release_hype",
-      "sources": [
-        "Reddit-30d(r/television)",
-        "Reddit-7d(r/television)"
-      ]
-    },
-    {
-      "topic": "Be Complete",
-      "score": 35.63,
-      "format": "release_hype",
-      "sources": [
-        "Reddit-30d(r/television)",
-        "Reddit-7d(r/television)"
-      ]
-    },
-    {
-      "topic": "The Ranbir Kapoor",
-      "score": 34.0,
-      "format": "news_slideshow",
-      "sources": [
         "The Times of India"
+      ]
+    },
+    {
+      "topic": "Ramayana",
+      "genre": "fantasy_mythology",
+      "subcategory": "fantasy_lore_news",
+      "format": "news_slideshow",
+      "score": 76.4,
+      "sources": [
+        "The Hindu",
+        "The Times of India"
+      ]
+    },
+    {
+      "topic": "Collection Day",
+      "genre": "cinema_news_trivia",
+      "subcategory": "breaking_3day_movie_news",
+      "format": "news_slideshow",
+      "score": 66.4,
+      "sources": [
+        "NDTV"
       ]
     },
     {
       "topic": "Sai Pallavi",
-      "score": 34.0,
+      "genre": "fantasy_mythology",
+      "subcategory": "fantasy_lore_news",
       "format": "news_slideshow",
+      "score": 53.4,
       "sources": [
         "The Times of India"
       ]
     },
     {
-      "topic": "Ramayana Box Office",
-      "score": 34.0,
+      "topic": "David Lynch",
+      "genre": "horror_mystery",
+      "subcategory": "horror_new_release_hype",
+      "format": "release_hype",
+      "score": 48.44,
+      "sources": [
+        "Reddit-30d(r/TrueFilm)",
+        "Reddit-7d(r/TrueFilm)",
+        "Reddit-7d(r/horror)"
+      ]
+    },
+    {
+      "topic": "Russel Crowe",
+      "genre": "cinema_news_trivia",
+      "subcategory": "breaking_3day_movie_news",
       "format": "news_slideshow",
+      "score": 38.16,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Keith David",
+      "genre": "cinema_news_trivia",
+      "subcategory": "breaking_3day_movie_news",
+      "format": "news_slideshow",
+      "score": 38.16,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Crore Mark Globally",
+      "genre": "cinema_news_trivia",
+      "subcategory": "breaking_3day_movie_news",
+      "format": "news_slideshow",
+      "score": 35.6,
       "sources": [
         "NDTV"
+      ]
+    },
+    {
+      "topic": "Good Partner 2",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 32.14,
+      "sources": [
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)"
+      ]
+    },
+    {
+      "topic": "Trying Here",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 29.59,
+      "sources": [
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)"
+      ]
+    },
+    {
+      "topic": "Dr Doom Awakens",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_edit_ranking",
+      "format": "edit_ranking",
+      "score": 29.35,
+      "sources": [
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "GodEater",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "format": "release_hype",
+      "score": 28.96,
+      "sources": [
+        "Reddit-30d(r/Fantasy)",
+        "Reddit-7d(r/Fantasy)"
+      ]
+    },
+    {
+      "topic": "Good Partner",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 27.88,
+      "sources": [
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)"
+      ]
+    },
+    {
+      "topic": "Your Name",
+      "genre": "drama_prestige",
+      "subcategory": "coldest_drama_edits",
+      "format": "edit_ranking",
+      "score": 27.78,
+      "sources": [
+        "Reddit-30d(r/TrueFilm)",
+        "Reddit-7d(r/TrueFilm)"
+      ]
+    },
+    {
+      "topic": "SciFi",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "format": "release_hype",
+      "score": 27.59,
+      "sources": [
+        "Reddit-7d(r/scifi)"
       ]
     }
   ],
   "groups": {
-    "GROUP_A": {
-      "format": "edit_ranking",
-      "description": "Dual-layer blurred BG + persistent left countdown ladder (#3->#1 or #5->#1) — Ref #9 (715x sub ratio)",
+    "superhero_scifi": {
+      "label": "Superhero & Sci-Fi",
+      "subreddits": [
+        "marvelstudios",
+        "marvelmemes",
+        "DC_Cinematic",
+        "scifi"
+      ],
+      "yt_probe": "superhero sci-fi movie edit",
+      "news_query": "(superhero OR marvel OR dc OR sci-fi) (movie OR series OR trailer)",
+      "keywords": [
+        "superhero",
+        "marvel",
+        "mcu",
+        "dc",
+        "avengers",
+        "spider",
+        "batman",
+        "superman",
+        "sci-fi",
+        "multiverse",
+        "alien",
+        "space",
+        "cyber",
+        "vision",
+        "doom",
+        "ultron",
+        "x-men",
+        "star wars"
+      ],
       "subcategories": [
         {
-          "id": "trending_show_edits",
-          "label": "Live 3-Day Trending Movie/Series Edits",
-          "dynamic": true,
+          "id": "superhero_edit_ranking",
+          "format": "edit_ranking",
           "query_suffix": "edit shorts"
         },
         {
-          "id": "genius_character_edits",
-          "label": "High-IQ Character Edits",
-          "topics": [
-            "Patrick Jane",
-            "Thomas Shelby",
-            "Saul Goodman",
-            "Sherlock Holmes"
-          ],
-          "query_suffix": "edit shorts"
+          "id": "superhero_spoiler_commentary",
+          "format": "scene_commentary",
+          "query_suffix": "scene breakdown shorts"
         },
         {
-          "id": "superhero_trend_edits",
-          "label": "Superhero Viral Trend Edits",
-          "topics": [
-            "Spider-Man: Brand New Day",
-            "Avengers: Doomsday",
-            "Doctor Doom",
-            "Batman"
-          ],
-          "query_suffix": "edit 4k shorts"
-        },
-        {
-          "id": "coldest_villain_aura",
-          "label": "Coldest Movie & Series Villain Aura",
-          "topics": [
-            "Ultron",
-            "Homelander",
-            "Darth Vader",
-            "Thanos",
-            "Joker"
-          ],
-          "query_suffix": "coldest moments edit shorts"
-        },
-        {
-          "id": "cinema_fight_clashes",
-          "label": "Insane Action & Fight Scenes",
-          "topics": [
-            "John Wick",
-            "Dune",
-            "Ramayana",
-            "The Matrix"
-          ],
-          "query_suffix": "fight scene edit shorts"
-        }
-      ]
-    },
-    "GROUP_B": {
-      "format": "release_hype",
-      "description": "Top white hook bar + rapid 2s beat-synced micro-cuts over royalty-free phonk — Refs #1, #2, #3",
-      "subcategories": [
-        {
-          "id": "this_month_stacked_slate",
-          "label": "This Month Can't Hold This Much Peak",
-          "dynamic": true,
+          "id": "scifi_release_hype",
+          "format": "release_hype",
           "query_suffix": "trailer edit shorts"
-        },
-        {
-          "id": "in_theaters_now_hype",
-          "label": "Currently In Theaters Hype",
-          "dynamic": true,
-          "query_suffix": "movie teaser shorts"
-        },
-        {
-          "id": "fandom_contrast_memes",
-          "label": "Viral Fandom & Cast Contrast Memes",
-          "topics": [
-            "Avengers: Doomsday",
-            "Spider-Man",
-            "Stranger Things"
-          ],
-          "query_suffix": "funny cast meme shorts"
-        },
-        {
-          "id": "upcoming_trailer_drops",
-          "label": "Newest Viral Trailer Drops",
-          "dynamic": true,
-          "query_suffix": "official trailer 4k shorts"
         }
       ]
     },
-    "GROUP_C": {
-      "format": "movie_trivia",
-      "alt_format": "scene_commentary",
-      "description": "Letterboxed freeze-frame trivia (Ref #4, 290x) & dual-layer commentary scenes (Refs #6, #11)",
+    "action_thriller": {
+      "label": "Action, Spy & Crime Thriller",
+      "subreddits": [
+        "movies",
+        "boxoffice"
+      ],
+      "yt_probe": "action thriller movie fight edit",
+      "news_query": "(action movie OR thriller series OR spy film) (box office OR trailer)",
+      "keywords": [
+        "action",
+        "thriller",
+        "spy",
+        "bond",
+        "heist",
+        "assassin",
+        "crime",
+        "cartel",
+        "fight",
+        "chase",
+        "war",
+        "military",
+        "detective",
+        "agent",
+        "mission"
+      ],
       "subcategories": [
         {
-          "id": "most_expensive_scenes",
-          "label": "Movie Scenes That Cost an Insane Amount",
-          "format": "movie_trivia",
-          "topics": [
-            "Titanic",
-            "Pearl Harbor",
-            "Saving Private Ryan",
-            "The Matrix Revolutions"
-          ],
-          "query_suffix": "iconic scene shorts"
+          "id": "action_fight_ranking",
+          "format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts"
         },
         {
-          "id": "breaking_finale_commentary",
-          "label": "Breaking Episode / Finale Commentary",
+          "id": "thriller_plot_twist_commentary",
           "format": "scene_commentary",
-          "dynamic": true,
-          "query_suffix": "finale scene edit shorts"
+          "query_suffix": "best scene shorts"
         },
         {
-          "id": "iconic_sitcom_comedy_clips",
-          "label": "Iconic TV Comedy & Shock Scenes",
+          "id": "action_theatrical_hype",
+          "format": "release_hype",
+          "query_suffix": "trailer shorts"
+        }
+      ]
+    },
+    "comedy_sitcom": {
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "subreddits": [
+        "television",
+        "memes"
+      ],
+      "yt_probe": "funny tv show sitcom scene edit",
+      "news_query": "(comedy movie OR sitcom OR funny cast) (viral OR meme OR series)",
+      "keywords": [
+        "comedy",
+        "sitcom",
+        "funny",
+        "hilarious",
+        "romcom",
+        "parody",
+        "meme",
+        "cast",
+        "blooper",
+        "laugh",
+        "joke",
+        "prank"
+      ],
+      "subcategories": [
+        {
+          "id": "sitcom_viral_scene",
           "format": "scene_commentary",
-          "topics": [
-            "Malcolm in the Middle",
-            "The Office",
-            "Brooklyn Nine-Nine"
-          ],
           "query_suffix": "funny scene edit shorts"
         },
         {
-          "id": "hidden_movie_details",
-          "label": "Hidden Cinema Details You Missed",
-          "format": "movie_trivia",
-          "topics": [
-            "Interstellar",
-            "Spider-Man",
-            "Avengers",
-            "Inception"
-          ],
-          "query_suffix": "hidden detail shorts"
+          "id": "cast_fandom_memes",
+          "format": "release_hype",
+          "query_suffix": "cast funny meme shorts"
+        },
+        {
+          "id": "funniest_character_ranking",
+          "format": "edit_ranking",
+          "query_suffix": "funny moments edit shorts"
         }
       ]
     },
-    "GROUP_D": {
-      "format": "news_slideshow",
-      "description": "Visual hook + rapid press-still news cards (0% video Content-ID risk, zero voiceover) — Refs #8 & #10 mechanic",
+    "horror_mystery": {
+      "label": "Horror & Psychological Mystery",
+      "subreddits": [
+        "horror",
+        "television"
+      ],
+      "yt_probe": "horror mystery movie edit",
+      "news_query": "(horror movie OR mystery series OR psychological thriller) (release OR trailer)",
+      "keywords": [
+        "horror",
+        "scary",
+        "ghost",
+        "demon",
+        "slasher",
+        "zombie",
+        "monster",
+        "mystery",
+        "murder",
+        "psychological",
+        "haunted",
+        "creepy",
+        "curse",
+        "vampire",
+        "killer"
+      ],
       "subcategories": [
         {
-          "id": "breaking_3day_radar_news",
-          "label": "Breaking 3-Day Movie & Series News",
-          "dynamic": true
+          "id": "horror_scariest_ranking",
+          "format": "edit_ranking",
+          "query_suffix": "scary scene edit shorts"
         },
         {
-          "id": "casting_and_franchise_rumors",
-          "label": "Major Casting & Franchise Updates",
-          "dynamic": true
+          "id": "mystery_genius_deductions",
+          "format": "edit_ranking",
+          "query_suffix": "smart moments edit shorts"
         },
         {
-          "id": "box_office_records_update",
-          "label": "Box Office Milestones & Records",
-          "dynamic": true
+          "id": "horror_new_release_hype",
+          "format": "release_hype",
+          "query_suffix": "trailer shorts"
+        }
+      ]
+    },
+    "drama_prestige": {
+      "label": "Prestige Drama & Biopics",
+      "subreddits": [
+        "television",
+        "TrueFilm",
+        "movies"
+      ],
+      "yt_probe": "tv drama coldest scene edit",
+      "news_query": "(drama series OR biopic OR oscar movie OR season finale) (review OR streaming)",
+      "keywords": [
+        "drama",
+        "biopic",
+        "oscar",
+        "emmy",
+        "finale",
+        "emotional",
+        "monologue",
+        "courtroom",
+        "family",
+        "tragedy",
+        "prestige",
+        "hbo",
+        "season"
+      ],
+      "subcategories": [
+        {
+          "id": "coldest_drama_edits",
+          "format": "edit_ranking",
+          "query_suffix": "coldest edit shorts"
+        },
+        {
+          "id": "prestige_finale_recap",
+          "format": "scene_commentary",
+          "query_suffix": "finale scene shorts"
+        },
+        {
+          "id": "drama_trivia_facts",
+          "format": "movie_trivia",
+          "query_suffix": "behind the scenes shorts"
+        }
+      ]
+    },
+    "fantasy_mythology": {
+      "label": "Epic Fantasy, Historical & Mythology",
+      "subreddits": [
+        "Fantasy",
+        "movies"
+      ],
+      "yt_probe": "epic fantasy mythology movie edit",
+      "news_query": "(fantasy movie OR mythology film OR historical epic) (theaters OR trailer OR box office)",
+      "keywords": [
+        "fantasy",
+        "mythology",
+        "epic",
+        "odyssey",
+        "ramayana",
+        "dragon",
+        "kingdom",
+        "medieval",
+        "gods",
+        "legend",
+        "magic",
+        "sword",
+        "empire",
+        "historical",
+        "rings"
+      ],
+      "subcategories": [
+        {
+          "id": "mythology_epic_edits",
+          "format": "edit_ranking",
+          "query_suffix": "epic edit shorts"
+        },
+        {
+          "id": "epic_theatrical_hype",
+          "format": "release_hype",
+          "query_suffix": "teaser trailer shorts"
+        },
+        {
+          "id": "fantasy_lore_news",
+          "format": "news_slideshow",
+          "query_suffix": "movie update"
+        }
+      ]
+    },
+    "world_indian_cinema": {
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "subreddits": [
+        "bollywood",
+        "bollywoodmemes",
+        "KDRAMA"
+      ],
+      "yt_probe": "bollywood kdrama movie mass edit",
+      "news_query": "(bollywood OR tollywood OR kdrama OR pan-india movie) (box office OR trailer OR viral)",
+      "keywords": [
+        "bollywood",
+        "tollywood",
+        "kollywood",
+        "kdrama",
+        "korean",
+        "hindi",
+        "tamil",
+        "telugu",
+        "kapoor",
+        "khan",
+        "prabhas",
+        "rajamouli",
+        "pan-india",
+        "indian",
+        "anime",
+        "japanese"
+      ],
+      "subcategories": [
+        {
+          "id": "indian_cinema_mass_edits",
+          "format": "edit_ranking",
+          "query_suffix": "mass edit shorts"
+        },
+        {
+          "id": "kdrama_global_series_edits",
+          "format": "edit_ranking",
+          "query_suffix": "scene edit shorts"
+        },
+        {
+          "id": "world_box_office_news",
+          "format": "news_slideshow",
+          "query_suffix": "box office update"
+        }
+      ]
+    },
+    "cinema_news_trivia": {
+      "label": "Breaking Industry News, Box Office & Trivia",
+      "subreddits": [
+        "boxoffice",
+        "MovieDetails"
+      ],
+      "yt_probe": "movie scenes budget facts trivia",
+      "news_query": "(casting news OR box office record OR movie budget OR renewal) (movie OR series)",
+      "keywords": [
+        "box office",
+        "budget",
+        "cost",
+        "million",
+        "billion",
+        "casting",
+        "rumor",
+        "confirmed",
+        "renewed",
+        "canceled",
+        "record",
+        "detail",
+        "trivia",
+        "fact",
+        "studio",
+        "merger",
+        "feige"
+      ],
+      "subcategories": [
+        {
+          "id": "breaking_3day_movie_news",
+          "format": "news_slideshow",
+          "query_suffix": "movie news"
+        },
+        {
+          "id": "viral_casting_rumors_news",
+          "format": "news_slideshow",
+          "query_suffix": "casting update"
+        },
+        {
+          "id": "insane_movie_budget_trivia",
+          "format": "movie_trivia",
+          "query_suffix": "movie scene fact shorts"
         }
       ]
     }

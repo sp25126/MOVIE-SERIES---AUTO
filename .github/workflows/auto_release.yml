@@ -73,3 +73,11 @@ jobs:
             output/*.meta.json
             niche_catalog.json
           if-no-files-found: ignore
+
+      - name: Persist dynamic cooldown & genre rotation state
+        if: always()
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add niche_catalog.json
+          git diff --staged --quiet || (git commit -m "chore(release): update dynamic topic/genre cooldown [skip ci]" && git push origin main)
