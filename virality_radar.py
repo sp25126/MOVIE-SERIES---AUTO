@@ -1,4 +1,4 @@
-"""Multi-horizon Movies & Series virality engine (3d / 7d / 30d / 1y)."""
+"""Social-first Movies & Series virality engine: YouTube (Week/Month by views), Reddit (ArcticShift), IG/FB/News buzz."""
 
 import datetime
 import json
@@ -19,6 +19,10 @@ REPORT_PATH = STATE_DIR / "virality_report.json"
 
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
 
+# YouTube native protobuf sp filters (Videos sorted by View Count)
+YT_SP_WEEK_VIEWS = "CAMSBAgDEAE%3D"
+YT_SP_MONTH_VIEWS = "CAMSBAgEEAE%3D"
+
 EVERGREEN_POOL = [
     {"topic": "Patrick Jane", "format": "edit_ranking", "evergreen": 95},
     {"topic": "Spider-Man", "format": "edit_ranking", "evergreen": 92},
@@ -27,17 +31,70 @@ EVERGREEN_POOL = [
     {"topic": "Most Expensive Movie Scenes", "format": "movie_trivia", "evergreen": 86},
 ]
 
-STOP_TITLE_WORDS = {
+NON_MOVIE_JUNK = (
+    "free fire", "ff edit", "bgmi", "pubg", "gta", "minecraft", "roblox", "valorant",
+    "fortnite", "cricket", "football", "ronaldo", "messi", "car edit", "supra", "bmw",
+    "tung tung", "skibidi", "cocomelon", "asmr", "slime",
+)
+
+STOP_WORDS = {
     "the", "and", "for", "with", "from", "that", "this", "what", "when", "where", "how", "why",
-    "new", "official", "trailer", "teaser", "clip", "review", "box", "office", "movie", "movies",
-    "series", "show", "season", "episode", "finale", "watch", "streaming", "netflix", "disney",
-    "marvel", "hbo", "amazon", "prime", "apple", "release", "date", "news", "update", "first",
-    "look", "cast", "star", "director", "part", "one", "two", "three", "best", "top", "worst",
-    "full", "hd", "4k", "shorts", "short", "edit", "edits", "viral", "trending", "ranking",
-    "scene", "scenes", "worldwide", "post", "credits", "beats", "beginner", "audiences",
-    "hollywood", "bollywood", "cinema", "film", "films", "theaters", "report", "says", "after",
-    "before", "will", "could", "would", "most", "more", "than", "into", "over", "about",
-    "variety", "collider", "deadline", "screenrant", "imdb", "youtube", "instagram", "facebook",
+    "new", "official", "trailer", "teaser", "clip", "clips", "review", "box", "office", "movie",
+    "movies", "series", "show", "shows", "season", "episode", "finale", "watch", "streaming",
+    "netflix", "disney", "marvel", "mcu", "hbo", "amazon", "prime", "apple", "release", "date",
+    "news", "update", "first", "look", "cast", "star", "director", "part", "one", "two", "three",
+    "best", "top", "worst", "full", "hd", "4k", "60fps", "shorts", "short", "edit", "edits",
+    "viral", "trending", "ranking", "rank", "scene", "scenes", "worldwide", "post", "credits",
+    "beats", "beginner", "audiences", "hollywood", "bollywood", "cinema", "film", "films",
+    "theaters", "report", "says", "after", "before", "will", "could", "would", "most", "more",
+    "than", "into", "over", "about", "variety", "collider", "deadline", "screenrant", "imdb",
+    "youtube", "instagram", "facebook", "reels", "tiktok", "fyp", "status", "meme", "memes",
+    "funny", "sad", "cold", "coldest", "epic", "insane", "crazy", "moments", "moment", "video",
+    "videos", "love", "trend", "whatsapp", "attitudestatus", "attitude", "scenepack", "twixtor",
+    "aftereffects", "capcut", "alightmotion", "phonk", "slowed", "reverb", "actress", "actor",
+    "bollywoodnews", "hollywoodnews", "movienews", "tvshow", "tvshows", "webseries", "movieclips",
+    "spoiler", "spoilers", "discussion", "megathread", "thread", "officialdiscussion", "question",
+    "anyone", "else", "just", "watched", "finished", "thought", "thoughts", "opinion", "unpopular",
+    "indian", "hindi", "tamil", "telugu", "english", "dubbed", "subbed", "2025", "2026", "2027",
+}
+
+# Normalize popular hashtags / shorthands into clean canonical titles
+HASHTAG_ALIASES = {
+    "visionquest": "VisionQuest",
+    "avengersdoomsday": "Avengers: Doomsday",
+    "doomsday": "Avengers: Doomsday",
+    "doctordoom": "Doctor Doom",
+    "drdoom": "Doctor Doom",
+    "ramayana": "Ramayana",
+    "spidermanbrandnewday": "Spider-Man: Brand New Day",
+    "spidermanbnd": "Spider-Man: Brand New Day",
+    "spiderman": "Spider-Man",
+    "theodyssey": "The Odyssey",
+    "jailer2": "Jailer 2",
+    "dexterresurrection": "Dexter: Resurrection",
+    "dexter": "Dexter",
+    "strangerthings": "Stranger Things",
+    "supergirl": "Supergirl",
+    "superman": "Superman",
+    "thebatman": "The Batman",
+    "batman": "Batman",
+    "breakingbad": "Breaking Bad",
+    "thementalist": "The Mentalist",
+    "patrickjane": "Patrick Jane",
+    "godzillaminuszero": "Godzilla Minus Zero",
+    "bladerunner2099": "Blade Runner 2099",
+    "percyjackson": "Percy Jackson",
+    "salaar": "Salaar",
+    "kannappa": "Kannappa",
+    "yellowjackets": "Yellowjackets",
+    "daredevil": "Daredevil",
+    "theboys": "The Boys",
+    "peakyblinders": "Peaky Blinders",
+    "interstellar": "Interstellar",
+    "scarletwitch": "Scarlet Witch",
+    "ultron": "Ultron",
+    "loki": "Loki",
+    "deadpool": "Deadpool",
 }
 
 
@@ -62,79 +119,132 @@ def compute_multi_horizon_score(h3d: float, h7d: float, h30d: float, h365d: floa
     return round(0.40 * h3d + 0.30 * h7d + 0.20 * h30d + 0.10 * h365d, 2)
 
 
-def _clean_title_name(raw: str) -> str:
+def _clean_title(raw: str) -> str:
     s = raw.replace("_", " ").strip()
-    s = re.sub(r"\s*\((?:\d{4}\s+)?(?:film|TV series|miniseries|franchise|character|comics|season\s*\d+)\)\s*$", "", s, flags=re.I)
+    s = re.sub(r"\s*\((?:\d{4}\s+)?(?:film|TV series|miniseries|franchise|season\s*\d+)\)\s*$", "", s, flags=re.I)
     s = re.sub(r"\s*[-–—|:]\s*(?:Season|Part|Vol\.?|Episode)\s*\d+.*$", "", s, flags=re.I)
     s = re.sub(r"\s*\(\d{4}\)\s*$", "", s)
-    return s.strip(" .,:;-'\"‘’“”")
+    return s.strip(" .,:;-'\"‘’“”#!?")
 
 
-def _extract_entities(text: str) -> list[str]:
-    """Pulls quoted titles first (highest precision), then clean capitalized multi-word titles."""
-    found = []
-    for m in re.findall(r"['\"‘“]([A-Z][A-Za-z0-9:&\-\s]{2,36})['\"’”]", text):
-        cand = _clean_title_name(m)
-        if cand and len(cand) >= 4 and cand.lower() not in STOP_TITLE_WORDS:
-            found.append(cand)
-    if found:
-        return found[:2]
-    for m in re.findall(r"\b([A-Z][a-zA-Z0-9]+(?:\s+[A-Z][a-zA-Z0-9:]+){1,3})\b", text):
-        cand = _clean_title_name(m)
-        words = [w.lower() for w in cand.split()]
-        if len(cand) >= 5 and words[0] not in STOP_TITLE_WORDS and not all(w in STOP_TITLE_WORDS for w in words):
-            found.append(cand)
-    return found[:2]
+def extract_social_entities(text: str) -> list[str]:
+    """Extracts hashtags, known franchises, quoted titles, and title-case movie/series entities."""
+    low = text.lower()
+    if any(j in low for j in NON_MOVIE_JUNK):
+        return []
+    found, seen = [], set()
+
+    def _push(val: str):
+        c = _clean_title(val)
+        k = re.sub(r"[^a-z0-9]", "", c.lower())
+        if k in HASHTAG_ALIASES:
+            c = HASHTAG_ALIASES[k]
+            k = re.sub(r"[^a-z0-9]", "", c.lower())
+        words = [w.lower() for w in re.findall(r"[A-Za-z0-9]+", c)]
+        if not words or len(c) < 4 or k in STOP_WORDS or all(w in STOP_WORDS for w in words):
+            return
+        if words[0] in STOP_WORDS and len(words) <= 2:
+            return
+        if k not in seen:
+            seen.add(k)
+            found.append(c)
+
+    # 1. Hashtags (huge signal in YouTube Shorts / Reels / TikTok titles!)
+    for tag in re.findall(r"#([A-Za-z0-9_]{3,28})", text):
+        tk = tag.lower().replace("_", "")
+        if tk in HASHTAG_ALIASES:
+            _push(HASHTAG_ALIASES[tk])
+        elif tk not in STOP_WORDS and not tk.endswith("edit") and not tk.endswith("edits"):
+            # Split CamelCase hashtag like #VisionQuest -> VisionQuest
+            _push(tag)
+
+    # 2. Direct alias scan inside title text (catches 1-word hits like VisionQuest, Ramayana, Ultron)
+    compact_text = re.sub(r"[^a-z0-9\s:]", " ", low)
+    for alias_key, canonical in HASHTAG_ALIASES.items():
+        if re.search(rf"\b{re.escape(canonical.lower())}\b", compact_text):
+            _push(canonical)
+
+    # 3. Quoted titles (high precision in Reddit/News)
+    for q in re.findall(r"['\"‘“]([A-Z][A-Za-z0-9:&\-\s]{2,34})['\"’”]", text):
+        _push(q)
+
+    # 4. Capitalized 2-3 word phrases if still < 2 entities
+    if len(found) < 2:
+        for ph in re.findall(r"\b([A-Z][a-zA-Z0-9]+(?:\s+[A-Z][a-zA-Z0-9:]+){1,2})\b", text):
+            _push(ph)
+
+    return found[:3]
 
 
-def fetch_wikimedia_film_tv_spikes(days_back: int = 2) -> tuple[list[dict], dict[str, int]]:
-    """3-Day global search spike via Wikimedia Top Pageviews API (zero key, exact daily views)."""
-    film_tv = []
-    all_views: dict[str, int] = {}
-    for d_off in range(1, days_back + 1):
-        day = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=d_off)
-        url = f"https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access/{day:%Y/%m/%d}"
+def probe_youtube_window(queries: list[str], sp: str, label: str, per_query: int = 8) -> list[dict]:
+    """Queries YouTube's native Week/Month view-sorted search feed via yt_dlp --flat-playlist."""
+    results, seen = [], set()
+    for q in queries:
+        url = f"https://www.youtube.com/results?search_query={urllib.parse.quote_plus(q)}&sp={sp}"
+        cmd = [
+            sys.executable, "-m", "yt_dlp",
+            "--flat-playlist", "--dump-json", "--playlist-end", str(per_query), "--no-warnings", url,
+        ]
         try:
-            arts = json.loads(_http_get(url, timeout=10, ua="MovieSeriesRadar/1.0")).get("items", [{}])[0].get("articles", [])
-            for a in arts[:400]:
-                art = a.get("article", "")
-                views = int(a.get("views") or 0)
-                clean = _clean_title_name(art)
-                low_art = art.lower()
-                if clean and clean.lower() not in all_views:
-                    all_views[clean.lower()] = views
-                if any(k in low_art for k in ("(film)", "_film)", "(tv_series)", "(miniseries)", "_season_")):
-                    if "bigg_boss" in low_art:
-                        continue
-                    film_tv.append({"topic": clean, "wiki_views": views, "raw": art})
-            if film_tv:
-                break
+            proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=25)
+            for line in proc.stdout.splitlines():
+                if not line.strip():
+                    continue
+                try:
+                    d = json.loads(line)
+                except Exception:
+                    continue
+                vid = d.get("id")
+                title = d.get("title") or ""
+                views = int(d.get("view_count") or 0)
+                if not vid or vid in seen or views < 500 or any(j in title.lower() for j in NON_MOVIE_JUNK):
+                    continue
+                seen.add(vid)
+                results.append({
+                    "id": vid,
+                    "window": label,
+                    "title": title,
+                    "channel": d.get("channel") or d.get("uploader") or "",
+                    "views": views,
+                    "duration": float(d.get("duration") or 0),
+                    "url": d.get("url") or f"https://youtube.com/watch?v={vid}",
+                })
         except Exception as e:
-            print(f"[Radar] Wikimedia {day:%Y-%m-%d} skipped: {e}", file=sys.stderr)
-    return film_tv[:20], all_views
+            print(f"[Radar] YT {label} '{q}' skipped: {e}", file=sys.stderr)
+    results.sort(key=lambda x: x["views"], reverse=True)
+    return results
 
 
-def fetch_itunes_live_charts() -> list[dict]:
-    """7-Day live US Top Movies & Top TV Seasons via Apple iTunes public JSON API."""
-    out = []
-    feeds = [
-        ("movie", "https://itunes.apple.com/us/rss/topmovies/limit=15/json"),
-        ("tv", "https://itunes.apple.com/us/rss/toptvseasons/limit=15/json"),
-    ]
-    for kind, url in feeds:
+def fetch_reddit_arcticshift(subreddits: tuple[str, ...], days: int = 7, limit_per_sub: int = 40) -> list[dict]:
+    """Fetches real Reddit posts from last N days via ArcticShift public API (no 403/429 blocks)."""
+    after_ts = int(time.time() - days * 86400)
+    posts = []
+    for sub in subreddits:
+        url = f"https://arctic-shift.photon-reddit.com/api/posts/search?subreddit={sub}&after={after_ts}&limit={limit_per_sub}&sort=desc"
         try:
-            entries = json.loads(_http_get(url, timeout=10)).get("feed", {}).get("entry", [])
-            for idx, e in enumerate(entries, 1):
-                raw_name = (e.get("im:name") or {}).get("label") or ""
-                clean = _clean_title_name(raw_name)
-                if clean:
-                    out.append({"topic": clean, "kind": kind, "rank": idx, "score_7d": max(35.0, 95.0 - idx * 4.0)})
+            data = json.loads(_http_get(url, timeout=10, ua="MovieSeriesRadar/1.0")).get("data", [])
+            for p in data:
+                title = (p.get("title") or "").strip()
+                score = int(p.get("score") or 0)
+                comms = int(p.get("num_comments") or 0)
+                eng = score + 3 * comms
+                if title and eng >= 5:
+                    posts.append({
+                        "sub": sub,
+                        "title": title,
+                        "score": score,
+                        "comments": comms,
+                        "engagement": eng,
+                        "days": days,
+                        "url": f"https://www.reddit.com{p.get('permalink', '')}",
+                    })
         except Exception as e:
-            print(f"[Radar] iTunes {kind} skipped: {e}", file=sys.stderr)
-    return out
+            print(f"[Radar] ArcticShift r/{sub} ({days}d) skipped: {e}", file=sys.stderr)
+    posts.sort(key=lambda x: x["engagement"], reverse=True)
+    return posts[:30]
 
 
-def fetch_rss_feed(url: str, default_source: str, limit: int = 12) -> list[dict]:
+def fetch_rss(url: str, default_source: str, limit: int = 10) -> list[dict]:
     items = []
     try:
         root = ET.fromstring(_http_get(url, timeout=10))
@@ -150,129 +260,74 @@ def fetch_rss_feed(url: str, default_source: str, limit: int = 12) -> list[dict]
     return items
 
 
-def fetch_entertainment_news() -> tuple[list[dict], list[dict]]:
-    """3-Day breaking movie/series news (Variety, Collider, Google News US+IN) + 30-Day slate."""
-    g_us = "https://news.google.com/rss/search?q=" + urllib.parse.quote_plus('(movie OR "tv series" OR "box office" OR "official trailer") when:3d') + "&hl=en-US&gl=US&ceid=US:en"
-    g_in = "https://news.google.com/rss/search?q=" + urllib.parse.quote_plus('(movie OR bollywood OR "box office" OR "web series") when:3d') + "&hl=en-IN&gl=IN&ceid=IN:en"
-    g_30 = "https://news.google.com/rss/search?q=" + urllib.parse.quote_plus('("in theaters" OR "new series" OR "box office hit") when:30d') + "&hl=en-US&gl=US&ceid=US:en"
+def fetch_social_ig_fb_and_news_buzz() -> tuple[list[dict], list[dict]]:
+    """Captures Instagram/Facebook viral movie/series buzz + Entertainment News for 7d and 30d."""
+    q_ig_fb_7d = urllib.parse.quote_plus('(instagram OR reels OR facebook OR viral OR meme) (movie OR series OR trailer OR finale) when:7d')
+    q_ig_fb_30d = urllib.parse.quote_plus('(instagram OR facebook OR viral OR trending) (movie OR "tv series" OR "web series") when:30d')
+    q_in_7d = urllib.parse.quote_plus('(movie OR bollywood OR "box office" OR "web series") when:7d')
 
-    news_3d = (
-        fetch_rss_feed("https://variety.com/v/film/feed/", "Variety", 10)
-        + fetch_rss_feed("https://collider.com/feed/", "Collider", 10)
-        + fetch_rss_feed(g_us, "Google News US", 10)
-        + fetch_rss_feed(g_in, "Google News IN", 8)
+    buzz_7d = (
+        fetch_rss(f"https://news.google.com/rss/search?q={q_ig_fb_7d}&hl=en-US&gl=US&ceid=US:en", "IG/FB Social Buzz", 12)
+        + fetch_rss(f"https://news.google.com/rss/search?q={q_in_7d}&hl=en-IN&gl=IN&ceid=IN:en", "India Cinema Buzz", 10)
+        + fetch_rss("https://variety.com/v/film/feed/", "Variety", 8)
+        + fetch_rss("https://collider.com/feed/", "Collider", 8)
     )
-    news_30d = fetch_rss_feed(g_30, "Monthly Slate", 12)
-    return news_3d, news_30d
+    buzz_30d = fetch_rss(f"https://news.google.com/rss/search?q={q_ig_fb_30d}&hl=en-US&gl=US&ceid=US:en", "Social 30d Buzz", 12)
+    return buzz_7d, buzz_30d
 
 
-def fetch_tmdb_trending() -> list[dict]:
-    api_key = os.environ.get("TMDB_API_KEY", "").strip()
-    if not api_key:
-        return []
-    out = []
-    for ep in ("trending/all/day", "trending/all/week", "movie/now_playing", "tv/on_the_air"):
-        try:
-            raw = _http_get(f"https://api.themoviedb.org/3/{ep}?api_key={api_key}", timeout=8)
-            for r in json.loads(raw).get("results", [])[:10]:
-                name = r.get("title") or r.get("name")
-                if name:
-                    out.append({"topic": _clean_title_name(name), "endpoint": ep, "popularity": float(r.get("popularity") or 0)})
-        except Exception as e:
-            print(f"[Radar] TMDB {ep} skipped: {e}", file=sys.stderr)
-    return out
-
-
-def probe_youtube_shorts_velocity(queries: list[str], per_query: int = 5) -> list[dict]:
-    """Live 7-day YouTube Shorts velocity scan via yt_dlp (zero API keys)."""
-    results, seen = [], set()
-    for q in queries:
-        cmd = [
-            sys.executable, "-m", "yt_dlp",
-            "--dump-json", "--no-playlist", "--no-warnings",
-            "--match-filter", "duration <= 65 & duration >= 6",
-            f"ytsearch{per_query}:{q}",
-        ]
-        try:
-            proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=35)
-            for line in proc.stdout.splitlines():
-                if not line.strip():
-                    continue
-                try:
-                    d = json.loads(line)
-                except Exception:
-                    continue
-                vid = d.get("id")
-                if not vid or vid in seen:
-                    continue
-                seen.add(vid)
-                views = float(d.get("view_count") or 0)
-                ts = d.get("timestamp")
-                if not ts and d.get("upload_date"):
-                    try:
-                        ts = datetime.datetime.strptime(d["upload_date"], "%Y%m%d").timestamp()
-                    except Exception:
-                        ts = time.time() - 72 * 3600
-                age_h = max(1.0, (time.time() - float(ts or (time.time() - 72 * 3600))) / 3600.0)
-                subs = float(d.get("channel_follower_count") or 50000)
-                results.append({
-                    "id": vid,
-                    "title": d.get("title", ""),
-                    "channel": d.get("channel") or d.get("uploader", ""),
-                    "views": int(views),
-                    "age_hours": round(age_h, 1),
-                    "v_score": compute_vph_score(views, age_h, subs),
-                    "url": d.get("webpage_url") or f"https://youtube.com/shorts/{vid}",
-                })
-        except Exception as e:
-            print(f"[Radar] YouTube probe '{q}' skipped: {e}", file=sys.stderr)
-    results.sort(key=lambda x: x["v_score"], reverse=True)
-    return results
-
-
-def recommend_format(topic: str, h3d: float, h7d: float, news_hits: int) -> str:
+def recommend_format(topic: str, yt_hits: int, reddit_hits: int, news_hits: int) -> str:
     low = topic.lower()
     if any(k in low for k in ("cost", "budget", "fact", "detail", "trivia", "expensive")):
         return "movie_trivia"
-    if h3d >= 70 and h7d >= 40:
+    if yt_hits >= 2:
         return "edit_ranking"
-    if h3d >= 65 and news_hits >= 2:
+    if yt_hits >= 1 and reddit_hits >= 1:
+        return "scene_commentary"
+    if news_hits >= 2 and yt_hits == 0:
         return "news_slideshow"
-    if h3d >= 55 and h7d < 35:
-        return "release_hype"
-    return "edit_ranking"
+    return "release_hype" if news_hits >= 1 else "edit_ranking"
 
 
 def scan_virality(skip_yt: bool = False) -> dict:
-    """Runs the full 4-horizon scan and saves state/virality_report.json."""
+    """Runs the social-first 4-horizon scan (YouTube Week/Month + Reddit Week/Month + IG/FB/News)."""
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     now_iso = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    print("[Radar] Scanning 3d (Wikimedia+News), 7d (YouTube+iTunes), 30d (Slate+TMDB) & 1y signals...")
+    print("[Radar] Scanning YouTube (Week & Month by views), Reddit (ArcticShift 7d/30d), IG/FB & News...")
 
-    wiki_spikes, wiki_lookup = fetch_wikimedia_film_tv_spikes(days_back=2)
-    itunes_charts = fetch_itunes_live_charts()
-    news_3d, news_30d = fetch_entertainment_news()
-    tmdb_items = fetch_tmdb_trending()
-
-    yt_vids = []
+    yt_week, yt_month = [], []
     if not skip_yt:
-        yt_vids = probe_youtube_shorts_velocity([
-            "movie edit viral shorts 2026",
-            "series edit viral shorts 2026",
-            "new movie scene edit shorts 2026",
-        ], per_query=5)
+        week_queries = [
+            "marvel series edit #shorts",
+            "movie edit 4k #shorts",
+            "tv show edit viral #shorts",
+            "ranking best edits #shorts",
+        ]
+        month_queries = [
+            "movie edit viral #shorts",
+            "series finale edit #shorts",
+        ]
+        yt_week = probe_youtube_window(week_queries, YT_SP_WEEK_VIEWS, "week", per_query=8)
+        yt_month = probe_youtube_window(month_queries, YT_SP_MONTH_VIEWS, "month", per_query=8)
+
+    reddit_subs = ("movies", "television", "marvelstudios", "boxoffice", "bollywood", "marvelmemes")
+    reddit_7d = fetch_reddit_arcticshift(reddit_subs, days=7, limit_per_sub=35)
+    reddit_30d = fetch_reddit_arcticshift(("movies", "television", "marvelmemes"), days=30, limit_per_sub=35)
+    buzz_7d, buzz_30d = fetch_social_ig_fb_and_news_buzz()
 
     buckets: dict[str, dict] = {}
 
-    def _add(name: str, h3d: float = 0, h7d: float = 0, h30d: float = 0, h365d: float = 0, headline: str = "", source: str = "", fmt: str = ""):
-        clean = _clean_title_name(name)
-        key = clean.lower()
-        if len(key) < 4 or key in STOP_TITLE_WORDS or all(w in STOP_TITLE_WORDS for w in key.split()):
+    def _add(name: str, h3d: float = 0, h7d: float = 0, h30d: float = 0, h365d: float = 0,
+             source: str = "", headline: str = "", yt_v: int = 0, rd_e: int = 0, fmt: str = ""):
+        clean = _clean_title(name)
+        key = re.sub(r"[^a-z0-9]", "", clean.lower())
+        if len(key) < 4 or key in STOP_WORDS:
             return
         if key not in buckets:
             buckets[key] = {
                 "topic": clean, "h3d": 0.0, "h7d": 0.0, "h30d": 0.0, "h365d": 0.0,
-                "news_hits": 0, "headlines": [], "sources": set(), "hint_format": fmt,
+                "sources": set(), "headlines": [], "yt_hits": 0, "yt_views": 0,
+                "reddit_hits": 0, "reddit_eng": 0, "news_hits": 0, "hint_format": fmt,
             }
         b = buckets[key]
         b["h3d"] = min(100.0, b["h3d"] + h3d)
@@ -281,57 +336,68 @@ def scan_virality(skip_yt: bool = False) -> dict:
         b["h365d"] = max(b["h365d"], h365d)
         if source:
             b["sources"].add(source)
+        if yt_v:
+            b["yt_hits"] += 1
+            b["yt_views"] += yt_v
+        if rd_e:
+            b["reddit_hits"] += 1
+            b["reddit_eng"] += rd_e
         if headline:
             b["news_hits"] += 1
             if headline not in b["headlines"] and len(b["headlines"]) < 4:
                 b["headlines"].append(headline)
 
-    # 1. Wikimedia verified Film/TV spikes (high precision 3-day global interest)
-    max_wv = max((w["wiki_views"] for w in wiki_spikes), default=100_000)
-    for w in wiki_spikes:
-        score = min(100.0, 35.0 + 65.0 * (w["wiki_views"] / max(1, max_wv)))
-        _add(w["topic"], h3d=score, source=f"Wikipedia({w['wiki_views']:,})")
+    # 1. YouTube THIS WEEK sorted by Views (highest weight for Shorts virality!)
+    for v in yt_week:
+        pts = min(65.0, math.log1p(v["views"]) * 4.8)
+        for ent in extract_social_entities(v["title"]):
+            _add(ent, h3d=pts * 0.7, h7d=pts, source="YT-Week", yt_v=v["views"])
 
-    # 2. iTunes live Top Movies & Top TV Seasons (7-day VOD/streaming demand)
-    for it in itunes_charts:
-        _add(it["topic"], h7d=it["score_7d"], h30d=45.0, source=f"iTunes-{it['kind']}#{it['rank']}")
+    # 2. YouTube THIS MONTH sorted by Views
+    for v in yt_month:
+        pts = min(60.0, math.log1p(v["views"]) * 4.2)
+        for ent in extract_social_entities(v["title"]):
+            _add(ent, h30d=pts, source="YT-Month", yt_v=v["views"])
 
-    # 3. Entertainment News (Variety, Collider, Google News US+IN) + cross-boost if also in Wiki top 400
-    for n in news_3d:
-        for ent in _extract_entities(n["title"]):
-            wiki_bonus = 40.0 if ent.lower() in wiki_lookup else 0.0
-            _add(ent, h3d=28.0 + wiki_bonus, headline=n["title"], source=n["source"])
+    # 3. Reddit THIS WEEK & THIS MONTH (ArcticShift)
+    for p in reddit_7d:
+        pts = min(45.0, math.log1p(p["engagement"]) * 6.5)
+        for ent in extract_social_entities(p["title"]):
+            _add(ent, h3d=pts * 0.8, h7d=pts, source=f"Reddit-7d(r/{p['sub']})", headline=p["title"], rd_e=p["engagement"])
 
-    for n in news_30d:
-        for ent in _extract_entities(n["title"]):
-            _add(ent, h30d=35.0, source="30d-Slate")
+    for p in reddit_30d:
+        pts = min(40.0, math.log1p(p["engagement"]) * 5.5)
+        for ent in extract_social_entities(p["title"]):
+            _add(ent, h30d=pts, source=f"Reddit-30d(r/{p['sub']})", rd_e=p["engagement"])
 
-    # 4. Optional TMDB
-    for t in tmdb_items:
-        pop = min(100.0, t["popularity"] / 5.0)
-        _add(t["topic"], h3d=pop if "day" in t["endpoint"] or "now_playing" in t["endpoint"] else 0, h30d=pop, source="TMDB")
+    # 4. Instagram / Facebook Social Buzz + Breaking Entertainment News
+    for n in buzz_7d:
+        for ent in extract_social_entities(n["title"]):
+            _add(ent, h3d=26.0, h7d=22.0, source=n["source"], headline=n["title"])
 
-    # 5. Live YouTube Shorts Velocity
-    for v in yt_vids:
-        v_norm = min(100.0, math.log1p(v["v_score"]) * 11.0)
-        for ent in _extract_entities(v["title"]):
-            _add(ent, h7d=v_norm, source="YouTubeShorts")
+    for n in buzz_30d:
+        for ent in extract_social_entities(n["title"]):
+            _add(ent, h30d=25.0, source=n["source"])
 
-    # 6. 1-Year Evergreen pool
+    # 5. Evergreen fallback (10% weight)
     for eg in EVERGREEN_POOL:
         _add(eg["topic"], h365d=eg["evergreen"], source="Evergreen", fmt=eg["format"])
 
     ranked = []
     for b in buckets.values():
-        # Multi-source convergence bonus: titles trending across 2+ independent sources beat single-source noise
-        multi_bonus = min(15.0, max(0, len(b["sources"]) - 1) * 7.5)
-        score = round(compute_multi_horizon_score(b["h3d"], b["h7d"], b["h30d"], b["h365d"]) + multi_bonus, 2)
-        fmt = b["hint_format"] or recommend_format(b["topic"], b["h3d"], b["h7d"], b["news_hits"])
+        # Cross-platform convergence bonus (e.g., spiking on BOTH YouTube + Reddit + IG/News)
+        platforms_hit = {s.split("-")[0].split("(")[0] for s in b["sources"]}
+        convergence = min(20.0, max(0, len(platforms_hit) - 1) * 10.0)
+        score = round(compute_multi_horizon_score(b["h3d"], b["h7d"], b["h30d"], b["h365d"]) + convergence, 2)
+        fmt = b["hint_format"] or recommend_format(b["topic"], b["yt_hits"], b["reddit_hits"], b["news_hits"])
         ranked.append({
             "topic": b["topic"],
             "score": score,
             "horizons": {"3d": round(b["h3d"], 1), "7d": round(b["h7d"], 1), "30d": round(b["h30d"], 1), "1y": round(b["h365d"], 1)},
-            "sources": sorted(b["sources"]),
+            "yt_views": b["yt_views"],
+            "yt_hits": b["yt_hits"],
+            "reddit_hits": b["reddit_hits"],
+            "sources": sorted(b["sources"])[:4],
             "recommended_format": fmt,
             "headlines": b["headlines"],
         })
@@ -341,18 +407,27 @@ def scan_virality(skip_yt: bool = False) -> dict:
         "scan_time_utc": now_iso,
         "winner": ranked[0] if ranked else {"topic": "Patrick Jane", "score": 50.0, "recommended_format": "edit_ranking", "headlines": []},
         "top_topics": ranked[:15],
-        "breaking_news_feed": news_3d[:12],
-        "top_yt_shorts": yt_vids[:10],
+        "top_yt_week": yt_week[:10],
+        "top_yt_month": yt_month[:10],
+        "top_reddit_week": reddit_7d[:10],
+        "breaking_news_feed": buzz_7d[:12],
     }
     REPORT_PATH.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"[Radar] Winner: '{report['winner']['topic']}' (Score {report['winner']['score']}, Sources={report['winner'].get('sources', [])}, Format={report['winner']['recommended_format']})")
+    w = report["winner"]
+    print(f"[Radar] Winner: '{w['topic']}' (Score {w['score']}, YT_views={w.get('yt_views',0):,}, Sources={w.get('sources',[])}, Format={w['recommended_format']})")
     return report
 
 
 if __name__ == "__main__":
     rep = scan_virality(skip_yt="--no-yt" in sys.argv)
-    print("\nTop 10 Multi-Horizon Viral Movie/Series Targets:")
+    print("\nTop 10 Social-Viral Movie/Series Targets (YouTube Week/Month + Reddit + IG/FB/News):")
     for i, item in enumerate(rep["top_topics"][:10], 1):
         h = item["horizons"]
         srcs = ", ".join(item["sources"][:3])
-        print(f"  {i:2d}. {item['topic']} | Score={item['score']} (3d:{h['3d']} 7d:{h['7d']} 30d:{h['30d']} 1y:{h['1y']}) [{srcs}] -> {item['recommended_format']}")
+        print(f"  {i:2d}. {item['topic']} | Score={item['score']} | YT={item['yt_views']:,} ({item['yt_hits']} vids) | RD={item['reddit_hits']} | [{srcs}] -> {item['recommended_format']}")
+    print("\nTop 5 Raw YouTube Videos This Week (Sorted by Views):")
+    for v in rep["top_yt_week"][:5]:
+        print(f"  - [{v['views']:,} views] {v['title'][:72]}")
+    print("\nTop 5 Raw YouTube Videos This Month (Sorted by Views):")
+    for v in rep["top_yt_month"][:5]:
+        print(f"  - [{v['views']:,} views] {v['title'][:72]}")

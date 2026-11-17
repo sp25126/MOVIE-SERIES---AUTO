@@ -96,25 +96,22 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, ignore_his
 
 
 def scout_reddit_memes_and_clips(topic: str = "", count: int = 5, video_only: bool = False) -> list[dict]:
-    """Scouts Reddit public JSON API for movie/series memes (images) and clips (v.redd.it)."""
+    """Scouts Reddit movie/series memes & clips from last 7d via ArcticShift public API (no 403/429)."""
     used = _load_history()
     results = []
-    q = urllib.parse.quote_plus(topic) if topic else ""
-    urls = (
-        [f"https://www.reddit.com/search.json?q={q}&sort=top&t=week&limit=15"]
-        if topic
-        else [f"https://www.reddit.com/r/{sub}/hot.json?limit=12" for sub in MEME_SUBREDDITS[:4]]
-    )
-    rd_ua = "windows:movie-series-harvester:v1.0 (by /u/cinepulse_auto)"
-    for url in urls:
+    import time as _time
+    after_ts = int(_time.time() - 7 * 86400)
+    subs = MEME_SUBREDDITS[:4]
+    for sub in subs:
+        q_param = f"&title={urllib.parse.quote_plus(topic)}" if topic else ""
+        url = f"https://arctic-shift.photon-reddit.com/api/posts/search?subreddit={sub}&after={after_ts}&limit=25&sort=desc{q_param}"
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": rd_ua})
+            req = urllib.request.Request(url, headers={"User-Agent": "MovieSeriesHarvester/1.0"})
             with urllib.request.urlopen(req, timeout=10) as resp:
-                data = json.loads(resp.read().decode("utf-8", errors="replace"))
-            for child in data.get("data", {}).get("children", []):
-                p = child.get("data", {})
+                data = json.loads(resp.read().decode("utf-8", errors="replace")).get("data", [])
+            for p in data:
                 pid = f"rd_{p.get('id')}"
-                if p.get("over_18") or p.get("stickied") or pid in used:
+                if p.get("over_18") or pid in used:
                     continue
                 is_vid = bool(p.get("is_video"))
                 media_url = p.get("url_overridden_by_dest") or p.get("url") or ""
@@ -128,13 +125,13 @@ def scout_reddit_memes_and_clips(topic: str = "", count: int = 5, video_only: bo
                     "platform": "reddit",
                     "media_type": "video" if is_vid else "image",
                     "title": p.get("title", ""),
-                    "creator": f"u/{p.get('author', 'redditor')} (r/{p.get('subreddit', 'movies')})",
-                    "views": int(p.get("score") or 0) * 100,
+                    "creator": f"u/{p.get('author', 'redditor')} (r/{p.get('subreddit', sub)})",
+                    "views": int(p.get("score") or 0) * 100 + int(p.get("num_comments") or 0) * 300,
                     "duration": float((p.get("media") or {}).get("reddit_video", {}).get("duration") or 12),
                     "url": f"https://www.reddit.com{p.get('permalink', '')}" if is_vid else media_url,
                 })
         except Exception as e:
-            print(f"[Harvester] Reddit scout skipped: {e}", file=sys.stderr)
+            print(f"[Harvester] ArcticShift r/{sub} skipped: {e}", file=sys.stderr)
     results.sort(key=lambda x: x["views"], reverse=True)
     return results[:count]
 
