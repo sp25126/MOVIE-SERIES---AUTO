@@ -1,7 +1,9 @@
 """Single CLI entrypoint: 100% dynamic virality selector across 8 genre groups -> harvest -> DSP -> QA."""
 
 import argparse
+import datetime
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -203,9 +205,69 @@ def run_pipeline(
     return {"video": str(out_mp4), "target": target, "qa": qa, "metadata": meta, "upload": upload_res}
 
 
+def run_series_episode(series_path: Path, handle: str = "@CinePulse", dry_run: bool = True, browser_cookies: str = "") -> dict | None:
+    """Runs one episode of a bounded recurring series (e.g. 60-day Patrick Jane every 3 days) with 0 clip repeats."""
+    cfg = json.loads(series_path.read_text(encoding="utf-8"))
+    today_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+    done = int(cfg.get("completed_episodes", 0))
+    max_ep = int(cfg.get("max_episodes", 20))
+    end_date = cfg.get("end_date_utc", "2099-12-31")
+
+    if today_utc > end_date or done >= max_ep:
+        print(f"[Series] '{cfg['series_name']}' complete ({done}/{max_ep} episodes, end={end_date}). Nothing to run.")
+        return None
+
+    ep_num = done + 1
+    themes = cfg.get("query_themes") or [f"{cfg['topic']} edit shorts"]
+    # Rotate starting query theme per episode + provide 2 backup themes so 3 unique clips always harvest cleanly
+    rotated_queries = [themes[(done + offset) % len(themes)] for offset in range(min(3, len(themes)))]
+
+    os.environ["CLIP_HISTORY_PATH"] = str(series_path.resolve())
+    try:
+        clips = harvest_video_pack(
+            rotated_queries,
+            target_count=int(cfg.get("clips_per_episode", 3)),
+            max_duration=65,
+            browser_cookies=browser_cookies,
+            required_topic=cfg["topic"],
+        )
+        if not clips:
+            raise RuntimeError(f"No fresh unique clips left for {cfg['series_name']} Ep #{ep_num}")
+
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+        out_mp4 = OUTPUT_DIR / f"edit_ranking_{_slug(cfg['topic'])}_ep{ep_num:02d}_master.mp4"
+        for i, c in enumerate(clips, 1):
+            words = re.findall(r"[A-Za-z0-9]+", c["title"])
+            c["short_label"] = " ".join(words[:2]).title() if words else f"Edit {i}"
+
+        render_edit_ranking(cfg["topic"], clips, out_mp4, handle=handle, clip_dur=10.0)
+        qa = verify_video(out_mp4, make_proof=True)
+        meta = build_metadata(cfg["topic"], "edit_ranking", clips, handle=handle)
+        meta["title"] = f"Ranking Best {cfg['topic']} Edits (Part {ep_num})! 🔥💀 #shorts #thementalist"[:100]
+        out_mp4.with_suffix(".meta.json").write_text(json.dumps({"episode": ep_num, "qa": qa, "metadata": meta}, indent=2, ensure_ascii=False), encoding="utf-8")
+
+        # Reload updated used_clip_ids saved by harvester and increment episode counter
+        fresh_cfg = json.loads(series_path.read_text(encoding="utf-8"))
+        fresh_cfg["completed_episodes"] = ep_num
+        fresh_cfg["last_run_utc"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        series_path.write_text(json.dumps(fresh_cfg, indent=2, ensure_ascii=False), encoding="utf-8")
+
+        upload_res = None
+        if not dry_run:
+            if not qa["passed"]:
+                raise RuntimeError(f"QA Gate failed ({qa['issues']}); upload aborted.")
+            upload_res = upload_private_canary_and_schedule(out_mp4, meta)
+
+        print(f"[Series] {cfg['series_name']} Ep #{ep_num}/{max_ep} Done -> {out_mp4} | QA={'PASS' if qa['passed'] else 'FAIL'} | UniqueClipsTotal={len(fresh_cfg['used_clip_ids'])}")
+        return {"episode": ep_num, "video": str(out_mp4), "qa": qa, "upload": upload_res}
+    finally:
+        os.environ.pop("CLIP_HISTORY_PATH", None)
+
+
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description="100% Dynamic Virality-First Movies & Series Shorts Automation")
     p.add_argument("--self-test", action="store_true")
+    p.add_argument("--series-file", default=None, help="Run next unique episode of a recurring series config (e.g. patrick_jane_series.json)")
     p.add_argument("--format", default="auto", choices=["auto", "edit_ranking", "release_hype", "movie_trivia", "scene_commentary", "news_slideshow"])
     p.add_argument("--genre", default=None, help="Optional genre group ID from niche_catalog.json")
     p.add_argument("--topic", default=None)
@@ -219,6 +281,10 @@ if __name__ == "__main__":
 
     if args.self_test:
         sys.exit(run_self_test())
+
+    if args.series_file:
+        run_series_episode(Path(args.series_file), handle=args.handle, dry_run=not args.upload, browser_cookies=args.cookies_from_browser)
+        sys.exit(0)
 
     run_pipeline(
         fmt=args.format,

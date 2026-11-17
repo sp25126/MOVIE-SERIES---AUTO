@@ -21,18 +21,36 @@ BANNED_TITLE_TERMS = ("full movie", "full episode", "official audio", "music vid
 MEME_SUBREDDITS = ("movies", "marvelmemes", "MovieDetails", "television", "bollywoodmemes", "PrequelMemes")
 
 
+def _history_file() -> Path:
+    import os
+    custom = os.environ.get("CLIP_HISTORY_PATH", "").strip()
+    return Path(custom) if custom else HISTORY_PATH
+
+
 def _load_history() -> set[str]:
-    if HISTORY_PATH.exists():
+    hp = _history_file()
+    if hp.exists():
         try:
-            return set(json.loads(HISTORY_PATH.read_text(encoding="utf-8")))
+            data = json.loads(hp.read_text(encoding="utf-8"))
+            return set(data.get("used_clip_ids", data) if isinstance(data, dict) else data)
         except Exception:
             pass
     return set()
 
 
 def _save_history(ids: set[str]):
-    STATE_DIR.mkdir(parents=True, exist_ok=True)
-    HISTORY_PATH.write_text(json.dumps(sorted(ids)[-500:], indent=2), encoding="utf-8")
+    hp = _history_file()
+    hp.parent.mkdir(parents=True, exist_ok=True)
+    if hp.exists():
+        try:
+            cur = json.loads(hp.read_text(encoding="utf-8"))
+            if isinstance(cur, dict) and "used_clip_ids" in cur:
+                cur["used_clip_ids"] = sorted(ids)
+                hp.write_text(json.dumps(cur, indent=2, ensure_ascii=False), encoding="utf-8")
+                return
+        except Exception:
+            pass
+    hp.write_text(json.dumps(sorted(ids)[-500:], indent=2), encoding="utf-8")
 
 
 def passes_copyright_prefilter(meta: dict) -> tuple[bool, str]:
@@ -55,7 +73,7 @@ def passes_copyright_prefilter(meta: dict) -> tuple[bool, str]:
 def scout_youtube(query: str, count: int = 5, max_duration: int = 65, ignore_history: bool = False) -> list[dict]:
     """Scouts YouTube via yt_dlp InnerTube/web extractor + Anti-CID pre-filter."""
     used = set() if ignore_history else _load_history()
-    probe_n = max(count * 3, 12)
+    probe_n = max(count * 5, 24)
     cmd = [
         sys.executable, "-m", "yt_dlp",
         "--dump-json", "--no-playlist", "--no-warnings",
@@ -73,7 +91,7 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, ignore_his
             except Exception:
                 continue
             vid = d.get("id")
-            if not vid or vid in seen or vid in used:
+            if not vid or vid in seen or vid in used or f"yt_{vid}" in used:
                 continue
             seen.add(vid)
             ok, _ = passes_copyright_prefilter(d)
