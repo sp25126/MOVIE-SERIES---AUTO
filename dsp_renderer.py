@@ -34,14 +34,24 @@ def _font(size: int, bold: bool = True) -> ImageFont.FreeTypeFont:
     return ImageFont.load_default()
 
 
-def ensure_royalty_free_bgm(style: str = "phonk") -> Path:
-    """Returns a user BGM track in assets/bgm/ if present, else synthesizes a clean 0%-CID stem."""
+def ensure_royalty_free_bgm(style: str = "phonk", allow_network: bool = True) -> Path:
+    """Prefers real trending no-copyright BGM (assets/bgm/), auto-fetches if missing, falls back to synth."""
     BGM_DIR.mkdir(parents=True, exist_ok=True)
-    # Prefer any user-provided mp3/wav matching the style
+    # 1. Prefer user-provided or cached trending mp3/wav (excluding synth_*)
     for ext in ("*.mp3", "*.wav"):
         for f in sorted(BGM_DIR.glob(ext)):
-            if style in f.stem.lower() and f.stat().st_size > 30_000:
+            if not f.stem.startswith("synth_") and style in f.stem.lower() and f.stat().st_size > 100_000:
                 return f
+
+    # 2. Fetch real trending no-copyright BGM dynamically
+    if allow_network:
+        try:
+            from clip_harvester import fetch_trending_bgm
+            fetched = fetch_trending_bgm(style=style, out_dir=BGM_DIR)
+            if fetched and fetched.exists():
+                return fetched
+        except Exception:
+            pass
 
     out = BGM_DIR / f"synth_{style}.wav"
     if out.exists() and out.stat().st_size > 30_000:
@@ -249,14 +259,42 @@ def render_release_hype(
     output_mp4: Path,
     handle: str = "@CinePulse",
     shot_dur: float = 2.4,
+    hook_clip: dict | None = None,
 ) -> Path:
-    """Format 2 (Ref #2 & #1/#3): Rapid 2.4s trailer/meme micro-cuts + white top hook + 100% royalty-free phonk."""
+    """Format 2 (Ref #2 & #1/#3): Optional 3.2s IG/viral edit hook + rapid 2.4s hero cuts + trending no-CID phonk."""
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
     output_mp4.parent.mkdir(parents=True, exist_ok=True)
     bgm = ensure_royalty_free_bgm("phonk")
+    ov_hook = _make_banner_overlay("WAIT FOR THIS...", "WATCH TILL THE END", handle, TEMP_DIR / "hype_hook_ov.png", dark_mode=False)
     ov_normal = _make_banner_overlay(headline, "", handle, TEMP_DIR / "hype_ov.png", dark_mode=False)
 
     segs = []
+    # Prepend 3.2s high-retention visual hook edit (from Instagram / assets/hooks / viral edit)
+    if hook_clip and Path(hook_clip["local_path"]).exists():
+        h_src = Path(hook_clip["local_path"])
+        h_dur_src = float(hook_clip.get("duration") or 8.0)
+        h_dur = min(3.2, max(2.2, h_dur_src - 0.5))
+        h_ss = min(max(1.5, h_dur_src * 0.25), max(0.0, h_dur_src - h_dur - 0.3)) if h_dur_src > h_dur + 2.0 else 0.0
+        h_seg = TEMP_DIR / "hype_hook_seg.mp4"
+        vf_h = (
+            f"[0:v]trim=0:{h_dur:.3f},setpts=PTS-STARTPTS,fps=30,"
+            f"scale=1080:1600:force_original_aspect_ratio=increase,crop=1080:1600,"
+            f"eq=contrast=1.16:saturation=1.25[vclip];"
+            f"color=c=black:s=1080x1920:d={h_dur:.3f}:r=30[base];"
+            f"[base][vclip]overlay=0:320[comp];"
+            f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
+        )
+        subprocess.run(
+            [
+                FFMPEG, "-y", "-ss", f"{h_ss:.2f}", "-i", str(h_src), "-i", str(ov_hook),
+                "-filter_complex", vf_h, "-map", "[vout]", "-an",
+                "-t", f"{h_dur:.3f}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-r", "30",
+                str(h_seg),
+            ],
+            capture_output=True, check=True, timeout=90,
+        )
+        segs.append(h_seg)
+
     for idx, clip in enumerate(clips):
         src = Path(clip["local_path"])
         seg = TEMP_DIR / f"hype_seg_{idx}.mp4"
@@ -284,12 +322,12 @@ def render_release_hype(
 
     silent_concat = TEMP_DIR / "hype_silent.mp4"
     _concat_segments(segs, silent_concat, has_audio=False)
-    # Mux 100% royalty-free phonk (0% studio audio CID risk!)
+    # Mux trending no-copyright phonk with +2% micro-pitch shield & -14 LUFS mastering
     subprocess.run(
         [
-            FFMPEG, "-y", "-i", str(silent_concat), "-stream_loop", "-1", "-i", str(bgm),
+            FFMPEG, "-y", "-i", str(silent_concat), "-stream_loop", "-1", "-ss", "12", "-i", str(bgm),
             "-map", "0:v:0", "-map", "1:a:0", "-shortest",
-            "-af", "loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000,aformat=channel_layouts=stereo",
+            "-af", "aresample=48000,asetrate=48000*1.02,atempo=1/1.02,aresample=48000,loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aformat=channel_layouts=stereo",
             "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
             str(output_mp4),
         ],

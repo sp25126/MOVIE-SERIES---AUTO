@@ -16,7 +16,10 @@ HISTORY_PATH = STATE_DIR / "used_history.json"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
 
 BLOCKED_CHANNEL_TERMS = ("vevo", "official audio", "topic", "records", "music video", "t-series", "sony music")
-BANNED_TITLE_TERMS = ("full movie", "full episode", "official audio", "music video", "lyric video", "reaction", "live stream")
+BANNED_TITLE_TERMS = (
+    "full movie", "full episode", "official audio", "music video", "lyric video",
+    "reaction", "live stream", "interview", "press conference", "happy diwali", "greeting",
+)
 
 MEME_SUBREDDITS = ("movies", "marvelmemes", "MovieDetails", "television", "bollywoodmemes", "PrequelMemes")
 
@@ -341,3 +344,89 @@ def harvest_video_pack(
             picked.append(c)
             print(f"[Harvester] Ready ({len(picked)}/{target_count}) [{c['platform']}]: {c['title'][:50]} [{c['views']:,}]")
     return picked
+
+
+def fetch_trending_bgm(style: str = "phonk", out_dir: Path | None = None) -> Path | None:
+    """Downloads a real trending no-copyright BGM track via yt_dlp (verified no CID track/artist tag)."""
+    bgm_dir = out_dir or (ROOT / "assets" / "bgm")
+    bgm_dir.mkdir(parents=True, exist_ok=True)
+    out_wav = bgm_dir / f"trending_{style}.wav"
+    if out_wav.exists() and out_wav.stat().st_size > 200_000:
+        return out_wav
+
+    queries = {
+        "phonk": [
+            "no copyright brazilian phonk slowed reverb edit bgm",
+            "copyright free phonk montage edit music 2026",
+        ],
+        "rock": ["no copyright dark cinematic rock trailer music"],
+        "ambient": ["no copyright dark ambient slowed reverb edit music"],
+    }.get(style, ["no copyright viral edit music"])
+
+    for q in queries:
+        cmd = [
+            sys.executable, "-m", "yt_dlp",
+            "--dump-json", "--no-playlist", "--no-warnings",
+            "--match-filter", "duration >= 25 & duration <= 240",
+            f"ytsearch8:{q}",
+        ]
+        try:
+            proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=35)
+            cands = []
+            for line in proc.stdout.splitlines():
+                if not line.strip():
+                    continue
+                d = json.loads(line)
+                # Must have NO detected commercial music track/artist claim metadata
+                if d.get("track") or d.get("artist"):
+                    continue
+                if any(b in (d.get("channel") or "").lower() for b in BLOCKED_CHANNEL_TERMS):
+                    continue
+                cands.append((int(d.get("view_count") or 0), d.get("webpage_url") or "", d.get("title") or ""))
+            cands.sort(reverse=True)
+            for views, url, title in cands[:3]:
+                if not url:
+                    continue
+                dl = subprocess.run(
+                    [
+                        sys.executable, "-m", "yt_dlp", "-f", "bestaudio/best",
+                        "-x", "--audio-format", "wav", "--no-warnings",
+                        "-o", str(bgm_dir / f"trending_{style}.%(ext)s"), url,
+                    ],
+                    capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=60,
+                )
+                if dl.returncode == 0 and out_wav.exists() and out_wav.stat().st_size > 200_000:
+                    print(f"[BGM] Ready ({style}): {title[:55]} [{views:,} views] -> {out_wav.name}")
+                    return out_wav
+        except Exception as e:
+            print(f"[BGM] Fetch skipped ({q[:30]}): {e}", file=sys.stderr)
+    return None
+
+
+def harvest_intro_hook(topic: str, hook_url: str = "", browser_cookies: str = "") -> dict | None:
+    """Gets a 3s high-retention intro edit hook (explicit IG Reel URL -> local assets/hooks -> live viral edit)."""
+    # 1. Explicit Instagram Reel / TikTok / YouTube hook URL
+    if hook_url:
+        p = download_social_url(hook_url, f"hook_{abs(hash(hook_url)) % 100000}", browser_cookies=browser_cookies)
+        if p:
+            return {"id": "custom_hook", "platform": "instagram", "title": f"{topic} Hook Edit", "creator": "IG Creator", "url": hook_url, "local_path": str(p), "duration": 10.0}
+
+    # 2. Local dropped Instagram reels in assets/hooks/ (auto-rotates)
+    hooks_dir = ROOT / "assets" / "hooks"
+    if hooks_dir.exists():
+        local_hooks = sorted(hooks_dir.glob("*.mp4"))
+        if local_hooks:
+            chosen = local_hooks[abs(hash(topic)) % len(local_hooks)]
+            return {"id": chosen.stem, "platform": "local_ig_hook", "title": chosen.stem, "creator": "IG Hook", "url": "", "local_path": str(chosen), "duration": 10.0}
+
+    # 3. Autonomous viral edit hook (tries IG/FB fallback + viral YouTube/TikTok velocity edits)
+    hook_queries = [f"{topic} edit 4k shorts", f"{topic} instagram reel edit", f"{topic} viral edit"]
+    found = harvest_video_pack(
+        hook_queries, target_count=1, max_duration=45,
+        platforms=("instagram", "tiktok", "youtube"),
+        browser_cookies=browser_cookies, required_topic=topic,
+    )
+    if found:
+        print(f"[Hook] Auto-selected viral edit hook: {found[0]['title'][:55]}")
+        return found[0]
+    return None

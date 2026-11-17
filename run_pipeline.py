@@ -8,7 +8,7 @@ import re
 import sys
 from pathlib import Path
 
-from clip_harvester import harvest_video_pack, passes_copyright_prefilter
+from clip_harvester import harvest_intro_hook, harvest_video_pack, passes_copyright_prefilter
 from dsp_renderer import (
     ensure_royalty_free_bgm,
     render_edit_ranking,
@@ -82,7 +82,7 @@ def run_self_test() -> int:
             assert "topics" not in sc, f"Static topics list found in {gid}/{sc['id']}!"
             assert sc["format"] != "news_slideshow", f"Removed news_slideshow found in {gid}/{sc['id']}!"
 
-    bgm = ensure_royalty_free_bgm("phonk")
+    bgm = ensure_royalty_free_bgm("phonk", allow_network=False)
     assert bgm.exists() and bgm.stat().st_size > 30_000, "BGM generation failed!"
 
     print("[SELF-TEST] ALL CHECKS PASSED (virality math, Anti-CID, 7 pure-video zero-static genre groups, BGM).")
@@ -97,6 +97,7 @@ def run_pipeline(
     dry_run: bool = True,
     count: int = 3,
     extra_urls: list[str] | None = None,
+    hook_url: str = "",
     browser_cookies: str = "",
 ) -> dict:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -139,7 +140,8 @@ def run_pipeline(
             c["short_label"] = " ".join(words[:2]).title() if words else f"Clip {i}"
         render_edit_ranking(chosen_topic, clips, out_mp4, handle=handle, clip_dur=10.0)
     elif chosen_fmt == "release_hype":
-        render_release_hype(f"THIS WEEK CAN'T HOLD THIS MUCH PEAK... ({chosen_topic})", clips, out_mp4, handle=handle)
+        hook = harvest_intro_hook(chosen_topic, hook_url=hook_url, browser_cookies=browser_cookies)
+        render_release_hype(f"THIS WEEK CAN'T HOLD THIS MUCH PEAK... ({chosen_topic})", clips, out_mp4, handle=handle, hook_clip=hook)
     else:
         for c in clips:
             c["fact_or_commentary"] = c["title"][:60]
@@ -228,6 +230,7 @@ if __name__ == "__main__":
     p.add_argument("--handle", default="@CinePulse")
     p.add_argument("--count", type=int, default=3)
     p.add_argument("--urls", nargs="*", default=None, help="Optional IG/FB/TikTok/YT URLs to include")
+    p.add_argument("--hook-url", default="", help="Optional Instagram Reel / edit URL to prepend as 3.2s retention hook")
     p.add_argument("--cookies-from-browser", default="", help="Browser for optional IG/FB public session cookies (e.g. chrome)")
     p.add_argument("--upload", action="store_true", help="Upload private canary & schedule (default is local dry-run)")
     p.add_argument("--dry-run", action="store_true", help="Explicit local dry-run (default)")
@@ -248,5 +251,6 @@ if __name__ == "__main__":
         dry_run=not args.upload,
         count=args.count,
         extra_urls=args.urls,
+        hook_url=args.hook_url,
         browser_cookies=args.cookies_from_browser,
     )
