@@ -259,9 +259,11 @@ def scout_fb_ig_fallback(query: str, count: int = 3) -> list[dict]:
             with urllib.request.urlopen(req, timeout=10) as resp:
                 xml_text = resp.read().decode("utf-8", errors="replace")
             import xml.etree.ElementTree as ET
-            for item in ET.fromstring(xml_text).findall(".//item")[:count]:
+            for item in ET.fromstring(xml_text).findall(".//item")[:count * 3]:
                 link = (item.findtext("link") or "").strip()
                 title = (item.findtext("title") or query).strip()
+                if f"{platform}.com/" not in link.lower():
+                    continue
                 cid = f"{platform[:2]}_{abs(hash(link)) % 1000000}"
                 if link and cid not in used:
                     results.append({
