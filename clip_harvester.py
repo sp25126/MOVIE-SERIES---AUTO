@@ -15,10 +15,20 @@ HISTORY_PATH = STATE_DIR / "used_history.json"
 
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
 
-BLOCKED_CHANNEL_TERMS = ("vevo", "official audio", "topic", "records", "music video", "t-series", "sony music")
+BLOCKED_CHANNEL_TERMS = (
+    "vevo", "official audio", "topic", "records", "music video", "t-series", "sony music",
+    "screen culture", "kh studio", "teaserspro", "royal trailer", "dar trailer", "ai studio",
+)
 BANNED_TITLE_TERMS = (
     "full movie", "full episode", "official audio", "music video", "lyric video",
     "reaction", "live stream", "interview", "press conference", "happy diwali", "greeting",
+    "concept", "fan made", "fan-made", "fanmade", "fan trailer", "unofficial",
+    "ai trailer", "ai generated", "ai video", "made with ai", "parody", "spoof", "unreal engine",
+)
+FAKE_AI_DESC_TERMS = (
+    "concept trailer", "fan-made", "fan made", "fanmade", "not an official", "unofficial trailer",
+    "ai-generated", "ai generated", "made with ai", "created with ai", "generated using ai",
+    "kling ai", "sora ai", "runway gen", "midjourney", "veo 2", "veo 3", "hailuo", "parody trailer",
 )
 
 MEME_SUBREDDITS = ("movies", "marvelmemes", "MovieDetails", "television", "bollywoodmemes", "PrequelMemes")
@@ -57,16 +67,19 @@ def _save_history(ids: set[str]):
 
 
 def passes_copyright_prefilter(meta: dict) -> tuple[bool, str]:
-    """Rejects candidates with YouTube-detected commercial music tracks or high-risk studio channels."""
+    """Rejects claimed music tracks, high-risk studio music channels, and fake AI/fan-concept trailers."""
     title = (meta.get("title") or "").lower()
     channel = (meta.get("channel") or meta.get("uploader") or "").lower()
+    desc_tags = f"{meta.get('description') or ''} {' '.join(meta.get('tags') or [])}".lower()
 
     if meta.get("track") or meta.get("artist"):
         return False, f"Content-ID music detected ({meta.get('track')} / {meta.get('artist')})"
     if any(b in channel for b in BLOCKED_CHANNEL_TERMS):
-        return False, f"Blocked music/label channel ({channel})"
+        return False, f"Blocked music/concept channel ({channel})"
     if any(b in title for b in BANNED_TITLE_TERMS):
         return False, f"Blocked title term ({title[:40]})"
+    if any(b in desc_tags for b in FAKE_AI_DESC_TERMS):
+        return False, "Fake AI / fan-concept footage detected in description/tags"
     dur = meta.get("duration") or 0
     if dur < 4 or dur > 180:
         return False, f"Duration out of bounds ({dur}s)"
@@ -403,8 +416,9 @@ def fetch_trending_bgm(style: str = "phonk", out_dir: Path | None = None) -> Pat
     return None
 
 
-def harvest_intro_hook(topic: str, hook_url: str = "", browser_cookies: str = "") -> dict | None:
+def harvest_intro_hook(topic: str, hook_url: str = "", browser_cookies: str = "", exclude_ids: set[str] | None = None) -> dict | None:
     """Gets a 3s high-retention intro edit hook (explicit IG Reel URL -> local assets/hooks -> live viral edit)."""
+    excluded = exclude_ids or set()
     # 1. Explicit Instagram Reel / TikTok / YouTube hook URL
     if hook_url:
         p = download_social_url(hook_url, f"hook_{abs(hash(hook_url)) % 100000}", browser_cookies=browser_cookies)
@@ -419,14 +433,15 @@ def harvest_intro_hook(topic: str, hook_url: str = "", browser_cookies: str = ""
             chosen = local_hooks[abs(hash(topic)) % len(local_hooks)]
             return {"id": chosen.stem, "platform": "local_ig_hook", "title": chosen.stem, "creator": "IG Hook", "url": "", "local_path": str(chosen), "duration": 10.0}
 
-    # 3. Autonomous viral edit hook (tries IG/FB fallback + viral YouTube/TikTok velocity edits)
+    # 3. Autonomous viral edit hook (distinct from main clips)
     hook_queries = [f"{topic} edit 4k shorts", f"{topic} instagram reel edit", f"{topic} viral edit"]
     found = harvest_video_pack(
-        hook_queries, target_count=1, max_duration=45,
+        hook_queries, target_count=3, max_duration=45,
         platforms=("instagram", "tiktok", "youtube"),
         browser_cookies=browser_cookies, required_topic=topic,
     )
-    if found:
-        print(f"[Hook] Auto-selected viral edit hook: {found[0]['title'][:55]}")
-        return found[0]
+    for item in found:
+        if item["id"] not in excluded:
+            print(f"[Hook] Auto-selected distinct viral edit hook: {item['title'][:55]}")
+            return item
     return None

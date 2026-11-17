@@ -73,7 +73,9 @@ def run_self_test() -> int:
     ok2, _ = passes_copyright_prefilter({"title": "Song", "channel": "FanEdits", "duration": 22, "track": "Hit Song"})
     ok3, _ = passes_copyright_prefilter({"title": "Full Movie HD", "channel": "MoviesHub", "duration": 22})
     ok4, _ = passes_copyright_prefilter({"title": "Clip", "channel": "ArtistVEVO", "duration": 22})
-    assert ok1 and not ok2 and not ok3 and not ok4, "Copyright pre-filter failed!"
+    ok5, _ = passes_copyright_prefilter({"title": "Ramayana 2026 Concept Trailer", "channel": "Random", "duration": 22})
+    ok6, _ = passes_copyright_prefilter({"title": "Lord Shiva Tandav", "channel": "Random", "duration": 22, "description": "This is a fan-made AI generated concept video"})
+    assert ok1 and not ok2 and not ok3 and not ok4 and not ok5 and not ok6, "Copyright/Fake-AI pre-filter failed!"
 
     cat = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
     assert len(cat["groups"]) == 7, f"Expected 7 video genre groups, got {len(cat['groups'])}"
@@ -140,7 +142,7 @@ def run_pipeline(
             c["short_label"] = " ".join(words[:2]).title() if words else f"Clip {i}"
         render_edit_ranking(chosen_topic, clips, out_mp4, handle=handle, clip_dur=10.0)
     elif chosen_fmt == "release_hype":
-        hook = harvest_intro_hook(chosen_topic, hook_url=hook_url, browser_cookies=browser_cookies)
+        hook = harvest_intro_hook(chosen_topic, hook_url=hook_url, browser_cookies=browser_cookies, exclude_ids={c["id"] for c in clips})
         render_release_hype(f"THIS WEEK CAN'T HOLD THIS MUCH PEAK... ({chosen_topic})", clips, out_mp4, handle=handle, hook_clip=hook)
     else:
         for c in clips:
