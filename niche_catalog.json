@@ -1,0 +1,264 @@
+{
+  "last_3day_sync_utc": "2026-11-17T20:17:29Z",
+  "rotation_cycle": [
+    "GROUP_A",
+    "GROUP_B",
+    "GROUP_C",
+    "GROUP_D"
+  ],
+  "cycle_index": 0,
+  "live_3day_top_topics": [
+    {
+      "topic": "Ramayana",
+      "score": 90.0,
+      "format": "news_slideshow",
+      "sources": [
+        "Deadline",
+        "NDTV",
+        "Screen Daily",
+        "The Hindu"
+      ]
+    },
+    {
+      "topic": "VisionQuest",
+      "score": 75.27,
+      "format": "news_slideshow",
+      "sources": [
+        "Reddit-30d(r/marvelmemes)",
+        "Reddit-7d(r/marvelmemes)",
+        "Reddit-7d(r/marvelstudios)"
+      ]
+    },
+    {
+      "topic": "Avengers: Doomsday",
+      "score": 70.0,
+      "format": "news_slideshow",
+      "sources": [
+        "Reddit-7d(r/boxoffice)",
+        "Reddit-7d(r/marvelstudios)"
+      ]
+    },
+    {
+      "topic": "Kevin Feige",
+      "score": 49.29,
+      "format": "news_slideshow",
+      "sources": [
+        "Reddit-7d(r/marvelstudios)"
+      ]
+    },
+    {
+      "topic": "Body Problem: Season",
+      "score": 35.85,
+      "format": "release_hype",
+      "sources": [
+        "Reddit-30d(r/television)",
+        "Reddit-7d(r/television)"
+      ]
+    },
+    {
+      "topic": "Hulu App Merger",
+      "score": 35.63,
+      "format": "release_hype",
+      "sources": [
+        "Reddit-30d(r/television)",
+        "Reddit-7d(r/television)"
+      ]
+    },
+    {
+      "topic": "Be Complete",
+      "score": 35.63,
+      "format": "release_hype",
+      "sources": [
+        "Reddit-30d(r/television)",
+        "Reddit-7d(r/television)"
+      ]
+    },
+    {
+      "topic": "The Ranbir Kapoor",
+      "score": 34.0,
+      "format": "news_slideshow",
+      "sources": [
+        "The Times of India"
+      ]
+    },
+    {
+      "topic": "Sai Pallavi",
+      "score": 34.0,
+      "format": "news_slideshow",
+      "sources": [
+        "The Times of India"
+      ]
+    },
+    {
+      "topic": "Ramayana Box Office",
+      "score": 34.0,
+      "format": "news_slideshow",
+      "sources": [
+        "NDTV"
+      ]
+    }
+  ],
+  "groups": {
+    "GROUP_A": {
+      "format": "edit_ranking",
+      "description": "Dual-layer blurred BG + persistent left countdown ladder (#3->#1 or #5->#1) — Ref #9 (715x sub ratio)",
+      "subcategories": [
+        {
+          "id": "trending_show_edits",
+          "label": "Live 3-Day Trending Movie/Series Edits",
+          "dynamic": true,
+          "query_suffix": "edit shorts"
+        },
+        {
+          "id": "genius_character_edits",
+          "label": "High-IQ Character Edits",
+          "topics": [
+            "Patrick Jane",
+            "Thomas Shelby",
+            "Saul Goodman",
+            "Sherlock Holmes"
+          ],
+          "query_suffix": "edit shorts"
+        },
+        {
+          "id": "superhero_trend_edits",
+          "label": "Superhero Viral Trend Edits",
+          "topics": [
+            "Spider-Man: Brand New Day",
+            "Avengers: Doomsday",
+            "Doctor Doom",
+            "Batman"
+          ],
+          "query_suffix": "edit 4k shorts"
+        },
+        {
+          "id": "coldest_villain_aura",
+          "label": "Coldest Movie & Series Villain Aura",
+          "topics": [
+            "Ultron",
+            "Homelander",
+            "Darth Vader",
+            "Thanos",
+            "Joker"
+          ],
+          "query_suffix": "coldest moments edit shorts"
+        },
+        {
+          "id": "cinema_fight_clashes",
+          "label": "Insane Action & Fight Scenes",
+          "topics": [
+            "John Wick",
+            "Dune",
+            "Ramayana",
+            "The Matrix"
+          ],
+          "query_suffix": "fight scene edit shorts"
+        }
+      ]
+    },
+    "GROUP_B": {
+      "format": "release_hype",
+      "description": "Top white hook bar + rapid 2s beat-synced micro-cuts over royalty-free phonk — Refs #1, #2, #3",
+      "subcategories": [
+        {
+          "id": "this_month_stacked_slate",
+          "label": "This Month Can't Hold This Much Peak",
+          "dynamic": true,
+          "query_suffix": "trailer edit shorts"
+        },
+        {
+          "id": "in_theaters_now_hype",
+          "label": "Currently In Theaters Hype",
+          "dynamic": true,
+          "query_suffix": "movie teaser shorts"
+        },
+        {
+          "id": "fandom_contrast_memes",
+          "label": "Viral Fandom & Cast Contrast Memes",
+          "topics": [
+            "Avengers: Doomsday",
+            "Spider-Man",
+            "Stranger Things"
+          ],
+          "query_suffix": "funny cast meme shorts"
+        },
+        {
+          "id": "upcoming_trailer_drops",
+          "label": "Newest Viral Trailer Drops",
+          "dynamic": true,
+          "query_suffix": "official trailer 4k shorts"
+        }
+      ]
+    },
+    "GROUP_C": {
+      "format": "movie_trivia",
+      "alt_format": "scene_commentary",
+      "description": "Letterboxed freeze-frame trivia (Ref #4, 290x) & dual-layer commentary scenes (Refs #6, #11)",
+      "subcategories": [
+        {
+          "id": "most_expensive_scenes",
+          "label": "Movie Scenes That Cost an Insane Amount",
+          "format": "movie_trivia",
+          "topics": [
+            "Titanic",
+            "Pearl Harbor",
+            "Saving Private Ryan",
+            "The Matrix Revolutions"
+          ],
+          "query_suffix": "iconic scene shorts"
+        },
+        {
+          "id": "breaking_finale_commentary",
+          "label": "Breaking Episode / Finale Commentary",
+          "format": "scene_commentary",
+          "dynamic": true,
+          "query_suffix": "finale scene edit shorts"
+        },
+        {
+          "id": "iconic_sitcom_comedy_clips",
+          "label": "Iconic TV Comedy & Shock Scenes",
+          "format": "scene_commentary",
+          "topics": [
+            "Malcolm in the Middle",
+            "The Office",
+            "Brooklyn Nine-Nine"
+          ],
+          "query_suffix": "funny scene edit shorts"
+        },
+        {
+          "id": "hidden_movie_details",
+          "label": "Hidden Cinema Details You Missed",
+          "format": "movie_trivia",
+          "topics": [
+            "Interstellar",
+            "Spider-Man",
+            "Avengers",
+            "Inception"
+          ],
+          "query_suffix": "hidden detail shorts"
+        }
+      ]
+    },
+    "GROUP_D": {
+      "format": "news_slideshow",
+      "description": "Visual hook + rapid press-still news cards (0% video Content-ID risk, zero voiceover) — Refs #8 & #10 mechanic",
+      "subcategories": [
+        {
+          "id": "breaking_3day_radar_news",
+          "label": "Breaking 3-Day Movie & Series News",
+          "dynamic": true
+        },
+        {
+          "id": "casting_and_franchise_rumors",
+          "label": "Major Casting & Franchise Updates",
+          "dynamic": true
+        },
+        {
+          "id": "box_office_records_update",
+          "label": "Box Office Milestones & Records",
+          "dynamic": true
+        }
+      ]
+    }
+  }
+}

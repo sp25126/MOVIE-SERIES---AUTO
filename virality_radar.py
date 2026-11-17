@@ -413,6 +413,19 @@ def scan_virality(skip_yt: bool = False) -> dict:
         "breaking_news_feed": buzz_7d[:12],
     }
     REPORT_PATH.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
+    # Sync live 3-day top topics into tracked niche_catalog.json
+    cat_path = ROOT / "niche_catalog.json"
+    if cat_path.exists():
+        try:
+            cat = json.loads(cat_path.read_text(encoding="utf-8"))
+            cat["last_3day_sync_utc"] = now_iso
+            cat["live_3day_top_topics"] = [
+                {"topic": t["topic"], "score": t["score"], "format": t["recommended_format"], "sources": t["sources"]}
+                for t in ranked[:10]
+            ]
+            cat_path.write_text(json.dumps(cat, indent=2, ensure_ascii=False), encoding="utf-8")
+        except Exception as e:
+            print(f"[Radar] Catalog sync skipped: {e}", file=sys.stderr)
     w = report["winner"]
     print(f"[Radar] Winner: '{w['topic']}' (Score {w['score']}, YT_views={w.get('yt_views',0):,}, Sources={w.get('sources',[])}, Format={w['recommended_format']})")
     return report

@@ -18,9 +18,15 @@ FFMPEG = r"C:\ffmpeg-7.1.1-full_build\bin\ffmpeg.exe" if os.path.exists(r"C:\ffm
 
 def _font(size: int, bold: bool = True) -> ImageFont.FreeTypeFont:
     candidates = (
-        ["C:/Windows/Fonts/impact.ttf", "C:/Windows/Fonts/arialbd.ttf", "C:/Windows/Fonts/segoeuib.ttf"]
+        [
+            "C:/Windows/Fonts/impact.ttf", "C:/Windows/Fonts/arialbd.ttf", "C:/Windows/Fonts/segoeuib.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        ]
         if bold
-        else ["C:/Windows/Fonts/segoeuib.ttf", "C:/Windows/Fonts/arial.ttf"]
+        else [
+            "C:/Windows/Fonts/segoeuib.ttf", "C:/Windows/Fonts/arial.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        ]
     )
     for fp in candidates:
         if os.path.exists(fp):

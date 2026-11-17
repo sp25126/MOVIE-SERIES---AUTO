@@ -1,0 +1,40 @@
+name: 3-Day Virality Radar Sync
+
+on:
+  schedule:
+    # Runs every 3 days at 06:00 UTC (11:30 AM IST)
+    - cron: '0 6 */3 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-virality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run 3-day social virality scan & self-test
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: |
+          python run_pipeline.py --self-test
+          python virality_radar.py
+
+      - name: Commit updated 3-day catalog back to repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add niche_catalog.json
+          git diff --staged --quiet || (git commit -m "chore(radar): 3-day virality sync [skip ci]" && git push origin main)

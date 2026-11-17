@@ -1,0 +1,75 @@
+name: Autonomous Movies & Series Shorts Release
+
+on:
+  schedule:
+    # Runs every 3 days at 08:00 UTC (1:30 PM IST) right after radar sync, schedules for 14:00 UTC (7:30 PM IST)
+    - cron: '0 8 */3 * *'
+  workflow_dispatch:
+    inputs:
+      format:
+        description: 'Format override (auto, edit_ranking, release_hype, movie_trivia, scene_commentary, news_slideshow)'
+        required: false
+        default: 'auto'
+      topic:
+        description: 'Optional topic override (leave blank to auto-pick from live 3-day radar)'
+        required: false
+        default: ''
+      upload:
+        description: 'Upload private canary & schedule to YouTube (requires YOUTUBE_TOKEN_JSON secret)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  produce-short:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install FFmpeg & Python deps
+        run: |
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg fonts-dejavu-core
+          pip install -r requirements.txt
+
+      - name: Restore optional YouTube OAuth token
+        run: |
+          mkdir -p config
+          if [ -n "${{ secrets.YOUTUBE_TOKEN_JSON }}" ]; then
+            printf '%s' '${{ secrets.YOUTUBE_TOKEN_JSON }}' > config/youtube_token.json
+          fi
+
+      - name: Run virality-first Shorts pipeline
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          TAKEDOWN_EMAIL: ${{ secrets.TAKEDOWN_EMAIL }}
+        run: |
+          ARGS="--format ${{ inputs.format || 'auto' }}"
+          if [ -n "${{ inputs.topic }}" ]; then
+            ARGS="$ARGS --topic \"${{ inputs.topic }}\""
+          fi
+          if [ "${{ inputs.upload }}" = "true" ] && [ -f config/youtube_token.json ]; then
+            ARGS="$ARGS --upload"
+          else
+            ARGS="$ARGS --dry-run"
+          fi
+          eval python -u run_pipeline.py $ARGS
+
+      - name: Upload QA proof sheet artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: short-qa-output
+          path: |
+            output/*_proof.jpg
+            output/*.meta.json
+            niche_catalog.json
+          if-no-files-found: ignore
