@@ -108,7 +108,8 @@ def run_pipeline(
             extra_urls=extra_urls, browser_cookies=browser_cookies, required_topic=chosen_topic,
         )
         if not clips:
-            raise RuntimeError(f"No clean copyright-safe clips harvested for '{chosen_topic}'")
+            print(f"[Pipeline] Video harvest empty for '{chosen_topic}' -> falling back to news_slideshow.")
+            return run_pipeline(fmt="news_slideshow", topic=chosen_topic, handle=handle, dry_run=dry_run, count=count)
         # Short punchy rank labels for the left ladder
         for i, c in enumerate(clips, 1):
             words = re.findall(r"[A-Za-z0-9]+", c["title"])
@@ -117,9 +118,10 @@ def run_pipeline(
 
     elif chosen_fmt == "release_hype":
         queries = [f"{chosen_topic} trailer edit shorts", f"{chosen_topic} movie clip shorts"]
-        clips = harvest_video_pack(queries, target_count=max(count, 4), max_duration=65, extra_urls=extra_urls, browser_cookies=browser_cookies)
+        clips = harvest_video_pack(queries, target_count=max(count, 4), max_duration=65, extra_urls=extra_urls, browser_cookies=browser_cookies, required_topic=chosen_topic)
         if not clips:
-            raise RuntimeError(f"No clean clips harvested for release_hype '{chosen_topic}'")
+            print(f"[Pipeline] Video harvest empty for '{chosen_topic}' -> falling back to news_slideshow.")
+            return run_pipeline(fmt="news_slideshow", topic=chosen_topic, handle=handle, dry_run=dry_run, count=count)
         render_release_hype(f"THIS WEEK CAN'T HOLD THIS MUCH PEAK... ({chosen_topic})", clips, out_mp4, handle=handle)
 
     else:  # movie_trivia or scene_commentary

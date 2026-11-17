@@ -245,11 +245,40 @@ def _matches_topic(candidate: dict, required_topic: str) -> bool:
     return any(t in hay for t in tokens)
 
 
+def scout_fb_ig_fallback(query: str, count: int = 3) -> list[dict]:
+    """Fallback scout discovering public Instagram Reels & Facebook Reels/Watch links via RSS/search index."""
+    used = _load_history()
+    results = []
+    for platform, site_q in (
+        ("instagram", f"site:instagram.com/reel {query}"),
+        ("facebook", f"(site:facebook.com/reel OR site:facebook.com/watch) {query}"),
+    ):
+        try:
+            url = "https://www.bing.com/search?format=rss&q=" + urllib.parse.quote_plus(site_q)
+            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                xml_text = resp.read().decode("utf-8", errors="replace")
+            import xml.etree.ElementTree as ET
+            for item in ET.fromstring(xml_text).findall(".//item")[:count]:
+                link = (item.findtext("link") or "").strip()
+                title = (item.findtext("title") or query).strip()
+                cid = f"{platform[:2]}_{abs(hash(link)) % 1000000}"
+                if link and cid not in used:
+                    results.append({
+                        "id": cid, "platform": platform, "title": title[:90],
+                        "creator": f"{platform.title()} Creator", "views": 1000,
+                        "duration": 15.0, "url": link,
+                    })
+        except Exception as e:
+            print(f"[Harvester] {platform} fallback skipped: {e}", file=sys.stderr)
+    return results[:count]
+
+
 def harvest_video_pack(
     queries: list[str],
     target_count: int = 3,
     max_duration: int = 65,
-    platforms: tuple[str, ...] = ("youtube", "tiktok", "reddit"),
+    platforms: tuple[str, ...] = ("youtube", "tiktok", "reddit", "facebook", "instagram"),
     extra_urls: list[str] | None = None,
     browser_cookies: str = "",
     required_topic: str = "",
@@ -279,6 +308,8 @@ def harvest_video_pack(
             pool.extend(scout_tiktok_public(q, count=target_count))
         if "reddit" in platforms and len(pool) < target_count * 2:
             pool.extend(scout_reddit_memes_and_clips(q, count=target_count, video_only=True))
+        if ("facebook" in platforms or "instagram" in platforms) and len(pool) < target_count:
+            pool.extend(scout_fb_ig_fallback(q, count=target_count))
 
     pool.sort(key=lambda x: x.get("views", 0), reverse=True)
     for c in pool:
