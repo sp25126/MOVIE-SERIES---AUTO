@@ -24,7 +24,6 @@ def build_metadata(
         "release_hype": f"This Week Is NOT Holding Back! ({topic}) 🔥🎬 #shorts {slug_tag}",
         "movie_trivia": f"Movie Scenes That Cost an INSANE Amount! 🤯🎬 #shorts #movies",
         "scene_commentary": f"Everyone Missed THIS Detail in {topic}! 💀🎬 #shorts {slug_tag}",
-        "news_slideshow": f"HUGE Movie & Series News You Missed Today! 🚨🎬 #shorts #movienews",
     }
     title = titles.get(fmt, f"{topic} Viral Moments Ranked! 🔥 #shorts")[:100]
 

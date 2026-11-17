@@ -27,6 +27,7 @@ NON_MOVIE_JUNK = (
     "free fire", "ff edit", "bgmi", "pubg", "gta", "minecraft", "roblox", "valorant",
     "fortnite", "cricket", "football", "ronaldo", "messi", "car edit", "supra", "bmw",
     "tung tung", "skibidi", "cocomelon", "asmr", "slime", "chess", "how to viral",
+    "razorbacks", "yankees", "brewers", "basketball", "baseball", "nfl", "nba", "clickeez", "keyboard",
 )
 
 STOP_WORDS = {
@@ -243,13 +244,13 @@ def fetch_social_ig_fb_and_news_buzz() -> tuple[list[dict], list[dict]]:
 
 
 def pick_dynamic_subcategory(genre_id: str, yt_hits: int, reddit_hits: int, news_hits: int, groups: dict) -> tuple[str, str, str]:
-    """Selects the best subcategory + format inside the winning genre based on live signal shape."""
+    """Selects the best pure-video subcategory + format inside the winning genre (no news_slideshow)."""
     subs = groups.get(genre_id, {}).get("subcategories", [])
     if not subs:
         return "dynamic_edit", "edit_ranking", "edit shorts"
     preferred_fmt = (
         "edit_ranking" if yt_hits >= 1
-        else ("news_slideshow" if news_hits >= 2 and reddit_hits == 0 else "release_hype")
+        else ("scene_commentary" if reddit_hits >= 2 else "release_hype")
     )
     for sc in subs:
         if sc["format"] == preferred_fmt:
@@ -378,13 +379,12 @@ def scan_virality(skip_yt: bool = False) -> dict:
 
     report = {
         "scan_time_utc": now_iso,
-        "winner": ranked[0] if ranked else {"topic": "Trending Cinema", "genre": "cinema_news_trivia", "subcategory": "breaking_3day_movie_news", "recommended_format": "news_slideshow", "query_suffix": "movie news", "score": 0.0, "headlines": []},
+        "winner": ranked[0] if ranked else {"topic": "Cinema", "genre": "action_thriller", "subcategory": "action_fight_ranking", "recommended_format": "edit_ranking", "query_suffix": "edit shorts", "score": 0.0, "headlines": []},
         "genre_leaderboard": genre_board,
         "top_topics": ranked[:20],
         "top_yt_week": yt_week[:10],
         "top_yt_month": yt_month[:10],
         "top_reddit_week": reddit_7d[:10],
-        "breaking_news_feed": buzz_7d[:12],
     }
     REPORT_PATH.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
 

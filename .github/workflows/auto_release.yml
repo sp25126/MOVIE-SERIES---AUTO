@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       format:
-        description: 'Format override (auto, edit_ranking, release_hype, movie_trivia, scene_commentary, news_slideshow)'
+        description: 'Format override (auto, edit_ranking, release_hype, movie_trivia, scene_commentary)'
         required: false
         default: 'auto'
       topic:

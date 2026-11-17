@@ -7,7 +7,7 @@ import subprocess
 import textwrap
 import wave
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent
 BGM_DIR = ROOT / "assets" / "bgm"
@@ -350,98 +350,6 @@ def render_movie_trivia_or_commentary(
         segs.append(seg)
 
     return _concat_segments(segs, output_mp4)
-
-
-def _render_news_card_png(headline: str, source: str, badge: str, img_path: Path | None, handle: str, out_png: Path) -> Path:
-    """Builds a high-contrast 1080x1920 press-still news slide (0% video Content-ID risk)."""
-    canvas = Image.new("RGB", (1080, 1920), (14, 16, 26))
-    if img_path and img_path.exists():
-        try:
-            pic = Image.open(img_path).convert("RGB")
-            # Blurred full-bleed backdrop
-            bg = pic.resize((1080, 1920), Image.Resampling.LANCZOS).filter(ImageFilter.GaussianBlur(26))
-            dark = Image.new("RGB", (1080, 1920), (8, 10, 18))
-            canvas = Image.blend(bg, dark, 0.55)
-            # Crisp centered poster/still inside rounded card area
-            pic.thumbnail((940, 880), Image.Resampling.LANCZOS)
-            px = (1080 - pic.width) // 2
-            py = 370 + (880 - pic.height) // 2
-            canvas.paste(pic, (px, py))
-        except Exception:
-            pass
-
-    draw = ImageDraw.Draw(canvas, "RGBA")
-    # Top breaking badge pill
-    draw.rounded_rectangle([140, 130, 940, 240], radius=24, fill=(225, 29, 72, 245))
-    _draw_outlined_text(draw, (540, 185), badge.upper(), _font(52, bold=True), (255, 255, 255), stroke=3)
-
-    # Bottom gradient scrim for headline legibility
-    draw.rectangle([0, 1270, 1080, 1920], fill=(8, 10, 18, 225))
-    lines = textwrap.wrap(headline, width=24)[:4]
-    f_head = _font(58, bold=True)
-    y0 = 1365
-    for i, ln in enumerate(lines):
-        _draw_outlined_text(draw, (540, y0 + i * 74), ln, f_head, (255, 255, 255), stroke=4)
-
-    _draw_outlined_text(draw, (540, 1720), f"SOURCE: {source.upper()[:32]}", _font(32, bold=False), (0, 229, 255), stroke=2)
-    _draw_outlined_text(draw, (540, 1805), handle, _font(30, bold=False), (220, 220, 220), stroke=2)
-    out_png.parent.mkdir(parents=True, exist_ok=True)
-    canvas.save(out_png, quality=92)
-    return out_png
-
-
-def render_news_slideshow(
-    slides: list[dict],
-    output_mp4: Path,
-    handle: str = "@CinePulse",
-    slide_dur: float = 3.5,
-) -> Path:
-    """Format 4 (Ref #8/#10 mechanic for Movie/Series News): Visual hook + rapid press-still slides (0% CID, no VO)."""
-    TEMP_DIR.mkdir(parents=True, exist_ok=True)
-    output_mp4.parent.mkdir(parents=True, exist_ok=True)
-    bgm = ensure_royalty_free_bgm("ambient")
-    frames_per_slide = int(slide_dur * 30)
-
-    segs = []
-    for idx, s in enumerate(slides):
-        card = _render_news_card_png(
-            headline=s["headline"],
-            source=s.get("source", "Entertainment Radar"),
-            badge=s.get("badge", f"MOVIE NEWS #{idx + 1}"),
-            img_path=Path(s["image_path"]) if s.get("image_path") else None,
-            handle=handle,
-            out_png=TEMP_DIR / f"news_card_{idx}.png",
-        )
-        seg = TEMP_DIR / f"news_seg_{idx}.mp4"
-        # Smooth Ken Burns zoompan (exact frame count avoids infinite loop!)
-        vf = (
-            f"scale=1188:2112,zoompan=z='min(zoom+0.0005,1.06)':d={frames_per_slide}:"
-            f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1080x1920:fps=30,format=yuv420p"
-        )
-        subprocess.run(
-            [
-                FFMPEG, "-y", "-i", str(card),
-                "-vf", vf, "-t", f"{slide_dur:.3f}",
-                "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-r", "30", "-an",
-                str(seg),
-            ],
-            capture_output=True, check=True, timeout=60,
-        )
-        segs.append(seg)
-
-    silent = TEMP_DIR / "news_silent.mp4"
-    _concat_segments(segs, silent, has_audio=False)
-    subprocess.run(
-        [
-            FFMPEG, "-y", "-i", str(silent), "-stream_loop", "-1", "-i", str(bgm),
-            "-map", "0:v:0", "-map", "1:a:0", "-shortest",
-            "-af", "loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000,aformat=channel_layouts=stereo",
-            "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
-            str(output_mp4),
-        ],
-        capture_output=True, check=True, timeout=60,
-    )
-    return output_mp4
 
 
 def _concat_segments(seg_paths: list[Path], out_mp4: Path, has_audio: bool = True) -> Path:
