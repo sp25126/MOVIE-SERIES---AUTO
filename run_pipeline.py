@@ -99,6 +99,7 @@ def run_pipeline(
     handle: str = "@OtakuSnapster",
     dry_run: bool = True,
     count: int = 3,
+    clip_dur: float = 0.0,
     extra_urls: list[str] | None = None,
     hook_url: str = "",
     browser_cookies: str = "",
@@ -141,7 +142,7 @@ def run_pipeline(
         clips.sort(key=lambda x: x.get("views", 0), reverse=True)
         for c in clips:
             c["short_label"] = _clean_rank_label(c["title"], chosen_topic, int(c.get("views", 0)))
-        render_edit_ranking(chosen_topic, clips, out_mp4, handle=handle, clip_dur=15.0)
+        render_edit_ranking(chosen_topic, clips, out_mp4, handle=handle, clip_dur=clip_dur)
     elif chosen_fmt == "release_hype":
         hook = harvest_intro_hook(chosen_topic, hook_url=hook_url, browser_cookies=browser_cookies, exclude_ids={c["id"] for c in clips})
         render_release_hype(f"THIS WEEK CAN'T HOLD THIS MUCH PEAK... ({chosen_topic})", clips, out_mp4, handle=handle, hook_clip=hook)
@@ -252,6 +253,7 @@ if __name__ == "__main__":
     p.add_argument("--topic", default=None)
     p.add_argument("--handle", default="@OtakuSnapster")
     p.add_argument("--count", type=int, default=3)
+    p.add_argument("--clip-dur", type=float, default=0.0, help="Seconds per clip in edit ranking (0 or negative = 100% full uncut)")
     p.add_argument("--urls", nargs="*", default=None, help="Optional IG/FB/TikTok/YT URLs to include")
     p.add_argument("--hook-url", default="", help="Optional Instagram Reel / edit URL to prepend as 3.2s retention hook")
     p.add_argument("--cookies-from-browser", default="", help="Browser for optional IG/FB public session cookies (e.g. chrome)")
@@ -273,6 +275,7 @@ if __name__ == "__main__":
         handle=args.handle,
         dry_run=not args.upload,
         count=args.count,
+        clip_dur=args.clip_dur,
         extra_urls=args.urls,
         hook_url=args.hook_url,
         browser_cookies=args.cookies_from_browser,
