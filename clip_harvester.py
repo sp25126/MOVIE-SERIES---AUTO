@@ -68,13 +68,41 @@ def _save_history(ids: set[str]):
     hp.write_text(json.dumps(sorted(ids)[-500:], indent=2), encoding="utf-8")
 
 
-def passes_copyright_prefilter(meta: dict, min_duration: int = 4) -> tuple[bool, str]:
-    """Rejects claimed music tracks, high-risk studio music channels, and fake AI/fan-concept trailers."""
+CID_DESC_TERMS = (
+    "licensed to youtube by", "provided to youtube by", "music in this video",
+    "universal music", "warner music", "sony music", "umg", "wmg", "sme",
+    "song -", "song:", "song used:", "music used:", "track:",
+)
+YT_HTML_CID_MARKERS = (
+    "horizontalCardListRenderer",
+    "videoDescriptionMusicSectionRenderer",
+    "Licensed to YouTube by",
+    "musicWatchMetadataRenderer",
+)
+
+
+def has_youtube_cid_claim(video_id: str) -> tuple[bool, str]:
+    """Probes YouTube watch HTML for active Content-ID music/claim cards before downloading."""
+    try:
+        req = urllib.request.Request(f"https://www.youtube.com/watch?v={video_id}", headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=8) as resp:
+            html = resp.read().decode("utf-8", errors="ignore")
+        for m in YT_HTML_CID_MARKERS:
+            if m in html:
+                return True, f"YouTube CID marker '{m}'"
+    except Exception:
+        pass
+    return False, "clean"
+
+
+def passes_copyright_prefilter(meta: dict, min_duration: int = 4, check_html: bool = False) -> tuple[bool, str]:
+    """Rejects claimed music tracks, active YouTube CID cards, studio music channels, and fake AI trailers."""
     title = (meta.get("title") or "").lower()
     channel = (meta.get("channel") or meta.get("uploader") or "").lower()
-    desc_tags = f"{meta.get('description') or ''} {' '.join(meta.get('tags') or [])}".lower()
+    desc = (meta.get("description") or "").lower()
+    desc_tags = f"{desc} {' '.join(meta.get('tags') or [])}".lower()
 
-    if meta.get("track") or meta.get("artist"):
+    if meta.get("track") or meta.get("artist") or meta.get("album"):
         return False, f"Content-ID music detected ({meta.get('track')} / {meta.get('artist')})"
     if any(b in channel for b in BLOCKED_CHANNEL_TERMS):
         return False, f"Blocked music/concept channel ({channel})"
@@ -82,9 +110,15 @@ def passes_copyright_prefilter(meta: dict, min_duration: int = 4) -> tuple[bool,
         return False, f"Blocked title term ({title[:40]})"
     if any(b in desc_tags for b in FAKE_AI_DESC_TERMS):
         return False, "Fake AI / fan-concept footage detected in description/tags"
+    if any(c in desc for c in CID_DESC_TERMS):
+        return False, "Commercial music / Content-ID credit detected in description"
     dur = meta.get("duration") or 0
     if dur < min_duration or dur > 180:
         return False, f"Duration out of bounds ({dur}s)"
+    if check_html and meta.get("id"):
+        claimed, why = has_youtube_cid_claim(meta["id"])
+        if claimed:
+            return False, why
     return True, "ok"
 
 
@@ -112,7 +146,7 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
             if not vid or vid in seen or vid in used or f"yt_{vid}" in used:
                 continue
             seen.add(vid)
-            ok, _ = passes_copyright_prefilter(d, min_duration=min_duration)
+            ok, _ = passes_copyright_prefilter(d, min_duration=min_duration, check_html=True)
             if not ok:
                 continue
             candidates.append({
@@ -394,10 +428,12 @@ def fetch_trending_bgm(style: str = "phonk", out_dir: Path | None = None) -> Pat
                 if not line.strip():
                     continue
                 d = json.loads(line)
-                # Must have NO detected commercial music track/artist claim metadata
-                if d.get("track") or d.get("artist"):
+                # Must have NO commercial music metadata AND NO active YouTube Content-ID card
+                if d.get("track") or d.get("artist") or d.get("album"):
                     continue
                 if any(b in (d.get("channel") or "").lower() for b in BLOCKED_CHANNEL_TERMS):
+                    continue
+                if d.get("id") and has_youtube_cid_claim(d["id"])[0]:
                     continue
                 cands.append((int(d.get("view_count") or 0), d.get("webpage_url") or "", d.get("title") or ""))
             cands.sort(reverse=True)

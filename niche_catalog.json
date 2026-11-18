@@ -532,6 +532,204 @@
           "query_suffix": "trailer edit shorts"
         }
       ]
+    },
+    "crime_mafia": {
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "subreddits": [
+        "television",
+        "movies"
+      ],
+      "yt_probe": "crime gangster mafia series edit",
+      "keywords": [
+        "crime",
+        "mafia",
+        "gangster",
+        "cartel",
+        "mob",
+        "lawyer",
+        "courtroom",
+        "prison",
+        "heist",
+        "kingpin",
+        "syndicate",
+        "drug",
+        "detective",
+        "boss"
+      ],
+      "subcategories": [
+        {
+          "id": "crime_coldest_boss_ranking",
+          "format": "edit_ranking",
+          "query_suffix": "coldest edit shorts"
+        },
+        {
+          "id": "crime_interrogation_scene",
+          "format": "scene_commentary",
+          "query_suffix": "best scene shorts"
+        },
+        {
+          "id": "crime_series_hype",
+          "format": "release_hype",
+          "query_suffix": "trailer edit shorts"
+        }
+      ]
+    },
+    "romance_teen_drama": {
+      "label": "Romance, Heartbreak & Teen Series",
+      "subreddits": [
+        "television",
+        "movies"
+      ],
+      "yt_probe": "romantic movie sad edit shorts",
+      "keywords": [
+        "romance",
+        "romantic",
+        "love",
+        "heartbreak",
+        "couple",
+        "teen",
+        "relationship",
+        "confession",
+        "breakup",
+        "emotional",
+        "crush",
+        "chemistry"
+      ],
+      "subcategories": [
+        {
+          "id": "romance_heartbreak_ranking",
+          "format": "edit_ranking",
+          "query_suffix": "sad edit shorts"
+        },
+        {
+          "id": "romance_iconic_confession",
+          "format": "scene_commentary",
+          "query_suffix": "romantic scene shorts"
+        },
+        {
+          "id": "romance_new_release_hype",
+          "format": "release_hype",
+          "query_suffix": "movie teaser shorts"
+        }
+      ]
+    },
+    "animated_cinema": {
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "subreddits": [
+        "movies",
+        "MovieDetails"
+      ],
+      "yt_probe": "animated movie peak edit 4k",
+      "keywords": [
+        "animated",
+        "animation",
+        "pixar",
+        "dreamworks",
+        "spider-verse",
+        "disney animation",
+        "cartoon movie",
+        "stop motion",
+        "voice cast",
+        "cgi"
+      ],
+      "subcategories": [
+        {
+          "id": "animated_peak_edit_ranking",
+          "format": "edit_ranking",
+          "query_suffix": "edit 4k shorts"
+        },
+        {
+          "id": "animated_hidden_details_trivia",
+          "format": "movie_trivia",
+          "query_suffix": "hidden detail shorts"
+        },
+        {
+          "id": "animated_upcoming_hype",
+          "format": "release_hype",
+          "query_suffix": "trailer edit shorts"
+        }
+      ]
+    },
+    "war_historical": {
+      "label": "War Epics, Battles & Historical Biopics",
+      "subreddits": [
+        "movies",
+        "TrueFilm"
+      ],
+      "yt_probe": "war movie epic battle scene edit",
+      "keywords": [
+        "war",
+        "battle",
+        "soldier",
+        "army",
+        "ww2",
+        "roman",
+        "gladiator",
+        "empire",
+        "historical",
+        "history",
+        "commander",
+        "sniper",
+        "navy",
+        "pilot"
+      ],
+      "subcategories": [
+        {
+          "id": "war_epic_battle_ranking",
+          "format": "edit_ranking",
+          "query_suffix": "battle scene edit shorts"
+        },
+        {
+          "id": "war_most_expensive_trivia",
+          "format": "movie_trivia",
+          "query_suffix": "war scene shorts"
+        },
+        {
+          "id": "historical_speech_scene",
+          "format": "scene_commentary",
+          "query_suffix": "speech scene shorts"
+        }
+      ]
+    },
+    "sports_underdog": {
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "subreddits": [
+        "movies",
+        "television"
+      ],
+      "yt_probe": "sports movie comeback training edit",
+      "keywords": [
+        "boxing",
+        "racing",
+        "formula",
+        "f1",
+        "underdog",
+        "championship",
+        "fighter",
+        "coach",
+        "training",
+        "comeback",
+        "athlete",
+        "ring",
+        "track"
+      ],
+      "subcategories": [
+        {
+          "id": "sports_comeback_ranking",
+          "format": "edit_ranking",
+          "query_suffix": "comeback edit shorts"
+        },
+        {
+          "id": "sports_motivation_scene",
+          "format": "scene_commentary",
+          "query_suffix": "motivation scene shorts"
+        },
+        {
+          "id": "sports_biopic_hype",
+          "format": "release_hype",
+          "query_suffix": "movie trailer shorts"
+        }
+      ]
     }
   }
 }

@@ -257,26 +257,26 @@ def render_edit_ranking(
             dur = min(clip_dur, max(5.0, src_dur - 1.0))
             ss = _safe_start_offset(src, src_dur, dur)
 
-        # Two-stage 48kHz pitch/tempo audio shield prevents both Content ID audio match AND 44.1kHz early cutoff!
+        # Two-stage 48kHz +4% pitch/tempo audio shield + 1.04x video speed/crop disrupts both Audio & Video CID
         has_aud = _has_audio_stream(src)
         if has_aud:
             aud_chain = (
-                f"[0:a]aresample=48000,highpass=f=100,asetrate=48000*1.03,atempo=1/1.03,aresample=48000,"
-                f"aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,volume=0.92[vox];"
-                f"[2:a]volume=0.18,aresample=48000,aformat=channel_layouts=stereo[bed];"
+                f"[0:a]aresample=48000,highpass=f=130,asetrate=48000*1.04,atempo=1.0,aresample=48000,"
+                f"aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,volume=0.90[vox];"
+                f"[2:a]volume=0.16,aresample=48000,aformat=channel_layouts=stereo[bed];"
                 f"[vox][bed]amix=inputs=2:duration=first:dropout_transition=0.2,"
-                f"atrim=0:{dur:.3f},asetpts=PTS-STARTPTS,loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000[aout]"
+                f"atrim=0:{dur/1.04:.3f},asetpts=PTS-STARTPTS,loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000[aout]"
             )
         else:
             aud_chain = (
-                f"[2:a]atrim=0:{dur:.3f},asetpts=PTS-STARTPTS,"
+                f"[2:a]atrim=0:{dur/1.04:.3f},asetpts=PTS-STARTPTS,"
                 f"loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000,aformat=channel_layouts=stereo[aout]"
             )
 
         vf = (
-            f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=30,split=2[bg0][fg0];"
+            f"[0:v]trim=0:{dur:.3f},setpts=(PTS-STARTPTS)/1.04,fps=30,split=2[bg0][fg0];"
             f"[bg0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=24,eq=brightness=-0.16[bg];"
-            f"[fg0]scale=1080:960:force_original_aspect_ratio=decrease,eq=contrast=1.08:saturation=1.15[fg];"
+            f"[fg0]scale=1134:1008:force_original_aspect_ratio=decrease,crop=iw*0.95:ih*0.95,scale=1080:960:force_original_aspect_ratio=decrease,eq=contrast=1.10:saturation=1.18:gamma=1.03[fg];"
             f"[bg][fg]overlay=(W-w)/2:(H-h)/2[comp];"
             f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
         )
@@ -285,7 +285,7 @@ def render_edit_ranking(
             "-ss", f"{ss:.2f}", "-i", str(src), "-i", str(ov), "-stream_loop", "-1", "-i", str(bgm),
             "-filter_complex", f"{vf};{aud_chain}",
             "-map", "[vout]", "-map", "[aout]",
-            "-t", f"{dur:.3f}",
+            "-t", f"{dur/1.04:.3f}",
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-r", "30",
             "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
             str(seg),

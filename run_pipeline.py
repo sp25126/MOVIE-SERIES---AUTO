@@ -75,10 +75,11 @@ def run_self_test() -> int:
     ok4, _ = passes_copyright_prefilter({"title": "Clip", "channel": "ArtistVEVO", "duration": 22})
     ok5, _ = passes_copyright_prefilter({"title": "Ramayana 2026 Concept Trailer", "channel": "Random", "duration": 22})
     ok6, _ = passes_copyright_prefilter({"title": "Lord Shiva Tandav", "channel": "Random", "duration": 22, "description": "This is a fan-made AI generated concept video"})
-    assert ok1 and not ok2 and not ok3 and not ok4 and not ok5 and not ok6, "Copyright/Fake-AI pre-filter failed!"
+    ok7, _ = passes_copyright_prefilter({"title": "Patrick Jane Edit", "channel": "BruCe", "duration": 45, "description": "Song - I Wanna Be Yours X Summertime Sadness"})
+    assert ok1 and not ok2 and not ok3 and not ok4 and not ok5 and not ok6 and not ok7, "Copyright/Fake-AI pre-filter failed!"
 
     cat = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
-    assert len(cat["groups"]) == 7, f"Expected 7 video genre groups, got {len(cat['groups'])}"
+    assert len(cat["groups"]) == 12, f"Expected 12 video genre groups, got {len(cat['groups'])}"
     for gid, g in cat["groups"].items():
         for sc in g["subcategories"]:
             assert "topics" not in sc, f"Static topics list found in {gid}/{sc['id']}!"
@@ -87,7 +88,7 @@ def run_self_test() -> int:
     bgm = ensure_royalty_free_bgm("phonk", allow_network=False)
     assert bgm.exists() and bgm.stat().st_size > 30_000, "BGM generation failed!"
 
-    print("[SELF-TEST] ALL CHECKS PASSED (virality math, Anti-CID, 7 pure-video zero-static genre groups, BGM).")
+    print("[SELF-TEST] ALL CHECKS PASSED (virality math, Anti-CID/HTML/Fake-AI, 12 pure-video zero-static genre groups, BGM).")
     return 0
 
 
