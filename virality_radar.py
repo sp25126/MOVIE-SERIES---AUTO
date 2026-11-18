@@ -51,6 +51,8 @@ STOP_WORDS = {
     "indian", "hindi", "tamil", "telugu", "english", "dubbed", "subbed", "2025", "2026", "2027",
     "complete", "merger", "app", "be", "is", "are", "was", "were", "has", "have", "get", "got",
     "collection", "day", "crore", "mark", "globally", "trying", "here", "addresses", "original", "peacock",
+    "heavily", "involved", "because", "he", "she", "they", "them", "his", "her", "their", "my", "your",
+    "really", "very", "much", "such", "some", "any", "every", "all", "each", "both", "either", "neither",
 }
 
 
