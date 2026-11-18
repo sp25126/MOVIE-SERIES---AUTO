@@ -1,73 +1,80 @@
 {
-  "last_3day_sync_utc": "2026-11-18T04:51:17Z",
+  "last_3day_sync_utc": "2026-11-18T09:26:21Z",
   "recent_topics": [
-    "Ramayana",
-    "Ranbir Kapoor",
-    "Spider-Man"
+    "Love Me Trend"
   ],
   "recent_genres": [
-    "fantasy_mythology",
-    "action_thriller",
-    "fantasy_mythology",
-    "superhero_scifi"
+    "action_thriller"
   ],
-  "live_genre_leaderboard": [
-    {
-      "genre": "action_thriller",
-      "label": "Action, Spy & Crime Thriller",
-      "total_score": 1017.8,
-      "top_topic": "Heavily Involved",
-      "count": 60
+  "live_genre_leaderboard": [],
+  "categories": {
+    "patrick_jane_recurring": {
+      "name": "Patrick Jane Uncut Ranking (Every 3rd Day)",
+      "cadence_days": 3,
+      "format": "edit_ranking",
+      "clip_duration": 0.0,
+      "series_config": "patrick_jane_series.json",
+      "topic": "Patrick Jane",
+      "branding": "@OtakuSnapster"
     },
-    {
-      "genre": "superhero_scifi",
-      "label": "Superhero & Sci-Fi",
-      "total_score": 621.7,
-      "top_topic": "Spider-Man",
-      "count": 29
-    },
-    {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 448.2,
-      "top_topic": "Ramayana",
-      "count": 22
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 341.7,
-      "top_topic": "Robert Pattinson",
-      "count": 21
-    },
-    {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 245.6,
-      "top_topic": "Years Ago Today",
-      "count": 13
-    },
-    {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 202.7,
-      "top_topic": "Your Name",
-      "count": 17
-    },
-    {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 111.0,
-      "top_topic": "Other Mommy",
-      "count": 10
+    "viral_trend_rankings": {
+      "name": "Live Virality-Driven Edit Rankings (Views / Audio / Trends / AMVs)",
+      "format": "edit_ranking",
+      "clip_duration": 0.0,
+      "branding": "@OtakuSnapster",
+      "subcategories": [
+        {
+          "id": "ranking_by_views",
+          "name": "Ranking Edits by Views",
+          "query_suffix": "best edit shorts",
+          "sort": "views"
+        },
+        {
+          "id": "ranking_viral_audio_trends",
+          "name": "Ranking Edits on Trending Song / Audio Trend",
+          "query_suffix": "love me trend edit shorts",
+          "sort": "views",
+          "trending_audio_patterns": [
+            "love me trend",
+            "montagem",
+            "metamorphosis",
+            "phonk edit trend",
+            "memory reboot"
+          ]
+        },
+        {
+          "id": "ranking_amvs",
+          "name": "Ranking AMVs & Anime Climax Edits",
+          "query_suffix": "amv edit 4k shorts",
+          "sort": "views"
+        },
+        {
+          "id": "ranking_movies_edits",
+          "name": "Ranking Movie Edits by Views",
+          "query_suffix": "movie edit 4k shorts",
+          "sort": "views"
+        },
+        {
+          "id": "ranking_series_edits",
+          "name": "Ranking Series / TV Edits by Views",
+          "query_suffix": "tv series edit 4k shorts",
+          "sort": "views"
+        },
+        {
+          "id": "ranking_viral_styles",
+          "name": "Ranking Viral Style Edits (Velocity / Smooth / Badass)",
+          "query_suffix": "velocity edit shorts",
+          "sort": "views"
+        }
+      ]
     }
-  ],
+  },
   "live_3day_top_topics": [
     {
       "topic": "Ramayana",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
+      "genre": "action_thriller",
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
       "score": 90.0,
       "sources": [
         "Screen Daily",
@@ -77,10 +84,10 @@
     },
     {
       "topic": "Ranbir Kapoor",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
-      "score": 80.0,
+      "genre": "action_thriller",
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 76.4,
       "sources": [
         "NDTV",
         "The Times of India"
@@ -88,648 +95,135 @@
     },
     {
       "topic": "Robert Pattinson",
-      "genre": "world_indian_cinema",
-      "subcategory": "global_cinema_hype",
-      "format": "release_hype",
-      "score": 76.25,
+      "genre": "action_thriller",
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 45.6,
       "sources": [
         "Collider",
-        "Reddit-7d(r/bollywoodmemes)",
         "The Straits Times"
       ]
     },
     {
-      "topic": "Heavily Involved",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 53.8,
-      "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
-      ]
-    },
-    {
-      "topic": "Because He",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 53.8,
-      "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
-      ]
-    },
-    {
       "topic": "Sai Pallavi",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
-      "score": 53.4,
+      "genre": "action_thriller",
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 35.6,
       "sources": [
         "The Times of India"
       ]
     },
     {
-      "topic": "Spider-Man",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_edit_ranking",
-      "format": "edit_ranking",
-      "score": 50.66,
-      "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Robert Downey Jr",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_edit_ranking",
-      "format": "edit_ranking",
-      "score": 46.97,
-      "sources": [
-        "Variety",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Korben Dallas",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 38.16,
-      "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
-      ]
-    },
-    {
-      "topic": "Bruce Willis",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 38.16,
-      "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
-      ]
-    },
-    {
-      "topic": "Russel Crowe",
+      "topic": "Years Later",
       "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
-      "format": "scene_commentary",
-      "score": 38.16,
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 35.6,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "Collider"
       ]
     },
     {
-      "topic": "Keith David",
+      "topic": "Remain Calm",
       "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
-      "format": "scene_commentary",
-      "score": 38.16,
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 20.4,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "Bloody Disgusting",
+        "People.com"
       ]
     },
     {
-      "topic": "James Gunn",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 33.74,
+      "topic": "MBB Preview: Arkansas",
+      "genre": "action_thriller",
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 17.8,
       "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
+        "Arkansas Razorbacks"
       ]
     },
     {
-      "topic": "Years Ago Today",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "format": "release_hype",
-      "score": 29.76,
+      "topic": "Bad Boy Mower",
+      "genre": "action_thriller",
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 17.8,
       "sources": [
-        "Reddit-7d(r/television)"
+        "Arkansas Razorbacks"
       ]
     },
     {
-      "topic": "Cartoon Network Premiered",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "format": "release_hype",
-      "score": 29.76,
+      "topic": "Speaker Series: Going",
+      "genre": "action_thriller",
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 17.8,
       "sources": [
-        "Reddit-7d(r/television)"
+        "American Institute for Stuttering"
+      ]
+    },
+    {
+      "topic": "Raising Stuttering Awareness",
+      "genre": "action_thriller",
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 17.8,
+      "sources": [
+        "American Institute for Stuttering"
+      ]
+    },
+    {
+      "topic": "Travis Althouse",
+      "genre": "action_thriller",
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 17.8,
+      "sources": [
+        "American Institute for Stuttering"
+      ]
+    },
+    {
+      "topic": "Give Me Some Sugah",
+      "genre": "action_thriller",
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 17.8,
+      "sources": [
+        "Blex Media"
+      ]
+    },
+    {
+      "topic": "Henson Discovers",
+      "genre": "action_thriller",
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 17.8,
+      "sources": [
+        "Blex Media"
+      ]
+    },
+    {
+      "topic": "World War",
+      "genre": "action_thriller",
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 17.8,
+      "sources": [
+        "IGN Africa"
+      ]
+    },
+    {
+      "topic": "Cozy Feel",
+      "genre": "action_thriller",
+      "subcategory": "dynamic_edit",
+      "format": "edit_ranking",
+      "score": 17.8,
+      "sources": [
+        "Apartment Therapy"
       ]
     }
-  ],
-  "groups": {
-    "superhero_scifi": {
-      "label": "Superhero & Sci-Fi",
-      "subreddits": [
-        "marvelstudios",
-        "marvelmemes",
-        "DC_Cinematic"
-      ],
-      "yt_probe": "superhero sci-fi movie edit",
-      "keywords": [
-        "superhero",
-        "marvel",
-        "mcu",
-        "dc",
-        "avengers",
-        "spider",
-        "batman",
-        "superman",
-        "sci-fi",
-        "multiverse",
-        "alien",
-        "space",
-        "cyber",
-        "vision",
-        "doom",
-        "ultron",
-        "x-men",
-        "star wars"
-      ],
-      "subcategories": [
-        {
-          "id": "superhero_edit_ranking",
-          "format": "edit_ranking",
-          "query_suffix": "edit shorts"
-        },
-        {
-          "id": "superhero_spoiler_commentary",
-          "format": "scene_commentary",
-          "query_suffix": "scene edit shorts"
-        },
-        {
-          "id": "scifi_release_hype",
-          "format": "release_hype",
-          "query_suffix": "trailer edit shorts"
-        }
-      ]
-    },
-    "action_thriller": {
-      "label": "Action, Spy & Crime Thriller",
-      "subreddits": [
-        "movies",
-        "boxoffice",
-        "MovieDetails"
-      ],
-      "yt_probe": "action thriller movie fight edit",
-      "keywords": [
-        "action",
-        "thriller",
-        "spy",
-        "bond",
-        "heist",
-        "assassin",
-        "crime",
-        "cartel",
-        "fight",
-        "chase",
-        "war",
-        "military",
-        "detective",
-        "agent",
-        "mission",
-        "budget",
-        "cost"
-      ],
-      "subcategories": [
-        {
-          "id": "action_fight_ranking",
-          "format": "edit_ranking",
-          "query_suffix": "fight scene edit shorts"
-        },
-        {
-          "id": "thriller_plot_twist_commentary",
-          "format": "scene_commentary",
-          "query_suffix": "best scene shorts"
-        },
-        {
-          "id": "action_movie_trivia",
-          "format": "movie_trivia",
-          "query_suffix": "iconic scene shorts"
-        }
-      ]
-    },
-    "comedy_sitcom": {
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "subreddits": [
-        "television",
-        "memes"
-      ],
-      "yt_probe": "funny tv show sitcom scene edit",
-      "keywords": [
-        "comedy",
-        "sitcom",
-        "funny",
-        "hilarious",
-        "romcom",
-        "parody",
-        "meme",
-        "cast",
-        "blooper",
-        "laugh",
-        "joke",
-        "prank"
-      ],
-      "subcategories": [
-        {
-          "id": "sitcom_viral_scene",
-          "format": "scene_commentary",
-          "query_suffix": "funny scene edit shorts"
-        },
-        {
-          "id": "cast_fandom_memes",
-          "format": "release_hype",
-          "query_suffix": "cast funny meme shorts"
-        },
-        {
-          "id": "funniest_character_ranking",
-          "format": "edit_ranking",
-          "query_suffix": "funny moments edit shorts"
-        },
-        {
-          "id": "dubbed_comedy_voices_ranking",
-          "format": "edit_ranking",
-          "clips": 5,
-          "shuffled_order": true,
-          "query_suffix": "funny voiceover dub shorts"
-        }
-      ]
-    },
-    "horror_mystery": {
-      "label": "Horror & Psychological Mystery",
-      "subreddits": [
-        "horror",
-        "television"
-      ],
-      "yt_probe": "horror mystery movie edit",
-      "keywords": [
-        "horror",
-        "scary",
-        "ghost",
-        "demon",
-        "slasher",
-        "zombie",
-        "monster",
-        "mystery",
-        "murder",
-        "psychological",
-        "haunted",
-        "creepy",
-        "curse",
-        "vampire",
-        "killer"
-      ],
-      "subcategories": [
-        {
-          "id": "horror_scariest_ranking",
-          "format": "edit_ranking",
-          "query_suffix": "scary scene edit shorts"
-        },
-        {
-          "id": "mystery_genius_deductions",
-          "format": "edit_ranking",
-          "query_suffix": "smart moments edit shorts"
-        },
-        {
-          "id": "horror_new_release_hype",
-          "format": "release_hype",
-          "query_suffix": "trailer shorts"
-        }
-      ]
-    },
-    "drama_prestige": {
-      "label": "Prestige Drama & Biopics",
-      "subreddits": [
-        "television",
-        "TrueFilm",
-        "movies"
-      ],
-      "yt_probe": "tv drama coldest scene edit",
-      "keywords": [
-        "drama",
-        "biopic",
-        "oscar",
-        "emmy",
-        "finale",
-        "emotional",
-        "monologue",
-        "courtroom",
-        "family",
-        "tragedy",
-        "prestige",
-        "hbo",
-        "season"
-      ],
-      "subcategories": [
-        {
-          "id": "coldest_drama_edits",
-          "format": "edit_ranking",
-          "query_suffix": "coldest edit shorts"
-        },
-        {
-          "id": "prestige_finale_recap",
-          "format": "scene_commentary",
-          "query_suffix": "finale scene shorts"
-        },
-        {
-          "id": "drama_trivia_facts",
-          "format": "movie_trivia",
-          "query_suffix": "iconic scene shorts"
-        }
-      ]
-    },
-    "fantasy_mythology": {
-      "label": "Epic Fantasy, Historical & Mythology",
-      "subreddits": [
-        "Fantasy",
-        "movies"
-      ],
-      "yt_probe": "epic fantasy mythology movie edit",
-      "keywords": [
-        "fantasy",
-        "mythology",
-        "epic",
-        "odyssey",
-        "ramayana",
-        "dragon",
-        "kingdom",
-        "medieval",
-        "gods",
-        "legend",
-        "magic",
-        "sword",
-        "empire",
-        "historical",
-        "rings"
-      ],
-      "subcategories": [
-        {
-          "id": "mythology_epic_edits",
-          "format": "edit_ranking",
-          "query_suffix": "epic edit shorts"
-        },
-        {
-          "id": "epic_theatrical_hype",
-          "format": "release_hype",
-          "query_suffix": "teaser trailer shorts"
-        },
-        {
-          "id": "fantasy_scene_breakdown",
-          "format": "scene_commentary",
-          "query_suffix": "scene edit shorts"
-        }
-      ]
-    },
-    "world_indian_cinema": {
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "subreddits": [
-        "bollywood",
-        "bollywoodmemes",
-        "KDRAMA"
-      ],
-      "yt_probe": "bollywood kdrama movie mass edit",
-      "keywords": [
-        "bollywood",
-        "tollywood",
-        "kollywood",
-        "kdrama",
-        "korean",
-        "hindi",
-        "tamil",
-        "telugu",
-        "kapoor",
-        "khan",
-        "prabhas",
-        "rajamouli",
-        "pan-india",
-        "indian"
-      ],
-      "subcategories": [
-        {
-          "id": "indian_cinema_mass_edits",
-          "format": "edit_ranking",
-          "query_suffix": "mass edit shorts"
-        },
-        {
-          "id": "kdrama_global_series_edits",
-          "format": "edit_ranking",
-          "query_suffix": "scene edit shorts"
-        },
-        {
-          "id": "global_cinema_hype",
-          "format": "release_hype",
-          "query_suffix": "trailer edit shorts"
-        }
-      ]
-    },
-    "crime_mafia": {
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "subreddits": [
-        "television",
-        "movies"
-      ],
-      "yt_probe": "crime gangster mafia series edit",
-      "keywords": [
-        "crime",
-        "mafia",
-        "gangster",
-        "cartel",
-        "mob",
-        "lawyer",
-        "courtroom",
-        "prison",
-        "heist",
-        "kingpin",
-        "syndicate",
-        "drug",
-        "detective",
-        "boss"
-      ],
-      "subcategories": [
-        {
-          "id": "crime_coldest_boss_ranking",
-          "format": "edit_ranking",
-          "query_suffix": "coldest edit shorts"
-        },
-        {
-          "id": "crime_interrogation_scene",
-          "format": "scene_commentary",
-          "query_suffix": "best scene shorts"
-        },
-        {
-          "id": "crime_series_hype",
-          "format": "release_hype",
-          "query_suffix": "trailer edit shorts"
-        }
-      ]
-    },
-    "romance_teen_drama": {
-      "label": "Romance, Heartbreak & Teen Series",
-      "subreddits": [
-        "television",
-        "movies"
-      ],
-      "yt_probe": "romantic movie sad edit shorts",
-      "keywords": [
-        "romance",
-        "romantic",
-        "love",
-        "heartbreak",
-        "couple",
-        "teen",
-        "relationship",
-        "confession",
-        "breakup",
-        "emotional",
-        "crush",
-        "chemistry"
-      ],
-      "subcategories": [
-        {
-          "id": "romance_heartbreak_ranking",
-          "format": "edit_ranking",
-          "query_suffix": "sad edit shorts"
-        },
-        {
-          "id": "romance_iconic_confession",
-          "format": "scene_commentary",
-          "query_suffix": "romantic scene shorts"
-        },
-        {
-          "id": "romance_new_release_hype",
-          "format": "release_hype",
-          "query_suffix": "movie teaser shorts"
-        }
-      ]
-    },
-    "animated_cinema": {
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "subreddits": [
-        "movies",
-        "MovieDetails"
-      ],
-      "yt_probe": "animated movie peak edit 4k",
-      "keywords": [
-        "animated",
-        "animation",
-        "pixar",
-        "dreamworks",
-        "spider-verse",
-        "disney animation",
-        "cartoon movie",
-        "stop motion",
-        "voice cast",
-        "cgi"
-      ],
-      "subcategories": [
-        {
-          "id": "animated_peak_edit_ranking",
-          "format": "edit_ranking",
-          "query_suffix": "edit 4k shorts"
-        },
-        {
-          "id": "animated_hidden_details_trivia",
-          "format": "movie_trivia",
-          "query_suffix": "hidden detail shorts"
-        },
-        {
-          "id": "animated_upcoming_hype",
-          "format": "release_hype",
-          "query_suffix": "trailer edit shorts"
-        }
-      ]
-    },
-    "war_historical": {
-      "label": "War Epics, Battles & Historical Biopics",
-      "subreddits": [
-        "movies",
-        "TrueFilm"
-      ],
-      "yt_probe": "war movie epic battle scene edit",
-      "keywords": [
-        "war",
-        "battle",
-        "soldier",
-        "army",
-        "ww2",
-        "roman",
-        "gladiator",
-        "empire",
-        "historical",
-        "history",
-        "commander",
-        "sniper",
-        "navy",
-        "pilot"
-      ],
-      "subcategories": [
-        {
-          "id": "war_epic_battle_ranking",
-          "format": "edit_ranking",
-          "query_suffix": "battle scene edit shorts"
-        },
-        {
-          "id": "war_most_expensive_trivia",
-          "format": "movie_trivia",
-          "query_suffix": "war scene shorts"
-        },
-        {
-          "id": "historical_speech_scene",
-          "format": "scene_commentary",
-          "query_suffix": "speech scene shorts"
-        }
-      ]
-    },
-    "sports_underdog": {
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "subreddits": [
-        "movies",
-        "television"
-      ],
-      "yt_probe": "sports movie comeback training edit",
-      "keywords": [
-        "boxing",
-        "racing",
-        "formula",
-        "f1",
-        "underdog",
-        "championship",
-        "fighter",
-        "coach",
-        "training",
-        "comeback",
-        "athlete",
-        "ring",
-        "track"
-      ],
-      "subcategories": [
-        {
-          "id": "sports_comeback_ranking",
-          "format": "edit_ranking",
-          "query_suffix": "comeback edit shorts"
-        },
-        {
-          "id": "sports_motivation_scene",
-          "format": "scene_commentary",
-          "query_suffix": "motivation scene shorts"
-        },
-        {
-          "id": "sports_biopic_hype",
-          "format": "release_hype",
-          "query_suffix": "movie trailer shorts"
-        }
-      ]
-    }
-  }
+  ]
 }

@@ -79,16 +79,14 @@ def run_self_test() -> int:
     assert ok1 and not ok2 and not ok3 and not ok4 and not ok5 and not ok6 and not ok7, "Copyright/Fake-AI pre-filter failed!"
 
     cat = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
-    assert len(cat["groups"]) == 12, f"Expected 12 video genre groups, got {len(cat['groups'])}"
-    for gid, g in cat["groups"].items():
-        for sc in g["subcategories"]:
-            assert "topics" not in sc, f"Static topics list found in {gid}/{sc['id']}!"
-            assert sc["format"] != "news_slideshow", f"Removed news_slideshow found in {gid}/{sc['id']}!"
+    assert "categories" in cat, "Missing 'categories' root in niche_catalog.json!"
+    assert "patrick_jane_recurring" in cat["categories"], "Missing 'patrick_jane_recurring' category!"
+    assert "viral_trend_rankings" in cat["categories"], "Missing 'viral_trend_rankings' category!"
 
     bgm = ensure_royalty_free_bgm("phonk", allow_network=False)
     assert bgm.exists() and bgm.stat().st_size > 30_000, "BGM generation failed!"
 
-    print("[SELF-TEST] ALL CHECKS PASSED (virality math, Anti-CID/HTML/Fake-AI, 12 pure-video zero-static genre groups, BGM).")
+    print("[SELF-TEST] ALL CHECKS PASSED (virality math, Anti-CID/HTML/Fake-AI, 2 Master Channels: Patrick Jane & Viral Trend Rankings, BGM).")
     return 0
 
 
