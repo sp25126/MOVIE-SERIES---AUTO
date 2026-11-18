@@ -117,7 +117,7 @@ def _make_ranking_overlay(topic: str, rank: int, total: int, labels: list[str], 
         y = y0 + (r - 1) * 72
         revealed = r >= rank
         is_active = r == rank
-        lbl = labels[r - 1][:16] if (revealed and r - 1 < len(labels)) else ""
+        lbl = labels[r - 1][:22] if (revealed and r - 1 < len(labels)) else ""
         text = f"{r}. {lbl}" if lbl else f"{r}."
         color = rank_colors.get(r, (255, 255, 255)) if is_active else ((235, 235, 235) if revealed else (160, 160, 160))
         _draw_outlined_text(draw, (44, y), text, f_lad, color, stroke=4, anchor="lm")

@@ -24,7 +24,8 @@ BANNED_TITLE_TERMS = (
     "reaction", "live stream", "interview", "press conference", "happy diwali", "greeting",
     "concept", "fan made", "fan-made", "fanmade", "fan trailer", "unofficial",
     "ai trailer", "ai generated", "ai video", "made with ai", "parody", "spoof", "unreal engine",
-    "kissing scene", "hot scene", "hot kissing", "sexy", "18+", "nude", "bold scene",
+    "kissing scene", "hot scene", "hot kissing", "sexy", "18+", "nude", "bold scene", "scenepack",
+    "amv", "anime", "cyberpunk", "edgerunners",
 )
 FAKE_AI_DESC_TERMS = (
     "concept trailer", "fan-made", "fan made", "fanmade", "not an official", "unofficial trailer",
@@ -274,7 +275,8 @@ def _matches_topic(candidate: dict, required_topic: str) -> bool:
     tokens = [t for t in re.findall(r"[a-z0-9]+", required_topic.lower()) if len(t) >= 3]
     if not tokens:
         return True
-    return any(t in hay for t in tokens)
+    # Require all tokens for 1-2 word names (e.g. "Patrick Jane" must match both, not just "Jane")
+    return all(t in hay for t in tokens) if len(tokens) <= 2 else (sum(1 for t in tokens if t in hay) >= 2)
 
 
 def scout_fb_ig_fallback(query: str, count: int = 3) -> list[dict]:

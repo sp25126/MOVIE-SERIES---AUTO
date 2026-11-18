@@ -137,10 +137,10 @@ def run_pipeline(
     out_mp4 = OUTPUT_DIR / f"{chosen_fmt}_{_slug(chosen_topic)}_master.mp4"
 
     if chosen_fmt == "edit_ranking":
-        for i, c in enumerate(clips, 1):
-            words = re.findall(r"[A-Za-z0-9]+", c["title"])
-            c["short_label"] = " ".join(words[:2]).title() if words else f"Clip {i}"
-        render_edit_ranking(chosen_topic, clips, out_mp4, handle=handle, clip_dur=10.0)
+        clips.sort(key=lambda x: x.get("views", 0), reverse=True)
+        for c in clips:
+            c["short_label"] = _clean_rank_label(c["title"], chosen_topic, int(c.get("views", 0)))
+        render_edit_ranking(chosen_topic, clips, out_mp4, handle=handle, clip_dur=15.0)
     elif chosen_fmt == "release_hype":
         hook = harvest_intro_hook(chosen_topic, hook_url=hook_url, browser_cookies=browser_cookies, exclude_ids={c["id"] for c in clips})
         render_release_hype(f"THIS WEEK CAN'T HOLD THIS MUCH PEAK... ({chosen_topic})", clips, out_mp4, handle=handle, hook_clip=hook)
@@ -163,6 +163,21 @@ def run_pipeline(
 
     print(f"[Pipeline] Done -> {out_mp4} | QA={'PASS' if qa['passed'] else 'FAIL'} | Proof={qa.get('proof_sheet')}")
     return {"video": str(out_mp4), "target": chosen_target, "qa": qa, "metadata": meta, "upload": upload_res}
+
+
+def _fmt_views(n: int) -> str:
+    if n >= 1_000_000:
+        return f"{n / 1_000_000:.1f}M"
+    if n >= 1_000:
+        return f"{n / 1_000:.0f}K"
+    return str(n)
+
+
+def _clean_rank_label(title: str, topic: str, views: int) -> str:
+    skip = {"patrick", "jane", "the", "mentalist", "edit", "edits", "4k", "hd", "shorts", "short", "viral", "best", "cold", "coldest", "moment", "moments"} | set(re.findall(r"[a-z0-9]+", topic.lower()))
+    words = [w for w in re.findall(r"[A-Za-z0-9]+", title) if w.lower() not in skip and len(w) >= 2]
+    tag = " ".join(words[:2]).title()[:11] or "Climax"
+    return f"{tag} ({_fmt_views(views)})" if views >= 1000 else tag
 
 
 def run_series_episode(series_path: Path, handle: str = "@CinePulse", dry_run: bool = True, browser_cookies: str = "") -> dict | None:
@@ -193,19 +208,22 @@ def run_series_episode(series_path: Path, handle: str = "@CinePulse", dry_run: b
         if not clips:
             raise RuntimeError(f"No fresh unique clips left for {cfg['series_name']} Ep #{ep_num}")
 
+        # Strictly rank by views descending (#1 = highest views, played last as climax)
+        clips.sort(key=lambda x: x.get("views", 0), reverse=True)
         OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
         out_mp4 = OUTPUT_DIR / f"edit_ranking_{_slug(cfg['topic'])}_ep{ep_num:02d}_master.mp4"
-        for i, c in enumerate(clips, 1):
-            words = re.findall(r"[A-Za-z0-9]+", c["title"])
-            c["short_label"] = " ".join(words[:2]).title() if words else f"Edit {i}"
+        for c in clips:
+            c["short_label"] = _clean_rank_label(c["title"], cfg["topic"], int(c.get("views", 0)))
 
-        render_edit_ranking(cfg["topic"], clips, out_mp4, handle=handle, clip_dur=10.0)
+        render_edit_ranking(cfg["topic"], clips, out_mp4, handle=handle, clip_dur=18.0)
         qa = verify_video(out_mp4, make_proof=True)
         meta = build_metadata(cfg["topic"], "edit_ranking", clips, handle=handle)
         meta["title"] = f"Ranking Best {cfg['topic']} Edits (Part {ep_num})! 🔥💀 #shorts #thementalist"[:100]
         out_mp4.with_suffix(".meta.json").write_text(json.dumps({"episode": ep_num, "qa": qa, "metadata": meta}, indent=2, ensure_ascii=False), encoding="utf-8")
 
         fresh_cfg = json.loads(series_path.read_text(encoding="utf-8"))
+        used_all = set(fresh_cfg.get("used_clip_ids", [])) | {c["id"] for c in clips}
+        fresh_cfg["used_clip_ids"] = sorted(used_all)
         fresh_cfg["completed_episodes"] = ep_num
         fresh_cfg["last_run_utc"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         series_path.write_text(json.dumps(fresh_cfg, indent=2, ensure_ascii=False), encoding="utf-8")
