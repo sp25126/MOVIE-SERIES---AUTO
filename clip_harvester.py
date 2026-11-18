@@ -24,6 +24,7 @@ BANNED_TITLE_TERMS = (
     "reaction", "live stream", "interview", "press conference", "happy diwali", "greeting",
     "concept", "fan made", "fan-made", "fanmade", "fan trailer", "unofficial",
     "ai trailer", "ai generated", "ai video", "made with ai", "parody", "spoof", "unreal engine",
+    "kissing scene", "hot scene", "hot kissing", "sexy", "18+", "nude", "bold scene",
 )
 FAKE_AI_DESC_TERMS = (
     "concept trailer", "fan-made", "fan made", "fanmade", "not an official", "unofficial trailer",

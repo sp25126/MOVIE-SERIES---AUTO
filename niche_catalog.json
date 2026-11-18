@@ -1,60 +1,65 @@
 {
-  "last_3day_sync_utc": "2026-11-17T21:01:49Z",
+  "last_3day_sync_utc": "2026-11-18T04:51:17Z",
   "recent_topics": [
-    "Ramayana"
+    "Ramayana",
+    "Ranbir Kapoor",
+    "Spider-Man"
   ],
   "recent_genres": [
-    "fantasy_mythology"
+    "fantasy_mythology",
+    "action_thriller",
+    "fantasy_mythology",
+    "superhero_scifi"
   ],
   "live_genre_leaderboard": [
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 1008.8,
-      "top_topic": "Russel Crowe",
-      "count": 63
+      "total_score": 1017.8,
+      "top_topic": "Heavily Involved",
+      "count": 60
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 427.0,
-      "top_topic": "Dr Doom Awakens",
-      "count": 25
+      "total_score": 621.7,
+      "top_topic": "Spider-Man",
+      "count": 29
     },
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 382.1,
+      "total_score": 448.2,
       "top_topic": "Ramayana",
-      "count": 15
-    },
-    {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 282.3,
-      "top_topic": "In Error",
-      "count": 17
+      "count": 22
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 258.3,
-      "top_topic": "Excel Entertainment",
-      "count": 24
+      "total_score": 341.7,
+      "top_topic": "Robert Pattinson",
+      "count": 21
     },
     {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 203.6,
-      "top_topic": "David Lynch",
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 245.6,
+      "top_topic": "Years Ago Today",
       "count": 13
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 185.3,
+      "total_score": 202.7,
       "top_topic": "Your Name",
-      "count": 12
+      "count": 17
+    },
+    {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 111.0,
+      "top_topic": "Other Mommy",
+      "count": 10
     }
   ],
   "live_3day_top_topics": [
@@ -63,8 +68,9 @@
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
-      "score": 80.0,
+      "score": 90.0,
       "sources": [
+        "Screen Daily",
         "The Hindu",
         "The Times of India"
       ]
@@ -74,10 +80,44 @@
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
-      "score": 76.4,
+      "score": 80.0,
       "sources": [
         "NDTV",
         "The Times of India"
+      ]
+    },
+    {
+      "topic": "Robert Pattinson",
+      "genre": "world_indian_cinema",
+      "subcategory": "global_cinema_hype",
+      "format": "release_hype",
+      "score": 76.25,
+      "sources": [
+        "Collider",
+        "Reddit-7d(r/bollywoodmemes)",
+        "The Straits Times"
+      ]
+    },
+    {
+      "topic": "Heavily Involved",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 53.8,
+      "sources": [
+        "Reddit-7d(r/boxoffice)",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "Because He",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 53.8,
+      "sources": [
+        "Reddit-7d(r/boxoffice)",
+        "Variety"
       ]
     },
     {
@@ -85,21 +125,53 @@
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
-      "score": 66.4,
+      "score": 53.4,
       "sources": [
         "The Times of India"
       ]
     },
     {
-      "topic": "David Lynch",
-      "genre": "horror_mystery",
-      "subcategory": "horror_scariest_ranking",
+      "topic": "Spider-Man",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_edit_ranking",
       "format": "edit_ranking",
-      "score": 48.44,
+      "score": 50.66,
       "sources": [
-        "Reddit-30d(r/TrueFilm)",
-        "Reddit-7d(r/TrueFilm)",
-        "Reddit-7d(r/horror)"
+        "Reddit-7d(r/boxoffice)",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Robert Downey Jr",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_edit_ranking",
+      "format": "edit_ranking",
+      "score": 46.97,
+      "sources": [
+        "Variety",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Korben Dallas",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 38.16,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Bruce Willis",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 38.16,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
       ]
     },
     {
@@ -125,95 +197,32 @@
       ]
     },
     {
-      "topic": "Stephen King",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 35.6,
-      "sources": [
-        "Collider"
-      ]
-    },
-    {
-      "topic": "Dr Doom Awakens",
+      "topic": "James Gunn",
       "genre": "superhero_scifi",
-      "subcategory": "superhero_edit_ranking",
-      "format": "edit_ranking",
-      "score": 29.35,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "GodEater",
-      "genre": "fantasy_mythology",
-      "subcategory": "fantasy_scene_breakdown",
+      "subcategory": "superhero_spoiler_commentary",
       "format": "scene_commentary",
-      "score": 28.96,
+      "score": 33.74,
       "sources": [
-        "Reddit-30d(r/Fantasy)",
-        "Reddit-7d(r/Fantasy)"
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
       ]
     },
     {
-      "topic": "Your Name",
-      "genre": "drama_prestige",
-      "subcategory": "prestige_finale_recap",
-      "format": "scene_commentary",
-      "score": 27.78,
-      "sources": [
-        "Reddit-30d(r/TrueFilm)",
-        "Reddit-7d(r/TrueFilm)"
-      ]
-    },
-    {
-      "topic": "In Heart",
-      "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
-      "format": "scene_commentary",
-      "score": 27.18,
-      "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
-      ]
-    },
-    {
-      "topic": "In Error",
+      "topic": "Years Ago Today",
       "genre": "comedy_sitcom",
       "subcategory": "cast_fandom_memes",
       "format": "release_hype",
-      "score": 26.14,
+      "score": 29.76,
       "sources": [
         "Reddit-7d(r/television)"
       ]
     },
     {
-      "topic": "Today",
+      "topic": "Cartoon Network Premiered",
       "genre": "comedy_sitcom",
       "subcategory": "cast_fandom_memes",
       "format": "release_hype",
-      "score": 26.14,
-      "sources": [
-        "Reddit-7d(r/television)"
-      ]
-    },
-    {
-      "topic": "Fan-Made",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_edit_ranking",
-      "format": "edit_ranking",
-      "score": 25.18,
-      "sources": [
-        "IGN",
-        "YT-Month"
-      ]
-    },
-    {
-      "topic": "Only Murders",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "format": "release_hype",
-      "score": 24.75,
+      "score": 29.76,
       "sources": [
         "Reddit-7d(r/television)"
       ]
