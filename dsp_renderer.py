@@ -125,8 +125,8 @@ def _draw_brand_and_credit(img: Image.Image, draw: ImageDraw.ImageDraw, handle: 
         _draw_outlined_text(draw, (540, y_brand + 56), f"Edit Credit: {clean_ed}", _font(28, bold=False), (220, 235, 255, 215), stroke=3)
 
 
-def _make_ranking_overlay(topic: str, rank: int, total: int, labels: list[str], handle: str, out_png: Path, editor_credit: str = "") -> Path:
-    """Krylo Ranks style: stacked colored top title + persistent left-side countdown ladder + logo & editor credit."""
+def _make_ranking_overlay(topic: str, rank: int, total: int, labels: list[str], handle: str, out_png: Path, editor_credit: str = "", revealed_ranks: set[int] | None = None) -> Path:
+    """Krylo Ranks / Silenthaze style: stacked colored top title + persistent left ladder + logo & editor credit."""
     img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
 
@@ -138,13 +138,13 @@ def _make_ranking_overlay(topic: str, rank: int, total: int, labels: list[str], 
     short_topic = topic[:18].strip()
     _draw_outlined_text(draw, (540, 232), f"{short_topic} Edits", f_sub, (0, 229, 255), stroke=6)
 
-    # Left-side persistent ladder (1. .. total.) populating as countdown reaches rank
+    # Left-side persistent ladder (1. .. total.) populating as each rank plays (supports shuffled 2->4->5->3->1!)
     f_lad = _font(42, bold=True)
     rank_colors = {1: (255, 65, 85), 2: (0, 229, 255), 3: (255, 230, 0), 4: (255, 255, 255), 5: (220, 220, 220)}
     y0 = 640
     for r in range(1, total + 1):
         y = y0 + (r - 1) * 72
-        revealed = r >= rank
+        revealed = (r in revealed_ranks) if revealed_ranks is not None else (r >= rank)
         is_active = r == rank
         lbl = labels[r - 1][:22] if (revealed and r - 1 < len(labels)) else ""
         text = f"{r}. {lbl}" if lbl else f"{r}."
@@ -223,23 +223,28 @@ def render_edit_ranking(
     output_mp4: Path,
     handle: str = "@OtakuSnapster",
     clip_dur: float = 12.0,
+    shuffled_order: bool = False,
 ) -> Path:
-    """Format 1 (Ref #9): Dual-layer blurred BG + left countdown ladder + two-stage 48kHz audio shield.
+    """Format 1 (Ref #9 / A5qnBoPq7t4): Dual-layer blurred BG + left ladder (countdown or shuffled 2->4->5->3->1) + 48kHz audio shield.
     Pass clip_dur<=0 to play every clip 100% full & uncut."""
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
     output_mp4.parent.mkdir(parents=True, exist_ok=True)
     bgm = ensure_royalty_free_bgm("phonk")
     total = len(clips)
-    # clips[0] is Rank #1 (highest views), clips[-1] is Rank #N; play in countdown order #N -> #1!
+    # clips[0] is Rank #1 (highest views); standard plays #N->#1, shuffled plays #2->#4->#5->#3->#1 (Silenthaze retention hook)
     labels = [c.get("short_label") or f"Edit #{i}" for i, c in enumerate(clips, 1)]
+    play_order = [r for r in (2, 4, 5, 3, 1) if r <= total] if (shuffled_order and total >= 4) else list(range(total, 0, -1))
 
     segment_paths = []
-    for rank in range(total, 0, -1):
+    revealed: set[int] = set()
+    for rank in play_order:
+        revealed.add(rank)
         clip = clips[rank - 1]
         src = Path(clip["local_path"])
         ov = _make_ranking_overlay(
             topic, rank, total, labels, handle, TEMP_DIR / f"rank_ov_{rank}.png",
             editor_credit=clip.get("creator", ""),
+            revealed_ranks=set(revealed),
         )
         seg = TEMP_DIR / f"rank_seg_{rank}.mp4"
         src_dur = float(clip.get("duration") or 30.0)

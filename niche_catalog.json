@@ -356,6 +356,13 @@
           "id": "funniest_character_ranking",
           "format": "edit_ranking",
           "query_suffix": "funny moments edit shorts"
+        },
+        {
+          "id": "dubbed_comedy_voices_ranking",
+          "format": "edit_ranking",
+          "clips": 5,
+          "shuffled_order": true,
+          "query_suffix": "funny voiceover dub shorts"
         }
       ]
     },
