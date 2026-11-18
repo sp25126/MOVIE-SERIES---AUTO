@@ -7,14 +7,14 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-DEFAULT_EMAIL = os.environ.get("TAKEDOWN_EMAIL", "contact@cinepulse.example")
+DEFAULT_EMAIL = os.environ.get("TAKEDOWN_EMAIL", "contact@otakusnapster.example")
 
 
 def build_metadata(
     topic: str,
     fmt: str,
     clips: list[dict],
-    handle: str = "@CinePulse",
+    handle: str = "@OtakuSnapster",
     takedown_email: str = DEFAULT_EMAIL,
 ) -> dict:
     slug_tag = "#" + "".join(ch for ch in topic.lower() if ch.isalnum())

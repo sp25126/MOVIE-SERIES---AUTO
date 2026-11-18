@@ -12,6 +12,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parent
 BGM_DIR = ROOT / "assets" / "bgm"
 TEMP_DIR = ROOT / "temp"
+LOGO_PATH = ROOT / "otakulogo.jpg"
 
 FFMPEG = r"C:\ffmpeg-7.1.1-full_build\bin\ffmpeg.exe" if os.path.exists(r"C:\ffmpeg-7.1.1-full_build\bin\ffmpeg.exe") else "ffmpeg"
 
@@ -96,8 +97,36 @@ def _draw_outlined_text(draw: ImageDraw.ImageDraw, pos: tuple[int, int], text: s
     draw.text(pos, text, font=font, fill=fill, anchor=anchor, stroke_width=stroke, stroke_fill=(0, 0, 0))
 
 
-def _make_ranking_overlay(topic: str, rank: int, total: int, labels: list[str], handle: str, out_png: Path) -> Path:
-    """Krylo Ranks style: stacked colored top title + persistent left-side countdown ladder."""
+def _draw_brand_and_credit(img: Image.Image, draw: ImageDraw.ImageDraw, handle: str, y_brand: int, editor_credit: str = ""):
+    """Pastes circular otakulogo.jpg + @OtakuSnapster badge, plus visible on-screen editor credit."""
+    f_brand = _font(36, bold=True)
+    bbox = draw.textbbox((0, 0), handle, font=f_brand)
+    text_w = bbox[2] - bbox[0]
+    logo_sz = 64
+    gap = 14
+
+    if LOGO_PATH.exists():
+        total_w = logo_sz + gap + text_w
+        x0 = int((1080 - total_w) / 2)
+        try:
+            logo = Image.open(LOGO_PATH).convert("RGBA").resize((logo_sz, logo_sz), Image.Resampling.LANCZOS)
+            mask = Image.new("L", (logo_sz, logo_sz), 0)
+            ImageDraw.Draw(mask).ellipse([0, 0, logo_sz - 1, logo_sz - 1], fill=255)
+            img.paste(logo, (x0, int(y_brand - logo_sz / 2)), mask)
+            draw.ellipse([x0 - 2, int(y_brand - logo_sz / 2) - 2, x0 + logo_sz + 1, int(y_brand + logo_sz / 2) + 1], outline=(0, 229, 255, 220), width=3)
+            _draw_outlined_text(draw, (x0 + logo_sz + gap, y_brand), handle, f_brand, (255, 255, 255, 230), stroke=3, anchor="lm")
+        except Exception:
+            _draw_outlined_text(draw, (540, y_brand), handle, f_brand, (255, 255, 255, 230), stroke=3)
+    else:
+        _draw_outlined_text(draw, (540, y_brand), handle, f_brand, (255, 255, 255, 230), stroke=3)
+
+    if editor_credit:
+        clean_ed = editor_credit.strip()[:28]
+        _draw_outlined_text(draw, (540, y_brand + 56), f"Edit Credit: {clean_ed}", _font(28, bold=False), (220, 235, 255, 215), stroke=3)
+
+
+def _make_ranking_overlay(topic: str, rank: int, total: int, labels: list[str], handle: str, out_png: Path, editor_credit: str = "") -> Path:
+    """Krylo Ranks style: stacked colored top title + persistent left-side countdown ladder + logo & editor credit."""
     img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
 
@@ -122,14 +151,14 @@ def _make_ranking_overlay(topic: str, rank: int, total: int, labels: list[str], 
         color = rank_colors.get(r, (255, 255, 255)) if is_active else ((235, 235, 235) if revealed else (160, 160, 160))
         _draw_outlined_text(draw, (44, y), text, f_lad, color, stroke=4, anchor="lm")
 
-    # Subtle bottom-center watermark below 16:9 frame
-    _draw_outlined_text(draw, (540, 1490), handle, _font(34, bold=False), (255, 255, 255, 185), stroke=3)
+    # Channel logo + @OtakuSnapster + on-screen Editor Credit below main video frame
+    _draw_brand_and_credit(img, draw, handle, y_brand=1505, editor_credit=editor_credit)
     out_png.parent.mkdir(parents=True, exist_ok=True)
     img.save(out_png)
     return out_png
 
 
-def _make_banner_overlay(headline: str, bottom_label: str, handle: str, out_png: Path, dark_mode: bool = False, impact_emoji: str = "") -> Path:
+def _make_banner_overlay(headline: str, bottom_label: str, handle: str, out_png: Path, dark_mode: bool = False, impact_emoji: str = "", editor_credit: str = "") -> Path:
     """Top white meme/hype bar (Refs #1, #2, #3, #11) OR black letterbox trivia header (Ref #4)."""
     img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
@@ -149,14 +178,13 @@ def _make_banner_overlay(headline: str, bottom_label: str, handle: str, out_png:
         for i, line in enumerate(wrapped):
             draw.text((540, y_start + i * 74), line, font=f_h, fill=(18, 18, 18), anchor="mm")
         if bottom_label:
-            # Commentary / context bar below center frame (Ref #11 style)
             for i, cline in enumerate(textwrap.wrap(bottom_label.upper(), width=34)[:2]):
                 _draw_outlined_text(draw, (540, 1510 + i * 52), cline, _font(36, bold=True), (255, 235, 90), stroke=4)
 
     if impact_emoji:
         _draw_outlined_text(draw, (540, 960), impact_emoji, _font(110, bold=True), (255, 255, 255), stroke=6)
 
-    _draw_outlined_text(draw, (540, 1785), handle, _font(30, bold=False), (255, 255, 255, 175), stroke=2)
+    _draw_brand_and_credit(img, draw, handle, y_brand=1760, editor_credit=editor_credit)
     out_png.parent.mkdir(parents=True, exist_ok=True)
     img.save(out_png)
     return out_png
@@ -193,10 +221,11 @@ def render_edit_ranking(
     topic: str,
     clips: list[dict],
     output_mp4: Path,
-    handle: str = "@CinePulse",
+    handle: str = "@OtakuSnapster",
     clip_dur: float = 12.0,
 ) -> Path:
-    """Format 1 (Ref #9): Dual-layer blurred BG + left countdown ladder + two-stage 48kHz audio shield."""
+    """Format 1 (Ref #9): Dual-layer blurred BG + left countdown ladder + two-stage 48kHz audio shield.
+    Pass clip_dur<=0 to play every clip 100% full & uncut."""
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
     output_mp4.parent.mkdir(parents=True, exist_ok=True)
     bgm = ensure_royalty_free_bgm("phonk")
@@ -208,11 +237,20 @@ def render_edit_ranking(
     for rank in range(total, 0, -1):
         clip = clips[rank - 1]
         src = Path(clip["local_path"])
-        ov = _make_ranking_overlay(topic, rank, total, labels, handle, TEMP_DIR / f"rank_ov_{rank}.png")
+        ov = _make_ranking_overlay(
+            topic, rank, total, labels, handle, TEMP_DIR / f"rank_ov_{rank}.png",
+            editor_credit=clip.get("creator", ""),
+        )
         seg = TEMP_DIR / f"rank_seg_{rank}.mp4"
-        src_dur = float(clip.get("duration") or clip_dur)
-        dur = min(clip_dur, max(5.0, src_dur - 1.0))
-        ss = _safe_start_offset(src, src_dur, dur)
+        src_dur = float(clip.get("duration") or 30.0)
+        if clip_dur <= 0:
+            # Full uncut edit (only skip pure black fade-in <=1.5s so QA stays 0-black-frame)
+            ss = _safe_start_offset(src, src_dur, max(1.0, src_dur - 2.0))
+            ss = min(ss, 1.5)
+            dur = max(5.0, src_dur - ss)
+        else:
+            dur = min(clip_dur, max(5.0, src_dur - 1.0))
+            ss = _safe_start_offset(src, src_dur, dur)
 
         # Two-stage 48kHz pitch/tempo audio shield prevents both Content ID audio match AND 44.1kHz early cutoff!
         has_aud = _has_audio_stream(src)
@@ -247,7 +285,7 @@ def render_edit_ranking(
             "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
             str(seg),
         ]
-        subprocess.run(cmd, capture_output=True, check=True, timeout=120)
+        subprocess.run(cmd, capture_output=True, check=True, timeout=240)
         segment_paths.append(seg)
 
     return _concat_segments(segment_paths, output_mp4)
@@ -257,7 +295,7 @@ def render_release_hype(
     headline: str,
     clips: list[dict],
     output_mp4: Path,
-    handle: str = "@CinePulse",
+    handle: str = "@OtakuSnapster",
     shot_dur: float = 2.4,
     hook_clip: dict | None = None,
 ) -> Path:
@@ -298,6 +336,7 @@ def render_release_hype(
     for idx, clip in enumerate(clips):
         src = Path(clip["local_path"])
         seg = TEMP_DIR / f"hype_seg_{idx}.mp4"
+        ov_clip = _make_banner_overlay(headline, "", handle, TEMP_DIR / f"hype_ov_{idx}.png", dark_mode=False, editor_credit=clip.get("creator", ""))
         src_dur = float(clip.get("duration") or shot_dur)
         dur = min(shot_dur, max(1.8, src_dur))
         # Skip studio intro logos (first 4-5s of promos/trailers) and land on hero action midpoint
@@ -312,7 +351,7 @@ def render_release_hype(
         )
         cmd = [
             FFMPEG, "-y",
-            "-ss", f"{ss:.2f}", "-i", str(src), "-i", str(ov_normal),
+            "-ss", f"{ss:.2f}", "-i", str(src), "-i", str(ov_clip),
             "-filter_complex", vf, "-map", "[vout]", "-an",
             "-t", f"{dur:.3f}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-r", "30",
             str(seg),
@@ -340,7 +379,7 @@ def render_movie_trivia_or_commentary(
     headline: str,
     clips: list[dict],
     output_mp4: Path,
-    handle: str = "@CinePulse",
+    handle: str = "@OtakuSnapster",
     mode: str = "movie_trivia",
 ) -> Path:
     """Format 3: Ref #4 (black letterbox + 4.5s micro-clips + freeze fact) OR Ref #11 (commentary scene)."""
@@ -353,7 +392,7 @@ def render_movie_trivia_or_commentary(
     for idx, clip in enumerate(clips):
         src = Path(clip["local_path"])
         bottom = clip.get("fact_or_commentary") or clip.get("title", "")[:45]
-        ov = _make_banner_overlay(headline, bottom, handle, TEMP_DIR / f"triv_ov_{idx}.png", dark_mode=dark_mode)
+        ov = _make_banner_overlay(headline, bottom, handle, TEMP_DIR / f"triv_ov_{idx}.png", dark_mode=dark_mode, editor_credit=clip.get("creator", ""))
         seg = TEMP_DIR / f"triv_seg_{idx}.mp4"
         dur = 5.0 if dark_mode else min(18.0, max(8.0, float(clip.get("duration") or 15.0)))
 

@@ -95,7 +95,7 @@ def run_pipeline(
     fmt: str = "auto",
     topic: str | None = None,
     genre: str | None = None,
-    handle: str = "@CinePulse",
+    handle: str = "@OtakuSnapster",
     dry_run: bool = True,
     count: int = 3,
     extra_urls: list[str] | None = None,
@@ -201,7 +201,8 @@ def run_series_episode(series_path: Path, handle: str = "@CinePulse", dry_run: b
         clips = harvest_video_pack(
             rotated_queries,
             target_count=int(cfg.get("clips_per_episode", 3)),
-            max_duration=65,
+            max_duration=int(cfg.get("max_clip_duration", 60)),
+            min_duration=int(cfg.get("min_clip_duration", 25)),
             browser_cookies=browser_cookies,
             required_topic=cfg["topic"],
         )
@@ -215,7 +216,8 @@ def run_series_episode(series_path: Path, handle: str = "@CinePulse", dry_run: b
         for c in clips:
             c["short_label"] = _clean_rank_label(c["title"], cfg["topic"], int(c.get("views", 0)))
 
-        render_edit_ranking(cfg["topic"], clips, out_mp4, handle=handle, clip_dur=18.0)
+        clip_dur = 0.0 if cfg.get("full_uncut") else 18.0
+        render_edit_ranking(cfg["topic"], clips, out_mp4, handle=handle, clip_dur=clip_dur)
         qa = verify_video(out_mp4, make_proof=True)
         meta = build_metadata(cfg["topic"], "edit_ranking", clips, handle=handle)
         meta["title"] = f"Ranking Best {cfg['topic']} Edits (Part {ep_num})! 🔥💀 #shorts #thementalist"[:100]
@@ -247,7 +249,7 @@ if __name__ == "__main__":
     p.add_argument("--format", default="auto", choices=["auto", "edit_ranking", "release_hype", "movie_trivia", "scene_commentary"])
     p.add_argument("--genre", default=None, help="Optional genre group ID from niche_catalog.json")
     p.add_argument("--topic", default=None)
-    p.add_argument("--handle", default="@CinePulse")
+    p.add_argument("--handle", default="@OtakuSnapster")
     p.add_argument("--count", type=int, default=3)
     p.add_argument("--urls", nargs="*", default=None, help="Optional IG/FB/TikTok/YT URLs to include")
     p.add_argument("--hook-url", default="", help="Optional Instagram Reel / edit URL to prepend as 3.2s retention hook")

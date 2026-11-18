@@ -68,7 +68,7 @@ def _save_history(ids: set[str]):
     hp.write_text(json.dumps(sorted(ids)[-500:], indent=2), encoding="utf-8")
 
 
-def passes_copyright_prefilter(meta: dict) -> tuple[bool, str]:
+def passes_copyright_prefilter(meta: dict, min_duration: int = 4) -> tuple[bool, str]:
     """Rejects claimed music tracks, high-risk studio music channels, and fake AI/fan-concept trailers."""
     title = (meta.get("title") or "").lower()
     channel = (meta.get("channel") or meta.get("uploader") or "").lower()
@@ -83,19 +83,19 @@ def passes_copyright_prefilter(meta: dict) -> tuple[bool, str]:
     if any(b in desc_tags for b in FAKE_AI_DESC_TERMS):
         return False, "Fake AI / fan-concept footage detected in description/tags"
     dur = meta.get("duration") or 0
-    if dur < 4 or dur > 180:
+    if dur < min_duration or dur > 180:
         return False, f"Duration out of bounds ({dur}s)"
     return True, "ok"
 
 
-def scout_youtube(query: str, count: int = 5, max_duration: int = 65, ignore_history: bool = False) -> list[dict]:
+def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_duration: int = 5, ignore_history: bool = False) -> list[dict]:
     """Scouts YouTube via yt_dlp InnerTube/web extractor + Anti-CID pre-filter."""
     used = set() if ignore_history else _load_history()
     probe_n = max(count * 3, 12)
     cmd = [
         sys.executable, "-m", "yt_dlp",
         "--dump-json", "--no-playlist", "--no-warnings",
-        "--match-filter", f"duration <= {max_duration} & duration >= 5",
+        "--match-filter", f"duration <= {max_duration} & duration >= {min_duration}",
         f"ytsearch{probe_n}:{query}",
     ]
     candidates, seen = [], set()
@@ -112,7 +112,7 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, ignore_his
             if not vid or vid in seen or vid in used or f"yt_{vid}" in used:
                 continue
             seen.add(vid)
-            ok, _ = passes_copyright_prefilter(d)
+            ok, _ = passes_copyright_prefilter(d, min_duration=min_duration)
             if not ok:
                 continue
             candidates.append({
@@ -314,6 +314,7 @@ def harvest_video_pack(
     queries: list[str],
     target_count: int = 3,
     max_duration: int = 65,
+    min_duration: int = 5,
     platforms: tuple[str, ...] = ("youtube", "tiktok", "reddit", "facebook", "instagram"),
     extra_urls: list[str] | None = None,
     browser_cookies: str = "",
@@ -339,7 +340,7 @@ def harvest_video_pack(
     pool: list[dict] = []
     for q in queries:
         if "youtube" in platforms:
-            pool.extend(scout_youtube(q, count=target_count * 2, max_duration=max_duration))
+            pool.extend(scout_youtube(q, count=target_count * 2, max_duration=max_duration, min_duration=min_duration))
         if "tiktok" in platforms and len(pool) < target_count * 2:
             pool.extend(scout_tiktok_public(q, count=target_count))
         if "reddit" in platforms and len(pool) < target_count * 2:
