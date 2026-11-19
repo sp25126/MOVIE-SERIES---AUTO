@@ -399,7 +399,10 @@ def render_movie_trivia_or_commentary(
         bottom = clip.get("fact_or_commentary") or clip.get("title", "")[:45]
         ov = _make_banner_overlay(headline, bottom, handle, TEMP_DIR / f"triv_ov_{idx}.png", dark_mode=dark_mode, editor_credit=clip.get("creator", ""))
         seg = TEMP_DIR / f"triv_seg_{idx}.mp4"
-        dur = 5.0 if dark_mode else min(18.0, max(8.0, float(clip.get("duration") or 15.0)))
+        src_dur = float(clip.get("duration") or 15.0)
+        # Cut trailing 2.2s (creator/out-card/studio logos) so the clip ends cleanly on action dialogue
+        usable_src_dur = max(5.0, src_dur - 2.2) if src_dur >= 8.0 else src_dur
+        dur = 5.0 if dark_mode else min(usable_src_dur, max(15.0, usable_src_dur))
 
         has_aud = _has_audio_stream(src) and not dark_mode
         if has_aud:

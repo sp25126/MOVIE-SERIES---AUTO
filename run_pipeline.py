@@ -79,14 +79,16 @@ def run_self_test() -> int:
     assert ok1 and not ok2 and not ok3 and not ok4 and not ok5 and not ok6 and not ok7, "Copyright/Fake-AI pre-filter failed!"
 
     cat = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
-    assert "categories" in cat, "Missing 'categories' root in niche_catalog.json!"
-    assert "patrick_jane_recurring" in cat["categories"], "Missing 'patrick_jane_recurring' category!"
-    assert "viral_trend_rankings" in cat["categories"], "Missing 'viral_trend_rankings' category!"
+    assert len(cat["groups"]) == 12, f"Expected 12 video genre groups, got {len(cat['groups'])}"
+    for gid, g in cat["groups"].items():
+        for sc in g["subcategories"]:
+            assert "topics" not in sc, f"Static topics list found in {gid}/{sc['id']}!"
+            assert sc["format"] != "news_slideshow", f"Removed news_slideshow found in {gid}/{sc['id']}!"
 
     bgm = ensure_royalty_free_bgm("phonk", allow_network=False)
     assert bgm.exists() and bgm.stat().st_size > 30_000, "BGM generation failed!"
 
-    print("[SELF-TEST] ALL CHECKS PASSED (virality math, Anti-CID/HTML/Fake-AI, 2 Master Channels: Patrick Jane & Viral Trend Rankings, BGM).")
+    print("[SELF-TEST] ALL CHECKS PASSED (virality math, Anti-CID/HTML/Fake-AI, 12 pure-video zero-static genre groups, BGM).")
     return 0
 
 
@@ -119,8 +121,10 @@ def run_pipeline(
         need = 1 if c_fmt == "scene_commentary" else (max(count, 4) if c_fmt == "release_hype" else count)
         queries = [f"{c_topic} {q_sfx}", f"{c_topic} movie edit shorts", f"{c_topic} scene shorts"]
         print(f"\n[Pipeline] Trying viral target -> Genre='{cand.get('genre')}' | Topic='{c_topic}' | Format='{c_fmt}'")
+        max_dur = 95 if c_fmt == "scene_commentary" else 65
+        min_dur = 25 if c_fmt == "scene_commentary" else 5
         clips = harvest_video_pack(
-            queries, target_count=need, max_duration=65,
+            queries, target_count=need, max_duration=max_dur, min_duration=min_dur,
             extra_urls=extra_urls, browser_cookies=browser_cookies, required_topic=c_topic,
         )
         if clips:
