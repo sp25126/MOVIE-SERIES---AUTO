@@ -26,6 +26,8 @@ BANNED_TITLE_TERMS = (
     "ai trailer", "ai generated", "ai video", "made with ai", "parody", "spoof", "unreal engine",
     "kissing scene", "hot scene", "hot kissing", "sexy", "18+", "nude", "bold scene", "scenepack",
     "amv", "anime", "cyberpunk", "edgerunners",
+    "tutorial", "how to", "editing pack", "capcut template", "download link", "battle", "prize",
+    "worst ai", "editor award", "behind the scenes", "making of", "vlog",
 )
 FAKE_AI_DESC_TERMS = (
     "concept trailer", "fan-made", "fan made", "fanmade", "not an official", "unofficial trailer",
@@ -146,6 +148,10 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
             if not vid or vid in seen or vid in used or f"yt_{vid}" in used:
                 continue
             seen.add(vid)
+            views = int(d.get("view_count") or 0)
+            # Enforce virality threshold: ranking edits must have meaningful views (at least 5,000 views)
+            if views < 5000:
+                continue
             ok, _ = passes_copyright_prefilter(d, min_duration=min_duration, check_html=True)
             if not ok:
                 continue

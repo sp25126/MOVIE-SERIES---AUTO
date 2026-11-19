@@ -57,6 +57,10 @@ STOP_WORDS = {
     "ignore", "it", "ignored", "ignoring", "dont", "do", "not", "cannot", "cant", "wont", "short", "film",
     "shooting", "shoot", "behind", "the", "scenes", "bts", "parrots", "parrot", "paddy", "eating",
     "viralvideo", "shortsfeed", "feed", "explore", "reelsvideo", "foryou", "fypage", "omg", "wow",
+    "award", "winning", "awarded", "awards", "oscar", "oscars", "academy", "emmy", "emmys",
+    "golden", "globe", "globes", "worst", "ai", "editor", "editors", "battle", "prize",
+    "unreleased", "leaked", "behind", "the", "scenes", "making", "of", "explained",
+    "darkness", "tv", "spot", "spots", "super", "bowl", "commercial", "ad", "ads",
 }
 
 

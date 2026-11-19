@@ -38,7 +38,15 @@ TV_DISCOVERY_QUERIES = [
 NON_TV_NOISE = (
     "tutorial", "how to", "capcut template", "editing pack", "preset",
     "premiere pro", "after effects tutorial", "alight motion xml", "download link",
-    "podcast", "interview", "news today", "reaction",
+    "podcast", "interview", "news today", "reaction", "official trailer", "trailer",
+    "full episode", "behind the scenes", "doco", "documentary", "teaser", "fmv",
+    "multifemale", "multimale", "compilation",
+)
+
+SENTENCE_INDICATORS = (
+    "when", "she", "he", "her", "his", "they", "them", "catches", "about to", "literally",
+    "you can", "what if", "how did", "why did", "cant believe", "wait till", "right when",
+    "part 1", "part 2", "pt 1", "pt 2", "badass moments", "funny moments", "coldest moments",
 )
 
 
@@ -48,16 +56,37 @@ def extract_tv_series_entities(title: str) -> List[str]:
     if any(n in low for n in NON_TV_NOISE):
         return []
 
-    # Clean title
-    clean = re.sub(r"[#|•].*$", "", title)
-    clean = re.sub(r"\s*\((?:19|20)\d{2}\)", "", clean)
-    clean = re.sub(r"\s*\[.*?\]", "", clean)
-    clean = re.sub(r"\s*(?:edit|edits|4k|hd|shorts|viral|scene|season\s*\d+|episode\s*\d+)", "", clean, flags=re.I)
-    clean = clean.strip(" -–—|:,'\"")
+    # Strip hashtags first
+    clean_title = re.sub(r"#[A-Za-z0-9_]+", "", title)
+    # Split on common separators: |, •, —, –, or ' - '
+    segments = re.split(r"[|•—–]|\s+-\s+", clean_title)
 
-    if len(clean) >= 3 and not any(w in clean.lower() for w in ("the best", "my favorite", "wait for")):
-        return [clean]
-    return []
+    candidates = []
+    for seg in segments:
+        seg_clean = re.sub(r"\s*\((?:19|20)\d{2}\)", "", seg)
+        seg_clean = re.sub(r"\s*\[.*?\]", "", seg_clean)
+        seg_clean = re.sub(r"[「」『』【】]", "", seg_clean)
+        seg_clean = re.sub(
+            r"\b(?:edit|edits|4k|hd|shorts|viral|scene|scenes|season\s*\d+|episode\s*\d+|amv|fmv|netflix|hbo|hbo max|disney\+?)\b",
+            "",
+            seg_clean,
+            flags=re.I,
+        )
+        seg_clean = seg_clean.strip(" -–—|:,'\"()[]")
+        if not seg_clean:
+            continue
+        seg_low = seg_clean.lower()
+        if any(s in seg_low for s in SENTENCE_INDICATORS):
+            continue
+        if any(n in seg_low for n in NON_TV_NOISE):
+            continue
+        words = seg_clean.split()
+        if 1 <= len(words) <= 4 and len(seg_clean) >= 3:
+            if not any(w in seg_low for w in ("the best", "my favorite", "wait for", "top 10", "top 5")):
+                candidates.append(seg_clean)
+
+    # Return candidates prioritizing those that don't look like songs or single random lowercase words
+    return candidates
 
 
 def scan_dynamic_tv_virality() -> dict:

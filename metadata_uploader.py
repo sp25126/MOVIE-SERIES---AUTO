@@ -7,15 +7,11 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-DEFAULT_EMAIL = os.environ.get("TAKEDOWN_EMAIL", "contact@otakusnapster.example")
-
-
 def build_metadata(
     topic: str,
     fmt: str,
     clips: list[dict],
     handle: str = "@OtakuSnapster",
-    takedown_email: str = DEFAULT_EMAIL,
 ) -> dict:
     slug_tag = "#" + "".join(ch for ch in topic.lower() if ch.isalnum())
 
@@ -69,8 +65,6 @@ def build_metadata(
         "This video is a transformative ranking, news reporting, and critical commentary edit.",
         "All visual clips, background scores, and media belong to their respective copyright owners.",
         "No copyright infringement intended. Under Section 107 of the Copyright Act 1976, allowance is made for 'fair use' for purposes such as criticism, comment, news reporting, teaching, scholarship, and research.",
-        "",
-        f"For copyright claims, credit adjustments, or immediate takedown requests: {takedown_email}",
         "",
         f"Channel: {handle}",
         "",

@@ -70,8 +70,11 @@ def harvest_trending_hashtags(force: bool = False) -> List[str]:
                 text = f"{d.get('title') or ''} {d.get('description') or ''}"
                 for tag in re.findall(r"#([A-Za-z0-9_]+)", text):
                     tl = f"#{tag.lower()}"
-                    # Skip noise
-                    if len(tl) > 2 and tl not in ("#shorts", "#short"):
+                    # Skip noise and irrelevant non-entertainment terms
+                    if len(tl) > 2 and tl not in (
+                        "#shorts", "#short", "#tutorial", "#tutorials", "#howto", "#how_to",
+                        "#capcut", "#capcut_template", "#template", "#templates", "#editing_pack"
+                    ):
                         hashtags_freq[tl] = hashtags_freq.get(tl, 0) + 1
         except Exception as e:
             logger.debug(f"[Hashtag Radar] Query error ({q}): {e}")
