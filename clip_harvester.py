@@ -110,40 +110,60 @@ RAW_SCENE_DISQUALIFIERS = (
     "teaser trailer", "official promo", "behind the scenes", "bloopers",
     "interview", "once said", "compilation of", "compilation |", "tv series clip",
     "scene pack", "scenepack", "raw clip", "dialogue scene", "clip compilation",
-    "quotes", "thought jane is", "trying to seduce",
+    "quotes", "thought jane is", "trying to seduce", "threatens", "talks to",
+    "confronts", "interrogates", "interrogation", "confession", "arrests",
+    "shoots", "kills", "reaction", "review", "recap", "explained", "summary",
+    "best lines", "iconic scene", "movie scene", "series scene", "bloopers",
 )
 
-EDIT_MANDATORY_TERMS = (
-    "edit", "edits", "editing", "velocity", "cc", "amv", "fmv", "montage",
-    "alight motion", "after effects", "capcut", "phonk", "badass edit",
-    "cold edit", "status", "4k edit", "hd edit", "slowed", "reverb",
-    "bass boosted", "attitude edit", "sigma edit",
+FAN_EDIT_TITLE_TERMS = (
+    "edit", "edits", "editz", "velocity", "amv", "fmv", "montage", "alight motion",
+    "after effects", "capcut", "phonk", "hd60fps", "60fps", "remix", "status",
+    "badass edit", "sigma edit", "cold edit", "audio edit", "loop edit",
+)
+
+SOCIAL_EDIT_HASHTAGS = (
+    "#edit", "#edits", "#velocity", "#capcut", "#alightmotion", "#phonk",
+    "#reels", "#tiktok", "#tiktokedit", "#instareels", "#sigma", "#badass",
+)
+
+RAW_WORD_PATTERNS = (
+    re.compile(r"\bscenes?\b", re.I),
+    re.compile(r"\bclips?\b", re.I),
+    re.compile(r"\bmoments?\b", re.I),
 )
 
 
 def is_genuine_fan_edit(meta: dict) -> tuple[bool, str]:
-    """Automated strict rule gate: ensures only real creator edits pass (from YouTube, TikTok, Instagram)
+    """Automated strict deterministic rule gate: ensures only real creator edits pass (from YouTube, TikTok, Instagram)
     and strictly rejects raw show scenes, TV cutdowns, and quote compilations."""
     title = (meta.get("title") or "").lower()
-    desc = (meta.get("description") or "").lower()
     tags = " ".join(meta.get("tags") or []).lower()
-    hay = f"{title} {desc} {tags}"
 
-    # 1. Reject explicit scene / raw show disqualifiers
+    # 1. Reject explicit scene / raw dialogue / review disqualifiers in title
     for dis in RAW_SCENE_DISQUALIFIERS:
         if dis in title:
             return False, f"Disqualified raw scene term: '{dis}'"
 
-    # 2. Reject raw TV season/episode markers unless explicit edit indicator is in title
-    has_edit_in_title = any(re.search(rf"\b{term}\b", title) for term in ("edit", "edits", "velocity", "amv", "fmv", "montage", "status", "cc"))
+    # 2. Check for explicit edit markers in title
+    has_edit_in_title = any(re.search(rf"\b{re.escape(term)}\b", title) for term in FAN_EDIT_TITLE_TERMS)
+
+    # 3. Reject raw scene/clip/moment indicators unless explicit edit term is in title
+    for pat in RAW_WORD_PATTERNS:
+        if pat.search(title) and not has_edit_in_title:
+            return False, f"Disqualified: raw scene indicator '{pat.pattern}' without edit in title"
+
+    # 4. Reject raw TV season/episode markers unless explicit edit indicator is in title
     for pat in RAW_EPISODE_MARKERS:
         if pat.search(title) and not has_edit_in_title:
-            return False, "Disqualified: raw episode marker without edit tag"
+            return False, f"Disqualified: raw episode marker '{pat.pattern}' without edit tag"
 
-    # 3. Mandatory edit signature: title or tags MUST have an edit term
-    has_signature = has_edit_in_title or any(re.search(rf"\b{term}\b", hay) for term in EDIT_MANDATORY_TERMS)
-    if not has_signature:
-        return False, "Disqualified: missing mandatory edit signature (not a fan edit)"
+    # 5. Mandatory edit signature: title or tags MUST have an edit term or social edit hashtag
+    has_social_tag = any(ht in title or ht in tags for ht in SOCIAL_EDIT_HASHTAGS)
+    has_edit_in_tags = any(re.search(rf"\b{re.escape(term)}\b", tags) for term in FAN_EDIT_TITLE_TERMS)
+
+    if not (has_edit_in_title or has_social_tag or has_edit_in_tags):
+        return False, "Disqualified: missing mandatory fan edit signature (not a creator edit)"
 
     return True, "ok"
 
@@ -178,7 +198,7 @@ def passes_copyright_prefilter(meta: dict, min_duration: int = 4, check_html: bo
 def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_duration: int = 5, ignore_history: bool = False) -> list[dict]:
     """Scouts YouTube via yt_dlp InnerTube/web extractor + Anti-CID pre-filter."""
     used = set() if ignore_history else _load_history()
-    probe_n = max(count * 3, 12)
+    probe_n = max(count * 6, 25)
     cmd = [
         sys.executable, "-m", "yt_dlp",
         "--dump-json", "--no-playlist", "--no-warnings",
@@ -200,8 +220,8 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
                 continue
             seen.add(vid)
             views = int(d.get("view_count") or 0)
-            # Enforce virality threshold: ranking edits must have meaningful views (at least 5,000 views)
-            if views < 5000:
+            # Enforce virality threshold: ranking edits must have meaningful views (at least 1,500 views)
+            if views < 1500:
                 continue
             ok, _ = passes_copyright_prefilter(d, min_duration=min_duration, check_html=True)
             if not ok:
@@ -362,10 +382,18 @@ def download_clip(candidate: dict, out_dir: Path | None = None, browser_cookies:
     return download_social_url(candidate["url"], candidate["id"], target_dir, browser_cookies=browser_cookies)
 
 
-def _matches_topic(candidate: dict, required_topic: str) -> bool:
-    if not required_topic:
+def _matches_topic(candidate: dict, required_topic: str, allowed_entities: list[str] | None = None) -> bool:
+    if not required_topic and not allowed_entities:
         return True
     hay = f"{candidate.get('title', '')} {candidate.get('creator', '')}".lower()
+
+    # Check ensemble / allowed character entities first (e.g. Kimball Cho, Teresa Lisbon, Patrick Jane)
+    if allowed_entities:
+        for ent in allowed_entities:
+            ent_tokens = [t for t in re.findall(r"[a-z0-9]+", ent.lower()) if len(t) >= 3]
+            if ent_tokens and all(t in hay for t in ent_tokens):
+                return True
+
     tokens = [t for t in re.findall(r"[a-z0-9]+", required_topic.lower()) if len(t) >= 3]
     if not tokens:
         return True
@@ -414,6 +442,7 @@ def harvest_video_pack(
     browser_cookies: str = "",
     required_topic: str = "",
     niche_context: str = "Live-Action Movies, Series & Cinema",
+    allowed_entities: list[str] | None = None,
 ) -> list[dict]:
     """Harvests N distinct copyright-screened clips across YouTube, TikTok, Reddit, and optional IG/FB URLs."""
     picked, seen_ids = [], set()
@@ -447,7 +476,7 @@ def harvest_video_pack(
     for c in pool:
         if len(picked) >= target_count:
             break
-        if c["id"] in seen_ids or not _matches_topic(c, required_topic):
+        if c["id"] in seen_ids or not _matches_topic(c, required_topic, allowed_entities):
             continue
         is_edit, why_edit = is_genuine_fan_edit(c)
         if not is_edit:
@@ -455,21 +484,46 @@ def harvest_video_pack(
             continue
         path = download_clip(c, browser_cookies=browser_cookies)
         if path:
-            # AI Visual & Semantic Gate via Gemini
-            if required_topic:
-                try:
-                    from ai_verifier import verify_clip_with_gemini
-                    is_valid_topic, why = verify_clip_with_gemini(path, required_topic, niche_context=niche_context)
-                    if not is_valid_topic:
-                        print(f"[Harvester] AI Rejected clip ({c['id']}): {why}")
-                        continue
-                except Exception as e:
-                    print(f"[Harvester] AI Verification check skipped: {e}")
-
             seen_ids.add(c["id"])
             c["local_path"] = str(path)
             picked.append(c)
             print(f"[Harvester] Ready ({len(picked)}/{target_count}) [{c['platform']}]: {c['title'][:50]} [{c['views']:,}]")
+
+    # Automatic expansion if we still need clips to hit target_count
+    if len(picked) < target_count and required_topic:
+        print(f"[Harvester] Target count {target_count} not reached ({len(picked)} picked). Expanding queries...")
+        entities = allowed_entities or [required_topic]
+        expansion_queries = []
+        for ent in entities:
+            expansion_queries.extend([
+                f"{ent} edit #tiktok",
+                f"{ent} edit #reels",
+                f"{ent} velocity edit shorts",
+                f"{ent} capcut edit shorts",
+                f"{ent} badass edit shorts",
+                f"{ent} phonk edit shorts",
+            ])
+        exp_pool = []
+        for eq in expansion_queries:
+            if len(picked) + len(exp_pool) >= target_count * 3:
+                break
+            exp_pool.extend(scout_youtube(eq, count=3, max_duration=max_duration, min_duration=min_duration))
+        exp_pool.sort(key=lambda x: x.get("views", 0), reverse=True)
+        for c in exp_pool:
+            if len(picked) >= target_count:
+                break
+            if c["id"] in seen_ids or not _matches_topic(c, required_topic, allowed_entities):
+                continue
+            is_edit, why_edit = is_genuine_fan_edit(c)
+            if not is_edit:
+                continue
+            path = download_clip(c, browser_cookies=browser_cookies)
+            if path:
+                seen_ids.add(c["id"])
+                c["local_path"] = str(path)
+                picked.append(c)
+                print(f"[Harvester] Ready ({len(picked)}/{target_count}) [{c['platform']}]: {c['title'][:50]} [{c['views']:,}]")
+
     return picked
 
 

@@ -6,16 +6,18 @@
   "end_date_utc": "2027-04-18",
   "max_episodes": 40,
   "clips_per_episode": 3,
-  "min_clip_duration": 15,
+  "min_clip_duration": 8,
   "max_clip_duration": 65,
   "full_uncut": true,
-  "completed_episodes": 2,
+  "completed_episodes": 3,
   "used_clip_ids": [
+    "yt_DD2KH4Ypd7w",
     "yt_JpsbubrMHzE",
     "yt_Oz4ut9rfl0w",
     "yt_WT3qfnO4bLE",
     "yt_c2_uUnLGohE",
-    "yt_kWR7XhP-9Og",
+    "yt_o0-Dhceseb0",
+    "yt_qaqsAUmw1Rw",
     "yt_tynkGnpf8CA"
   ],
   "ensemble_characters": [
@@ -26,27 +28,21 @@
     "Grace Van Pelt"
   ],
   "query_themes": [
-    "Patrick Jane 4k edit shorts",
-    "Patrick Jane outsmarting edit shorts",
-    "Kimball Cho savage edit shorts",
-    "Patrick Jane Red John edit shorts",
-    "Teresa Lisbon badass edit shorts",
-    "Patrick Jane Lisbon chemistry edit shorts",
-    "Kimball Cho coldest comeback edit shorts",
-    "Patrick Jane hypnosis edit shorts",
-    "Wayne Rigsby badass fight edit shorts",
+    "Patrick Jane edit #tiktok",
+    "Patrick Jane edit #reels",
+    "Kimball Cho savage edit #tiktok",
+    "Patrick Jane velocity edit shorts",
+    "Kimball Cho badass edit #reels",
+    "Patrick Jane Red John edit #tiktok",
+    "Teresa Lisbon badass edit #reels",
     "The Mentalist velocity edit shorts",
-    "The Mentalist Patrick Jane IQ edit shorts",
-    "Kimball Cho no business like Cho business edit shorts",
-    "Patrick Jane savage attitude edit shorts",
-    "Patrick Jane lying detection edit shorts",
+    "Patrick Jane capcut edit shorts",
+    "Kimball Cho coldest comeback edit #tiktok",
     "The Mentalist phonk edit shorts",
-    "Patrick Jane FBI Abbott edit shorts",
-    "Patrick Jane smile cold edit shorts",
-    "Patrick Jane mind games edit shorts",
-    "Kimball Cho badass edit shorts",
-    "Patrick Jane badass walk edit shorts",
-    "The Mentalist best edits 4k shorts"
+    "Patrick Jane mind games edit #reels",
+    "Patrick Jane 4k edit #tiktok",
+    "The Mentalist badass edit #reels",
+    "Patrick Jane savage attitude edit #tiktok"
   ],
-  "last_run_utc": "2026-11-19T10:45:00Z"
+  "last_run_utc": "2026-11-19T12:31:17Z"
 }

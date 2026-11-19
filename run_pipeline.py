@@ -208,17 +208,19 @@ def run_series_episode(series_path: Path, handle: str = "@OtakuSnapster", dry_ru
     rotated_queries = [themes[(done + offset) % len(themes)] for offset in range(min(4, len(themes)))]
 
     os.environ["CLIP_HISTORY_PATH"] = str(series_path.resolve())
+    target_cnt = int(cfg.get("clips_per_episode", 3))
     try:
         clips = harvest_video_pack(
             rotated_queries,
-            target_count=int(cfg.get("clips_per_episode", 3)),
-            max_duration=int(cfg.get("max_clip_duration", 60)),
-            min_duration=int(cfg.get("min_clip_duration", 25)),
+            target_count=target_cnt,
+            max_duration=int(cfg.get("max_clip_duration", 65)),
+            min_duration=int(cfg.get("min_clip_duration", 8)),
             browser_cookies=browser_cookies,
             required_topic=cfg["topic"],
+            allowed_entities=cfg.get("ensemble_characters"),
         )
-        if not clips:
-            raise RuntimeError(f"No fresh unique clips left for {cfg['series_name']} Ep #{ep_num}")
+        if len(clips) < target_cnt:
+            raise RuntimeError(f"Only harvested {len(clips)}/{target_cnt} fresh unique fan edits for {cfg['series_name']} Ep #{ep_num}. Minimum 3 required for ranking.")
 
         # Strictly rank by views descending (#1 = highest views, played last as climax)
         clips.sort(key=lambda x: x.get("views", 0), reverse=True)
