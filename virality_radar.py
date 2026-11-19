@@ -53,6 +53,7 @@ STOP_WORDS = {
     "collection", "day", "crore", "mark", "globally", "trying", "here", "addresses", "original", "peacock",
     "heavily", "involved", "because", "he", "she", "they", "them", "his", "her", "their", "my", "your",
     "really", "very", "much", "such", "some", "any", "every", "all", "each", "both", "either", "neither",
+    "comedy", "hour", "blooper", "bloopers", "years", "ago", "today", "ever", "made", "premiered", "network",
 }
 
 
