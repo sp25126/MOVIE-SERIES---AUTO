@@ -9,12 +9,15 @@
   "min_clip_duration": 20,
   "max_clip_duration": 65,
   "full_uncut": true,
-  "completed_episodes": 2,
+  "completed_episodes": 3,
   "used_clip_ids": [
+    "yt_8m5EOf85_rA",
     "yt_JpsbubrMHzE",
     "yt_Oz4ut9rfl0w",
     "yt_WT3qfnO4bLE",
     "yt_c2_uUnLGohE",
+    "yt_h-omkWyr0tA",
+    "yt_jDG14R_7EUM",
     "yt_kWR7XhP-9Og",
     "yt_tynkGnpf8CA"
   ],
@@ -50,5 +53,5 @@
     "Patrick Jane badass walk edit shorts",
     "The Mentalist best edits 4k shorts"
   ],
-  "last_run_utc": "2026-11-19T09:22:36Z"
+  "last_run_utc": "2026-11-19T11:56:11Z"
 }

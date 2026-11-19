@@ -1,7 +1,6 @@
 {
-  "last_3day_sync_utc": "2026-11-19T11:09:29Z",
+  "last_3day_sync_utc": "2026-11-19T11:17:16Z",
   "recent_topics": [
-    "Chandler Bing",
     "Queen of Tears",
     "Aragorn Black Gate",
     "Interstellar",
@@ -12,46 +11,75 @@
     "House of the Dragon",
     "Award Winning",
     "Robert Pattinson",
-    "My Demon Ep 6"
+    "My Demon Ep 6",
+    "Ramayana"
   ],
   "recent_genres": [
-    "romance_teen_drama",
     "sports_underdog",
     "drama_prestige",
     "horror_mystery",
     "fantasy_mythology",
     "horror_mystery",
     "superhero_scifi",
-    "drama_prestige"
+    "drama_prestige",
+    "fantasy_mythology"
   ],
   "live_genre_leaderboard": [
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 790.0,
-      "top_topic": "Prince William",
-      "count": 47
+      "total_score": 977.0,
+      "top_topic": "Nana Patekar Action",
+      "count": 56
     },
     {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 263.1,
-      "top_topic": "Ramayana",
-      "count": 13
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 662.1,
+      "top_topic": "Arrested Development",
+      "count": 28
+    },
+    {
+      "genre": "romance_teen_drama",
+      "label": "Romance, Heartbreak & Teen Series",
+      "total_score": 425.6,
+      "top_topic": "Re Piya",
+      "count": 12
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 245.4,
+      "total_score": 386.8,
       "top_topic": "Robert Pattinson",
-      "count": 15
+      "count": 19
     },
     {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 202.1,
-      "top_topic": "David Lynch",
-      "count": 15
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 273.9,
+      "top_topic": "Ramayana",
+      "count": 13
+    },
+    {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 234.0,
+      "top_topic": "Tap Water",
+      "count": 16
+    },
+    {
+      "genre": "crime_mafia",
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "total_score": 229.7,
+      "top_topic": "Mumbai Mafia",
+      "count": 6
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 184.0,
+      "top_topic": "Training Montage",
+      "count": 6
     },
     {
       "genre": "animated_cinema",
@@ -61,18 +89,11 @@
       "count": 5
     },
     {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 105.4,
-      "top_topic": "TheFlatLannister",
-      "count": 7
-    },
-    {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 89.0,
-      "top_topic": "Steps",
-      "count": 5
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 86.8,
+      "top_topic": "Scam Se Bacho",
+      "count": 13
     },
     {
       "genre": "superhero_scifi",
@@ -82,32 +103,11 @@
       "count": 4
     },
     {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 5.2,
-      "top_topic": "Porch Light Bring",
-      "count": 1
-    },
-    {
-      "genre": "crime_mafia",
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
-    },
-    {
-      "genre": "romance_teen_drama",
-      "label": "Romance, Heartbreak & Teen Series",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
-    },
-    {
       "genre": "war_historical",
       "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "total_score": 74.4,
+      "top_topic": "American Revolution War",
+      "count": 2
     }
   ],
   "live_3day_top_topics": [
@@ -116,10 +116,65 @@
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
-      "score": 45.6,
+      "score": 63.4,
       "sources": [
         "The Times of India",
         "Variety"
+      ]
+    },
+    {
+      "topic": "Nana Patekar Action",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 51.0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Arrested Development",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "format": "edit_ranking",
+      "score": 50.68,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Like Ft",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "format": "edit_ranking",
+      "score": 48.07,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Aaryan Kelvin",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "format": "edit_ranking",
+      "score": 48.07,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Ranbir Kapoor",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "format": "release_hype",
+      "score": 45.6,
+      "sources": [
+        "NDTV",
+        "The Times of India"
       ]
     },
     {
@@ -144,134 +199,73 @@
       ]
     },
     {
-      "topic": "Korben Dallas",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "Re Piya",
+      "genre": "romance_teen_drama",
+      "subcategory": "romance_heartbreak_ranking",
       "format": "edit_ranking",
-      "score": 38.16,
+      "score": 39.0,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Week"
       ]
     },
     {
-      "topic": "Bruce Willis",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "Ho Gaya",
+      "genre": "romance_teen_drama",
+      "subcategory": "romance_heartbreak_ranking",
       "format": "edit_ranking",
-      "score": 38.16,
+      "score": 39.0,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Week"
       ]
     },
     {
-      "topic": "Russel Crowe",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "Riteish Deshmukh",
+      "genre": "romance_teen_drama",
+      "subcategory": "romance_heartbreak_ranking",
       "format": "edit_ranking",
-      "score": 38.16,
+      "score": 39.0,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Week"
       ]
     },
     {
-      "topic": "Keith David",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "Hi Aana",
+      "genre": "romance_teen_drama",
+      "subcategory": "romance_heartbreak_ranking",
       "format": "edit_ranking",
-      "score": 38.16,
+      "score": 39.0,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Week"
       ]
     },
     {
-      "topic": "PTVNews Tonight",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
+      "topic": "Jubin Nautiyal",
+      "genre": "romance_teen_drama",
+      "subcategory": "romance_heartbreak_ranking",
       "format": "edit_ranking",
-      "score": 35.6,
+      "score": 39.0,
       "sources": [
-        "Facebook"
+        "YT-Week"
       ]
     },
     {
-      "topic": "MAN OF TOMORROW",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 30.94,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ]
-    },
-    {
-      "topic": "David Lynch",
-      "genre": "drama_prestige",
-      "subcategory": "prestige_finale_recap",
-      "format": "scene_commentary",
-      "score": 27.83,
-      "sources": [
-        "Reddit-30d(r/TrueFilm)",
-        "Reddit-7d(r/TrueFilm)"
-      ]
-    },
-    {
-      "topic": "Rom-Com",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
+      "topic": "Payal Dev",
+      "genre": "romance_teen_drama",
+      "subcategory": "romance_heartbreak_ranking",
       "format": "edit_ranking",
-      "score": 27.15,
+      "score": 39.0,
       "sources": [
-        "Reddit-30d(r/KDRAMA)",
-        "Reddit-7d(r/KDRAMA)"
+        "YT-Week"
       ]
     },
     {
-      "topic": "Lee Min Ho",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
+      "topic": "Training Montage",
+      "genre": "sports_underdog",
+      "subcategory": "sports_comeback_ranking",
       "format": "edit_ranking",
-      "score": 27.15,
+      "score": 39.0,
       "sources": [
-        "Reddit-30d(r/KDRAMA)",
-        "Reddit-7d(r/KDRAMA)"
-      ]
-    },
-    {
-      "topic": "Com Drama",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
-      "format": "edit_ranking",
-      "score": 27.15,
-      "sources": [
-        "Reddit-30d(r/KDRAMA)",
-        "Reddit-7d(r/KDRAMA)"
-      ]
-    },
-    {
-      "topic": "Family Matters 2",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
-      "format": "edit_ranking",
-      "score": 26.05,
-      "sources": [
-        "Reddit-30d(r/KDRAMA)",
-        "Reddit-7d(r/KDRAMA)"
-      ]
-    },
-    {
-      "topic": "Coupang Play",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
-      "format": "edit_ranking",
-      "score": 26.05,
-      "sources": [
-        "Reddit-30d(r/KDRAMA)",
-        "Reddit-7d(r/KDRAMA)"
+        "YT-Week"
       ]
     }
   ],
