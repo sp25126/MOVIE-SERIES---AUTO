@@ -2,9 +2,19 @@ name: Autonomous 4-Day Rotating Shorts Release
 
 on:
   schedule:
-    # 4 Triggers Daily: 03:00, 09:00, 15:00, 21:00 UTC
-    # Off-peak minute :17 prevents GitHub Actions top-of-hour scheduler queue jitter
-    - cron: '17 3,9,15,21 * * *'
+    # Tier 1: High-reliability 3-hour staggered checkpoints (8 daily off-peak runs)
+    # Minute :23 avoids GitHub Actions top-of-hour scheduling congestion
+    - cron: '23 */3 * * *'
+    # Tier 2: Dedicated Prime-Time Safety Sweep (12:43 UTC = 6:13 PM IST)
+    # Guarantees today's 7:30 PM slot is covered even if all earlier runs were delayed
+    - cron: '43 12 * * *'
+  # Fallback Tier 3: External Webhooks & API pings (e.g. cron-job.org, Uptimerobot, curl)
+  repository_dispatch:
+    types: [trigger_shorts_pipeline, external_ping, webhook_release]
+  # Fallback Tier 4: Git-based manual trigger
+  push:
+    paths:
+      - 'state/trigger.txt'
   workflow_dispatch:
     inputs:
       day_override:
@@ -108,3 +118,9 @@ jobs:
               git pull --rebase origin main && git push origin main && break || sleep 10
             done
           fi
+
+      - name: Keepalive Automated Workflow (Prevent GitHub 60-day cron deactivation)
+        uses: gautamkrishnar/keepalive-workflow@v1
+        if: always()
+        with:
+          use_api: true

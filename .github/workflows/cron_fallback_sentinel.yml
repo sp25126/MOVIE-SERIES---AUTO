@@ -1,0 +1,64 @@
+name: Cron Fallback Sentinel (Watchdog)
+
+on:
+  schedule:
+    # Staggered watchdog: checks queue health 4 times daily at off-peak minutes
+    # 01:47, 07:47, 13:47, 19:47 UTC
+    - cron: '47 1,7,13,19 * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  check-queue-buffer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check Scheduling Buffer & Trigger Fallback if Needed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python - << 'EOF'
+          import json
+          import datetime
+          import subprocess
+          from pathlib import Path
+
+          q_file = Path("state/upload_queue.json")
+          if not q_file.exists():
+              print("[Sentinel] No upload_queue.json found. Triggering fallback production...")
+              subprocess.run(["gh", "workflow", "run", "auto_release.yml", "-f", "upload=true"], check=True)
+              exit(0)
+
+          try:
+              data = json.loads(q_file.read_text(encoding="utf-8"))
+              slots = data.get("scheduled_slots", [])
+              now = datetime.datetime.now(datetime.timezone.utc)
+              future_slots = [
+                  s for s in slots
+                  if datetime.datetime.strptime(s, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=datetime.timezone.utc) > now
+              ]
+              print(f"[Sentinel] Found {len(future_slots)} future scheduled slots: {future_slots}")
+
+              # If buffer has fewer than 2 future slots, launch emergency production run
+              if len(future_slots) < 2:
+                  print("[Sentinel] CRITICAL: Publishing buffer is low (< 2 days ahead)! Triggering auto_release...")
+                  subprocess.run(["gh", "workflow", "run", "auto_release.yml", "-f", "upload=true"], check=True)
+                  print("[Sentinel] Fallback production run successfully triggered!")
+              else:
+                  print(f"[Sentinel] Queue healthy: {len(future_slots)} days buffered ahead. No action needed.")
+          except Exception as e:
+              print(f"[Sentinel] Error parsing queue: {e}. Triggering fallback for safety...")
+              subprocess.run(["gh", "workflow", "run", "auto_release.yml", "-f", "upload=true"], check=True)
+          EOF
