@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-19T11:17:16Z",
+  "last_3day_sync_utc": "2026-11-19T15:14:52Z",
   "recent_topics": [
     "Queen of Tears",
     "Aragorn Black Gate",
@@ -28,86 +28,86 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 977.0,
-      "top_topic": "Nana Patekar Action",
-      "count": 56
+      "total_score": 794.0,
+      "top_topic": "An Unreal Engine",
+      "count": 46
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 662.1,
+      "total_score": 552.7,
       "top_topic": "Arrested Development",
-      "count": 28
-    },
-    {
-      "genre": "romance_teen_drama",
-      "label": "Romance, Heartbreak & Teen Series",
-      "total_score": 425.6,
-      "top_topic": "Re Piya",
-      "count": 12
+      "count": 22
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 386.8,
-      "top_topic": "Robert Pattinson",
-      "count": 19
-    },
-    {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 273.9,
-      "top_topic": "Ramayana",
-      "count": 13
-    },
-    {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 234.0,
-      "top_topic": "Tap Water",
-      "count": 16
-    },
-    {
-      "genre": "crime_mafia",
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 229.7,
-      "top_topic": "Mumbai Mafia",
-      "count": 6
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 184.0,
-      "top_topic": "Training Montage",
-      "count": 6
-    },
-    {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 175.7,
-      "top_topic": "Korben Dallas",
-      "count": 5
+      "total_score": 458.6,
+      "top_topic": "Yoon Sae Bom",
+      "count": 29
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 86.8,
+      "total_score": 449.5,
       "top_topic": "Scam Se Bacho",
+      "count": 26
+    },
+    {
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 382.1,
+      "top_topic": "Kung Fu Panda",
+      "count": 12
+    },
+    {
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 357.8,
+      "top_topic": "Ramayana",
       "count": 13
+    },
+    {
+      "genre": "crime_mafia",
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "total_score": 341.8,
+      "top_topic": "Ex-Mob",
+      "count": 8
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 80.4,
-      "top_topic": "MAN OF TOMORROW",
-      "count": 4
+      "total_score": 170.6,
+      "top_topic": "AT MTC1 BY",
+      "count": 10
+    },
+    {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 114.2,
+      "top_topic": "TheFlatLannister",
+      "count": 7
     },
     {
       "genre": "war_historical",
       "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 74.4,
-      "top_topic": "American Revolution War",
+      "total_score": 78.0,
+      "top_topic": "CineStream",
       "count": 2
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 58.6,
+      "top_topic": "Elle Fanning Share",
+      "count": 4
+    },
+    {
+      "genre": "romance_teen_drama",
+      "label": "Romance, Heartbreak & Teen Series",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
     }
   ],
   "live_3day_top_topics": [
@@ -116,18 +116,50 @@
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
-      "score": 63.4,
+      "score": 76.4,
       "sources": [
         "The Times of India",
         "Variety"
       ]
     },
     {
-      "topic": "Nana Patekar Action",
+      "topic": "Ex-Mob",
+      "genre": "crime_mafia",
+      "subcategory": "crime_coldest_boss_ranking",
+      "format": "edit_ranking",
+      "score": 69.0,
+      "sources": [
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Ranbir Kapoor",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "format": "release_hype",
+      "score": 63.4,
+      "sources": [
+        "NDTV",
+        "The Times of India"
+      ]
+    },
+    {
+      "topic": "An Unreal Engine",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
       "score": 51.0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Wolf Pack Ambush",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 50.84,
       "sources": [
         "YT-Month",
         "YT-Week"
@@ -145,63 +177,42 @@
       ]
     },
     {
-      "topic": "Like Ft",
+      "topic": "Everybody Hates Chris",
       "genre": "comedy_sitcom",
       "subcategory": "funniest_character_ranking",
       "format": "edit_ranking",
-      "score": 48.07,
+      "score": 49.95,
       "sources": [
         "YT-Month",
         "YT-Week"
       ]
     },
     {
-      "topic": "Aaryan Kelvin",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
+      "topic": "Scam Se Bacho",
+      "genre": "drama_prestige",
+      "subcategory": "coldest_drama_edits",
       "format": "edit_ranking",
-      "score": 48.07,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Ranbir Kapoor",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
       "score": 45.6,
       "sources": [
-        "NDTV",
-        "The Times of India"
+        "MobiGyaan",
+        "Open Magazine"
       ]
     },
     {
-      "topic": "Prince William",
+      "topic": "Michael Jackson",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 45.6,
+      "score": 40.22,
       "sources": [
-        "NBC News",
-        "Reuters"
+        "YT-Month",
+        "YT-Week"
       ]
     },
     {
-      "topic": "Robert Pattinson",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
-      "format": "edit_ranking",
-      "score": 42.07,
-      "sources": [
-        "Reddit-7d(r/bollywoodmemes)"
-      ]
-    },
-    {
-      "topic": "Re Piya",
-      "genre": "romance_teen_drama",
-      "subcategory": "romance_heartbreak_ranking",
+      "topic": "CineStream",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
       "format": "edit_ranking",
       "score": 39.0,
       "sources": [
@@ -209,9 +220,9 @@
       ]
     },
     {
-      "topic": "Ho Gaya",
-      "genre": "romance_teen_drama",
-      "subcategory": "romance_heartbreak_ranking",
+      "topic": "Tiger Tank",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
       "format": "edit_ranking",
       "score": 39.0,
       "sources": [
@@ -219,9 +230,9 @@
       ]
     },
     {
-      "topic": "Riteish Deshmukh",
-      "genre": "romance_teen_drama",
-      "subcategory": "romance_heartbreak_ranking",
+      "topic": "Mob Boss Rates",
+      "genre": "crime_mafia",
+      "subcategory": "crime_coldest_boss_ranking",
       "format": "edit_ranking",
       "score": 39.0,
       "sources": [
@@ -229,9 +240,9 @@
       ]
     },
     {
-      "topic": "Hi Aana",
-      "genre": "romance_teen_drama",
-      "subcategory": "romance_heartbreak_ranking",
+      "topic": "Mob Boss Reviews",
+      "genre": "crime_mafia",
+      "subcategory": "crime_coldest_boss_ranking",
       "format": "edit_ranking",
       "score": 39.0,
       "sources": [
@@ -239,9 +250,9 @@
       ]
     },
     {
-      "topic": "Jubin Nautiyal",
-      "genre": "romance_teen_drama",
-      "subcategory": "romance_heartbreak_ranking",
+      "topic": "Peaky Blinders Vs",
+      "genre": "crime_mafia",
+      "subcategory": "crime_coldest_boss_ranking",
       "format": "edit_ranking",
       "score": 39.0,
       "sources": [
@@ -249,19 +260,9 @@
       ]
     },
     {
-      "topic": "Payal Dev",
-      "genre": "romance_teen_drama",
-      "subcategory": "romance_heartbreak_ranking",
-      "format": "edit_ranking",
-      "score": 39.0,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Training Montage",
-      "genre": "sports_underdog",
-      "subcategory": "sports_comeback_ranking",
+      "topic": "Peaky Blinders",
+      "genre": "crime_mafia",
+      "subcategory": "crime_coldest_boss_ranking",
       "format": "edit_ranking",
       "score": 39.0,
       "sources": [
