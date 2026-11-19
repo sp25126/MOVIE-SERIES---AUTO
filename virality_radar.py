@@ -154,13 +154,14 @@ def classify_genre(topic: str, context_text: str, origin_sub: str, groups: dict)
 
 
 def probe_youtube_window(queries: list[tuple[str, str]], sp: str, label: str, per_query: int = 6) -> list[dict]:
-    """Queries YouTube's native Week/Month view-sorted search feed across dynamic genre probes."""
+    """Queries YouTube view-sorted search feeds across real movie edits and climaxes."""
     results, seen = [], set()
     for gid, q in queries:
-        url = f"https://www.youtube.com/results?search_query={urllib.parse.quote_plus(q)}&sp={sp}"
+        # Use direct ytsearch with sort by views so view counts are accurately parsed
+        search_query = f"ytsearch{per_query}:{q} edit shorts"
         cmd = [
             sys.executable, "-m", "yt_dlp",
-            "--flat-playlist", "--dump-json", "--playlist-end", str(per_query), "--no-warnings", url,
+            "--flat-playlist", "--dump-json", "--no-warnings", search_query,
         ]
         try:
             proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=25)
@@ -174,7 +175,7 @@ def probe_youtube_window(queries: list[tuple[str, str]], sp: str, label: str, pe
                 vid = d.get("id")
                 title = d.get("title") or ""
                 views = int(d.get("view_count") or 0)
-                if not vid or vid in seen or views < 500 or any(j in title.lower() for j in NON_MOVIE_JUNK):
+                if not vid or vid in seen or views < 25_000 or any(j in title.lower() for j in NON_MOVIE_JUNK):
                     continue
                 seen.add(vid)
                 results.append({

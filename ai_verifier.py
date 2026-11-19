@@ -64,11 +64,13 @@ def verify_clip_with_gemini(video_path: Path, expected_topic: str) -> tuple[bool
 
     parts = [{
         "text": (
-            f"You are a strict QA director for a movie & series channel. "
+            f"You are a strict QA director for a movie & series channel (@OtakuSnapster). "
             f"Review these 3 extracted video frames from a candidate clip. Expected Topic: '{expected_topic}'.\n\n"
             f"Answer two questions in JSON format:\n"
             f"1. 'is_authentic_match': true IF the frames depict the actual character, actor, movie, or series '{expected_topic}'. "
-            f"Set false if it is an unrelated music video, generic vlogger, phone screen recording, or completely different movie.\n"
+            f"CRITICAL RULES:\n"
+            f" - Set false if the footage is from Japanese Anime (e.g. Jujutsu Kaisen, Naruto, Demon Slayer) when the topic is a live-action Western/Indian movie or character (e.g. John Wick, Baba Yaga, Batman).\n"
+            f" - Set false if it is an unrelated music video, lyric edit, generic vlogger, or completely different movie.\n"
             f"2. 'is_promo_outro': true IF any of the frames show an obvious 'Like / Share / Subscribe' card, social media handle screen, or generic end promo.\n"
             f"3. 'reason': brief 1-sentence explanation.\n\n"
             f"Output strictly JSON: {{\"is_authentic_match\": bool, \"is_promo_outro\": bool, \"reason\": \"...\"}}"

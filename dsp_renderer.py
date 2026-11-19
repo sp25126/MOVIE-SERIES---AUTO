@@ -36,13 +36,18 @@ def _font(size: int, bold: bool = True) -> ImageFont.FreeTypeFont:
 
 
 def ensure_royalty_free_bgm(style: str = "phonk", allow_network: bool = True) -> Path:
-    """Prefers real trending no-copyright BGM (assets/bgm/), auto-fetches if missing, falls back to synth."""
+    """Auto-rotates across distinct trending no-copyright BGM tracks to eliminate repetitive songs."""
     BGM_DIR.mkdir(parents=True, exist_ok=True)
-    # 1. Prefer user-provided or cached trending mp3/wav (excluding synth_*)
-    for ext in ("*.mp3", "*.wav"):
-        for f in sorted(BGM_DIR.glob(ext)):
-            if not f.stem.startswith("synth_") and style in f.stem.lower() and f.stat().st_size > 100_000:
-                return f
+    import random
+    available_tracks = [
+        f for ext in ("*.mp3", "*.wav") for f in BGM_DIR.glob(ext)
+        if not f.stem.startswith("synth_") and f.stat().st_size > 100_000
+    ]
+    # Rotate across diverse real tracks so every short has a fresh audio identity
+    if available_tracks:
+        # Match style if possible, or pick from available pool
+        matched = [f for f in available_tracks if style in f.stem.lower()]
+        return random.choice(matched or available_tracks)
 
     # 2. Fetch real trending no-copyright BGM dynamically
     if allow_network:
