@@ -35,19 +35,44 @@ def _font(size: int, bold: bool = True) -> ImageFont.FreeTypeFont:
     return ImageFont.load_default()
 
 
-def ensure_royalty_free_bgm(style: str = "phonk", allow_network: bool = True) -> Path:
-    """Auto-rotates across distinct trending no-copyright BGM tracks to eliminate repetitive songs."""
+GENRE_BGM_MAP = {
+    "action_thriller": ["phonk_aggressive", "trending_rock", "trending_phonk"],
+    "crime_mafia": ["dark_cinematic_tension", "trending_rock", "phonk_brazil_slowed"],
+    "drama_prestige": ["dark_cinematic_tension", "epic_orchestral_strings", "trending_ambient"],
+    "romance_teen_drama": ["trending_ambient", "synthwave_retrowave"],
+    "horror_mystery": ["dark_cinematic_tension", "trending_ambient"],
+    "fantasy_mythology": ["epic_orchestral_strings", "dark_cinematic_tension"],
+    "war_historical": ["epic_orchestral_strings", "trending_rock"],
+    "sports_underdog": ["trending_rock", "phonk_aggressive"],
+    "comedy_sitcom": ["synthwave_retrowave", "trending_ambient"],
+    "animated_cinema": ["synthwave_retrowave", "epic_orchestral_strings", "phonk_brazil_slowed"],
+    "superhero_scifi": ["epic_orchestral_strings", "synthwave_retrowave", "phonk_aggressive"],
+    "world_indian_cinema": ["phonk_aggressive", "trending_rock", "dark_cinematic_tension"],
+}
+
+
+def ensure_royalty_free_bgm(style: str = "auto", genre: str = "action_thriller", allow_network: bool = True) -> Path:
+    """Auto-rotates across distinct genre-appropriate trending no-copyright BGM tracks to eliminate repetitive songs."""
     BGM_DIR.mkdir(parents=True, exist_ok=True)
     import random
     available_tracks = [
         f for ext in ("*.mp3", "*.wav") for f in BGM_DIR.glob(ext)
         if not f.stem.startswith("synth_") and f.stat().st_size > 100_000
     ]
-    # Rotate across diverse real tracks so every short has a fresh audio identity
     if available_tracks:
-        # Match style if possible, or pick from available pool
-        matched = [f for f in available_tracks if style in f.stem.lower()]
-        return random.choice(matched or available_tracks)
+        # 1. If explicit style specified (e.g. 'rock', 'ambient', 'phonk')
+        if style != "auto":
+            matched = [f for f in available_tracks if style in f.stem.lower()]
+            if matched:
+                return random.choice(matched)
+
+        # 2. Match based on genre mapping
+        preferred_stems = GENRE_BGM_MAP.get(genre, ["trending_phonk", "trending_ambient", "trending_rock"])
+        genre_matched = [f for f in available_tracks if any(pref in f.stem.lower() for pref in preferred_stems)]
+        if genre_matched:
+            return random.choice(genre_matched)
+
+        return random.choice(available_tracks)
 
     # 2. Fetch real trending no-copyright BGM dynamically
     if allow_network:
@@ -229,12 +254,13 @@ def render_edit_ranking(
     handle: str = "@OtakuSnapster",
     clip_dur: float = 12.0,
     shuffled_order: bool = False,
+    genre: str = "action_thriller",
 ) -> Path:
     """Format 1 (Ref #9 / A5qnBoPq7t4): Dual-layer blurred BG + left ladder (countdown or shuffled 2->4->5->3->1) + 48kHz audio shield.
     Pass clip_dur<=0 to play every clip 100% full & uncut."""
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
     output_mp4.parent.mkdir(parents=True, exist_ok=True)
-    bgm = ensure_royalty_free_bgm("phonk")
+    bgm = ensure_royalty_free_bgm(style="auto", genre=genre)
     total = len(clips)
     # clips[0] is Rank #1 (highest views); standard plays #N->#1, shuffled plays #2->#4->#5->#3->#1 (Silenthaze retention hook)
     labels = [c.get("short_label") or f"Edit #{i}" for i, c in enumerate(clips, 1)]
@@ -309,11 +335,12 @@ def render_release_hype(
     handle: str = "@OtakuSnapster",
     shot_dur: float = 2.4,
     hook_clip: dict | None = None,
+    genre: str = "fantasy_mythology",
 ) -> Path:
     """Format 2 (Ref #2 & #1/#3): Optional 3.2s IG/viral edit hook + rapid 2.4s hero cuts + trending no-CID phonk."""
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
     output_mp4.parent.mkdir(parents=True, exist_ok=True)
-    bgm = ensure_royalty_free_bgm("phonk")
+    bgm = ensure_royalty_free_bgm(style="auto", genre=genre)
     ov_hook = _make_banner_overlay("WAIT FOR THIS...", "WATCH TILL THE END", handle, TEMP_DIR / "hype_hook_ov.png", dark_mode=False)
     ov_normal = _make_banner_overlay(headline, "", handle, TEMP_DIR / "hype_ov.png", dark_mode=False)
 
@@ -392,11 +419,12 @@ def render_movie_trivia_or_commentary(
     output_mp4: Path,
     handle: str = "@OtakuSnapster",
     mode: str = "movie_trivia",
+    genre: str = "action_thriller",
 ) -> Path:
     """Format 3: Ref #4 (black letterbox + 4.5s micro-clips + freeze fact) OR Ref #11 (commentary scene)."""
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
     output_mp4.parent.mkdir(parents=True, exist_ok=True)
-    bgm = ensure_royalty_free_bgm("rock" if mode == "movie_trivia" else "ambient")
+    bgm = ensure_royalty_free_bgm(style="auto", genre=genre)
     dark_mode = mode == "movie_trivia"
 
     segs = []

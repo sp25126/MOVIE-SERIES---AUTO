@@ -151,14 +151,14 @@ def run_pipeline(
         clips.sort(key=lambda x: x.get("views", 0), reverse=True)
         for c in clips:
             c["short_label"] = _clean_rank_label(c["title"], chosen_topic, int(c.get("views", 0)))
-        render_edit_ranking(chosen_topic, clips, out_mp4, handle=handle, clip_dur=clip_dur)
+        render_edit_ranking(chosen_topic, clips, out_mp4, handle=handle, clip_dur=clip_dur, genre=chosen_genre)
     elif chosen_fmt == "release_hype":
         hook = harvest_intro_hook(chosen_topic, hook_url=hook_url, browser_cookies=browser_cookies, exclude_ids={c["id"] for c in clips})
-        render_release_hype(f"THIS WEEK CAN'T HOLD THIS MUCH PEAK... ({chosen_topic})", clips, out_mp4, handle=handle, hook_clip=hook)
+        render_release_hype(f"THIS WEEK CAN'T HOLD THIS MUCH PEAK... ({chosen_topic})", clips, out_mp4, handle=handle, hook_clip=hook, genre=chosen_genre)
     else:
         for c in clips:
             c["fact_or_commentary"] = c["title"][:60]
-        render_movie_trivia_or_commentary(chosen_topic, clips, out_mp4, handle=handle, mode=chosen_fmt)
+        render_movie_trivia_or_commentary(chosen_topic, clips, out_mp4, handle=handle, mode=chosen_fmt, genre=chosen_genre)
 
     qa = verify_video(out_mp4, make_proof=True)
     meta = build_metadata(chosen_topic, chosen_fmt, clips, handle=handle)
