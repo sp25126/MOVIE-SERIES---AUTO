@@ -249,10 +249,11 @@ def render_edit_ranking(
         seg = TEMP_DIR / f"rank_seg_{rank}.mp4"
         src_dur = float(clip.get("duration") or 30.0)
         if clip_dur <= 0:
-            # Full uncut edit (only skip pure black fade-in <=1.5s so QA stays 0-black-frame)
+            # Full uncut edit (skip pure black fade-in <=1.5s, trim trailing 2.5s outro logo/cards)
             ss = _safe_start_offset(src, src_dur, max(1.0, src_dur - 2.0))
             ss = min(ss, 1.5)
-            dur = max(5.0, src_dur - ss)
+            # Cut trailing 2.5s where channel end cards / like-subscribe logos appear
+            dur = max(5.0, src_dur - ss - (2.5 if src_dur >= 10.0 else 0.0))
         else:
             dur = min(clip_dur, max(5.0, src_dur - 1.0))
             ss = _safe_start_offset(src, src_dur, dur)
