@@ -404,6 +404,9 @@ def render_movie_trivia_or_commentary(
         usable_src_dur = max(5.0, src_dur - 2.2) if src_dur >= 8.0 else src_dur
         dur = 5.0 if dark_mode else min(usable_src_dur, max(15.0, usable_src_dur))
 
+        # Skip leading black frames/dark fades
+        ss = _safe_start_offset(src, src_dur, dur)
+
         has_aud = _has_audio_stream(src) and not dark_mode
         if has_aud:
             aud = (
@@ -420,15 +423,15 @@ def render_movie_trivia_or_commentary(
             )
 
         vf = (
-            f"color=c=black:s=1080x1920:d={dur:.3f}:r=30[base];"
-            f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=30,"
-            f"scale=1080:1080:force_original_aspect_ratio=decrease,eq=contrast=1.08:saturation=1.14[fg];"
-            f"[base][fg]overlay=(W-w)/2:(H-h)/2[comp];"
+            f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=30,split=2[bg0][fg0];"
+            f"[bg0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=28,eq=brightness=-0.22[bg];"
+            f"[fg0]scale=1080:1080:force_original_aspect_ratio=decrease,eq=contrast=1.08:saturation=1.14[fg];"
+            f"[bg][fg]overlay=(W-w)/2:(H-h)/2[comp];"
             f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
         )
         subprocess.run(
             [
-                FFMPEG, "-y", "-i", str(src), "-i", str(ov), "-stream_loop", "-1", "-i", str(bgm),
+                FFMPEG, "-y", "-ss", f"{ss:.2f}", "-i", str(src), "-i", str(ov), "-stream_loop", "-1", "-i", str(bgm),
                 "-filter_complex", f"{vf};{aud}", "-map", "[vout]", "-map", "[aout]",
                 "-t", f"{dur:.3f}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-r", "30",
                 "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2", str(seg),
