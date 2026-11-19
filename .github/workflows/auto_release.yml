@@ -49,6 +49,7 @@ jobs:
 
       - name: Run virality-first Shorts pipeline
         env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           TAKEDOWN_EMAIL: ${{ secrets.TAKEDOWN_EMAIL }}
         run: |

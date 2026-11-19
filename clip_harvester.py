@@ -25,6 +25,7 @@ BANNED_TITLE_TERMS = (
     "concept", "fan made", "fan-made", "fanmade", "fan trailer", "unofficial",
     "ai trailer", "ai generated", "ai video", "made with ai", "parody", "spoof", "unreal engine",
     "kissing scene", "hot scene", "hot kissing", "sexy", "18+", "nude", "bold scene", "scenepack",
+    "amv", "anime", "cyberpunk", "edgerunners",
 )
 FAKE_AI_DESC_TERMS = (
     "concept trailer", "fan-made", "fan made", "fanmade", "not an official", "unofficial trailer",
@@ -389,6 +390,17 @@ def harvest_video_pack(
             continue
         path = download_clip(c, browser_cookies=browser_cookies)
         if path:
+            # AI Visual & Semantic Gate via Gemini
+            if required_topic:
+                try:
+                    from ai_verifier import verify_clip_with_gemini
+                    is_valid_topic, why = verify_clip_with_gemini(path, required_topic)
+                    if not is_valid_topic:
+                        print(f"[Harvester] AI Rejected clip ({c['id']}): {why}")
+                        continue
+                except Exception as e:
+                    print(f"[Harvester] AI Verification check skipped: {e}")
+
             seen_ids.add(c["id"])
             c["local_path"] = str(path)
             picked.append(c)
