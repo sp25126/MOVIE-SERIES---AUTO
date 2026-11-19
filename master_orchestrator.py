@@ -63,7 +63,7 @@ def save_cadence_state(state: dict):
 def run_day_1_cinema(dry_run: bool = True) -> dict:
     """Executes Day 1: Cinema Group."""
     logging.info("========== DAY 1: CINEMA GROUP ==========")
-    cmd = [sys.executable, "run_pipeline.py", "--format", "auto"]
+    cmd = [sys.executable, "run_pipeline.py", "--format", "edit_ranking"]
     if not dry_run:
         cmd.append("--upload")
     else:
