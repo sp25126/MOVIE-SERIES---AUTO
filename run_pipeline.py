@@ -255,7 +255,7 @@ if __name__ == "__main__":
     p.add_argument("--topic", default=None)
     p.add_argument("--handle", default="@OtakuSnapster")
     p.add_argument("--count", type=int, default=3)
-    p.add_argument("--clip-dur", type=float, default=0.0, help="Seconds per clip in edit ranking (0 or negative = 100% full uncut)")
+    p.add_argument("--clip-dur", type=float, default=0.0, help="Seconds per clip in edit ranking (0 or negative = 100%% full uncut)")
     p.add_argument("--urls", nargs="*", default=None, help="Optional IG/FB/TikTok/YT URLs to include")
     p.add_argument("--hook-url", default="", help="Optional Instagram Reel / edit URL to prepend as 3.2s retention hook")
     p.add_argument("--cookies-from-browser", default="", help="Browser for optional IG/FB public session cookies (e.g. chrome)")

@@ -61,7 +61,7 @@ class AIVerifier:
 
     def extract_temporal_checkpoints(
         self,
-        video_path: Path,
+        video_path: Path | str,
         duration: float,
         ratios: tuple = (0.15, 0.45, 0.75, 0.95),
     ) -> List[Path]:
@@ -69,6 +69,7 @@ class AIVerifier:
         Samples forensic checkpoint frames across the video timeline.
         15% (Hook/Opening), 45% (Mid-action), 75% (Climax), 95% (Outro/Endcard).
         """
+        video_path = Path(video_path)
         temp_dir = video_path.parent / "_ai_verification_cache"
         temp_dir.mkdir(parents=True, exist_ok=True)
         frame_paths = []
@@ -282,3 +283,18 @@ You MUST respond with pure JSON only matching this schema (no markdown formattin
 
 # Singleton instance for pipeline integration
 ai_verifier = AIVerifier()
+
+
+def verify_clip_with_gemini(video_path: Path, required_topic: str, duration: float = 30.0) -> tuple[bool, str]:
+    """
+    Standard entrypoint helper for clip harvesting and QA pipelines.
+    Returns (is_approved, explanation).
+    """
+    res = ai_verifier.verify_clip(
+        video_path=Path(video_path),
+        expected_topic=required_topic,
+        duration=duration,
+    )
+    if not res.approved:
+        return False, f"Flags={res.rejection_flags} | {res.reasoning}"
+    return True, res.reasoning

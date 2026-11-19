@@ -54,6 +54,9 @@ STOP_WORDS = {
     "heavily", "involved", "because", "he", "she", "they", "them", "his", "her", "their", "my", "your",
     "really", "very", "much", "such", "some", "any", "every", "all", "each", "both", "either", "neither",
     "comedy", "hour", "blooper", "bloopers", "years", "ago", "today", "ever", "made", "premiered", "network",
+    "ignore", "it", "ignored", "ignoring", "dont", "do", "not", "cannot", "cant", "wont", "short", "film",
+    "shooting", "shoot", "behind", "the", "scenes", "bts", "parrots", "parrot", "paddy", "eating",
+    "viralvideo", "shortsfeed", "feed", "explore", "reelsvideo", "foryou", "fypage", "omg", "wow",
 }
 
 
