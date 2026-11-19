@@ -97,6 +97,57 @@ def has_youtube_cid_claim(video_id: str) -> tuple[bool, str]:
     return False, "clean"
 
 
+RAW_EPISODE_MARKERS = (
+    re.compile(r"\b\d{1,2}x\d{1,2}\b", re.I),           # e.g. 07x01, 1x05
+    re.compile(r"\bs(?:eason)?\s*\d{1,2}\b", re.I),     # e.g. season 7, s07
+    re.compile(r"\be(?:pisode)?\s*\d{1,2}\b", re.I),    # e.g. episode 1, ep 02, ep6
+    re.compile(r"\bpart\s*\d{1,2}\b", re.I),            # e.g. part 05
+)
+
+RAW_SCENE_DISQUALIFIERS = (
+    "full scene", "deleted scene", "clip from", "scene from", "slapping scene",
+    "funny scene", "death scene", "ending scene", "opening scene", "promo",
+    "teaser trailer", "official promo", "behind the scenes", "bloopers",
+    "interview", "once said", "compilation of", "compilation |", "tv series clip",
+    "scene pack", "scenepack", "raw clip", "dialogue scene", "clip compilation",
+    "quotes", "thought jane is", "trying to seduce",
+)
+
+EDIT_MANDATORY_TERMS = (
+    "edit", "edits", "editing", "velocity", "cc", "amv", "fmv", "montage",
+    "alight motion", "after effects", "capcut", "phonk", "badass edit",
+    "cold edit", "status", "4k edit", "hd edit", "slowed", "reverb",
+    "bass boosted", "attitude edit", "sigma edit",
+)
+
+
+def is_genuine_fan_edit(meta: dict) -> tuple[bool, str]:
+    """Automated strict rule gate: ensures only real creator edits pass (from YouTube, TikTok, Instagram)
+    and strictly rejects raw show scenes, TV cutdowns, and quote compilations."""
+    title = (meta.get("title") or "").lower()
+    desc = (meta.get("description") or "").lower()
+    tags = " ".join(meta.get("tags") or []).lower()
+    hay = f"{title} {desc} {tags}"
+
+    # 1. Reject explicit scene / raw show disqualifiers
+    for dis in RAW_SCENE_DISQUALIFIERS:
+        if dis in title:
+            return False, f"Disqualified raw scene term: '{dis}'"
+
+    # 2. Reject raw TV season/episode markers unless explicit edit indicator is in title
+    has_edit_in_title = any(re.search(rf"\b{term}\b", title) for term in ("edit", "edits", "velocity", "amv", "fmv", "montage", "status", "cc"))
+    for pat in RAW_EPISODE_MARKERS:
+        if pat.search(title) and not has_edit_in_title:
+            return False, "Disqualified: raw episode marker without edit tag"
+
+    # 3. Mandatory edit signature: title or tags MUST have an edit term
+    has_signature = has_edit_in_title or any(re.search(rf"\b{term}\b", hay) for term in EDIT_MANDATORY_TERMS)
+    if not has_signature:
+        return False, "Disqualified: missing mandatory edit signature (not a fan edit)"
+
+    return True, "ok"
+
+
 def passes_copyright_prefilter(meta: dict, min_duration: int = 4, check_html: bool = False) -> tuple[bool, str]:
     """Rejects claimed music tracks, active YouTube CID cards, studio music channels, and fake AI trailers."""
     title = (meta.get("title") or "").lower()
@@ -154,6 +205,9 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
                 continue
             ok, _ = passes_copyright_prefilter(d, min_duration=min_duration, check_html=True)
             if not ok:
+                continue
+            is_edit, why_edit = is_genuine_fan_edit(d)
+            if not is_edit:
                 continue
             candidates.append({
                 "id": f"yt_{vid}",
@@ -394,6 +448,10 @@ def harvest_video_pack(
         if len(picked) >= target_count:
             break
         if c["id"] in seen_ids or not _matches_topic(c, required_topic):
+            continue
+        is_edit, why_edit = is_genuine_fan_edit(c)
+        if not is_edit:
+            print(f"[Harvester] Rule Rejected non-edit ({c['id']}): {why_edit}")
             continue
         path = download_clip(c, browser_cookies=browser_cookies)
         if path:
