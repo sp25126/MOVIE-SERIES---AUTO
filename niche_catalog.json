@@ -1,7 +1,6 @@
 {
-  "last_3day_sync_utc": "2026-11-19T10:58:39Z",
+  "last_3day_sync_utc": "2026-11-19T11:09:29Z",
   "recent_topics": [
-    "Spider-Verse",
     "Chandler Bing",
     "Queen of Tears",
     "Aragorn Black Gate",
@@ -12,32 +11,33 @@
     "Sherlock Holmes",
     "House of the Dragon",
     "Award Winning",
-    "Robert Pattinson"
+    "Robert Pattinson",
+    "My Demon Ep 6"
   ],
   "recent_genres": [
-    "action_thriller",
     "romance_teen_drama",
     "sports_underdog",
     "drama_prestige",
     "horror_mystery",
     "fantasy_mythology",
     "horror_mystery",
-    "superhero_scifi"
+    "superhero_scifi",
+    "drama_prestige"
   ],
   "live_genre_leaderboard": [
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 808.2,
+      "total_score": 790.0,
       "top_topic": "Prince William",
-      "count": 51
+      "count": 47
     },
     {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 478.0,
-      "top_topic": "Yaga",
-      "count": 22
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 263.1,
+      "top_topic": "Ramayana",
+      "count": 13
     },
     {
       "genre": "world_indian_cinema",
@@ -47,32 +47,32 @@
       "count": 15
     },
     {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 237.2,
-      "top_topic": "Ranbir Kapoor",
-      "count": 13
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 202.1,
+      "top_topic": "David Lynch",
+      "count": 15
     },
     {
       "genre": "animated_cinema",
       "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 157.7,
+      "total_score": 175.7,
       "top_topic": "Korben Dallas",
       "count": 5
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 95.0,
+      "total_score": 105.4,
       "top_topic": "TheFlatLannister",
-      "count": 5
+      "count": 7
     },
     {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 86.8,
-      "top_topic": "Scam Se Bacho",
-      "count": 13
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 89.0,
+      "top_topic": "Steps",
+      "count": 5
     },
     {
       "genre": "superhero_scifi",
@@ -80,6 +80,13 @@
       "total_score": 80.4,
       "top_topic": "MAN OF TOMORROW",
       "count": 4
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 5.2,
+      "top_topic": "Porch Light Bring",
+      "count": 1
     },
     {
       "genre": "crime_mafia",
@@ -101,27 +108,9 @@
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
     }
   ],
   "live_3day_top_topics": [
-    {
-      "topic": "Ranbir Kapoor",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
-      "score": 45.6,
-      "sources": [
-        "NDTV",
-        "The Times of India"
-      ]
-    },
     {
       "topic": "Ramayana",
       "genre": "fantasy_mythology",
@@ -199,14 +188,13 @@
       ]
     },
     {
-      "topic": "Wicker",
+      "topic": "PTVNews Tonight",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 33.0,
+      "score": 35.6,
       "sources": [
-        "InsideHook",
-        "The Hollywood Reporter"
+        "Facebook"
       ]
     },
     {
@@ -221,33 +209,14 @@
       ]
     },
     {
-      "topic": "Yaga",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "format": "release_hype",
-      "score": 28.94,
+      "topic": "David Lynch",
+      "genre": "drama_prestige",
+      "subcategory": "prestige_finale_recap",
+      "format": "scene_commentary",
+      "score": 27.83,
       "sources": [
-        "Reddit-7d(r/television)"
-      ]
-    },
-    {
-      "topic": "Creator Wanted To",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "format": "release_hype",
-      "score": 28.94,
-      "sources": [
-        "Reddit-7d(r/television)"
-      ]
-    },
-    {
-      "topic": "Sexualize Men",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "format": "release_hype",
-      "score": 28.94,
-      "sources": [
-        "Reddit-7d(r/television)"
+        "Reddit-30d(r/TrueFilm)",
+        "Reddit-7d(r/TrueFilm)"
       ]
     },
     {
@@ -267,6 +236,39 @@
       "subcategory": "indian_cinema_mass_edits",
       "format": "edit_ranking",
       "score": 27.15,
+      "sources": [
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)"
+      ]
+    },
+    {
+      "topic": "Com Drama",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 27.15,
+      "sources": [
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)"
+      ]
+    },
+    {
+      "topic": "Family Matters 2",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 26.05,
+      "sources": [
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)"
+      ]
+    },
+    {
+      "topic": "Coupang Play",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 26.05,
       "sources": [
         "Reddit-30d(r/KDRAMA)",
         "Reddit-7d(r/KDRAMA)"
