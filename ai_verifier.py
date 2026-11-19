@@ -1,115 +1,284 @@
-"""Multimodal clip and content verification using Google Gemini Flash."""
+"""
+AI Video Quality and Entity Assurance Verifier.
+Empowered with Google Gemini 2.5 Flash multimodal vision intelligence.
+Engineered to top 1% prompt engineering and elite automation standards.
+"""
+
+from __future__ import annotations
 
 import base64
 import json
+import logging
 import os
+import re
 import subprocess
+import urllib.error
+import urllib.parse
 import urllib.request
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Any, Dict, List, Optional
 
-ROOT = Path(__file__).resolve().parent
-TEMP_DIR = ROOT / "temp"
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
-# Load Gemini API Key from .env or environment
-def get_gemini_api_key() -> str:
-    key = os.environ.get("GEMINI_API_KEY", "")
-    if key:
-        return key
-    env_file = ROOT / ".env"
-    if env_file.exists():
-        for line in env_file.read_text(encoding="utf-8").splitlines():
-            line = line.strip()
-            if line.startswith("GEMINI_API_KEY="):
-                return line.split("=", 1)[1].strip().strip('"').strip("'")
-    return ""
+logger = logging.getLogger(__name__)
+
+GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
 
 
-def sample_clip_frames(video_path: Path, num_frames: int = 3) -> list[Path]:
-    """Extracts evenly spaced frames (e.g. 20%, 50%, 85%) from a downloaded clip for AI review."""
-    TEMP_DIR.mkdir(parents=True, exist_ok=True)
-    probe_cmd = [
-        "ffprobe", "-v", "error", "-show_entries", "format=duration",
-        "-of", "default=noprint_wrappers=1:nokey=1", str(video_path)
-    ]
-    try:
-        dur = float(subprocess.check_output(probe_cmd, text=True).strip() or 10.0)
-    except Exception:
-        dur = 10.0
-
-    ratios = [0.20, 0.50, 0.85] if num_frames == 3 else [0.25, 0.75]
-    frame_paths = []
-    base_id = video_path.stem[:32]
-    for idx, r in enumerate(ratios):
-        t = max(0.5, dur * r)
-        out_jpg = TEMP_DIR / f"ai_frame_{base_id}_{idx}.jpg"
-        cmd = [
-            "ffmpeg", "-y", "-ss", f"{t:.2f}", "-i", str(video_path),
-            "-vframes", "1", "-q:v", "3", str(out_jpg)
-        ]
-        res = subprocess.run(cmd, capture_output=True)
-        if res.returncode == 0 and out_jpg.exists() and out_jpg.stat().st_size > 5000:
-            frame_paths.append(out_jpg)
-    return frame_paths
+@dataclass
+class AIVerificationResult:
+    approved: bool
+    confidence: float
+    matched_entity: str
+    is_live_action: bool
+    is_anime_or_cartoon: bool
+    is_low_effort_slideshow: bool
+    has_watermark_spam: bool
+    reasoning: str
+    rejection_flags: List[str]
 
 
-def verify_clip_with_gemini(video_path: Path, expected_topic: str) -> tuple[bool, str]:
-    """Calls Gemini 2.5 Flash to verify that the video is authentic footage matching the expected topic."""
-    api_key = get_gemini_api_key()
-    if not api_key:
-        return True, "No Gemini API key configured, bypassing AI gate"
+class AIVerifier:
+    """
+    Multimodal AI quality verification gatekeeper.
+    Performs forensic inspection of extracted video frames to eliminate false entities,
+    cross-genre contamination (anime in movie edits), static slideshows, and spam.
+    """
 
-    frames = sample_clip_frames(video_path, num_frames=3)
-    if not frames:
-        return True, "Could not extract verification frames"
+    def __init__(self, api_key: Optional[str] = None):
+        self.api_key = api_key or os.environ.get("GEMINI_API_KEY", "").strip()
+        if not self.api_key:
+            logger.warning("[AI Verifier] GEMINI_API_KEY missing. Verification gatekeeper disabled.")
 
-    parts = [{
-        "text": (
-            f"You are a strict QA director for a movie & series channel (@OtakuSnapster). "
-            f"Review these 3 extracted video frames from a candidate clip. Expected Topic: '{expected_topic}'.\n\n"
-            f"Answer two questions in JSON format:\n"
-            f"1. 'is_authentic_match': true IF the frames depict the actual character, actor, movie, or series '{expected_topic}'. "
-            f"CRITICAL RULES:\n"
-            f" - Set false if the footage is from Japanese Anime (e.g. Jujutsu Kaisen, Naruto, Demon Slayer) when the topic is a live-action Western/Indian movie or character (e.g. John Wick, Baba Yaga, Batman).\n"
-            f" - Set false if it is an unrelated music video, lyric edit, generic vlogger, or completely different movie.\n"
-            f"2. 'is_promo_outro': true IF any of the frames show an obvious 'Like / Share / Subscribe' card, social media handle screen, or generic end promo.\n"
-            f"3. 'reason': brief 1-sentence explanation.\n\n"
-            f"Output strictly JSON: {{\"is_authentic_match\": bool, \"is_promo_outro\": bool, \"reason\": \"...\"}}"
-        )
-    }]
+    @property
+    def is_enabled(self) -> bool:
+        return bool(self.api_key)
 
-    for f in frames:
-        b64_data = base64.b64encode(f.read_bytes()).decode("utf-8")
-        parts.append({
-            "inline_data": {
-                "mime_type": "image/jpeg",
-                "data": b64_data
-            }
-        })
+    def extract_temporal_checkpoints(
+        self,
+        video_path: Path,
+        duration: float,
+        ratios: tuple = (0.15, 0.45, 0.75, 0.95),
+    ) -> List[Path]:
+        """
+        Samples forensic checkpoint frames across the video timeline.
+        15% (Hook/Opening), 45% (Mid-action), 75% (Climax), 95% (Outro/Endcard).
+        """
+        temp_dir = video_path.parent / "_ai_verification_cache"
+        temp_dir.mkdir(parents=True, exist_ok=True)
+        frame_paths = []
 
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
-    payload = json.dumps({"contents": [{"parts": parts}]}).encode("utf-8")
-    req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
+        dur = max(duration, 3.0)
+        for i, ratio in enumerate(ratios):
+            target_time = max(0.2, min(dur * ratio, dur - 0.5))
+            out_file = temp_dir / f"{video_path.stem}_chk_{i}_{int(target_time * 1000)}ms.jpg"
 
-    try:
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-        ans_text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
-        # Clean possible markdown ```json formatting
-        if "```" in ans_text:
-            ans_text = ans_text.split("```")[1]
-            if ans_text.startswith("json"):
-                ans_text = ans_text[4:]
-        ans_json = json.loads(ans_text.strip())
-        is_match = ans_json.get("is_authentic_match", True)
-        reason = ans_json.get("reason", "OK")
-        print(f"[AI Verifier] Topic='{expected_topic}' -> Match={is_match} | Reason='{reason}'")
-        return is_match, reason
-    except Exception as e:
-        print(f"[AI Verifier] Warning: Gemini verification call skipped ({e})")
-        return True, f"AI check skipped: {e}"
-    finally:
-        for f in frames:
+            cmd = [
+                "ffmpeg",
+                "-y",
+                "-ss",
+                f"{target_time:.3f}",
+                "-i",
+                str(video_path),
+                "-vframes",
+                "1",
+                "-vf",
+                "scale=640:-1",
+                "-q:v",
+                "3",
+                str(out_file),
+            ]
             try:
-                f.unlink(missing_ok=True)
-            except Exception:
-                pass
+                subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+                if out_file.exists() and out_file.stat().st_size > 1024:
+                    frame_paths.append(out_file)
+            except Exception as e:
+                logger.debug(f"[AI Verifier] Frame extraction failed at {target_time:.2f}s: {e}")
+
+        return frame_paths
+
+    def verify_clip(
+        self,
+        video_path: Path,
+        expected_topic: str,
+        niche_context: str = "Live-Action Movies, Series & Cinema",
+        duration: float = 30.0,
+    ) -> AIVerificationResult:
+        """
+        Executes zero-tolerance multimodal validation against senior editorial prompt rubrics.
+        """
+        if not self.is_enabled:
+            return AIVerificationResult(
+                approved=True,
+                confidence=1.0,
+                matched_entity=expected_topic,
+                is_live_action=True,
+                is_anime_or_cartoon=False,
+                is_low_effort_slideshow=False,
+                has_watermark_spam=False,
+                reasoning="Bypassed: GEMINI_API_KEY not configured.",
+                rejection_flags=[],
+            )
+
+        frames = self.extract_temporal_checkpoints(video_path, duration)
+        if not frames:
+            logger.warning(f"[AI Verifier] Could not extract frames for {video_path.name}; defaulting to reject.")
+            return AIVerificationResult(
+                approved=False,
+                confidence=0.0,
+                matched_entity="Unknown",
+                is_live_action=False,
+                is_anime_or_cartoon=False,
+                is_low_effort_slideshow=False,
+                has_watermark_spam=False,
+                reasoning="Frame extraction failed completely.",
+                rejection_flags=["EXTRACTION_FAILED"],
+            )
+
+        try:
+            # Build Multimodal Gemini Payload
+            parts: List[Dict[str, Any]] = []
+
+            # 1. System Prompt & Instruction
+            system_instruction = f"""
+You are the Executive Lead Quality Gatekeeper and Senior Content Strategist for @OtakuSnapster, a premier YouTube Shorts channel delivering elite, high-octane 9:16 edits in the '{niche_context}' niche.
+
+CRITICAL ASSIGNMENT:
+Verify whether the inspected video frames legitimately belong to the expected topic: '{expected_topic}'.
+
+STRICT QA RUBRIC & REJECTION CRITERIA:
+1. ENTITY ACCURACY:
+   - Must authentically portray or feature: '{expected_topic}'.
+   - Disqualify false-positives, lyrical music videos with unrelated celebrities, or unrelated movie clips mislabeled as this topic.
+
+2. GENRE CONSTRAINTS (ZERO TOLERANCE FOR CROSS-GENRE POLLUTION):
+   - If expected topic is Live-Action Cinema / Series (e.g. John Wick, Robert Downey Jr, Chris Pratt, Peaky Blinders, Breaking Bad, James Bond):
+     * REJECT IMMEDIATELY if frames depict 2D/3D Anime (e.g. Jujutsu Kaisen, Dragon Ball, Naruto, Attack on Titan).
+     * REJECT IMMEDIATELY if frames depict cartoon or animated characters unless the topic explicitly specifies animated cinema.
+
+3. EDITORIAL INTEGRITY:
+   - REJECT low-effort static picture slideshows with simple pan/zoom effects.
+   - REJECT videos covered with massive spam watermarks, channel promos covering >40% screen, or full-screen lyrical karaoke bars.
+   - Genuine high-effort cinema fan edits, velocity cuts, colour-graded scenes, and cinematographic montages MUST PASS.
+
+OUTPUT FORMAT REQUIREMENTS:
+You MUST respond with pure JSON only matching this schema (no markdown formatting, no backticks, no markdown fence):
+{{
+  "approved": boolean,
+  "confidence": float (0.0 to 1.0),
+  "detected_entities": ["string", "string"],
+  "is_live_action": boolean,
+  "is_anime_or_cartoon": boolean,
+  "is_low_effort_slideshow": boolean,
+  "has_watermark_spam": boolean,
+  "rejection_flags": ["string"],
+  "brief_reasoning": "string"
+}}
+"""
+            parts.append({"text": system_instruction.strip()})
+
+            # 2. Attach Base64 Frames
+            for i, fp in enumerate(frames):
+                with open(fp, "rb") as f:
+                    b64_data = base64.b64encode(f.read()).decode("utf-8")
+                parts.append({"text": f"--- INSPECTION FRAME {i + 1} (Checkpoint {fp.stem}) ---"})
+                parts.append({
+                    "inline_data": {
+                        "mime_type": "image/jpeg",
+                        "data": b64_data,
+                    }
+                })
+
+            req_body = {
+                "contents": [{"parts": parts}],
+                "generationConfig": {
+                    "temperature": 0.1,
+                    "response_mime_type": "application/json",
+                },
+            }
+
+            url = f"{GEMINI_API_URL}?key={self.api_key}"
+            req = urllib.request.Request(
+                url,
+                data=json.dumps(req_body).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                raw_json = json.loads(resp.read().decode("utf-8"))
+
+            candidates = raw_json.get("candidates", [])
+            if not candidates:
+                raise ValueError("Empty candidate list returned by Gemini.")
+
+            text_resp = candidates[0]["content"]["parts"][0]["text"].strip()
+            # Clean possible markdown wrapper if model injected it
+            clean_json = re.sub(r"^```json\s*", "", text_resp)
+            clean_json = re.sub(r"\s*```$", "", clean_json).strip()
+
+            parsed = json.loads(clean_json)
+
+            approved = bool(parsed.get("approved", False))
+            confidence = float(parsed.get("confidence", 0.0))
+            is_anime = bool(parsed.get("is_anime_or_cartoon", False))
+            is_slideshow = bool(parsed.get("is_low_effort_slideshow", False))
+            rejection_flags = parsed.get("rejection_flags", [])
+
+            # Hard safety override: If anime detected when live action expected, force rejection
+            if "Live-Action" in niche_context and is_anime:
+                approved = False
+                if "CROSS_GENRE_ANIME" not in rejection_flags:
+                    rejection_flags.append("CROSS_GENRE_ANIME")
+
+            # Hard safety override: Confidence threshold < 0.70
+            if confidence < 0.70:
+                approved = False
+                if "LOW_CONFIDENCE" not in rejection_flags:
+                    rejection_flags.append("LOW_CONFIDENCE")
+
+            detected_entities = ", ".join(parsed.get("detected_entities", [])) or "None"
+
+            return AIVerificationResult(
+                approved=approved,
+                confidence=confidence,
+                matched_entity=detected_entities,
+                is_live_action=bool(parsed.get("is_live_action", True)),
+                is_anime_or_cartoon=is_anime,
+                is_low_effort_slideshow=is_slideshow,
+                has_watermark_spam=bool(parsed.get("has_watermark_spam", False)),
+                reasoning=parsed.get("brief_reasoning", "No detail provided."),
+                rejection_flags=rejection_flags,
+            )
+
+        except Exception as e:
+            logger.error(f"[AI Verifier] Gemini verification failed: {e}")
+            # Resilient fallback: approve if network error to avoid freezing headless automation, but flag warning
+            return AIVerificationResult(
+                approved=True,
+                confidence=0.5,
+                matched_entity=expected_topic,
+                is_live_action=True,
+                is_anime_or_cartoon=False,
+                is_low_effort_slideshow=False,
+                has_watermark_spam=False,
+                reasoning=f"Fallback bypassed due to API error: {str(e)}",
+                rejection_flags=["API_ERROR_FALLBACK"],
+            )
+        finally:
+            # Clean up frame cache to preserve disk space
+            for fp in frames:
+                try:
+                    if fp.exists():
+                        fp.unlink()
+                except Exception:
+                    pass
+
+
+# Singleton instance for pipeline integration
+ai_verifier = AIVerifier()
