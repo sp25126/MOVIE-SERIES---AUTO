@@ -2,8 +2,9 @@ name: Autonomous 4-Day Rotating Shorts Release
 
 on:
   schedule:
-    # Runs daily at 08:00 UTC (1:30 PM IST), schedules prime-time upload for 14:00 UTC (7:30 PM IST)
-    - cron: '0 8 * * *'
+    # 4 Triggers Daily: 03:00, 09:00, 15:00, 21:00 UTC
+    # Off-peak minute :17 prevents GitHub Actions top-of-hour scheduler queue jitter
+    - cron: '17 3,9,15,21 * * *'
   workflow_dispatch:
     inputs:
       day_override:
@@ -19,35 +20,51 @@ on:
         type: boolean
         default: false
 
+# Prevent concurrent runs from colliding on state files
+concurrency:
+  group: autonomous-shorts-release
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
 jobs:
   produce-and-release:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository with Full Commit Token
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python 3.11 with Pip Caching
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Install FFmpeg & Python dependencies
+      - name: Install System Dependencies (FFmpeg, Audio Codecs & Fonts) with Retry
         run: |
-          sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg fonts-dejavu-core
-          pip install -r requirements.txt
+          for i in {1..3}; do
+            sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg fonts-dejavu-core fonts-freefont-ttf && break || sleep 15
+          done
 
-      - name: Restore YouTube OAuth token
+      - name: Install Python Package Dependencies with Retry
+        run: |
+          for i in {1..3}; do
+            pip install --no-cache-dir -r requirements.txt && break || sleep 10
+          done
+
+      - name: Restore YouTube OAuth Credentials
         run: |
           mkdir -p config
           if [ -n "${{ secrets.YOUTUBE_TOKEN_JSON }}" ]; then
             printf '%s' '${{ secrets.YOUTUBE_TOKEN_JSON }}' > config/youtube_token.json
           fi
 
-      - name: Execute 4-Day Rotating Cadence Orchestrator
+      - name: Run Master 4-Day Rotating Cadence Pipeline
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
@@ -64,7 +81,7 @@ jobs:
           fi
           python -u master_orchestrator.py $ARGS
 
-      - name: Upload QA Artifacts
+      - name: Archive QA Proof Sheets & Output Metadata
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -77,7 +94,7 @@ jobs:
             niche_catalog.json
           if-no-files-found: ignore
 
-      - name: Persist Cadence Wheel & Episode History back to Repository
+      - name: Safe Git State Persistence with Pull-Rebase
         if: always()
         run: |
           git config --global user.name "github-actions[bot]"
@@ -86,6 +103,8 @@ jobs:
           if git diff --staged --quiet; then
             echo "No state modifications to commit."
           else
-            git commit -m "chore(cadence): advance 4-day wheel & persist weekly virality report [skip ci]"
-            git push origin main
+            git commit -m "chore(cadence): advance 4-day wheel, update calendar slots & state [skip ci]"
+            for i in {1..3}; do
+              git pull --rebase origin main && git push origin main && break || sleep 10
+            done
           fi

@@ -71,12 +71,16 @@ def build_metadata(
 
 
 def next_primetime_slot_utc() -> str:
-    """Next 14:00 UTC (7:30 PM IST) prime-time Shorts slot."""
-    now = datetime.datetime.now(datetime.timezone.utc)
-    slot = now.replace(hour=14, minute=0, second=0, microsecond=0)
-    if slot <= now + datetime.timedelta(minutes=30):
-        slot += datetime.timedelta(days=1)
-    return slot.strftime("%Y-%m-%dT%H:%M:%SZ")
+    """Gets the next guaranteed unique 14:00 UTC (7:30 PM IST) prime-time Shorts slot without conflicts."""
+    try:
+        from queue_manager import get_next_available_daily_slot_utc
+        return get_next_available_daily_slot_utc()
+    except Exception:
+        now = datetime.datetime.now(datetime.timezone.utc)
+        slot = now.replace(hour=14, minute=0, second=0, microsecond=0)
+        if slot <= now + datetime.timedelta(minutes=30):
+            slot += datetime.timedelta(days=1)
+        return slot.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def upload_private_canary_and_schedule(
