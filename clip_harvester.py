@@ -353,6 +353,7 @@ def harvest_video_pack(
     extra_urls: list[str] | None = None,
     browser_cookies: str = "",
     required_topic: str = "",
+    niche_context: str = "Live-Action Movies, Series & Cinema",
 ) -> list[dict]:
     """Harvests N distinct copyright-screened clips across YouTube, TikTok, Reddit, and optional IG/FB URLs."""
     picked, seen_ids = [], set()
@@ -394,7 +395,7 @@ def harvest_video_pack(
             if required_topic:
                 try:
                     from ai_verifier import verify_clip_with_gemini
-                    is_valid_topic, why = verify_clip_with_gemini(path, required_topic)
+                    is_valid_topic, why = verify_clip_with_gemini(path, required_topic, niche_context=niche_context)
                     if not is_valid_topic:
                         print(f"[Harvester] AI Rejected clip ({c['id']}): {why}")
                         continue

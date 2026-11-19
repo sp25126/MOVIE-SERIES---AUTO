@@ -285,7 +285,12 @@ You MUST respond with pure JSON only matching this schema (no markdown formattin
 ai_verifier = AIVerifier()
 
 
-def verify_clip_with_gemini(video_path: Path, required_topic: str, duration: float = 30.0) -> tuple[bool, str]:
+def verify_clip_with_gemini(
+    video_path: Path | str,
+    required_topic: str,
+    duration: float = 30.0,
+    niche_context: str = "Live-Action Movies, Series & Cinema",
+) -> tuple[bool, str]:
     """
     Standard entrypoint helper for clip harvesting and QA pipelines.
     Returns (is_approved, explanation).
@@ -293,6 +298,7 @@ def verify_clip_with_gemini(video_path: Path, required_topic: str, duration: flo
     res = ai_verifier.verify_clip(
         video_path=Path(video_path),
         expected_topic=required_topic,
+        niche_context=niche_context,
         duration=duration,
     )
     if not res.approved:

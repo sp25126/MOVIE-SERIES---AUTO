@@ -123,9 +123,16 @@ def run_pipeline(
         print(f"\n[Pipeline] Trying viral target -> Genre='{cand.get('genre')}' | Topic='{c_topic}' | Format='{c_fmt}'")
         max_dur = 95 if c_fmt == "scene_commentary" else 65
         min_dur = 25 if c_fmt == "scene_commentary" else 5
+        c_genre = cand.get("genre") or genre or "action_thriller"
+        niche_ctx = (
+            "Animated Cinema & Feature Animation (Pixar, DreamWorks, Spider-Verse)"
+            if c_genre == "animated_cinema"
+            else "Live-Action Movies, Series & Cinema"
+        )
         clips = harvest_video_pack(
             queries, target_count=need, max_duration=max_dur, min_duration=min_dur,
             extra_urls=extra_urls, browser_cookies=browser_cookies, required_topic=c_topic,
+            niche_context=niche_ctx,
         )
         if clips:
             chosen_target = cand
