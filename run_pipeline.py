@@ -191,7 +191,7 @@ def _clean_rank_label(title: str, topic: str, views: int) -> str:
     return f"{tag} ({_fmt_views(views)})" if views >= 1000 else tag
 
 
-def run_series_episode(series_path: Path, handle: str = "@CinePulse", dry_run: bool = True, browser_cookies: str = "") -> dict | None:
+def run_series_episode(series_path: Path, handle: str = "@OtakuSnapster", dry_run: bool = True, browser_cookies: str = "") -> dict | None:
     """Runs one episode of a bounded recurring series (e.g. 60-day Patrick Jane every 3 days) with 0 clip repeats."""
     cfg = json.loads(series_path.read_text(encoding="utf-8"))
     today_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
@@ -231,7 +231,7 @@ def run_series_episode(series_path: Path, handle: str = "@CinePulse", dry_run: b
         render_edit_ranking(cfg["topic"], clips, out_mp4, handle=handle, clip_dur=clip_dur)
         qa = verify_video(out_mp4, make_proof=True)
         meta = build_metadata(cfg["topic"], "edit_ranking", clips, handle=handle)
-        meta["title"] = f"Ranking Best {cfg['topic']} Edits (Part {ep_num})! 🔥💀 #shorts #thementalist"[:100]
+        meta["title"] = f"Ranking Best {cfg['topic']} Edits (Part {ep_num})! 🔥💀 #shorts #thementalist #naofloppa #shortsfeed"[:100]
         out_mp4.with_suffix(".meta.json").write_text(json.dumps({"episode": ep_num, "qa": qa, "metadata": meta}, indent=2, ensure_ascii=False), encoding="utf-8")
 
         fresh_cfg = json.loads(series_path.read_text(encoding="utf-8"))
