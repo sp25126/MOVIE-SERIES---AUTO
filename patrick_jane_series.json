@@ -9,11 +9,14 @@
   "min_clip_duration": 25,
   "max_clip_duration": 60,
   "full_uncut": true,
-  "completed_episodes": 1,
+  "completed_episodes": 2,
   "used_clip_ids": [
     "yt_JpsbubrMHzE",
     "yt_Oz4ut9rfl0w",
-    "yt_c2_uUnLGohE"
+    "yt_WT3qfnO4bLE",
+    "yt_c2_uUnLGohE",
+    "yt_kWR7XhP-9Og",
+    "yt_tynkGnpf8CA"
   ],
   "query_themes": [
     "Patrick Jane reading people edit shorts",
@@ -37,5 +40,5 @@
     "The Mentalist funniest Patrick Jane edit shorts",
     "Patrick Jane best edits 4k shorts"
   ],
-  "last_run_utc": "2026-11-18T05:00:05Z"
+  "last_run_utc": "2026-11-19T09:22:36Z"
 }

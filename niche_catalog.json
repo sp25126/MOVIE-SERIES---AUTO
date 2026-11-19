@@ -1,213 +1,125 @@
 {
-  "last_3day_sync_utc": "2026-11-19T07:51:58Z",
+  "last_3day_sync_utc": "2026-11-19T09:15:42Z",
   "recent_topics": [
-    "Ramayana",
-    "Spider-Man",
-    "Robert Pattinson",
-    "Robert Downey Jr",
-    "Because He",
-    "Casting Robert Pattinson",
-    "James Bond",
-    "Chris Pratt",
-    "Ranbir Kapoor",
-    "Yaga",
-    "Korben Dallas",
-    "MAN OF TOMORROW"
+    "Joker Interrogation",
+    "Squid Game Season 2",
+    "Spider-Verse",
+    "Chandler Bing",
+    "Queen of Tears",
+    "Aragorn Black Gate",
+    "Interstellar",
+    "Mr Darcy",
+    "Drive to Survive",
+    "Succession Finale",
+    "Sherlock Holmes",
+    "House of the Dragon"
   ],
   "recent_genres": [
+    "world_indian_cinema",
+    "war_historical",
     "action_thriller",
-    "action_thriller",
-    "action_thriller",
-    "action_thriller",
-    "fantasy_mythology",
-    "comedy_sitcom",
-    "animated_cinema",
-    "superhero_scifi"
+    "romance_teen_drama",
+    "sports_underdog",
+    "drama_prestige",
+    "horror_mystery",
+    "fantasy_mythology"
   ],
   "live_genre_leaderboard": [
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 1124.6,
-      "top_topic": "Nana Patekar Action",
-      "count": 61
+      "total_score": 883.8,
+      "top_topic": "Chris Pratt",
+      "count": 50
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 708.6,
-      "top_topic": "Jethalal Funniest Dance",
-      "count": 25
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 428.2,
-      "top_topic": "Mayya Mayya",
+      "total_score": 442.4,
+      "top_topic": "Yaga",
       "count": 20
-    },
-    {
-      "genre": "romance_teen_drama",
-      "label": "Romance, Heartbreak & Teen Series",
-      "total_score": 412.2,
-      "top_topic": "Re Piya",
-      "count": 12
-    },
-    {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 274.7,
-      "top_topic": "Breaking Bad",
-      "count": 8
-    },
-    {
-      "genre": "crime_mafia",
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 229.7,
-      "top_topic": "Mumbai Mafia",
-      "count": 6
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 221.0,
-      "top_topic": "Fame Motivational Song",
-      "count": 7
     },
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 218.3,
-      "top_topic": "Antonia Hodgson",
-      "count": 14
+      "total_score": 311.5,
+      "top_topic": "Ramayana",
+      "count": 16
     },
     {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 208.8,
-      "top_topic": "Ignore It",
-      "count": 7
-    },
-    {
-      "genre": "superhero_scifi",
-      "label": "Superhero & Sci-Fi",
-      "total_score": 180.1,
-      "top_topic": "DARKNESS",
-      "count": 6
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 196.3,
+      "top_topic": "Rom-Com",
+      "count": 12
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 167.5,
+      "total_score": 169.0,
       "top_topic": "David Lynch",
       "count": 14
     },
     {
+      "genre": "superhero_scifi",
+      "label": "Superhero & Sci-Fi",
+      "total_score": 120.3,
+      "top_topic": "Iron Man",
+      "count": 5
+    },
+    {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 100.2,
+      "top_topic": "TheFlatLannister",
+      "count": 6
+    },
+    {
+      "genre": "romance_teen_drama",
+      "label": "Romance, Heartbreak & Teen Series",
+      "total_score": 61.2,
+      "top_topic": "Rush Hour 4",
+      "count": 3
+    },
+    {
+      "genre": "crime_mafia",
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "total_score": 53.4,
+      "top_topic": "Iloilo City",
+      "count": 3
+    },
+    {
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 38.5,
+      "top_topic": "Korben Dallas",
+      "count": 5
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 5.2,
+      "top_topic": "Porch Light Bring",
+      "count": 1
+    },
+    {
       "genre": "war_historical",
       "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 113.4,
-      "top_topic": "Final Battle",
-      "count": 3
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
     }
   ],
   "live_3day_top_topics": [
     {
-      "topic": "Ignore It",
-      "genre": "horror_mystery",
-      "subcategory": "horror_scariest_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
+      "topic": "Ramayana",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "format": "release_hype",
+      "score": 63.4,
       "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Award Winning",
-      "genre": "horror_mystery",
-      "subcategory": "horror_scariest_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Nana Patekar Action",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Never Underestimate Me",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Retta Thala Action",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Jethalal Funniest Dance",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
-      "format": "edit_ranking",
-      "score": 50.77,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Taarak Mehta Ka",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
-      "format": "edit_ranking",
-      "score": 50.77,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Ooltah Chashmah",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
-      "format": "edit_ranking",
-      "score": 50.77,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Arrested Development",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
-      "format": "edit_ranking",
-      "score": 50.68,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
+        "The Times of India",
+        "Variety"
       ]
     },
     {
@@ -222,36 +134,14 @@
       ]
     },
     {
-      "topic": "Tap Water",
-      "genre": "horror_mystery",
-      "subcategory": "horror_scariest_ranking",
-      "format": "edit_ranking",
-      "score": 48.17,
+      "topic": "Ranbir Kapoor",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "format": "release_hype",
+      "score": 45.6,
       "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Like Ft",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
-      "format": "edit_ranking",
-      "score": 48.06,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Aaryan Kelvin",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
-      "format": "edit_ranking",
-      "score": 48.06,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
+        "NDTV",
+        "The Times of India"
       ]
     },
     {
@@ -266,13 +156,118 @@
       ]
     },
     {
-      "topic": "Re Piya",
-      "genre": "romance_teen_drama",
-      "subcategory": "romance_heartbreak_ranking",
+      "topic": "PTVNews Tonight",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 39.0,
+      "score": 35.6,
       "sources": [
-        "YT-Week"
+        "Facebook"
+      ]
+    },
+    {
+      "topic": "Yaga",
+      "genre": "comedy_sitcom",
+      "subcategory": "cast_fandom_memes",
+      "format": "release_hype",
+      "score": 28.94,
+      "sources": [
+        "Reddit-7d(r/television)"
+      ]
+    },
+    {
+      "topic": "Creator Wanted To",
+      "genre": "comedy_sitcom",
+      "subcategory": "cast_fandom_memes",
+      "format": "release_hype",
+      "score": 28.94,
+      "sources": [
+        "Reddit-7d(r/television)"
+      ]
+    },
+    {
+      "topic": "Sexualize Men",
+      "genre": "comedy_sitcom",
+      "subcategory": "cast_fandom_memes",
+      "format": "release_hype",
+      "score": 28.94,
+      "sources": [
+        "Reddit-7d(r/television)"
+      ]
+    },
+    {
+      "topic": "Iron Man",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "format": "release_hype",
+      "score": 28.03,
+      "sources": [
+        "Reddit-7d(r/marvelmemes)"
+      ]
+    },
+    {
+      "topic": "MAN OF TOMORROW",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 27.92,
+      "sources": [
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
+      ]
+    },
+    {
+      "topic": "David Lynch",
+      "genre": "drama_prestige",
+      "subcategory": "prestige_finale_recap",
+      "format": "scene_commentary",
+      "score": 27.83,
+      "sources": [
+        "Reddit-30d(r/TrueFilm)",
+        "Reddit-7d(r/TrueFilm)"
+      ]
+    },
+    {
+      "topic": "Rom-Com",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 27.15,
+      "sources": [
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)"
+      ]
+    },
+    {
+      "topic": "Lee Min Ho",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 27.15,
+      "sources": [
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)"
+      ]
+    },
+    {
+      "topic": "Com Drama",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 27.15,
+      "sources": [
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)"
+      ]
+    },
+    {
+      "topic": "Larry Poindexter",
+      "genre": "comedy_sitcom",
+      "subcategory": "cast_fandom_memes",
+      "format": "release_hype",
+      "score": 26.81,
+      "sources": [
+        "Reddit-7d(r/television)"
       ]
     }
   ],
