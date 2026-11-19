@@ -1,21 +1,21 @@
-name: Autonomous Movies & Series Shorts Release
+name: Autonomous 4-Day Rotating Shorts Release
 
 on:
   schedule:
-    # Runs every 3 days at 08:00 UTC (1:30 PM IST) right after radar sync, schedules for 14:00 UTC (7:30 PM IST)
-    - cron: '0 8 */3 * *'
+    # Runs daily at 08:00 UTC (1:30 PM IST), schedules prime-time upload for 14:00 UTC (7:30 PM IST)
+    - cron: '0 8 * * *'
   workflow_dispatch:
     inputs:
-      format:
-        description: 'Format override (auto, edit_ranking, release_hype, movie_trivia, scene_commentary)'
+      day_override:
+        description: 'Day override (0=auto-advance 4-day wheel, 1=Cinema, 2=TV Series, 3=The Mentalist, 4=Song Edits)'
         required: false
-        default: 'auto'
-      topic:
-        description: 'Optional topic override (leave blank to auto-pick from live 3-day radar)'
-        required: false
-        default: ''
+        default: '0'
       upload:
         description: 'Upload private canary & schedule to YouTube (requires YOUTUBE_TOKEN_JSON secret)'
+        type: boolean
+        default: false
+      force_weekly_digest:
+        description: 'Force weekly virality synthesis scan'
         type: boolean
         default: false
 
@@ -23,7 +23,7 @@ permissions:
   contents: write
 
 jobs:
-  produce-short:
+  produce-and-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,50 +35,57 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Install FFmpeg & Python deps
+      - name: Install FFmpeg & Python dependencies
         run: |
           sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg fonts-dejavu-core
           pip install -r requirements.txt
 
-      - name: Restore optional YouTube OAuth token
+      - name: Restore YouTube OAuth token
         run: |
           mkdir -p config
           if [ -n "${{ secrets.YOUTUBE_TOKEN_JSON }}" ]; then
             printf '%s' '${{ secrets.YOUTUBE_TOKEN_JSON }}' > config/youtube_token.json
           fi
 
-      - name: Run virality-first Shorts pipeline
+      - name: Execute 4-Day Rotating Cadence Orchestrator
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           TAKEDOWN_EMAIL: ${{ secrets.TAKEDOWN_EMAIL }}
         run: |
-          ARGS="--format ${{ inputs.format || 'auto' }}"
-          if [ -n "${{ inputs.topic }}" ]; then
-            ARGS="$ARGS --topic \"${{ inputs.topic }}\""
+          ARGS="--day ${{ inputs.day_override || '0' }}"
+          if [ "${{ inputs.force_weekly_digest }}" = "true" ]; then
+            ARGS="$ARGS --weekly-digest"
           fi
           if [ "${{ inputs.upload }}" = "true" ] && [ -f config/youtube_token.json ]; then
             ARGS="$ARGS --upload"
           else
             ARGS="$ARGS --dry-run"
           fi
-          eval python -u run_pipeline.py $ARGS
+          python -u master_orchestrator.py $ARGS
 
-      - name: Upload QA proof sheet artifact
+      - name: Upload QA Artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: short-qa-output
+          name: daily-cadence-qa-output
           path: |
             output/*_proof.jpg
             output/*.meta.json
+            state/*.json
+            patrick_jane_series.json
             niche_catalog.json
           if-no-files-found: ignore
 
-      - name: Persist dynamic cooldown & genre rotation state
+      - name: Persist Cadence Wheel & Episode History back to Repository
         if: always()
         run: |
           git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add niche_catalog.json
-          git diff --staged --quiet || (git commit -m "chore(release): update dynamic topic/genre cooldown [skip ci]" && git push origin main)
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/ patrick_jane_series.json niche_catalog.json || true
+          if git diff --staged --quiet; then
+            echo "No state modifications to commit."
+          else
+            git commit -m "chore(cadence): advance 4-day wheel & persist weekly virality report [skip ci]"
+            git push origin main
+          fi
