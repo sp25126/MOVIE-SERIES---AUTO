@@ -19,13 +19,24 @@ def build_metadata(
 ) -> dict:
     slug_tag = "#" + "".join(ch for ch in topic.lower() if ch.isalnum())
 
+    # Dynamically inject live weekly trending hashtags (including #naofloppa, #shortsfeed, etc.)
+    try:
+        from hashtag_harvester import harvest_trending_hashtags
+        dynamic_trending_tags = harvest_trending_hashtags()
+    except Exception:
+        dynamic_trending_tags = ["#naofloppa", "#shortsfeed", "#viral", "#edits", "#phonk"]
+
+    # Pick top 4 trending tags to append to title and description
+    title_tags = " ".join(dynamic_trending_tags[:2])
+    cloud_tags = " ".join(dynamic_trending_tags[:8])
+
     titles = {
-        "edit_ranking": f"Ranking Best {topic} Edits! 🔥💀 #shorts {slug_tag}",
+        "edit_ranking": f"Ranking Best {topic} Edits! 🔥💀 #shorts {slug_tag} {title_tags}",
         "release_hype": f"This Week Is NOT Holding Back! ({topic}) 🔥🎬 #shorts {slug_tag}",
-        "movie_trivia": f"Movie Scenes That Cost an INSANE Amount! 🤯🎬 #shorts #movies",
+        "movie_trivia": f"Movie Scenes That Cost an INSANE Amount! 🤯🎬 #shorts #movies {title_tags}",
         "scene_commentary": f"Everyone Missed THIS Detail in {topic}! 💀🎬 #shorts {slug_tag}",
     }
-    title = titles.get(fmt, f"{topic} Viral Moments Ranked! 🔥 #shorts")[:100]
+    title = titles.get(fmt, f"{topic} Viral Moments Ranked! 🔥 #shorts {title_tags}")[:100]
 
     debate_comment = (
         f"👇 Honest take: Did #1 deserve the top spot for {topic}, or who got robbed? Drop your ranking!"
@@ -42,8 +53,9 @@ def build_metadata(
     tags = [
         "shorts", "movies", "series", "tvshows", "cinema", "movienews", "edits", "ranking",
         topic.lower(), "viral", "trending", "hollywood", "bollywood", "mcu", "netflix",
+        "naofloppa", "shortsfeed",
     ]
-    hashtags = f"#shorts #movies #series #cinema {slug_tag} #viral #trending #edits #movienews"
+    hashtags = f"#shorts #movies #series #cinema {slug_tag} {cloud_tags} #movienews"
 
     description = "\n".join([
         f"{title}",
@@ -53,12 +65,16 @@ def build_metadata(
         "Credits & Sources:",
         *(credits_lines or ["• Compiled from public news & cinema press stills."]),
         "",
-        "Fair Use Notice:",
-        "This video is transformative commentary, ranking, and news reporting under Section 107 of the Copyright Act 1976.",
-        f"For credit adjustments or immediate removal, email: {takedown_email}",
+        "Disclaimer & Copyright Notice (Section 107, Fair Use Act):",
+        "This video is a transformative ranking, news reporting, and critical commentary edit.",
+        "All visual clips, background scores, and media belong to their respective copyright owners.",
+        "No copyright infringement intended. Under Section 107 of the Copyright Act 1976, allowance is made for 'fair use' for purposes such as criticism, comment, news reporting, teaching, scholarship, and research.",
+        "",
+        f"For copyright claims, credit adjustments, or immediate takedown requests: {takedown_email}",
         "",
         f"Channel: {handle}",
-        hashtags,
+        "",
+        f"Trending Tags: {hashtags}",
     ])
 
     return {
