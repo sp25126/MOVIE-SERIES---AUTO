@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-19T15:14:52Z",
+  "last_3day_sync_utc": "2026-11-20T05:51:37Z",
   "recent_topics": [
     "Queen of Tears",
     "Aragorn Black Gate",
@@ -28,98 +28,98 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 794.0,
+      "total_score": 849.1,
       "top_topic": "An Unreal Engine",
-      "count": 46
-    },
-    {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 552.7,
-      "top_topic": "Arrested Development",
-      "count": 22
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 458.6,
-      "top_topic": "Yoon Sae Bom",
-      "count": 29
+      "count": 48
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 449.5,
+      "total_score": 512.0,
       "top_topic": "Scam Se Bacho",
-      "count": 26
+      "count": 27
     },
     {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 382.1,
-      "top_topic": "Kung Fu Panda",
-      "count": 12
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 403.9,
+      "top_topic": "Robert Pattinson",
+      "count": 18
     },
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 357.8,
-      "top_topic": "Ramayana",
-      "count": 13
+      "total_score": 296.6,
+      "top_topic": "Ranbir Kapoor",
+      "count": 17
     },
     {
       "genre": "crime_mafia",
       "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 341.8,
+      "total_score": 263.8,
       "top_topic": "Ex-Mob",
-      "count": 8
-    },
-    {
-      "genre": "superhero_scifi",
-      "label": "Superhero & Sci-Fi",
-      "total_score": 170.6,
-      "top_topic": "AT MTC1 BY",
-      "count": 10
+      "count": 6
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 114.2,
-      "top_topic": "TheFlatLannister",
-      "count": 7
+      "total_score": 237.0,
+      "top_topic": "Okay Google",
+      "count": 8
     },
     {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 78.0,
-      "top_topic": "CineStream",
-      "count": 2
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 196.0,
+      "top_topic": "Kung Fu Panda",
+      "count": 10
+    },
+    {
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 187.0,
+      "top_topic": "ClipZone",
+      "count": 5
     },
     {
       "genre": "sports_underdog",
       "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 58.6,
-      "top_topic": "Elle Fanning Share",
-      "count": 4
+      "total_score": 186.7,
+      "top_topic": "Coach Riley Speech",
+      "count": 6
+    },
+    {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 117.0,
+      "top_topic": "Keanu Reeves VS",
+      "count": 3
     },
     {
       "genre": "romance_teen_drama",
       "label": "Romance, Heartbreak & Teen Series",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "total_score": 78.0,
+      "top_topic": "Loving You",
+      "count": 2
+    },
+    {
+      "genre": "superhero_scifi",
+      "label": "Superhero & Sci-Fi",
+      "total_score": 22.6,
+      "top_topic": "Simu Liu",
+      "count": 1
     }
   ],
   "live_3day_top_topics": [
     {
-      "topic": "Ramayana",
+      "topic": "Ranbir Kapoor",
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
-      "score": 76.4,
+      "score": 80.0,
       "sources": [
-        "The Times of India",
-        "Variety"
+        "NDTV",
+        "The Times of India"
       ]
     },
     {
@@ -133,14 +133,35 @@
       ]
     },
     {
-      "topic": "Ranbir Kapoor",
+      "topic": "Robert Pattinson",
+      "genre": "world_indian_cinema",
+      "subcategory": "global_cinema_hype",
+      "format": "release_hype",
+      "score": 66.85,
+      "sources": [
+        "Collider",
+        "Reddit-7d(r/bollywoodmemes)"
+      ]
+    },
+    {
+      "topic": "Ramayana",
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
-      "score": 63.4,
+      "score": 66.4,
       "sources": [
-        "NDTV",
         "The Times of India"
+      ]
+    },
+    {
+      "topic": "Okay Google",
+      "genre": "horror_mystery",
+      "subcategory": "horror_scariest_ranking",
+      "format": "edit_ranking",
+      "score": 51.0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
       ]
     },
     {
@@ -159,7 +180,18 @@
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 50.84,
+      "score": 50.87,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "ClipZone",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "format": "edit_ranking",
+      "score": 50.73,
       "sources": [
         "YT-Month",
         "YT-Week"
@@ -188,6 +220,17 @@
       ]
     },
     {
+      "topic": "Bill Hader",
+      "genre": "horror_mystery",
+      "subcategory": "horror_new_release_hype",
+      "format": "release_hype",
+      "score": 49.13,
+      "sources": [
+        "Reddit-7d(r/horror)",
+        "Variety"
+      ]
+    },
+    {
       "topic": "Scam Se Bacho",
       "genre": "drama_prestige",
       "subcategory": "coldest_drama_edits",
@@ -199,18 +242,7 @@
       ]
     },
     {
-      "topic": "Michael Jackson",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.22,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "CineStream",
+      "topic": "Keanu Reeves VS",
       "genre": "war_historical",
       "subcategory": "war_epic_battle_ranking",
       "format": "edit_ranking",
@@ -220,7 +252,7 @@
       ]
     },
     {
-      "topic": "Tiger Tank",
+      "topic": "Golem Samurai Death",
       "genre": "war_historical",
       "subcategory": "war_epic_battle_ranking",
       "format": "edit_ranking",
@@ -230,37 +262,7 @@
       ]
     },
     {
-      "topic": "Mob Boss Rates",
-      "genre": "crime_mafia",
-      "subcategory": "crime_coldest_boss_ranking",
-      "format": "edit_ranking",
-      "score": 39.0,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Mob Boss Reviews",
-      "genre": "crime_mafia",
-      "subcategory": "crime_coldest_boss_ranking",
-      "format": "edit_ranking",
-      "score": 39.0,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Peaky Blinders Vs",
-      "genre": "crime_mafia",
-      "subcategory": "crime_coldest_boss_ranking",
-      "format": "edit_ranking",
-      "score": 39.0,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Peaky Blinders",
+      "topic": "Mafia Meeting",
       "genre": "crime_mafia",
       "subcategory": "crime_coldest_boss_ranking",
       "format": "edit_ranking",
