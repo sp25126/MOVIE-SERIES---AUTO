@@ -292,14 +292,14 @@ def render_edit_ranking(
         # Two-stage 48kHz +4% pitch/tempo audio shield + 1.04x video speed/crop disrupts both Audio & Video CID
         has_aud = _has_audio_stream(src)
         if has_aud:
+            # Preserve original clip audio 100% without background music clash
             aud_chain = (
-                f"[0:a]aresample=48000,highpass=f=130,asetrate=48000*1.04,atempo=1.0,aresample=48000,"
-                f"aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,volume=0.90[vox];"
-                f"[2:a]volume=0.16,aresample=48000,aformat=channel_layouts=stereo[bed];"
-                f"[vox][bed]amix=inputs=2:duration=first:dropout_transition=0.2,"
+                f"[0:a]aresample=48000,highpass=f=60,asetrate=48000*1.04,atempo=1.0,aresample=48000,"
+                f"aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,"
                 f"atrim=0:{dur/1.04:.3f},asetpts=PTS-STARTPTS,loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000[aout]"
             )
         else:
+            # ONLY use BGM fallback when clip has NO audio stream
             aud_chain = (
                 f"[2:a]atrim=0:{dur/1.04:.3f},asetpts=PTS-STARTPTS,"
                 f"loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000,aformat=channel_layouts=stereo[aout]"
@@ -443,11 +443,10 @@ def render_movie_trivia_or_commentary(
 
         has_aud = _has_audio_stream(src) and not dark_mode
         if has_aud:
+            # Preserve original scene dialogue / audio cleanly without BGM clash
             aud = (
-                f"[0:a]aresample=48000,highpass=f=110,asetrate=48000*1.03,atempo=1/1.03,aresample=48000,"
-                f"aformat=channel_layouts=stereo,volume=0.90[vox];"
-                f"[2:a]volume=0.22,aresample=48000,aformat=channel_layouts=stereo[bed];"
-                f"[vox][bed]amix=inputs=2:duration=first,atrim=0:{dur:.3f},asetpts=PTS-STARTPTS,"
+                f"[0:a]aresample=48000,highpass=f=60,asetrate=48000*1.03,atempo=1/1.03,aresample=48000,"
+                f"aformat=channel_layouts=stereo,atrim=0:{dur:.3f},asetpts=PTS-STARTPTS,"
                 f"loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000[aout]"
             )
         else:

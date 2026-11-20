@@ -118,9 +118,3 @@ jobs:
               git pull --rebase origin main && git push origin main && break || sleep 10
             done
           fi
-
-      - name: Keepalive Automated Workflow (Prevent GitHub 60-day cron deactivation)
-        uses: gautamkrishnar/keepalive-workflow@v1
-        if: always()
-        with:
-          use_api: true
