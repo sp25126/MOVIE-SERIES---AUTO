@@ -14,7 +14,7 @@ on:
   # Fallback Tier 4: Git-based manual trigger
   push:
     paths:
-      - 'state/trigger.txt'
+      - 'trigger.txt'
   workflow_dispatch:
     inputs:
       day_override:
