@@ -81,14 +81,14 @@ def build_metadata(
 
 
 def next_primetime_slot_utc() -> str:
-    """Gets the next guaranteed unique high-traffic YouTube Shorts publishing slot without conflicts."""
+    """Gets the next guaranteed unique 7:30 PM IST (14:00 UTC) prime-time Shorts slot (1 video per day)."""
     try:
         from queue_manager import get_next_available_slot_utc
         slot_iso, _ = get_next_available_slot_utc(min_lead_time_minutes=45)
         return slot_iso
     except Exception:
         now = datetime.datetime.now(datetime.timezone.utc)
-        slot = now.replace(hour=14, minute=30, second=0, microsecond=0)
+        slot = now.replace(hour=14, minute=0, second=0, microsecond=0)
         if slot <= now + datetime.timedelta(minutes=30):
             slot += datetime.timedelta(days=1)
         return slot.strftime("%Y-%m-%dT%H:%M:%SZ")

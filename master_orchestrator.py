@@ -357,7 +357,7 @@ def execute_batch_cadence(
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description="Master Autonomous Virality-First Shorts Cadence Engine")
-    p.add_argument("--batch-count", type=int, default=4, help="Number of videos to produce in this run (default: 4; 2 runs daily = 8 videos)")
+    p.add_argument("--batch-count", type=int, default=1, help="Number of videos to produce in this run (each scheduled 1 per day in 4-group rotating format)")
     p.add_argument("--day", type=int, default=0, choices=[0, 1, 2, 3, 4], help="0=auto-advance 4-day wheel, 1-4=day override")
     p.add_argument("--upload", action="store_true", help="Upload and schedule canary release")
     p.add_argument("--dry-run", action="store_true", help="Dry run test without publishing (default)")

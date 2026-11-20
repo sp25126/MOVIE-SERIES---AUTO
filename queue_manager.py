@@ -1,12 +1,15 @@
 """
-Production-Grade Publishing Queue & Scheduling Conflict Engine.
-Manages multi-video daily batches (up to 8 videos/day).
-Maintains a FIFO / Calendar release queue in state/upload_queue.json.
-Calculates unique, non-overlapping future high-traffic slots:
-- Slot 1: 10:00 AM IST (04:30 UTC) - Morning Commute
-- Slot 2:  1:30 PM IST (08:00 UTC) - Lunch Surge
-- Slot 3:  5:30 PM IST (12:00 UTC) - Evening Rush
-- Slot 4:  8:00 PM IST (14:30 UTC) - Night Prime Climax
+Production-Grade Publishing Queue & Scheduling Engine.
+Enforces YouTube Shorts Scheduling Rules:
+1. STRICTLY 1 VIDEO PER DAY.
+2. Scheduled at Daily Prime-Time: 7:30 PM IST (14:00 UTC).
+3. Strictly adheres to our 4-Group Rotating Format:
+   - Day 1: Cinema Group (12 Genres, dynamic virality score)
+   - Day 2: TV & Web Series Group (100% dynamic series discovery)
+   - Day 3: The Mentalist Flagship Pillar (STRICTLY LOCKED FOREVER)
+   - Day 4: Song Trend Edits (Zero Voiceover, 3 rotating subcategories)
+4. Maintains a FIFO / Calendar release queue in state/upload_queue.json.
+5. Prevents double-booking any calendar date.
 """
 
 from __future__ import annotations
@@ -24,13 +27,10 @@ STATE_DIR = ROOT / "state"
 STATE_DIR.mkdir(parents=True, exist_ok=True)
 QUEUE_FILE = STATE_DIR / "upload_queue.json"
 
-# 4 Strategic High-Traffic Shorts Publishing Slots (IST and UTC)
-DAILY_PUBLISHING_SLOTS = [
-    {"hour": 4,  "minute": 30, "label_ist": "10:00 AM IST"},  # Slot 1: Morning Commute
-    {"hour": 8,  "minute": 0,  "label_ist": "1:30 PM IST"},   # Slot 2: Lunch Break Peak
-    {"hour": 12, "minute": 0,  "label_ist": "5:30 PM IST"},   # Slot 3: Evening Prime Peak
-    {"hour": 14, "minute": 30, "label_ist": "8:00 PM IST"},   # Slot 4: Night Climax
-]
+# Strict Single Daily Prime-Time Window (7:30 PM IST / 14:00 UTC)
+DAILY_SLOT_HOUR_UTC = 14
+DAILY_SLOT_MINUTE_UTC = 0
+DAILY_SLOT_LABEL_IST = "7:30 PM IST"
 
 
 def load_upload_queue() -> dict:
@@ -50,45 +50,46 @@ def save_upload_queue(queue_data: dict):
     QUEUE_FILE.write_text(json.dumps(queue_data, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
-def get_next_available_slot_utc(min_lead_time_minutes: int = 45) -> Tuple[str, str]:
+def get_next_available_slot_utc(min_lead_time_minutes: int = 45, persist: bool = True, extra_reserved_dates: set[str] | None = None) -> Tuple[str, str]:
     """
-    Finds the next unreserved high-traffic YouTube Shorts publishing slot.
-    Rotates through the 4 peak daily slots (10:00 AM, 1:30 PM, 5:30 PM, 8:00 PM IST).
+    Finds the next unreserved YouTube Shorts publishing slot, STRICTLY 1 PER CALENDAR DAY.
     Guarantees:
-    1. NEVER double-books an identical slot.
-    2. Only selects slots at least `min_lead_time_minutes` in the future.
-    3. Smoothly advances across days to accommodate 4 to 8 videos daily.
+    1. Exactly 1 video per day scheduled at Prime-Time: 7:30 PM IST (14:00 UTC).
+    2. NEVER schedules multiple videos on the same calendar date.
+    3. If today's 7:30 PM IST slot is already reserved or passed, smoothly advances to tomorrow, day after, etc.
     Returns: (slot_iso_utc, label_ist)
     """
     q_data = load_upload_queue()
-    reserved_slots = set(q_data.get("scheduled_slots", []))
+    # Track which dates (YYYY-MM-DD) already have a scheduled video
+    reserved_dates = {s[:10] for s in q_data.get("scheduled_slots", [])}
+    if extra_reserved_dates:
+        reserved_dates.update(extra_reserved_dates)
 
     now = datetime.datetime.now(datetime.timezone.utc)
     day_cursor = now.date()
 
     while True:
-        for slot in DAILY_PUBLISHING_SLOTS:
-            candidate_dt = datetime.datetime(
-                day_cursor.year, day_cursor.month, day_cursor.day,
-                slot["hour"], slot["minute"], 0, tzinfo=datetime.timezone.utc
-            )
-            # Must be in the future with minimum lead time
-            if candidate_dt <= now + datetime.timedelta(minutes=min_lead_time_minutes):
-                continue
+        candidate_dt = datetime.datetime(
+            day_cursor.year, day_cursor.month, day_cursor.day,
+            DAILY_SLOT_HOUR_UTC, DAILY_SLOT_MINUTE_UTC, 0, tzinfo=datetime.timezone.utc
+        )
+        date_str = day_cursor.strftime("%Y-%m-%d")
 
+        # Must be in the future with minimum lead time AND date must not be already booked
+        if candidate_dt > now + datetime.timedelta(minutes=min_lead_time_minutes) and date_str not in reserved_dates:
             candidate_iso = candidate_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
-            if candidate_iso not in reserved_slots:
-                # Found available slot!
-                reserved_slots.add(candidate_iso)
-                q_data["scheduled_slots"] = sorted(list(reserved_slots))
-                # Clean up old past dates (older than 2 days)
-                q_data["scheduled_slots"] = [
-                    s for s in q_data["scheduled_slots"]
+            reserved_dates.add(date_str)
+            if persist:
+                all_slots = set(q_data.get("scheduled_slots", []))
+                all_slots.add(candidate_iso)
+                # Retain only future slots or slots from last 2 days
+                q_data["scheduled_slots"] = sorted([
+                    s for s in all_slots
                     if datetime.datetime.strptime(s, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=datetime.timezone.utc) >= now - datetime.timedelta(days=2)
-                ]
+                ])
                 save_upload_queue(q_data)
-                ist_label = f"{day_cursor.strftime('%b %d')} @ {slot['label_ist']}"
-                return candidate_iso, ist_label
+            ist_label = f"{day_cursor.strftime('%b %d')} @ {DAILY_SLOT_LABEL_IST}"
+            return candidate_iso, ist_label
 
         day_cursor += datetime.timedelta(days=1)
 
@@ -102,7 +103,7 @@ def get_next_available_daily_slot_utc(reserve_buffer_hours: int = 4) -> str:
 def register_video_in_queue(video_path: Path, meta: dict, day_type: str) -> dict:
     """
     Registers a rendered video in the upload calendar queue,
-    assigning it a guaranteed distinct prime-time slot.
+    assigning it the next available daily prime-time slot (1 video per day).
     """
     assigned_slot, ist_label = get_next_available_slot_utc()
     meta["publish_at_utc"] = assigned_slot
@@ -126,7 +127,11 @@ def register_video_in_queue(video_path: Path, meta: dict, day_type: str) -> dict
 
 
 if __name__ == "__main__":
-    print("Testing 8 Consecutive Slot Allocations across Peak Viewing Windows:")
+    print("Testing 1-Video-Per-Day Sequential Scheduling across the 4-Day Format:")
+    cadence = ["Day 3: The Mentalist Pillar", "Day 4: Song Trend Edits", "Day 1: Cinema Group", "Day 2: TV Series Group"]
+    simulated = set()
     for i in range(1, 9):
-        iso_slot, ist_str = get_next_available_slot_utc(min_lead_time_minutes=30)
-        print(f"  Video #{i:02d} -> Slot: {iso_slot} ({ist_str})")
+        pillar = cadence[(i - 1) % len(cadence)]
+        iso_slot, ist_str = get_next_available_slot_utc(min_lead_time_minutes=30, persist=False, extra_reserved_dates=simulated)
+        simulated.add(iso_slot[:10])
+        print(f"  Video #{i:02d} [{pillar}] -> Scheduled: {iso_slot} ({ist_str})")
