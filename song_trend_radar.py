@@ -170,8 +170,18 @@ def scout_song_subcategories(subcategory_type: str, song_or_franchise: str = "St
         }
 
 
-def scan_dynamic_song_virality() -> dict:
+def scan_dynamic_song_virality(max_cache_age_sec: int = 10800) -> dict:
     """Finds top viral song and prepares targets for all 3 subcategories."""
+    if SONG_RADAR_REPORT_PATH.exists() and max_cache_age_sec > 0:
+        try:
+            age = time.time() - SONG_RADAR_REPORT_PATH.stat().st_mtime
+            if age < max_cache_age_sec:
+                data = json.loads(SONG_RADAR_REPORT_PATH.read_text(encoding="utf-8"))
+                if data.get("winner"):
+                    return data
+        except Exception:
+            pass
+
     song_candidates = extract_trending_song_names_from_social_buzz()
     ranked_trends = []
 

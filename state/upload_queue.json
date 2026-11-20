@@ -1,0 +1,40 @@
+{
+  "scheduled_slots": [
+    "2026-11-19T14:00:00Z",
+    "2026-11-20T08:00:00Z",
+    "2026-11-20T14:00:00Z",
+    "2026-11-21T14:00:00Z",
+    "2026-11-22T14:00:00Z"
+  ],
+  "queue": [
+    {
+      "video_id": "ZOsI4wnLqRA",
+      "scheduled": true,
+      "publish_at": "2026-11-19T14:00:00Z",
+      "pillar": "Day 3: The Mentalist Pillar (Ep 3)",
+      "slot_label": "Nov 19 7:30 PM IST"
+    },
+    {
+      "video_id": "4sg3SQoGXjg",
+      "scheduled": true,
+      "publish_at": "2026-11-20T14:00:00Z",
+      "pillar": "Day 4: Song Trend Edits (Paparazzi)",
+      "slot_label": "Nov 20 7:30 PM IST"
+    },
+    {
+      "video_id": "vaVpMDaE01g",
+      "scheduled": true,
+      "publish_at": "2026-11-21T14:00:00Z",
+      "pillar": "Day 1: Cinema Group (Ramayana)",
+      "slot_label": "Nov 21 7:30 PM IST"
+    },
+    {
+      "video_id": "kaw_boVITyw",
+      "scheduled": true,
+      "publish_at": "2026-11-22T14:00:00Z",
+      "pillar": "Day 2: TV Series Group (My Demon)",
+      "slot_label": "Nov 22 7:30 PM IST"
+    }
+  ],
+  "last_upload_date_utc": "2026-11-19T14:00:00Z"
+}

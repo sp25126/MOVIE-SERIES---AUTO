@@ -1,22 +1,25 @@
-name: Autonomous 4-Day Rotating Shorts Release
+name: Autonomous Virality-First Shorts Release Engine
 
 on:
   schedule:
-    # Tier 1: High-reliability 3-hour staggered checkpoints (8 daily off-peak runs)
-    # Minute :23 avoids GitHub Actions top-of-hour scheduling congestion
-    - cron: '23 */3 * * *'
-    # Tier 2: Dedicated Prime-Time Safety Sweep (12:43 UTC = 6:13 PM IST)
-    # Guarantees today's 7:30 PM slot is covered even if all earlier runs were delayed
-    - cron: '43 12 * * *'
-  # Fallback Tier 3: External Webhooks & API pings (e.g. cron-job.org, Uptimerobot, curl)
+    # Runs twice a day off-peak:
+    # 04:20 UTC = 9:50 AM IST (Morning Peak Production)
+    # 12:20 UTC = 5:50 PM IST (Evening Peak Production)
+    # 2 runs daily x 4 videos = 8 scheduled videos per day
+    - cron: '20 4,12 * * *'
+  # Fallback: External Webhooks & API pings (e.g. cron-job.org, Uptimerobot, curl)
   repository_dispatch:
     types: [trigger_shorts_pipeline, external_ping, webhook_release]
-  # Fallback Tier 4: Git-based manual trigger
+  # Fallback: Git-based manual trigger
   push:
     paths:
       - 'trigger.txt'
   workflow_dispatch:
     inputs:
+      batch_count:
+        description: 'Number of videos to produce (default: 4; 2 runs daily = 8 videos)'
+        required: false
+        default: '4'
       day_override:
         description: 'Day override (0=auto-advance 4-day wheel, 1=Cinema, 2=TV Series, 3=The Mentalist, 4=Song Edits)'
         required: false
@@ -41,7 +44,7 @@ permissions:
 jobs:
   produce-and-release:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - name: Checkout Repository with Full Commit Token
         uses: actions/checkout@v4
@@ -74,13 +77,13 @@ jobs:
             printf '%s' '${{ secrets.YOUTUBE_TOKEN_JSON }}' > config/youtube_token.json
           fi
 
-      - name: Run Master 4-Day Rotating Cadence Pipeline
+      - name: Run Master Virality-First Autonomous Cadence Pipeline
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           TAKEDOWN_EMAIL: ${{ secrets.TAKEDOWN_EMAIL }}
         run: |
-          ARGS="--day ${{ inputs.day_override || '0' }}"
+          ARGS="--batch-count ${{ inputs.batch_count || '4' }} --day ${{ inputs.day_override || '0' }}"
           if [ "${{ inputs.force_weekly_digest }}" = "true" ]; then
             ARGS="$ARGS --weekly-digest"
           fi
@@ -113,7 +116,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No state modifications to commit."
           else
-            git commit -m "chore(cadence): advance 4-day wheel, update calendar slots & state [skip ci]"
+            git commit -m "chore(cadence): publish virality batch & update scheduling slots [skip ci]"
             for i in {1..3}; do
               git pull --rebase origin main && git push origin main && break || sleep 10
             done

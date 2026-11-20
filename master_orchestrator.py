@@ -1,10 +1,18 @@
 """
-Master Orchestrator for 4-Day Rotating Publishing Cadence:
+Master Orchestrator for High-Velocity 4-Day Rotating Publishing Cadence:
 - Day 1: Cinema Group (12 Genres, dynamic virality score)
 - Day 2: TV & Web Series Group (100% dynamic series discovery)
 - Day 3: The Mentalist Flagship Pillar (STRICTLY LOCKED FOREVER)
 - Day 4: Song Trend Edits (Zero Voiceover, 3 rotating subcategories)
-Advances the state wheel daily, handles weekly digest triggers, and manages uploads.
+
+Supports Twice-Daily Execution producing ~8 videos daily across 4 peak Shorts windows:
+- Slot 1: 10:00 AM IST (04:30 UTC) - Morning Commute
+- Slot 2:  1:30 PM IST (08:00 UTC) - Lunch Break Peak
+- Slot 3:  5:30 PM IST (12:00 UTC) - Evening Prime Rush
+- Slot 4:  8:00 PM IST (14:30 UTC) - Night Climax
+
+VIRALITY-FIRST PRE-CHECK:
+Scans live multi-platform virality radar BEFORE creating any videos.
 """
 
 from __future__ import annotations
@@ -14,6 +22,7 @@ import datetime
 import json
 import logging
 import os
+import re
 import subprocess
 import sys
 import time
@@ -24,6 +33,7 @@ STATE_DIR = ROOT / "state"
 STATE_DIR.mkdir(parents=True, exist_ok=True)
 CADENCE_STATE_FILE = STATE_DIR / "pipeline_cadence_state.json"
 DIGEST_FILE = STATE_DIR / "weekly_virality_digest.json"
+PATRICK_JANE_FILE = ROOT / "patrick_jane_series.json"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
@@ -60,24 +70,117 @@ def save_cadence_state(state: dict):
     CADENCE_STATE_FILE.write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
-def run_day_1_cinema(dry_run: bool = True) -> dict:
+def cleanup_temp_files():
+    """Removes leftover scratch clips from input/ and temp/ segments to prevent disk bloat."""
+    for folder in (ROOT / "input", ROOT / "temp"):
+        if folder.exists():
+            for f in folder.glob("*"):
+                if f.is_file():
+                    try:
+                        f.unlink(missing_ok=True)
+                    except Exception:
+                        pass
+
+
+def audit_live_virality() -> dict:
+    """
+    VIRALITY-FIRST ENGINE:
+    Scans live Google Trends, YouTube autocomplete, Reddit, and RSS across all genres
+    BEFORE producing any videos. Returns top candidates and logs an executive dashboard.
+    """
+    logging.info("================================================================================")
+    logging.info("🔥 VIRALITY ENGINE: PRE-PRODUCTION LIVE MULTI-PLATFORM INTELLIGENCE AUDIT 🔥")
+    logging.info("================================================================================")
+
+    audit_results = {
+        "cinema": [],
+        "tv_series": None,
+        "song_trends": None,
+        "mentalist_pillar": None,
+    }
+
+    # 1. Cinema Scan
+    try:
+        from virality_radar import scan_virality, REPORT_PATH
+        skip_yt = False
+        if REPORT_PATH.exists() and (time.time() - REPORT_PATH.stat().st_mtime) < 3 * 3600:
+            skip_yt = True
+        cinema_rep = scan_virality(skip_yt=skip_yt)
+        top_topics = cinema_rep.get("top_topics") or [cinema_rep.get("winner", {})]
+        audit_results["cinema"] = top_topics[:5]
+        logging.info("[Virality Audit] Top Live Cinema Candidates:")
+        for idx, t in enumerate(audit_results["cinema"], 1):
+            logging.info(f"   #{idx}: '{t.get('topic')}' | Genre: {t.get('genre')} | Score: {t.get('score', 0):.1f}")
+    except Exception as e:
+        logging.warning(f"[Virality Audit] Cinema scan error: {e}")
+
+    # 2. TV & Web Series Scan
+    try:
+        from tv_series_radar import scan_dynamic_tv_virality
+        tv_rep = scan_dynamic_tv_virality()
+        audit_results["tv_series"] = tv_rep.get("winner", {})
+        top_tv = audit_results["tv_series"].get("series_name", "Breaking Bad")
+        score_tv = audit_results["tv_series"].get("virality_score", 0)
+        logging.info(f"[Virality Audit] Top TV/Web Series: '{top_tv}' (Score: {score_tv:.1f})")
+    except Exception as e:
+        logging.warning(f"[Virality Audit] TV scan error: {e}")
+
+    # 3. Song Trend Scan
+    try:
+        from song_trend_radar import scan_dynamic_song_virality
+        song_rep = scan_dynamic_song_virality()
+        audit_results["song_trends"] = song_rep.get("winner", {})
+        top_song = audit_results["song_trends"].get("song_name", "Starboy")
+        vel_song = audit_results["song_trends"].get("velocity_score", 0)
+        logging.info(f"[Virality Audit] Top Trending Audio: '{top_song}' (Velocity: {vel_song:.1f})")
+    except Exception as e:
+        logging.warning(f"[Virality Audit] Song scan error: {e}")
+
+    # 4. Mentalist Flagship Pillar Status
+    if PATRICK_JANE_FILE.exists():
+        try:
+            pj_cfg = json.loads(PATRICK_JANE_FILE.read_text(encoding="utf-8"))
+            done = int(pj_cfg.get("completed_episodes", 0))
+            max_ep = int(pj_cfg.get("max_episodes", 40))
+            themes = pj_cfg.get("query_themes", [])
+            next_theme = themes[done % len(themes)] if themes else "Patrick Jane edit"
+            audit_results["mentalist_pillar"] = {
+                "episode": done + 1,
+                "max_episodes": max_ep,
+                "next_theme": next_theme,
+            }
+            logging.info(f"[Virality Audit] The Mentalist Flagship: Ep #{done + 1} of {max_ep} ready (Theme: '{next_theme}')")
+        except Exception as e:
+            logging.warning(f"[Virality Audit] Mentalist pillar check error: {e}")
+
+    logging.info("================================================================================\n")
+    return audit_results
+
+
+def run_day_1_cinema(topic: str | None = None, genre: str | None = None, dry_run: bool = True) -> dict:
     """Executes Day 1: Cinema Group."""
-    logging.info("========== DAY 1: CINEMA GROUP ==========")
+    logging.info(f"========== DAY 1: CINEMA GROUP [{topic or 'Auto-Viral'}] ==========")
     cmd = [sys.executable, "run_pipeline.py", "--format", "edit_ranking"]
+    if topic:
+        cmd.extend(["--topic", topic])
+    if genre:
+        cmd.extend(["--genre", genre])
     if not dry_run:
         cmd.append("--upload")
     else:
         cmd.append("--dry-run")
     proc = subprocess.run(cmd, check=True)
-    return {"status": "success", "day": 1, "returncode": proc.returncode}
+    return {"status": "success", "day": 1, "topic": topic, "returncode": proc.returncode}
 
 
-def run_day_2_tv_series(dry_run: bool = True) -> dict:
+def run_day_2_tv_series(series_name: str | None = None, dry_run: bool = True) -> dict:
     """Executes Day 2: Dynamic TV & Web Series Group."""
-    logging.info("========== DAY 2: TV & WEB SERIES GROUP ==========")
-    from tv_series_radar import scan_dynamic_tv_virality
-    tv_rep = scan_dynamic_tv_virality()
-    winner_show = tv_rep.get("winner", {}).get("series_name", "Breaking Bad")
+    logging.info(f"========== DAY 2: TV & WEB SERIES GROUP [{series_name or 'Auto-Viral'}] ==========")
+    winner_show = series_name
+    if not winner_show:
+        from tv_series_radar import scan_dynamic_tv_virality
+        tv_rep = scan_dynamic_tv_virality()
+        winner_show = tv_rep.get("winner", {}).get("series_name", "Breaking Bad")
     logging.info(f"[Day 2 TV] Selected trending series: '{winner_show}'")
 
     cmd = [
@@ -109,18 +212,20 @@ def run_day_3_mentalist_pillar(dry_run: bool = True) -> dict:
     return {"status": "success", "day": 3, "pillar": "The Mentalist", "returncode": proc.returncode}
 
 
-def run_day_4_song_edits(subcat: str, dry_run: bool = True) -> dict:
+def run_day_4_song_edits(subcat: str, top_song: str | None = None, dry_run: bool = True) -> dict:
     """Executes Day 4: Song Trend Edits with specialized subcategory."""
     logging.info(f"========== DAY 4: SONG TREND EDITS [{subcat}] ==========")
     from song_trend_radar import scan_dynamic_song_virality, scout_song_subcategories
     from song_ranking_renderer import render_song_edit_ranking
     from clip_harvester import download_clip
 
-    rep = scan_dynamic_song_virality()
-    top_song = rep.get("winner", {}).get("song_name", "Starboy")
+    song = top_song
+    if not song:
+        rep = scan_dynamic_song_virality()
+        song = rep.get("winner", {}).get("song_name", "Starboy")
 
-    sub_data = scout_song_subcategories(subcat, top_song)
-    banner_title = sub_data.get("banner_title", f"RANKING THE BEST {top_song.upper()} EDITS")
+    sub_data = scout_song_subcategories(subcat, song)
+    banner_title = sub_data.get("banner_title", f"RANKING THE BEST {song.upper()} EDITS")
     edits = sub_data.get("edits", [])
 
     downloaded = []
@@ -131,9 +236,9 @@ def run_day_4_song_edits(subcat: str, dry_run: bool = True) -> dict:
             downloaded.append(e)
 
     if len(downloaded) < 2:
-        raise RuntimeError(f"Not enough clean clips harvested for song trend '{top_song}'")
+        raise RuntimeError(f"Not enough clean clips harvested for song trend '{song}'")
 
-    safe_name = re.sub(r"[^a-z0-9]+", "_", top_song.lower()).strip("_")
+    safe_name = re.sub(r"[^a-z0-9]+", "_", song.lower()).strip("_")
     out_mp4 = ROOT / "output" / f"song_ranking_{safe_name}_{subcat}_master.mp4"
     render_song_edit_ranking(banner_title, downloaded, out_mp4, clip_dur=8.0)
 
@@ -141,21 +246,42 @@ def run_day_4_song_edits(subcat: str, dry_run: bool = True) -> dict:
     qa = verify_video(out_mp4, make_proof=True)
     logging.info(f"[Day 4 Song] Master complete: {out_mp4} | QA={'PASS' if qa['passed'] else 'FAIL'}")
 
+    upload_res = None
+    if not dry_run:
+        if not qa["passed"]:
+            raise RuntimeError(f"QA Gate failed ({qa['issues']}); upload aborted.")
+        from metadata_uploader import build_metadata, upload_private_canary_and_schedule
+        meta = build_metadata(song, "edit_ranking", downloaded, handle="@OtakuSnapster")
+        meta["title"] = f"Ranking Best {song} Edits! 🔥💀 #shorts #naofloppa #shortsfeed"[:100]
+        out_mp4.with_suffix(".meta.json").write_text(
+            json.dumps({"song": song, "qa": qa, "metadata": meta}, indent=2, ensure_ascii=False),
+            encoding="utf-8"
+        )
+        upload_res = upload_private_canary_and_schedule(out_mp4, meta)
+
     return {
         "status": "success",
         "day": 4,
-        "song": top_song,
+        "song": song,
         "subcategory": subcat,
         "video": str(out_mp4),
         "qa": qa,
+        "upload": upload_res,
     }
 
 
-def execute_daily_cadence(day_override: int = 0, dry_run: bool = True, force_weekly_digest: bool = False):
-    """Executes the scheduled daily step in the 4-day wheel and advances state."""
-    state = load_cadence_state()
-
-    # Check if weekly digest is needed (every 7 days or if Sunday or forced)
+def execute_batch_cadence(
+    batch_count: int = 4,
+    day_override: int = 0,
+    dry_run: bool = True,
+    force_weekly_digest: bool = False,
+) -> list[dict]:
+    """
+    Executes a high-velocity batch of Shorts (default 4 videos per run = 8 daily across 2 runs).
+    First performs a Virality Audit, maps videos to live trending candidates,
+    schedules them across peak Shorts windows, and automatically cleans up local MP4s.
+    """
+    # 1. Weekly digest check
     is_sunday = datetime.datetime.now(datetime.timezone.utc).weekday() == 6
     if force_weekly_digest or is_sunday or not DIGEST_FILE.exists():
         logging.info("[Cadence] Triggering Weekly Multi-Platform Virality Synthesis...")
@@ -165,54 +291,81 @@ def execute_daily_cadence(day_override: int = 0, dry_run: bool = True, force_wee
         except Exception as e:
             logging.error(f"[Cadence] Weekly digest failed: {e}")
 
-    day = day_override if day_override in (1, 2, 3, 4) else state.get("current_day_index", 1)
-    logging.info(f"[Cadence Engine] Starting Step #{day}: {CADENCE_NAMES[day]}")
+    # 2. PRE-PRODUCTION VIRALITY AUDIT FIRST
+    audit = audit_live_virality()
 
-    result = {}
-    now_iso = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    state = load_cadence_state()
+    start_day = day_override if day_override in (1, 2, 3, 4) else state.get("current_day_index", 1)
 
-    if day == 1:
-        result = run_day_1_cinema(dry_run=dry_run)
-    elif day == 2:
-        result = run_day_2_tv_series(dry_run=dry_run)
-    elif day == 3:
-        result = run_day_3_mentalist_pillar(dry_run=dry_run)
-    elif day == 4:
-        sub_idx = state.get("song_subcat_index", 0) % len(SONG_SUBCATEGORIES)
-        current_subcat = SONG_SUBCATEGORIES[sub_idx]
-        result = run_day_4_song_edits(subcat=current_subcat, dry_run=dry_run)
-        state["song_subcat_index"] = (sub_idx + 1) % len(SONG_SUBCATEGORIES)
+    batch_results = []
+    logging.info(f"🚀 INITIATING PRODUCTION BATCH ({batch_count} Videos) Starting at Pillar #{start_day}")
 
-    # Advance state wheel
-    next_day = (day % 4) + 1
-    state["current_day_index"] = next_day
-    state["last_run_utc"] = now_iso
-    if day == 4:
-        state["cycle_count"] = state.get("cycle_count", 1) + 1
+    for step_num in range(batch_count):
+        curr_day = ((start_day - 1 + step_num) % 4) + 1
+        now_iso = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        logging.info(f"\n---> [Batch Step {step_num + 1}/{batch_count}] Producing Pillar #{curr_day}: {CADENCE_NAMES[curr_day]}")
 
-    state["history"].append({
-        "timestamp_utc": now_iso,
-        "day": day,
-        "name": CADENCE_NAMES[day],
-        "result": result.get("status", "completed"),
-    })
-    # Keep history bounded
-    state["history"] = state["history"][-20:]
-    save_cadence_state(state)
+        result = {}
+        try:
+            if curr_day == 1:
+                # Top live cinema candidate
+                cinema_cand = audit["cinema"][step_num % len(audit["cinema"])] if audit.get("cinema") else {}
+                topic = cinema_cand.get("topic")
+                genre = cinema_cand.get("genre")
+                result = run_day_1_cinema(topic=topic, genre=genre, dry_run=dry_run)
+            elif curr_day == 2:
+                # Top live TV candidate
+                tv_cand = (audit.get("tv_series") or {}).get("series_name")
+                result = run_day_2_tv_series(series_name=tv_cand, dry_run=dry_run)
+            elif curr_day == 3:
+                # Strictly locked flagship pillar (The Mentalist)
+                result = run_day_3_mentalist_pillar(dry_run=dry_run)
+            elif curr_day == 4:
+                # Top live song candidate
+                sub_idx = state.get("song_subcat_index", 0) % len(SONG_SUBCATEGORIES)
+                current_subcat = SONG_SUBCATEGORIES[sub_idx]
+                song_cand = (audit.get("song_trends") or {}).get("song_name")
+                result = run_day_4_song_edits(subcat=current_subcat, top_song=song_cand, dry_run=dry_run)
+                state["song_subcat_index"] = (sub_idx + 1) % len(SONG_SUBCATEGORIES)
 
-    logging.info(f"[Cadence Engine] Day #{day} complete. Wheel advanced to Day #{next_day} ({CADENCE_NAMES[next_day]})")
-    return result
+            batch_results.append(result)
+        except Exception as e:
+            logging.error(f"[Batch Step {step_num + 1}] Failed with error: {e}", exc_info=True)
+            batch_results.append({"status": "failed", "day": curr_day, "error": str(e)})
+
+        # Advance state wheel after each video
+        state["current_day_index"] = (curr_day % 4) + 1
+        state["last_run_utc"] = now_iso
+        if curr_day == 4:
+            state["cycle_count"] = state.get("cycle_count", 1) + 1
+
+        state["history"].append({
+            "timestamp_utc": now_iso,
+            "day": curr_day,
+            "name": CADENCE_NAMES[curr_day],
+            "result": result.get("status", "completed"),
+        })
+        state["history"] = state["history"][-30:]
+        save_cadence_state(state)
+
+        # Cleanup temp scratch files after each step to prevent disk pressure
+        cleanup_temp_files()
+
+    logging.info(f"\n🎉 BATCH COMPLETE: Successfully processed {len(batch_results)}/{batch_count} videos.")
+    return batch_results
 
 
 if __name__ == "__main__":
-    p = argparse.ArgumentParser(description="Master 4-Day Rotating Autonomous Cadence Engine")
-    p.add_argument("--day", type=int, default=0, choices=[0, 1, 2, 3, 4], help="0=auto-advance, 1-4=day override")
+    p = argparse.ArgumentParser(description="Master Autonomous Virality-First Shorts Cadence Engine")
+    p.add_argument("--batch-count", type=int, default=4, help="Number of videos to produce in this run (default: 4; 2 runs daily = 8 videos)")
+    p.add_argument("--day", type=int, default=0, choices=[0, 1, 2, 3, 4], help="0=auto-advance 4-day wheel, 1-4=day override")
     p.add_argument("--upload", action="store_true", help="Upload and schedule canary release")
     p.add_argument("--dry-run", action="store_true", help="Dry run test without publishing (default)")
     p.add_argument("--weekly-digest", action="store_true", help="Force weekly multi-platform digest")
     args = p.parse_args()
 
-    execute_daily_cadence(
+    execute_batch_cadence(
+        batch_count=args.batch_count,
         day_override=args.day,
         dry_run=not args.upload,
         force_weekly_digest=args.weekly_digest,

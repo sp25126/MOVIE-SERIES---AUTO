@@ -81,13 +81,14 @@ def build_metadata(
 
 
 def next_primetime_slot_utc() -> str:
-    """Gets the next guaranteed unique 14:00 UTC (7:30 PM IST) prime-time Shorts slot without conflicts."""
+    """Gets the next guaranteed unique high-traffic YouTube Shorts publishing slot without conflicts."""
     try:
-        from queue_manager import get_next_available_daily_slot_utc
-        return get_next_available_daily_slot_utc()
+        from queue_manager import get_next_available_slot_utc
+        slot_iso, _ = get_next_available_slot_utc(min_lead_time_minutes=45)
+        return slot_iso
     except Exception:
         now = datetime.datetime.now(datetime.timezone.utc)
-        slot = now.replace(hour=14, minute=0, second=0, microsecond=0)
+        slot = now.replace(hour=14, minute=30, second=0, microsecond=0)
         if slot <= now + datetime.timedelta(minutes=30):
             slot += datetime.timedelta(days=1)
         return slot.strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -156,4 +157,28 @@ def upload_private_canary_and_schedule(
         },
     ).execute()
     print(f"[Uploader] Canary clean -> Scheduled for {meta['recommended_slot_utc']}")
+
+    # Record scheduled video in upload_queue.json
+    try:
+        from queue_manager import load_upload_queue, save_upload_queue
+        q_data = load_upload_queue()
+        q_data["queue"].append({
+            "video_id": vid_id,
+            "scheduled": True,
+            "publish_at": meta["recommended_slot_utc"],
+            "title": meta.get("title", ""),
+            "uploaded_at_utc": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        })
+        save_upload_queue(q_data)
+    except Exception as e:
+        print(f"[Uploader] Warning: failed to record in upload_queue.json: {e}")
+
+    # Delete local master MP4 to prevent disk bloat
+    try:
+        if video_path.exists():
+            video_path.unlink(missing_ok=True)
+            print(f"[Uploader] Cleaned up local master MP4: {video_path}")
+    except Exception as e:
+        print(f"[Uploader] Could not delete {video_path}: {e}")
+
     return {"video_id": vid_id, "scheduled": True, "publish_at": meta["recommended_slot_utc"]}

@@ -89,12 +89,22 @@ def extract_tv_series_entities(title: str) -> List[str]:
     return candidates
 
 
-def scan_dynamic_tv_virality() -> dict:
+def scan_dynamic_tv_virality(max_cache_age_sec: int = 10800) -> dict:
     """
     100% Dynamic TV Virality Discovery:
     Scrapes live YouTube InnerTube feeds for trending television edits,
     aggregates view counts per series, and identifies the #1 viral TV show right now.
     """
+    if DYNAMIC_TV_REPORT_PATH.exists() and max_cache_age_sec > 0:
+        try:
+            age = time.time() - DYNAMIC_TV_REPORT_PATH.stat().st_mtime
+            if age < max_cache_age_sec:
+                data = json.loads(DYNAMIC_TV_REPORT_PATH.read_text(encoding="utf-8"))
+                if data.get("winner"):
+                    return data
+        except Exception:
+            pass
+
     series_buckets: Dict[str, Dict[str, Any]] = {}
 
     for q in TV_DISCOVERY_QUERIES:

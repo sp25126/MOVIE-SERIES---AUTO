@@ -202,9 +202,10 @@ def fetch_reddit_arcticshift(subreddits: list[str], days: int = 7, limit_per_sub
     after_ts = int(time.time() - days * 86400)
     posts = []
     for sub in subreddits:
-        url = f"https://arctic-shift.photon-reddit.com/api/posts/search?subreddit={sub}&after={after_ts}&limit={limit_per_sub}&sort=desc"
+        clean_sub = sub.strip().lower()
+        url = f"https://arctic-shift.photon-reddit.com/api/posts/search?subreddit={clean_sub}&limit=15"
         try:
-            data = json.loads(_http_get(url, timeout=10, ua="MovieSeriesRadar/1.0")).get("data", [])
+            data = json.loads(_http_get(url, timeout=4, ua=UA)).get("data", [])
             for p in data:
                 title = (p.get("title") or "").strip()
                 score = int(p.get("score") or 0)

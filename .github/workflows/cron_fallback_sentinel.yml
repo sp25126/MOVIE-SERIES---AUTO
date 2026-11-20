@@ -54,11 +54,11 @@ jobs:
               # If buffer has fewer than 2 future slots, launch emergency production run
               if len(future_slots) < 2:
                   print("[Sentinel] CRITICAL: Publishing buffer is low (< 2 days ahead)! Triggering auto_release...")
-                  subprocess.run(["gh", "workflow", "run", "auto_release.yml", "-f", "upload=true"], check=True)
+                  subprocess.run(["gh", "workflow", "run", "auto_release.yml", "-f", "upload=true", "-f", "batch_count=4"], check=True)
                   print("[Sentinel] Fallback production run successfully triggered!")
               else:
-                  print(f"[Sentinel] Queue healthy: {len(future_slots)} days buffered ahead. No action needed.")
+                  print(f"[Sentinel] Queue healthy: {len(future_slots)} future slots buffered ahead. No action needed.")
           except Exception as e:
               print(f"[Sentinel] Error parsing queue: {e}. Triggering fallback for safety...")
-              subprocess.run(["gh", "workflow", "run", "auto_release.yml", "-f", "upload=true"], check=True)
+              subprocess.run(["gh", "workflow", "run", "auto_release.yml", "-f", "upload=true", "-f", "batch_count=4"], check=True)
           EOF

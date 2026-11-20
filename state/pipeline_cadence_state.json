@@ -1,0 +1,44 @@
+{
+  "current_day_index": 1,
+  "song_subcat_index": 1,
+  "cycle_count": 2,
+  "last_run_utc": "2026-11-20T06:11:10Z",
+  "history": [
+    {
+      "timestamp_utc": "2026-11-19T10:46:07Z",
+      "day": 1,
+      "name": "Cinema Group",
+      "result": "success"
+    },
+    {
+      "timestamp_utc": "2026-11-19T11:09:09Z",
+      "day": 2,
+      "name": "TV & Web Series Group",
+      "result": "success"
+    },
+    {
+      "timestamp_utc": "2026-11-19T11:17:16Z",
+      "day": 1,
+      "name": "Cinema Group",
+      "result": "success"
+    },
+    {
+      "timestamp_utc": "2026-11-19T11:52:17Z",
+      "day": 3,
+      "name": "The Mentalist Series (Locked Pillar)",
+      "result": "success"
+    },
+    {
+      "timestamp_utc": "2026-11-19T12:06:31Z",
+      "day": 3,
+      "name": "The Mentalist Series (Locked Pillar)",
+      "result": "success"
+    },
+    {
+      "timestamp_utc": "2026-11-20T06:11:10Z",
+      "day": 4,
+      "name": "Song Trend Edits (Zero Voiceover)",
+      "result": "success"
+    }
+  ]
+}

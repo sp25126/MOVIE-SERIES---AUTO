@@ -16,7 +16,8 @@ config/*secret*.json
 .env
 
 # Runtime state & caches
-state/
+state/*
+!state/*.json
 __pycache__/
 *.pyc
 .pytest_cache/

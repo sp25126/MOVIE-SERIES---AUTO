@@ -1,0 +1,105 @@
+{
+  "report_generated_utc": "2026-11-19T10:40:54Z",
+  "period": "7-Day Cross-Platform Synthesis",
+  "top_5_cinema": [
+    {
+      "topic": "Award Winning",
+      "genre": "horror_mystery",
+      "score": 51.0,
+      "views": 27278230,
+      "format": "edit_ranking"
+    },
+    {
+      "topic": "Gina Carano Thriller",
+      "genre": "action_thriller",
+      "score": 51.0,
+      "views": 6385380,
+      "format": "edit_ranking"
+    },
+    {
+      "topic": "Nana Patekar Action",
+      "genre": "action_thriller",
+      "score": 51.0,
+      "views": 5285255,
+      "format": "edit_ranking"
+    },
+    {
+      "topic": "DARKNESS",
+      "genre": "superhero_scifi",
+      "score": 51.0,
+      "views": 4487670,
+      "format": "edit_ranking"
+    },
+    {
+      "topic": "TV SPOT",
+      "genre": "superhero_scifi",
+      "score": 51.0,
+      "views": 4487670,
+      "format": "edit_ranking"
+    }
+  ],
+  "top_5_tv_series": [
+    {
+      "series": "Harry Potter and the Philosopher's Stone",
+      "total_views": 28508181,
+      "clip_count": 2,
+      "top_clip": "Harry Potter and the Philosopher's Stone | Officia"
+    },
+    {
+      "series": "A demon catches her right when she's about to fall off a building",
+      "total_views": 12401329,
+      "clip_count": 1,
+      "top_clip": "A demon catches her right when she's about to fall"
+    },
+    {
+      "series": "Succession",
+      "total_views": 9827454,
+      "clip_count": 1,
+      "top_clip": "Succession: Season 1 | Official Trailer | HBO"
+    },
+    {
+      "series": "Salute ~ Multi Badass Female",
+      "total_views": 8077593,
+      "clip_count": 1,
+      "top_clip": "Salute ~ Multi Badass Female"
+    },
+    {
+      "series": "You Can Make a Netflix Style Doco About Literally Anything",
+      "total_views": 7249217,
+      "clip_count": 1,
+      "top_clip": "You Can Make a Netflix Style Doco About Literally "
+    }
+  ],
+  "top_5_viral_songs": [
+    {
+      "song": "beast",
+      "banner": "RANKING THE BEST BEAST TREND EDITS",
+      "views": 745001,
+      "score": 93.89
+    },
+    {
+      "song": "house of balloons",
+      "banner": "RANKING THE BEST HOUSE OF BALLOONS TREND EDITS",
+      "views": 580798,
+      "score": 92.21
+    },
+    {
+      "song": "baby by me",
+      "banner": "RANKING THE BEST BABY BY ME TREND EDITS",
+      "views": 345968,
+      "score": 88.62
+    },
+    {
+      "song": "worry",
+      "banner": "RANKING THE BEST WORRY TREND EDITS",
+      "views": 1657,
+      "score": 50.63
+    },
+    {
+      "song": "my oh my",
+      "banner": "RANKING THE BEST MY OH MY TREND EDITS",
+      "views": 121,
+      "score": 31.95
+    }
+  ]
+}
