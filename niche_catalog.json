@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-20T06:10:38Z",
+  "last_3day_sync_utc": "2026-11-20T20:33:03Z",
   "recent_topics": [
     "Queen of Tears",
     "Aragorn Black Gate",
@@ -28,65 +28,72 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 649.4,
-      "top_topic": "Hunger Games",
-      "count": 35
-    },
-    {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 346.9,
-      "top_topic": "Scam Se Bacho",
-      "count": 18
+      "total_score": 792.2,
+      "top_topic": "Speaker Series: Going",
+      "count": 53
     },
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 270.4,
+      "total_score": 396.5,
       "top_topic": "Ranbir Kapoor",
-      "count": 8
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 192.4,
-      "top_topic": "Robert Pattinson",
-      "count": 8
+      "count": 13
     },
     {
       "genre": "animated_cinema",
       "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 184.7,
+      "total_score": 298.5,
       "top_topic": "Korben Dallas",
-      "count": 6
-    },
-    {
-      "genre": "superhero_scifi",
-      "label": "Superhero & Sci-Fi",
-      "total_score": 132.7,
-      "top_topic": "Steven Soderbergh",
-      "count": 7
+      "count": 10
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 132.7,
-      "top_topic": "Billion Minutes Viewed",
+      "total_score": 209.9,
+      "top_topic": "Amy Poehler",
+      "count": 10
+    },
+    {
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 203.7,
+      "top_topic": "James Bond",
+      "count": 14
+    },
+    {
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 182.7,
+      "top_topic": "You Can See",
+      "count": 12
+    },
+    {
+      "genre": "superhero_scifi",
+      "label": "Superhero & Sci-Fi",
+      "total_score": 171.5,
+      "top_topic": "Christopher Nolan",
       "count": 6
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 77.6,
-      "top_topic": "Bill Hader",
+      "total_score": 42.8,
+      "top_topic": "Rob Zombie",
       "count": 3
     },
     {
       "genre": "crime_mafia",
       "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "total_score": 35.6,
+      "top_topic": "Guy Ritchie",
+      "count": 2
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 5.2,
+      "top_topic": "Porch Light Bring",
+      "count": 1
     },
     {
       "genre": "romance_teen_drama",
@@ -98,13 +105,6 @@
     {
       "genre": "war_historical",
       "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
@@ -123,14 +123,14 @@
       ]
     },
     {
-      "topic": "Robert Pattinson",
-      "genre": "world_indian_cinema",
-      "subcategory": "global_cinema_hype",
+      "topic": "Sai Pallavi",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
-      "score": 66.85,
+      "score": 63.4,
       "sources": [
-        "Collider",
-        "Reddit-7d(r/bollywoodmemes)"
+        "The Hindu",
+        "The Times of India"
       ]
     },
     {
@@ -138,31 +138,32 @@
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
-      "score": 66.4,
+      "score": 53.4,
       "sources": [
         "The Times of India"
       ]
     },
     {
-      "topic": "Scam Se Bacho",
-      "genre": "drama_prestige",
-      "subcategory": "coldest_drama_edits",
-      "format": "edit_ranking",
-      "score": 45.6,
+      "topic": "Christopher Nolan",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 53.11,
       "sources": [
-        "MobiGyaan",
-        "Open Magazine"
+        "Collider",
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
       ]
     },
     {
-      "topic": "Bill Hader",
-      "genre": "horror_mystery",
-      "subcategory": "horror_new_release_hype",
+      "topic": "James Bond",
+      "genre": "world_indian_cinema",
+      "subcategory": "global_cinema_hype",
       "format": "release_hype",
-      "score": 44.37,
+      "score": 45.25,
       "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "Collider",
+        "Reddit-7d(r/bollywoodmemes)"
       ]
     },
     {
@@ -188,67 +189,58 @@
       ]
     },
     {
-      "topic": "Sai Pallavi",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
-      "score": 35.6,
-      "sources": [
-        "The Times of India"
-      ]
-    },
-    {
-      "topic": "Hunger Games",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 35.6,
-      "sources": [
-        "Variety"
-      ]
-    },
-    {
-      "topic": "Steven Soderbergh",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 32.02,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ]
-    },
-    {
-      "topic": "Matt Reeves",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 32.02,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ]
-    },
-    {
-      "topic": "Inside Skydance",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 30.63,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ]
-    },
-    {
       "topic": "Jeremy Latcham",
       "genre": "superhero_scifi",
       "subcategory": "superhero_spoiler_commentary",
       "format": "scene_commentary",
-      "score": 30.63,
+      "score": 31.6,
       "sources": [
         "Reddit-30d(r/DC_Cinematic)",
         "Reddit-7d(r/DC_Cinematic)"
+      ]
+    },
+    {
+      "topic": "James Gunn",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 31.6,
+      "sources": [
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
+      ]
+    },
+    {
+      "topic": "Spider-Man",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 30.91,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "In Spider",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 30.91,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Bruce Banner",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 30.91,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
       ]
     },
     {
@@ -264,6 +256,17 @@
     },
     {
       "topic": "In Harry Potter",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 28.45,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Blood Prince",
       "genre": "animated_cinema",
       "subcategory": "animated_peak_edit_ranking",
       "format": "edit_ranking",

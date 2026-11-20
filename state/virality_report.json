@@ -1,5 +1,5 @@
 {
-  "scan_time_utc": "2026-11-20T06:10:38Z",
+  "scan_time_utc": "2026-11-20T20:33:03Z",
   "winner": {
     "topic": "Ranbir Kapoor",
     "genre": "fantasy_mythology",
@@ -22,8 +22,8 @@
     ],
     "headlines": [
       "Ramayana Box Office Collection Day 14: Ranbir Kapoor's Film Crosses Rs 1,500 Crore Worldwide",
-      "‘Ramayana’ box office collection Day 13: Ranbir Kapoor and Yash starrer nears Rs 1,500 crore worldwide de",
-      "Ramayana Box Office Collection Day 10: Ranbir Kapoor's Film Crosses Rs 1,200 Crore Mark Worldwide",
+      "Ramayana Box Office Collection Day 12: Ranbir Kapoor's Film Crosses Rs 1,400 Crore Mark Globally, Rs 750 Crore In India",
+      "'Ramayana' box office collection day 11: Ranbir Kapoor, Sai Pallavi, Yash starrer edges past Rs 760 crore",
       "'Ramayana' box office collection Day 14: Ranbir Kapoor, Yash starrer crosses Rs 1,000 crore in India; hit"
     ]
   },
@@ -31,65 +31,72 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 649.4,
-      "top_topic": "Hunger Games",
-      "count": 35
-    },
-    {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 346.9,
-      "top_topic": "Scam Se Bacho",
-      "count": 18
+      "total_score": 792.2,
+      "top_topic": "Speaker Series: Going",
+      "count": 53
     },
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 270.4,
+      "total_score": 396.5,
       "top_topic": "Ranbir Kapoor",
-      "count": 8
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 192.4,
-      "top_topic": "Robert Pattinson",
-      "count": 8
+      "count": 13
     },
     {
       "genre": "animated_cinema",
       "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 184.7,
+      "total_score": 298.5,
       "top_topic": "Korben Dallas",
-      "count": 6
-    },
-    {
-      "genre": "superhero_scifi",
-      "label": "Superhero & Sci-Fi",
-      "total_score": 132.7,
-      "top_topic": "Steven Soderbergh",
-      "count": 7
+      "count": 10
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 132.7,
-      "top_topic": "Billion Minutes Viewed",
+      "total_score": 209.9,
+      "top_topic": "Amy Poehler",
+      "count": 10
+    },
+    {
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 203.7,
+      "top_topic": "James Bond",
+      "count": 14
+    },
+    {
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 182.7,
+      "top_topic": "You Can See",
+      "count": 12
+    },
+    {
+      "genre": "superhero_scifi",
+      "label": "Superhero & Sci-Fi",
+      "total_score": 171.5,
+      "top_topic": "Christopher Nolan",
       "count": 6
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 77.6,
-      "top_topic": "Bill Hader",
+      "total_score": 42.8,
+      "top_topic": "Rob Zombie",
       "count": 3
     },
     {
       "genre": "crime_mafia",
       "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "total_score": 35.6,
+      "top_topic": "Guy Ritchie",
+      "count": 2
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 5.2,
+      "top_topic": "Porch Light Bring",
+      "count": 1
     },
     {
       "genre": "romance_teen_drama",
@@ -101,13 +108,6 @@
     {
       "genre": "war_historical",
       "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
@@ -136,21 +136,98 @@
       ],
       "headlines": [
         "Ramayana Box Office Collection Day 14: Ranbir Kapoor's Film Crosses Rs 1,500 Crore Worldwide",
-        "‘Ramayana’ box office collection Day 13: Ranbir Kapoor and Yash starrer nears Rs 1,500 crore worldwide de",
-        "Ramayana Box Office Collection Day 10: Ranbir Kapoor's Film Crosses Rs 1,200 Crore Mark Worldwide",
+        "Ramayana Box Office Collection Day 12: Ranbir Kapoor's Film Crosses Rs 1,400 Crore Mark Globally, Rs 750 Crore In India",
+        "'Ramayana' box office collection day 11: Ranbir Kapoor, Sai Pallavi, Yash starrer edges past Rs 760 crore",
         "'Ramayana' box office collection Day 14: Ranbir Kapoor, Yash starrer crosses Rs 1,000 crore in India; hit"
       ]
     },
     {
-      "topic": "Robert Pattinson",
+      "topic": "Sai Pallavi",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "recommended_format": "release_hype",
+      "query_suffix": "teaser trailer shorts",
+      "score": 63.4,
+      "horizons": {
+        "3d": 84.0,
+        "7d": 66.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "The Hindu",
+        "The Times of India"
+      ],
+      "headlines": [
+        "'Ramayana' Box Office Day 15: The Ranbir Kapoor, Yash, Sai Pallavi starrer crosses the lifetime collectio",
+        "‘O.M Operation Mole’ movie review: Dhanush, Sai Pallavi score in an otherwise bloated, convenient action thriller",
+        "'Ramayana' box office collection day 11: Ranbir Kapoor, Sai Pallavi, Yash starrer edges past Rs 760 crore"
+      ]
+    },
+    {
+      "topic": "Ramayana",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "recommended_format": "release_hype",
+      "query_suffix": "teaser trailer shorts",
+      "score": 53.4,
+      "horizons": {
+        "3d": 84.0,
+        "7d": 66.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "The Times of India"
+      ],
+      "headlines": [
+        "'Ramayana' Box Office Day 15: The Ranbir Kapoor, Yash, Sai Pallavi starrer crosses the lifetime collectio",
+        "'Ramayana' box office collection day 11: Ranbir Kapoor, Sai Pallavi, Yash starrer edges past Rs 760 crore",
+        "'Ramayana' box office collection Day 14: Ranbir Kapoor, Yash starrer crosses Rs 1,000 crore in India; hit"
+      ]
+    },
+    {
+      "topic": "Christopher Nolan",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "scene edit shorts",
+      "score": 53.11,
+      "horizons": {
+        "3d": 53.7,
+        "7d": 54.1,
+        "30d": 27.1,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Collider",
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
+      ],
+      "headlines": [
+        "What if Christopher Nolan directed Man of Steel as a sequel to The Dark Knight Trilogy, and then made Batman v Superman with Bale? Would this version of the DCEU have been more successful and lasted longer?",
+        "Christopher Nolan’s ‘The Odyssey’ Crowned the King of Streaming"
+      ]
+    },
+    {
+      "topic": "James Bond",
       "genre": "world_indian_cinema",
       "subcategory": "global_cinema_hype",
       "recommended_format": "release_hype",
       "query_suffix": "trailer edit shorts",
-      "score": 66.85,
+      "score": 45.25,
       "horizons": {
-        "3d": 83.4,
-        "7d": 78.3,
+        "3d": 50.5,
+        "7d": 50.1,
         "30d": 0.0,
         "1y": 0.0
       },
@@ -162,85 +239,8 @@
         "Reddit-7d(r/bollywoodmemes)"
       ],
       "headlines": [
-        "Rumour: Robert Pattinson is on the way to star in Dhurandhar remake. He is going to play Rehman Dakait",
-        "Robert Pattinson’s Crime Thriller Is Still His Greatest Movie 9 Years Later",
-        "‘Dune’ Director Officially Reveals Why He Cast Robert Pattinson as the New Bond"
-      ]
-    },
-    {
-      "topic": "Ramayana",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "teaser trailer shorts",
-      "score": 66.4,
-      "horizons": {
-        "3d": 100.0,
-        "7d": 88.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "The Times of India"
-      ],
-      "headlines": [
-        "‘Ramayana’ box office collection Day 13: Ranbir Kapoor and Yash starrer nears Rs 1,500 crore worldwide de",
-        "'Ramayana' box office collection Day 14: Ranbir Kapoor, Yash starrer crosses Rs 1,000 crore in India; hit",
-        "'Ramayana' box office collection day 11: Ranbir Kapoor, Sai Pallavi, Yash starrer edges past Rs 760 crore",
-        "'Ramayana' box office collection day 8: Ranbir Kapoor, Yash, Sai Pallavi starrer crosses Rs 560 crore, be"
-      ]
-    },
-    {
-      "topic": "Scam Se Bacho",
-      "genre": "drama_prestige",
-      "subcategory": "coldest_drama_edits",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "coldest edit shorts",
-      "score": 45.6,
-      "horizons": {
-        "3d": 56.0,
-        "7d": 44.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "MobiGyaan",
-        "Open Magazine"
-      ],
-      "headlines": [
-        "‘Scam Se Bacho’: Meta and Indian government take on digital arrest scams with Instagram microdrama",
-        "'Scam Se Bacho': Instagram to premiere Government-backed microdrama series against digital scams"
-      ]
-    },
-    {
-      "topic": "Bill Hader",
-      "genre": "horror_mystery",
-      "subcategory": "horror_new_release_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer shorts",
-      "score": 44.37,
-      "horizons": {
-        "3d": 49.4,
-        "7d": 48.7,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
-      ],
-      "headlines": [
-        "Bill Hader's MRC Horror Pic 'They Know' With Linda Cardellini Snapped Up By Black Bear",
-        "Bill Hader’s Feature Directorial Debut ‘They Know’ Acquired by Black Bear"
+        "Nicholas Hoult after RP got cast as James Bond",
+        "Robert Pattinson Almost Wasn’t Cast as James Bond for One Key Reason"
       ]
     },
     {
@@ -292,136 +292,16 @@
       ]
     },
     {
-      "topic": "Sai Pallavi",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "teaser trailer shorts",
-      "score": 35.6,
-      "horizons": {
-        "3d": 56.0,
-        "7d": 44.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "The Times of India"
-      ],
-      "headlines": [
-        "'Ramayana' box office collection day 11: Ranbir Kapoor, Sai Pallavi, Yash starrer edges past Rs 760 crore",
-        "'Ramayana' box office collection day 8: Ranbir Kapoor, Yash, Sai Pallavi starrer crosses Rs 560 crore, be"
-      ]
-    },
-    {
-      "topic": "Hunger Games",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 35.6,
-      "horizons": {
-        "3d": 56.0,
-        "7d": 44.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "Variety"
-      ],
-      "headlines": [
-        "Jennifer Lawrence Ranks Her Onscreen Kisses, Details ‘New’ Implants and Says Her ‘Hunger Games’ Bow and Arrow Was ‘Stolen’ in Andy Cohen Interview",
-        "How ‘Hunger Games’ Stars Jennifer Lawrence, Josh Hutcherson and Woody Harrelson Return for ‘Sunrise on the Reaping’"
-      ]
-    },
-    {
-      "topic": "Steven Soderbergh",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 32.02,
-      "horizons": {
-        "3d": 32.5,
-        "7d": 40.6,
-        "30d": 34.3,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ],
-      "headlines": [
-        "Steven Soderbergh will finish 'The Batman: Part 2' filming, Matt Reeves will return for post-production when he's ready"
-      ]
-    },
-    {
-      "topic": "Matt Reeves",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 32.02,
-      "horizons": {
-        "3d": 32.5,
-        "7d": 40.6,
-        "30d": 34.3,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ],
-      "headlines": [
-        "Steven Soderbergh will finish 'The Batman: Part 2' filming, Matt Reeves will return for post-production when he's ready"
-      ]
-    },
-    {
-      "topic": "Inside Skydance",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 30.63,
-      "horizons": {
-        "3d": 31.1,
-        "7d": 38.8,
-        "30d": 32.8,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ],
-      "headlines": [
-        "Inside Skydance, Ellison’s word means Less and Less. He reassured Gunn and Safran while Jeremy Latcham was already under NDA to run DC."
-      ]
-    },
-    {
       "topic": "Jeremy Latcham",
       "genre": "superhero_scifi",
       "subcategory": "superhero_spoiler_commentary",
       "recommended_format": "scene_commentary",
       "query_suffix": "scene edit shorts",
-      "score": 30.63,
+      "score": 31.6,
       "horizons": {
-        "3d": 31.1,
-        "7d": 38.8,
-        "30d": 32.8,
+        "3d": 32.0,
+        "7d": 40.0,
+        "30d": 33.9,
         "1y": 0.0
       },
       "yt_views": 0,
@@ -432,7 +312,103 @@
         "Reddit-7d(r/DC_Cinematic)"
       ],
       "headlines": [
-        "Inside Skydance, Ellison’s word means Less and Less. He reassured Gunn and Safran while Jeremy Latcham was already under NDA to run DC."
+        "How would you feel about Jeremy Latcham doing the same thing as James Gunn as he takes over DC?"
+      ]
+    },
+    {
+      "topic": "James Gunn",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "scene edit shorts",
+      "score": 31.6,
+      "horizons": {
+        "3d": 32.0,
+        "7d": 40.0,
+        "30d": 33.9,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
+      ],
+      "headlines": [
+        "How would you feel about Jeremy Latcham doing the same thing as James Gunn as he takes over DC?"
+      ]
+    },
+    {
+      "topic": "Spider-Man",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "edit 4k shorts",
+      "score": 30.91,
+      "horizons": {
+        "3d": 31.3,
+        "7d": 39.2,
+        "30d": 33.1,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ],
+      "headlines": [
+        "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk."
+      ]
+    },
+    {
+      "topic": "In Spider",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "edit 4k shorts",
+      "score": 30.91,
+      "horizons": {
+        "3d": 31.3,
+        "7d": 39.2,
+        "30d": 33.1,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ],
+      "headlines": [
+        "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk."
+      ]
+    },
+    {
+      "topic": "Bruce Banner",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "edit 4k shorts",
+      "score": 30.91,
+      "horizons": {
+        "3d": 31.3,
+        "7d": 39.2,
+        "30d": 33.1,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ],
+      "headlines": [
+        "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk."
       ]
     },
     {
@@ -508,85 +484,111 @@
       ]
     },
     {
-      "topic": "Billion Minutes Viewed",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "recommended_format": "release_hype",
-      "query_suffix": "cast funny meme shorts",
-      "score": 28.23,
+      "topic": "You Can See",
+      "genre": "drama_prestige",
+      "subcategory": "prestige_finale_recap",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "finale scene shorts",
+      "score": 26.47,
       "horizons": {
-        "3d": 36.4,
-        "7d": 45.5,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Reddit-7d(r/television)"
-      ],
-      "headlines": [
-        "‘From’ Lures Over 5 Billion Minutes Viewed In 3 Weeks After MGM+ Series Lands On Netflix"
-      ]
-    },
-    {
-      "topic": "Weeks After MGM",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "recommended_format": "release_hype",
-      "query_suffix": "cast funny meme shorts",
-      "score": 28.23,
-      "horizons": {
-        "3d": 36.4,
-        "7d": 45.5,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Reddit-7d(r/television)"
-      ],
-      "headlines": [
-        "‘From’ Lures Over 5 Billion Minutes Viewed In 3 Weeks After MGM+ Series Lands On Netflix"
-      ]
-    },
-    {
-      "topic": "Kill Bill Vol",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "edit 4k shorts",
-      "score": 22.85,
-      "horizons": {
-        "3d": 23.2,
-        "7d": 29.0,
-        "30d": 24.5,
+        "3d": 26.8,
+        "7d": 33.5,
+        "30d": 28.4,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
       "reddit_hits": 2,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "Reddit-30d(r/TrueFilm)",
+        "Reddit-7d(r/TrueFilm)"
       ],
       "headlines": [
-        "Kill Bill Vol 2 (2004) Budd kicks the sword and it pierces the metal tub but they later move it to the side"
+        "Question for people who saw You Can See Everything in the theater"
       ]
     },
     {
-      "topic": "Rom-Com",
-      "genre": "world_indian_cinema",
-      "subcategory": "global_cinema_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 22.72,
+      "topic": "Fantasy-Related",
+      "genre": "fantasy_mythology",
+      "subcategory": "fantasy_scene_breakdown",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "scene edit shorts",
+      "score": 25.42,
       "horizons": {
-        "3d": 29.3,
-        "7d": 36.6,
+        "3d": 25.8,
+        "7d": 32.2,
+        "30d": 27.3,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/Fantasy)",
+        "Reddit-7d(r/Fantasy)"
+      ],
+      "headlines": [
+        "What Are Your Craziest Fantasy-Related Hot Takes?"
+      ]
+    },
+    {
+      "topic": "Craziest Fantasy",
+      "genre": "fantasy_mythology",
+      "subcategory": "fantasy_scene_breakdown",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "scene edit shorts",
+      "score": 25.42,
+      "horizons": {
+        "3d": 25.8,
+        "7d": 32.2,
+        "30d": 27.3,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/Fantasy)",
+        "Reddit-7d(r/Fantasy)"
+      ],
+      "headlines": [
+        "What Are Your Craziest Fantasy-Related Hot Takes?"
+      ]
+    },
+    {
+      "topic": "Related Hot Takes",
+      "genre": "fantasy_mythology",
+      "subcategory": "fantasy_scene_breakdown",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "scene edit shorts",
+      "score": 25.42,
+      "horizons": {
+        "3d": 25.8,
+        "7d": 32.2,
+        "30d": 27.3,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/Fantasy)",
+        "Reddit-7d(r/Fantasy)"
+      ],
+      "headlines": [
+        "What Are Your Craziest Fantasy-Related Hot Takes?"
+      ]
+    },
+    {
+      "topic": "Amy Poehler",
+      "genre": "comedy_sitcom",
+      "subcategory": "cast_fandom_memes",
+      "recommended_format": "release_hype",
+      "query_suffix": "cast funny meme shorts",
+      "score": 25.41,
+      "horizons": {
+        "3d": 32.8,
+        "7d": 41.0,
         "30d": 0.0,
         "1y": 0.0
       },
@@ -594,10 +596,10 @@
       "yt_hits": 0,
       "reddit_hits": 1,
       "sources": [
-        "Reddit-7d(r/KDRAMA)"
+        "Reddit-7d(r/television)"
       ],
       "headlines": [
-        "Lee Min Ho And Park Gyu Young Confirmed For New Office Rom-Com Drama"
+        "Critics praise ‘Dig’ cast members Amy Poehler and Hugh Laurie, though show is ‘surprisingly light’ on laughs"
       ]
     }
   ],
@@ -614,85 +616,85 @@
       "url": "https://www.reddit.com/r/MovieDetails/comments/1xyzejr/the_fifth_element_1997_the_mangalore/"
     },
     {
-      "sub": "television",
-      "title": "‘From’ Lures Over 5 Billion Minutes Viewed In 3 Weeks After MGM+ Series Lands On Netflix",
-      "score": 545,
-      "comments": 185,
-      "engagement": 1100,
+      "sub": "bollywoodmemes",
+      "title": "Selmon, It's done bro ☠️",
+      "score": 849,
+      "comments": 10,
+      "engagement": 879,
       "days": 7,
-      "url": "https://www.reddit.com/r/television/comments/1y0q8ub/from_lures_over_5_billion_minutes_viewed_in_3/"
-    },
-    {
-      "sub": "marvelmemes",
-      "title": "If you know, you know 😂",
-      "score": 683,
-      "comments": 22,
-      "engagement": 749,
-      "days": 7,
-      "url": "https://www.reddit.com/r/marvelmemes/comments/1y0j7l0/if_you_know_you_know/"
-    },
-    {
-      "sub": "DC_Cinematic",
-      "title": "Steven Soderbergh will finish 'The Batman: Part 2' filming, Matt Reeves will return for post-production when he's ready",
-      "score": 375,
-      "comments": 46,
-      "engagement": 513,
-      "days": 7,
-      "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y0s27m/steven_soderbergh_will_finish_the_batman_part_2/"
-    },
-    {
-      "sub": "TrueFilm",
-      "title": "Why are people so concerned with high brow film compared to other media?",
-      "score": 87,
-      "comments": 134,
-      "engagement": 489,
-      "days": 7,
-      "url": "https://www.reddit.com/r/TrueFilm/comments/1xyjcju/why_are_people_so_concerned_with_high_brow_film/"
+      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1xzyqqa/selmon_its_done_bro/"
     },
     {
       "sub": "bollywoodmemes",
       "title": "Hypocrisy much",
-      "score": 325,
-      "comments": 48,
-      "engagement": 469,
+      "score": 443,
+      "comments": 52,
+      "engagement": 599,
       "days": 7,
       "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y077rg/hypocrisy_much/"
     },
     {
-      "sub": "DC_Cinematic",
-      "title": "Inside Skydance, Ellison’s word means Less and Less. He reassured Gunn and Safran while Jeremy Latcham was already under NDA to run DC.",
-      "score": 127,
-      "comments": 88,
-      "engagement": 391,
+      "sub": "television",
+      "title": "Critics praise ‘Dig’ cast members Amy Poehler and Hugh Laurie, though show is ‘surprisingly light’ on laughs",
+      "score": 319,
+      "comments": 76,
+      "engagement": 547,
       "days": 7,
-      "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y0t9xn/inside_skydance_ellisons_word_means_less_and_less/"
+      "url": "https://www.reddit.com/r/television/comments/1y159tc/critics_praise_dig_cast_members_amy_poehler_and/"
+    },
+    {
+      "sub": "DC_Cinematic",
+      "title": "How would you feel about Jeremy Latcham doing the same thing as James Gunn as he takes over DC?",
+      "score": 46,
+      "comments": 142,
+      "engagement": 472,
+      "days": 7,
+      "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y18egw/how_would_you_feel_about_jeremy_latcham_doing_the/"
     },
     {
       "sub": "marvelmemes",
-      "title": "I don’t get why some people are like this",
-      "score": 163,
-      "comments": 55,
-      "engagement": 328,
+      "title": "Marvel’s disgusting uses of AI",
+      "score": 388,
+      "comments": 18,
+      "engagement": 442,
       "days": 7,
-      "url": "https://www.reddit.com/r/marvelmemes/comments/1y0lwvv/i_dont_get_why_some_people_are_like_this/"
+      "url": "https://www.reddit.com/r/marvelmemes/comments/1y18f0n/marvels_disgusting_uses_of_ai/"
+    },
+    {
+      "sub": "MovieDetails",
+      "title": "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk.",
+      "score": 401,
+      "comments": 4,
+      "engagement": 413,
+      "days": 7,
+      "url": "https://www.reddit.com/r/MovieDetails/comments/1y158y6/in_spiderman_brand_new_day_2026_bruce_banners/"
     },
     {
       "sub": "TrueFilm",
       "title": "Who are the modern Kaels and Eberts?",
-      "score": 73,
-      "comments": 83,
-      "engagement": 322,
+      "score": 77,
+      "comments": 89,
+      "engagement": 344,
       "days": 7,
       "url": "https://www.reddit.com/r/TrueFilm/comments/1y01q2f/who_are_the_modern_kaels_and_eberts/"
     },
     {
-      "sub": "KDRAMA",
-      "title": "Lee Min Ho And Park Gyu Young Confirmed For New Office Rom-Com Drama",
-      "score": 184,
-      "comments": 32,
+      "sub": "television",
+      "title": "‘MobLand’ Season 3 Starts Shooting With Tom Hardy, Helen Mirren and Pierce Brosnan Returning",
+      "score": 145,
+      "comments": 45,
       "engagement": 280,
       "days": 7,
-      "url": "https://www.reddit.com/r/KDRAMA/comments/1xzycx3/lee_min_ho_and_park_gyu_young_confirmed_for_new/"
+      "url": "https://www.reddit.com/r/television/comments/1y1784n/mobland_season_3_starts_shooting_with_tom_hardy/"
+    },
+    {
+      "sub": "MovieDetails",
+      "title": "In Harry Potter and the Half-Blood Prince (2009), as Dumbledore's memory of the orphanage dissolves back into the Pensieve, the swirling ink briefly forms adult Voldemort's face for a split second.",
+      "score": 216,
+      "comments": 13,
+      "engagement": 255,
+      "days": 7,
+      "url": "https://www.reddit.com/r/MovieDetails/comments/1y08b5c/in_harry_potter_and_the_halfblood_prince_2009_as/"
     }
   ]
 }
