@@ -1,15 +1,15 @@
 {
-  "scan_time_utc": "2026-11-20T20:33:03Z",
+  "scan_time_utc": "2026-11-21T12:49:16Z",
   "winner": {
     "topic": "Ranbir Kapoor",
     "genre": "fantasy_mythology",
     "subcategory": "epic_theatrical_hype",
     "recommended_format": "release_hype",
     "query_suffix": "teaser trailer shorts",
-    "score": 80.0,
+    "score": 86.4,
     "horizons": {
       "3d": 100.0,
-      "7d": 100.0,
+      "7d": 88.0,
       "30d": 0.0,
       "1y": 0.0
     },
@@ -18,84 +18,85 @@
     "reddit_hits": 0,
     "sources": [
       "NDTV",
+      "The Indian Express",
       "The Times of India"
     ],
     "headlines": [
       "Ramayana Box Office Collection Day 14: Ranbir Kapoor's Film Crosses Rs 1,500 Crore Worldwide",
-      "Ramayana Box Office Collection Day 12: Ranbir Kapoor's Film Crosses Rs 1,400 Crore Mark Globally, Rs 750 Crore In India",
-      "'Ramayana' box office collection day 11: Ranbir Kapoor, Sai Pallavi, Yash starrer edges past Rs 760 crore",
-      "'Ramayana' box office collection Day 14: Ranbir Kapoor, Yash starrer crosses Rs 1,000 crore in India; hit"
+      "'Ramayana' box office collection day 10: Ranbir Kapoor, Yash, Sai Pallavi's film sees 51 percent growth o",
+      "Ramayana Box Office Collection Day 13: Ranbir Kapoor's Film Eyes Pushpa 2's Worldwide Gross After Beating Dhurandhar",
+      "Ramayana Box Office Day 16: Ranbir Kapoor-film witnesses slight decline, earns Rs 1,574.60 cr"
     ]
   },
   "genre_leaderboard": [
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 792.2,
-      "top_topic": "Speaker Series: Going",
-      "count": 53
-    },
-    {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 396.5,
-      "top_topic": "Ranbir Kapoor",
-      "count": 13
+      "total_score": 850.0,
+      "top_topic": "Rock the Ruins",
+      "count": 52
     },
     {
       "genre": "animated_cinema",
       "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 298.5,
+      "total_score": 394.6,
       "top_topic": "Korben Dallas",
+      "count": 13
+    },
+    {
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 261.9,
+      "top_topic": "Ranbir Kapoor",
+      "count": 8
+    },
+    {
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 210.9,
+      "top_topic": "James Bond",
+      "count": 13
+    },
+    {
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 159.2,
+      "top_topic": "David Fincher",
       "count": 10
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 209.9,
-      "top_topic": "Amy Poehler",
-      "count": 10
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 203.7,
-      "top_topic": "James Bond",
-      "count": 14
-    },
-    {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 182.7,
-      "top_topic": "You Can See",
-      "count": 12
+      "total_score": 150.2,
+      "top_topic": "Death Revealed",
+      "count": 8
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 171.5,
-      "top_topic": "Christopher Nolan",
-      "count": 6
+      "total_score": 115.2,
+      "top_topic": "DCU Games",
+      "count": 8
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 42.8,
-      "top_topic": "Rob Zombie",
-      "count": 3
+      "total_score": 47.0,
+      "top_topic": "Eli Roth",
+      "count": 2
     },
     {
       "genre": "crime_mafia",
       "label": "Crime, Gangsters, Cartels & Legal Thrillers",
       "total_score": 35.6,
-      "top_topic": "Guy Ritchie",
+      "top_topic": "Boltrim",
       "count": 2
     },
     {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 5.2,
-      "top_topic": "Porch Light Bring",
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 17.8,
+      "top_topic": "Game of Thrones",
       "count": 1
     },
     {
@@ -106,8 +107,8 @@
       "count": 0
     },
     {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
@@ -120,10 +121,10 @@
       "subcategory": "epic_theatrical_hype",
       "recommended_format": "release_hype",
       "query_suffix": "teaser trailer shorts",
-      "score": 80.0,
+      "score": 86.4,
       "horizons": {
         "3d": 100.0,
-        "7d": 100.0,
+        "7d": 88.0,
         "30d": 0.0,
         "1y": 0.0
       },
@@ -132,25 +133,26 @@
       "reddit_hits": 0,
       "sources": [
         "NDTV",
+        "The Indian Express",
         "The Times of India"
       ],
       "headlines": [
         "Ramayana Box Office Collection Day 14: Ranbir Kapoor's Film Crosses Rs 1,500 Crore Worldwide",
-        "Ramayana Box Office Collection Day 12: Ranbir Kapoor's Film Crosses Rs 1,400 Crore Mark Globally, Rs 750 Crore In India",
-        "'Ramayana' box office collection day 11: Ranbir Kapoor, Sai Pallavi, Yash starrer edges past Rs 760 crore",
-        "'Ramayana' box office collection Day 14: Ranbir Kapoor, Yash starrer crosses Rs 1,000 crore in India; hit"
+        "'Ramayana' box office collection day 10: Ranbir Kapoor, Yash, Sai Pallavi's film sees 51 percent growth o",
+        "Ramayana Box Office Collection Day 13: Ranbir Kapoor's Film Eyes Pushpa 2's Worldwide Gross After Beating Dhurandhar",
+        "Ramayana Box Office Day 16: Ranbir Kapoor-film witnesses slight decline, earns Rs 1,574.60 cr"
       ]
     },
     {
-      "topic": "Sai Pallavi",
+      "topic": "Ramayana",
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "recommended_format": "release_hype",
       "query_suffix": "teaser trailer shorts",
-      "score": 63.4,
+      "score": 76.4,
       "horizons": {
-        "3d": 84.0,
-        "7d": 66.0,
+        "3d": 100.0,
+        "7d": 88.0,
         "30d": 0.0,
         "1y": 0.0
       },
@@ -158,17 +160,18 @@
       "yt_hits": 0,
       "reddit_hits": 0,
       "sources": [
-        "The Hindu",
-        "The Times of India"
+        "The Times of India",
+        "The Week"
       ],
       "headlines": [
-        "'Ramayana' Box Office Day 15: The Ranbir Kapoor, Yash, Sai Pallavi starrer crosses the lifetime collectio",
-        "‘O.M Operation Mole’ movie review: Dhanush, Sai Pallavi score in an otherwise bloated, convenient action thriller",
-        "'Ramayana' box office collection day 11: Ranbir Kapoor, Sai Pallavi, Yash starrer edges past Rs 760 crore"
+        "'Ramayana' box office collection day 10: Ranbir Kapoor, Yash, Sai Pallavi's film sees 51 percent growth o",
+        "'Ramayana' Day 15 Box Office Collection: Nitesh Tiwari directorial nets ₹650 crore in Hindi, becomes 4th film to achieve this feat",
+        "'Ramayana: Part 1' box office collection day 17 (LIVE): The Ranbir Kapoor, Yash, Sai Pallavi starrer expe",
+        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror"
       ]
     },
     {
-      "topic": "Ramayana",
+      "topic": "Sai Pallavi",
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "recommended_format": "release_hype",
@@ -187,60 +190,35 @@
         "The Times of India"
       ],
       "headlines": [
-        "'Ramayana' Box Office Day 15: The Ranbir Kapoor, Yash, Sai Pallavi starrer crosses the lifetime collectio",
-        "'Ramayana' box office collection day 11: Ranbir Kapoor, Sai Pallavi, Yash starrer edges past Rs 760 crore",
-        "'Ramayana' box office collection Day 14: Ranbir Kapoor, Yash starrer crosses Rs 1,000 crore in India; hit"
-      ]
-    },
-    {
-      "topic": "Christopher Nolan",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 53.11,
-      "horizons": {
-        "3d": 53.7,
-        "7d": 54.1,
-        "30d": 27.1,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Collider",
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ],
-      "headlines": [
-        "What if Christopher Nolan directed Man of Steel as a sequel to The Dark Knight Trilogy, and then made Batman v Superman with Bale? Would this version of the DCEU have been more successful and lasted longer?",
-        "Christopher Nolan’s ‘The Odyssey’ Crowned the King of Streaming"
+        "'Ramayana' box office collection day 10: Ranbir Kapoor, Yash, Sai Pallavi's film sees 51 percent growth o",
+        "'Ramayana: Part 1' box office collection day 17 (LIVE): The Ranbir Kapoor, Yash, Sai Pallavi starrer expe",
+        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror"
       ]
     },
     {
       "topic": "James Bond",
       "genre": "world_indian_cinema",
-      "subcategory": "global_cinema_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 45.25,
+      "subcategory": "indian_cinema_mass_edits",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "mass edit shorts",
+      "score": 39.74,
       "horizons": {
-        "3d": 50.5,
-        "7d": 50.1,
-        "30d": 0.0,
+        "3d": 45.5,
+        "7d": 56.9,
+        "30d": 22.3,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 1,
+      "reddit_hits": 3,
       "sources": [
-        "Collider",
+        "Reddit-30d(r/TrueFilm)",
+        "Reddit-7d(r/TrueFilm)",
         "Reddit-7d(r/bollywoodmemes)"
       ],
       "headlines": [
         "Nicholas Hoult after RP got cast as James Bond",
-        "Robert Pattinson Almost Wasn’t Cast as James Bond for One Key Reason"
+        "Robert Bresson praised the 1981 James Bond film, For Your Eyes Only."
       ]
     },
     {
@@ -292,51 +270,27 @@
       ]
     },
     {
-      "topic": "Jeremy Latcham",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
+      "topic": "David Fincher",
+      "genre": "drama_prestige",
+      "subcategory": "prestige_finale_recap",
       "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 31.6,
+      "query_suffix": "finale scene shorts",
+      "score": 36.94,
       "horizons": {
-        "3d": 32.0,
-        "7d": 40.0,
-        "30d": 33.9,
+        "3d": 37.4,
+        "7d": 46.8,
+        "30d": 39.6,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
       "reddit_hits": 2,
       "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
+        "Reddit-30d(r/TrueFilm)",
+        "Reddit-7d(r/TrueFilm)"
       ],
       "headlines": [
-        "How would you feel about Jeremy Latcham doing the same thing as James Gunn as he takes over DC?"
-      ]
-    },
-    {
-      "topic": "James Gunn",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 31.6,
-      "horizons": {
-        "3d": 32.0,
-        "7d": 40.0,
-        "30d": 33.9,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ],
-      "headlines": [
-        "How would you feel about Jeremy Latcham doing the same thing as James Gunn as he takes over DC?"
+        "It makes me so sad how directors like David Fincher are using AI in their movies."
       ]
     },
     {
@@ -345,11 +299,11 @@
       "subcategory": "animated_peak_edit_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "edit 4k shorts",
-      "score": 30.91,
+      "score": 35.35,
       "horizons": {
-        "3d": 31.3,
-        "7d": 39.2,
-        "30d": 33.1,
+        "3d": 35.8,
+        "7d": 44.8,
+        "30d": 37.9,
         "1y": 0.0
       },
       "yt_views": 0,
@@ -369,11 +323,11 @@
       "subcategory": "animated_peak_edit_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "edit 4k shorts",
-      "score": 30.91,
+      "score": 35.35,
       "horizons": {
-        "3d": 31.3,
-        "7d": 39.2,
-        "30d": 33.1,
+        "3d": 35.8,
+        "7d": 44.8,
+        "30d": 37.9,
         "1y": 0.0
       },
       "yt_views": 0,
@@ -393,11 +347,11 @@
       "subcategory": "animated_peak_edit_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "edit 4k shorts",
-      "score": 30.91,
+      "score": 35.35,
       "horizons": {
-        "3d": 31.3,
-        "7d": 39.2,
-        "30d": 33.1,
+        "3d": 35.8,
+        "7d": 44.8,
+        "30d": 37.9,
         "1y": 0.0
       },
       "yt_views": 0,
@@ -484,16 +438,88 @@
       ]
     },
     {
+      "topic": "In Madden",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "edit 4k shorts",
+      "score": 27.65,
+      "horizons": {
+        "3d": 28.0,
+        "7d": 35.0,
+        "30d": 29.6,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ],
+      "headlines": [
+        "In Madden (2026) they used footage of the 2018 Wild Card game which wasn't commentated by John Madden but by Al Micheals and Chris Collinsworth."
+      ]
+    },
+    {
+      "topic": "Wild Card",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "edit 4k shorts",
+      "score": 27.65,
+      "horizons": {
+        "3d": 28.0,
+        "7d": 35.0,
+        "30d": 29.6,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ],
+      "headlines": [
+        "In Madden (2026) they used footage of the 2018 Wild Card game which wasn't commentated by John Madden but by Al Micheals and Chris Collinsworth."
+      ]
+    },
+    {
+      "topic": "John Madden",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "edit 4k shorts",
+      "score": 27.65,
+      "horizons": {
+        "3d": 28.0,
+        "7d": 35.0,
+        "30d": 29.6,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ],
+      "headlines": [
+        "In Madden (2026) they used footage of the 2018 Wild Card game which wasn't commentated by John Madden but by Al Micheals and Chris Collinsworth."
+      ]
+    },
+    {
       "topic": "You Can See",
       "genre": "drama_prestige",
       "subcategory": "prestige_finale_recap",
       "recommended_format": "scene_commentary",
       "query_suffix": "finale scene shorts",
-      "score": 26.47,
+      "score": 27.65,
       "horizons": {
-        "3d": 26.8,
-        "7d": 33.5,
-        "30d": 28.4,
+        "3d": 28.0,
+        "7d": 35.0,
+        "30d": 29.6,
         "1y": 0.0
       },
       "yt_views": 0,
@@ -508,87 +534,39 @@
       ]
     },
     {
-      "topic": "Fantasy-Related",
-      "genre": "fantasy_mythology",
-      "subcategory": "fantasy_scene_breakdown",
+      "topic": "Paper Tiger",
+      "genre": "drama_prestige",
+      "subcategory": "prestige_finale_recap",
       "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 25.42,
+      "query_suffix": "finale scene shorts",
+      "score": 26.9,
       "horizons": {
-        "3d": 25.8,
-        "7d": 32.2,
-        "30d": 27.3,
+        "3d": 25.3,
+        "7d": 31.6,
+        "30d": 36.6,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 2,
+      "reddit_hits": 3,
       "sources": [
-        "Reddit-30d(r/Fantasy)",
-        "Reddit-7d(r/Fantasy)"
+        "Reddit-30d(r/TrueFilm)",
+        "Reddit-7d(r/TrueFilm)"
       ],
       "headlines": [
-        "What Are Your Craziest Fantasy-Related Hot Takes?"
+        "Looking for movies with a similar narrative catalyst to Paper Tiger in the sense of \"you saw something you weren't supposed to see\""
       ]
     },
     {
-      "topic": "Craziest Fantasy",
-      "genre": "fantasy_mythology",
-      "subcategory": "fantasy_scene_breakdown",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 25.42,
-      "horizons": {
-        "3d": 25.8,
-        "7d": 32.2,
-        "30d": 27.3,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/Fantasy)",
-        "Reddit-7d(r/Fantasy)"
-      ],
-      "headlines": [
-        "What Are Your Craziest Fantasy-Related Hot Takes?"
-      ]
-    },
-    {
-      "topic": "Related Hot Takes",
-      "genre": "fantasy_mythology",
-      "subcategory": "fantasy_scene_breakdown",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 25.42,
-      "horizons": {
-        "3d": 25.8,
-        "7d": 32.2,
-        "30d": 27.3,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/Fantasy)",
-        "Reddit-7d(r/Fantasy)"
-      ],
-      "headlines": [
-        "What Are Your Craziest Fantasy-Related Hot Takes?"
-      ]
-    },
-    {
-      "topic": "Amy Poehler",
+      "topic": "Death Revealed",
       "genre": "comedy_sitcom",
       "subcategory": "cast_fandom_memes",
       "recommended_format": "release_hype",
       "query_suffix": "cast funny meme shorts",
-      "score": 25.41,
+      "score": 25.62,
       "horizons": {
-        "3d": 32.8,
-        "7d": 41.0,
+        "3d": 33.1,
+        "7d": 41.3,
         "30d": 0.0,
         "1y": 0.0
       },
@@ -599,7 +577,31 @@
         "Reddit-7d(r/television)"
       ],
       "headlines": [
-        "Critics praise ‘Dig’ cast members Amy Poehler and Hugh Laurie, though show is ‘surprisingly light’ on laughs"
+        "'Yes, Dear' Star Anthony Clark's Cause of Death Revealed"
+      ]
+    },
+    {
+      "topic": "Pushpak Viman",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "mass edit shorts",
+      "score": 24.81,
+      "horizons": {
+        "3d": 25.1,
+        "7d": 31.4,
+        "30d": 26.6,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/bollywood)",
+        "Reddit-7d(r/bollywood)"
+      ],
+      "headlines": [
+        "First look of Netflix's new crime comedy series, Pushpak Viman, featuring Jaideep Ahlawat, Barun Sobti and Abhishek Banerjee. Helmed by Paatal Lok's director, Sudip Sharma"
       ]
     }
   ],
@@ -616,85 +618,85 @@
       "url": "https://www.reddit.com/r/MovieDetails/comments/1xyzejr/the_fifth_element_1997_the_mangalore/"
     },
     {
-      "sub": "bollywoodmemes",
-      "title": "Selmon, It's done bro ☠️",
-      "score": 849,
-      "comments": 10,
-      "engagement": 879,
+      "sub": "TrueFilm",
+      "title": "It makes me so sad how directors like David Fincher are using AI in their movies.",
+      "score": 304,
+      "comments": 345,
+      "engagement": 1339,
       "days": 7,
-      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1xzyqqa/selmon_its_done_bro/"
-    },
-    {
-      "sub": "bollywoodmemes",
-      "title": "Hypocrisy much",
-      "score": 443,
-      "comments": 52,
-      "engagement": 599,
-      "days": 7,
-      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y077rg/hypocrisy_much/"
-    },
-    {
-      "sub": "television",
-      "title": "Critics praise ‘Dig’ cast members Amy Poehler and Hugh Laurie, though show is ‘surprisingly light’ on laughs",
-      "score": 319,
-      "comments": 76,
-      "engagement": 547,
-      "days": 7,
-      "url": "https://www.reddit.com/r/television/comments/1y159tc/critics_praise_dig_cast_members_amy_poehler_and/"
-    },
-    {
-      "sub": "DC_Cinematic",
-      "title": "How would you feel about Jeremy Latcham doing the same thing as James Gunn as he takes over DC?",
-      "score": 46,
-      "comments": 142,
-      "engagement": 472,
-      "days": 7,
-      "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y18egw/how_would_you_feel_about_jeremy_latcham_doing_the/"
-    },
-    {
-      "sub": "marvelmemes",
-      "title": "Marvel’s disgusting uses of AI",
-      "score": 388,
-      "comments": 18,
-      "engagement": 442,
-      "days": 7,
-      "url": "https://www.reddit.com/r/marvelmemes/comments/1y18f0n/marvels_disgusting_uses_of_ai/"
+      "url": "https://www.reddit.com/r/TrueFilm/comments/1y1fh9d/it_makes_me_so_sad_how_directors_like_david/"
     },
     {
       "sub": "MovieDetails",
       "title": "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk.",
-      "score": 401,
-      "comments": 4,
-      "engagement": 413,
+      "score": 962,
+      "comments": 7,
+      "engagement": 983,
       "days": 7,
       "url": "https://www.reddit.com/r/MovieDetails/comments/1y158y6/in_spiderman_brand_new_day_2026_bruce_banners/"
     },
     {
-      "sub": "TrueFilm",
-      "title": "Who are the modern Kaels and Eberts?",
-      "score": 77,
-      "comments": 89,
-      "engagement": 344,
+      "sub": "marvelmemes",
+      "title": "Holy sh*t, he's got a point",
+      "score": 824,
+      "comments": 10,
+      "engagement": 854,
       "days": 7,
-      "url": "https://www.reddit.com/r/TrueFilm/comments/1y01q2f/who_are_the_modern_kaels_and_eberts/"
+      "url": "https://www.reddit.com/r/marvelmemes/comments/1y1lhkv/holy_sht_hes_got_a_point/"
+    },
+    {
+      "sub": "bollywoodmemes",
+      "title": "Hrithik did it before anyone else 💀",
+      "score": 790,
+      "comments": 15,
+      "engagement": 835,
+      "days": 7,
+      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y1b1j7/hrithik_did_it_before_anyone_else/"
     },
     {
       "sub": "television",
-      "title": "‘MobLand’ Season 3 Starts Shooting With Tom Hardy, Helen Mirren and Pierce Brosnan Returning",
-      "score": 145,
-      "comments": 45,
-      "engagement": 280,
+      "title": "'Yes, Dear' Star Anthony Clark's Cause of Death Revealed",
+      "score": 404,
+      "comments": 57,
+      "engagement": 575,
       "days": 7,
-      "url": "https://www.reddit.com/r/television/comments/1y1784n/mobland_season_3_starts_shooting_with_tom_hardy/"
+      "url": "https://www.reddit.com/r/television/comments/1y1kut2/yes_dear_star_anthony_clarks_cause_of_death/"
     },
     {
-      "sub": "MovieDetails",
-      "title": "In Harry Potter and the Half-Blood Prince (2009), as Dumbledore's memory of the orphanage dissolves back into the Pensieve, the swirling ink briefly forms adult Voldemort's face for a split second.",
-      "score": 216,
-      "comments": 13,
-      "engagement": 255,
+      "sub": "marvelmemes",
+      "title": "Just finished this show and this scene killed me",
+      "score": 363,
+      "comments": 32,
+      "engagement": 459,
       "days": 7,
-      "url": "https://www.reddit.com/r/MovieDetails/comments/1y08b5c/in_harry_potter_and_the_halfblood_prince_2009_as/"
+      "url": "https://www.reddit.com/r/marvelmemes/comments/1y1pwht/just_finished_this_show_and_this_scene_killed_me/"
+    },
+    {
+      "sub": "bollywoodmemes",
+      "title": "The wildest product placement",
+      "score": 305,
+      "comments": 26,
+      "engagement": 383,
+      "days": 7,
+      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y10f9s/the_wildest_product_placement/"
+    },
+    {
+      "sub": "horror",
+      "title": "Eli Roth’s Ice Cream Man is insultingly bad",
+      "score": 121,
+      "comments": 73,
+      "engagement": 340,
+      "days": 7,
+      "url": "https://www.reddit.com/r/horror/comments/1y1q1pn/eli_roths_ice_cream_man_is_insultingly_bad/"
+    },
+    {
+      "sub": "DC_Cinematic",
+      "title": "Accurate, isn't it",
+      "score": 252,
+      "comments": 18,
+      "engagement": 306,
+      "days": 7,
+      "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y1stv5/accurate_isnt_it/"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-20T20:33:03Z",
+  "last_3day_sync_utc": "2026-11-21T12:49:16Z",
   "recent_topics": [
     "Queen of Tears",
     "Aragorn Black Gate",
@@ -28,71 +28,71 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 792.2,
-      "top_topic": "Speaker Series: Going",
-      "count": 53
-    },
-    {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 396.5,
-      "top_topic": "Ranbir Kapoor",
-      "count": 13
+      "total_score": 850.0,
+      "top_topic": "Rock the Ruins",
+      "count": 52
     },
     {
       "genre": "animated_cinema",
       "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 298.5,
+      "total_score": 394.6,
       "top_topic": "Korben Dallas",
+      "count": 13
+    },
+    {
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 261.9,
+      "top_topic": "Ranbir Kapoor",
+      "count": 8
+    },
+    {
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 210.9,
+      "top_topic": "James Bond",
+      "count": 13
+    },
+    {
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 159.2,
+      "top_topic": "David Fincher",
       "count": 10
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 209.9,
-      "top_topic": "Amy Poehler",
-      "count": 10
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 203.7,
-      "top_topic": "James Bond",
-      "count": 14
-    },
-    {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 182.7,
-      "top_topic": "You Can See",
-      "count": 12
+      "total_score": 150.2,
+      "top_topic": "Death Revealed",
+      "count": 8
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 171.5,
-      "top_topic": "Christopher Nolan",
-      "count": 6
+      "total_score": 115.2,
+      "top_topic": "DCU Games",
+      "count": 8
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 42.8,
-      "top_topic": "Rob Zombie",
-      "count": 3
+      "total_score": 47.0,
+      "top_topic": "Eli Roth",
+      "count": 2
     },
     {
       "genre": "crime_mafia",
       "label": "Crime, Gangsters, Cartels & Legal Thrillers",
       "total_score": 35.6,
-      "top_topic": "Guy Ritchie",
+      "top_topic": "Boltrim",
       "count": 2
     },
     {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 5.2,
-      "top_topic": "Porch Light Bring",
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 17.8,
+      "top_topic": "Game of Thrones",
       "count": 1
     },
     {
@@ -103,8 +103,8 @@
       "count": 0
     },
     {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
@@ -116,25 +116,26 @@
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
-      "score": 80.0,
+      "score": 86.4,
       "sources": [
         "NDTV",
-        "The Times of India"
-      ]
-    },
-    {
-      "topic": "Sai Pallavi",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
-      "score": 63.4,
-      "sources": [
-        "The Hindu",
+        "The Indian Express",
         "The Times of India"
       ]
     },
     {
       "topic": "Ramayana",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "format": "release_hype",
+      "score": 76.4,
+      "sources": [
+        "The Times of India",
+        "The Week"
+      ]
+    },
+    {
+      "topic": "Sai Pallavi",
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
@@ -144,25 +145,14 @@
       ]
     },
     {
-      "topic": "Christopher Nolan",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 53.11,
-      "sources": [
-        "Collider",
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ]
-    },
-    {
       "topic": "James Bond",
       "genre": "world_indian_cinema",
-      "subcategory": "global_cinema_hype",
-      "format": "release_hype",
-      "score": 45.25,
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 39.74,
       "sources": [
-        "Collider",
+        "Reddit-30d(r/TrueFilm)",
+        "Reddit-7d(r/TrueFilm)",
         "Reddit-7d(r/bollywoodmemes)"
       ]
     },
@@ -189,25 +179,14 @@
       ]
     },
     {
-      "topic": "Jeremy Latcham",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
+      "topic": "David Fincher",
+      "genre": "drama_prestige",
+      "subcategory": "prestige_finale_recap",
       "format": "scene_commentary",
-      "score": 31.6,
+      "score": 36.94,
       "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ]
-    },
-    {
-      "topic": "James Gunn",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 31.6,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
+        "Reddit-30d(r/TrueFilm)",
+        "Reddit-7d(r/TrueFilm)"
       ]
     },
     {
@@ -215,7 +194,7 @@
       "genre": "animated_cinema",
       "subcategory": "animated_peak_edit_ranking",
       "format": "edit_ranking",
-      "score": 30.91,
+      "score": 35.35,
       "sources": [
         "Reddit-30d(r/MovieDetails)",
         "Reddit-7d(r/MovieDetails)"
@@ -226,7 +205,7 @@
       "genre": "animated_cinema",
       "subcategory": "animated_peak_edit_ranking",
       "format": "edit_ranking",
-      "score": 30.91,
+      "score": 35.35,
       "sources": [
         "Reddit-30d(r/MovieDetails)",
         "Reddit-7d(r/MovieDetails)"
@@ -237,7 +216,7 @@
       "genre": "animated_cinema",
       "subcategory": "animated_peak_edit_ranking",
       "format": "edit_ranking",
-      "score": 30.91,
+      "score": 35.35,
       "sources": [
         "Reddit-30d(r/MovieDetails)",
         "Reddit-7d(r/MovieDetails)"
@@ -271,6 +250,28 @@
       "subcategory": "animated_peak_edit_ranking",
       "format": "edit_ranking",
       "score": 28.45,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "In Madden",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 27.65,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Wild Card",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 27.65,
       "sources": [
         "Reddit-30d(r/MovieDetails)",
         "Reddit-7d(r/MovieDetails)"
