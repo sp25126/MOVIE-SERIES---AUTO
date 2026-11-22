@@ -77,16 +77,41 @@ def extract_trending_song_names_from_social_buzz() -> List[str]:
     return sorted(discovered_songs.keys(), key=lambda x: discovered_songs[x], reverse=True)[:12]
 
 
-def scout_song_creator_edits(query: str, count: int = 4) -> List[dict]:
-    """Scouts YouTube Shorts for top-viewed creator edits matching a query."""
+def scout_song_creator_edits(query: str, count: int = 5) -> List[dict]:
+    """Scouts multi-platform creator edits (Instagram Reels, TikTok, YouTube) matching a query."""
+    edits = []
+    seen = set()
+
+    # 1. Instagram Reels scout
+    try:
+        from clip_harvester import scout_instagram_reels
+        ig_results = scout_instagram_reels(f"{query} edit", count=3)
+        for r in ig_results:
+            if r["id"] not in seen:
+                seen.add(r["id"])
+                edits.append(r)
+    except Exception as e:
+        logger.debug(f"[Song Radar] Instagram scout error: {e}")
+
+    # 2. TikTok Videos scout
+    try:
+        from clip_harvester import scout_tiktok_videos
+        tt_results = scout_tiktok_videos(f"{query} edit", count=3)
+        for r in tt_results:
+            if r["id"] not in seen:
+                seen.add(r["id"])
+                edits.append(r)
+    except Exception as e:
+        logger.debug(f"[Song Radar] TikTok scout error: {e}")
+
+    # 3. YouTube Shorts scout
     cmd = [
         sys.executable, "-m", "yt_dlp",
         "--dump-json", "--no-playlist", "--no-warnings",
         "--match-filter", "duration <= 60 & duration >= 8",
-        f"ytsearch8:{query}",
+        f"ytsearch20:{query}",
     ]
-    edits = []
-    seen = set()
+    yt_edits = []
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=35)
         for line in proc.stdout.splitlines():
@@ -110,7 +135,7 @@ def scout_song_creator_edits(query: str, count: int = 4) -> List[dict]:
             views = int(d.get("view_count") or 0)
             dur = float(d.get("duration") or 20.0)
 
-            edits.append({
+            yt_edits.append({
                 "id": f"yt_{vid}",
                 "platform": "youtube",
                 "title": title,
@@ -122,8 +147,23 @@ def scout_song_creator_edits(query: str, count: int = 4) -> List[dict]:
     except Exception as e:
         logger.debug(f"[Song Radar] Search error ({query}): {e}")
 
-    edits.sort(key=lambda x: x["views"], reverse=True)
-    return edits[:count]
+    # Multi-platform interleaving so Instagram/TikTok edits aren't buried
+    by_plat: dict[str, list[dict]] = {}
+    for e in edits + yt_edits:
+        p = e.get("platform", "youtube")
+        by_plat.setdefault(p, []).append(e)
+
+    for p in by_plat:
+        by_plat[p].sort(key=lambda x: x.get("views", 0), reverse=True)
+
+    interleaved = []
+    max_len = max((len(v) for v in by_plat.values()), default=0)
+    for i in range(max_len):
+        for p in ("instagram", "tiktok", "youtube"):
+            if p in by_plat and i < len(by_plat[p]):
+                interleaved.append(by_plat[p][i])
+
+    return interleaved[:count]
 
 
 def scout_song_subcategories(subcategory_type: str, song_or_franchise: str = "Starboy") -> dict:

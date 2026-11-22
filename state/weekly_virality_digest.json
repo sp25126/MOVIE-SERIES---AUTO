@@ -1,105 +1,105 @@
 {
-  "report_generated_utc": "2026-11-19T10:40:54Z",
+  "report_generated_utc": "2026-11-22T07:09:40Z",
   "period": "7-Day Cross-Platform Synthesis",
   "top_5_cinema": [
     {
-      "topic": "Award Winning",
-      "genre": "horror_mystery",
-      "score": 51.0,
-      "views": 27278230,
+      "topic": "I Play Rocky",
+      "genre": "action_thriller",
+      "score": 80.0,
+      "views": 0,
       "format": "edit_ranking"
     },
     {
       "topic": "Gina Carano Thriller",
       "genre": "action_thriller",
       "score": 51.0,
-      "views": 6385380,
+      "views": 6396100,
       "format": "edit_ranking"
     },
     {
       "topic": "Nana Patekar Action",
       "genre": "action_thriller",
       "score": 51.0,
-      "views": 5285255,
+      "views": 5311620,
       "format": "edit_ranking"
     },
     {
-      "topic": "DARKNESS",
-      "genre": "superhero_scifi",
+      "topic": "Never Underestimate Me",
+      "genre": "action_thriller",
       "score": 51.0,
-      "views": 4487670,
+      "views": 4817040,
       "format": "edit_ranking"
     },
     {
-      "topic": "TV SPOT",
-      "genre": "superhero_scifi",
+      "topic": "Retta Thala Action",
+      "genre": "action_thriller",
       "score": 51.0,
-      "views": 4487670,
+      "views": 4817040,
       "format": "edit_ranking"
     }
   ],
   "top_5_tv_series": [
     {
-      "series": "Harry Potter and the Philosopher's Stone",
-      "total_views": 28508181,
-      "clip_count": 2,
-      "top_clip": "Harry Potter and the Philosopher's Stone | Officia"
-    },
-    {
-      "series": "A demon catches her right when she's about to fall off a building",
-      "total_views": 12401329,
+      "series": "My Demon Ep 6",
+      "total_views": 12441740,
       "clip_count": 1,
       "top_clip": "A demon catches her right when she's about to fall"
     },
     {
-      "series": "Succession",
-      "total_views": 9827454,
+      "series": "Screenfinity",
+      "total_views": 6431675,
       "clip_count": 1,
-      "top_clip": "Succession: Season 1 | Official Trailer | HBO"
+      "top_clip": "Ghost Rider's coolest badass moments (ft. Nicolas "
     },
     {
-      "series": "Salute ~ Multi Badass Female",
-      "total_views": 8077593,
+      "series": "Breaking BadEdit- (Money Trees",
+      "total_views": 6143518,
       "clip_count": 1,
-      "top_clip": "Salute ~ Multi Badass Female"
+      "top_clip": "[4K] Breaking Bad「Edit」- (Money Trees)"
     },
     {
-      "series": "You Can Make a Netflix Style Doco About Literally Anything",
-      "total_views": 7249217,
+      "series": "niccolò (baby",
+      "total_views": 6112557,
       "clip_count": 1,
-      "top_clip": "You Can Make a Netflix Style Doco About Literally "
+      "top_clip": "niccolò (baby) | swim"
+    },
+    {
+      "series": "swim",
+      "total_views": 6112557,
+      "clip_count": 1,
+      "top_clip": "niccolò (baby) | swim"
     }
   ],
   "top_5_viral_songs": [
     {
-      "song": "beast",
-      "banner": "RANKING THE BEST BEAST TREND EDITS",
-      "views": 745001,
-      "score": 93.89
-    },
-    {
-      "song": "house of balloons",
-      "banner": "RANKING THE BEST HOUSE OF BALLOONS TREND EDITS",
-      "views": 580798,
-      "score": 92.21
+      "song": "Starboy",
+      "banner": "RANKING THE BEST STARBOY TREND EDITS",
+      "views": 8725602,
+      "score": 110.81
     },
     {
       "song": "baby by me",
       "banner": "RANKING THE BEST BABY BY ME TREND EDITS",
-      "views": 345968,
-      "score": 88.62
+      "views": 850979,
+      "score": 94.87
     },
     {
-      "song": "worry",
-      "banner": "RANKING THE BEST WORRY TREND EDITS",
-      "views": 1657,
-      "score": 50.63
+      "song": "Heartless",
+      "banner": "RANKING THE BEST HEARTLESS TREND EDITS",
+      "views": 134456,
+      "score": 81.04
     },
     {
-      "song": "my oh my",
-      "banner": "RANKING THE BEST MY OH MY TREND EDITS",
-      "views": 121,
-      "score": 31.95
+      "song": "Cali Man",
+      "banner": "RANKING THE BEST CALI MAN TREND EDITS",
+      "views": 95278,
+      "score": 79.63
+    },
+    {
+      "song": "The Hills",
+      "banner": "RANKING THE BEST THE HILLS TREND EDITS",
+      "views": 11602,
+      "score": 64.28
     }
   ]
 }

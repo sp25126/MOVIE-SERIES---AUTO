@@ -9,16 +9,19 @@
   "min_clip_duration": 8,
   "max_clip_duration": 65,
   "full_uncut": true,
-  "completed_episodes": 3,
+  "completed_episodes": 4,
   "used_clip_ids": [
     "yt_DD2KH4Ypd7w",
     "yt_JpsbubrMHzE",
     "yt_Oz4ut9rfl0w",
     "yt_WT3qfnO4bLE",
+    "yt_Zio6-F3_6do",
     "yt_c2_uUnLGohE",
+    "yt_dnObDTp33Y0",
     "yt_o0-Dhceseb0",
     "yt_qaqsAUmw1Rw",
-    "yt_tynkGnpf8CA"
+    "yt_tynkGnpf8CA",
+    "yt_xOURr1faz9s"
   ],
   "ensemble_characters": [
     "Patrick Jane",
@@ -28,21 +31,21 @@
     "Grace Van Pelt"
   ],
   "query_themes": [
-    "Patrick Jane edit #tiktok",
-    "Patrick Jane edit #reels",
-    "Kimball Cho savage edit #tiktok",
-    "Patrick Jane velocity edit shorts",
-    "Kimball Cho badass edit #reels",
-    "Patrick Jane Red John edit #tiktok",
-    "Teresa Lisbon badass edit #reels",
-    "The Mentalist velocity edit shorts",
-    "Patrick Jane capcut edit shorts",
-    "Kimball Cho coldest comeback edit #tiktok",
-    "The Mentalist phonk edit shorts",
-    "Patrick Jane mind games edit #reels",
-    "Patrick Jane 4k edit #tiktok",
-    "The Mentalist badass edit #reels",
-    "Patrick Jane savage attitude edit #tiktok"
+    "Patrick Jane edit #shorts",
+    "The Mentalist Patrick Jane edit shorts",
+    "Kimball Cho badass edit #shorts",
+    "Patrick Jane cold edit #shorts",
+    "Patrick Jane Red John edit #shorts",
+    "Teresa Lisbon badass edit #shorts",
+    "The Mentalist savage edit #shorts",
+    "Kimball Cho savage comeback edit #shorts",
+    "Patrick Jane 4k edit #shorts",
+    "Patrick Jane sigma edit #shorts",
+    "Patrick Jane mind games edit #shorts",
+    "The Mentalist CBI edit shorts",
+    "Patrick Jane attitude edit #shorts",
+    "Wayne Rigsby Grace Van Pelt edit #shorts",
+    "Patrick Jane smartest moment edit #shorts"
   ],
-  "last_run_utc": "2026-11-19T12:31:17Z"
+  "last_run_utc": "2026-11-22T06:51:15Z"
 }

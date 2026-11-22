@@ -105,13 +105,17 @@ def run_pipeline(
     browser_cookies: str = "",
 ) -> dict:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    report = scan_virality(skip_yt=bool(topic))
+    report = scan_virality(skip_yt=False)
 
-    candidates = (
+    primary = (
         [{"topic": topic, "genre": genre or "action_thriller", "subcategory": "manual_override", "recommended_format": "edit_ranking" if fmt == "auto" else fmt, "query_suffix": "edit shorts"}]
         if topic
-        else ordered_fresh_targets(report, genre_filter=genre, fmt_override=fmt)[:6]
+        else []
     )
+    fallbacks = ordered_fresh_targets(report, genre_filter=genre, fmt_override=fmt)[:6]
+    if topic:
+        fallbacks = [f for f in fallbacks if f.get("topic", "").lower() != topic.lower()]
+    candidates = primary + fallbacks
 
     chosen_target, clips = None, []
     for cand in candidates:
@@ -119,7 +123,13 @@ def run_pipeline(
         c_fmt = cand["recommended_format"]
         q_sfx = cand.get("query_suffix", "edit shorts")
         need = 1 if c_fmt == "scene_commentary" else (max(count, 4) if c_fmt == "release_hype" else count)
-        queries = [f"{c_topic} {q_sfx}", f"{c_topic} movie edit shorts", f"{c_topic} scene shorts"]
+        queries = [
+            f"{c_topic} edit #shorts",
+            f"{c_topic} {q_sfx}",
+            f"{c_topic} edit shorts",
+            f"{c_topic} movie edit shorts",
+            f"{c_topic} badass edit #shorts",
+        ]
         print(f"\n[Pipeline] Trying viral target -> Genre='{cand.get('genre')}' | Topic='{c_topic}' | Format='{c_fmt}'")
         max_dur = 95 if c_fmt == "scene_commentary" else 65
         min_dur = 25 if c_fmt == "scene_commentary" else 5
@@ -205,7 +215,17 @@ def run_series_episode(series_path: Path, handle: str = "@OtakuSnapster", dry_ru
 
     ep_num = done + 1
     themes = cfg.get("query_themes") or [f"{cfg['topic']} edit shorts"]
-    rotated_queries = [themes[(done + offset) % len(themes)] for offset in range(min(4, len(themes)))]
+    rotated_queries = [themes[(done + offset) % len(themes)] for offset in range(min(5, len(themes)))]
+    # Append guaranteed high-yield fallback queries for The Mentalist
+    fallbacks = [
+        f"{cfg['topic']} edit #shorts",
+        f"The Mentalist Patrick Jane edit shorts",
+        f"Kimball Cho badass edit #shorts",
+        f"Patrick Jane cold edit #shorts",
+    ]
+    for fb in fallbacks:
+        if fb not in rotated_queries:
+            rotated_queries.append(fb)
 
     os.environ["CLIP_HISTORY_PATH"] = str(series_path.resolve())
     target_cnt = int(cfg.get("clips_per_episode", 3))

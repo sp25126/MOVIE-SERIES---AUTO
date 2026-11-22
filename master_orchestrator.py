@@ -219,28 +219,50 @@ def run_day_4_song_edits(subcat: str, top_song: str | None = None, dry_run: bool
     from song_ranking_renderer import render_song_edit_ranking
     from clip_harvester import download_clip
 
-    song = top_song
-    if not song:
-        rep = scan_dynamic_song_virality()
-        song = rep.get("winner", {}).get("song_name", "Starboy")
+    rep = scan_dynamic_song_virality()
+    trending_list = rep.get("trending_songs", [])
+    candidate_songs = []
+    if top_song:
+        candidate_songs.append(top_song)
+    winner_name = rep.get("winner", {}).get("song_name")
+    if winner_name and winner_name not in candidate_songs:
+        candidate_songs.append(winner_name)
+    for s in trending_list:
+        if s not in candidate_songs:
+            candidate_songs.append(s)
+    fallback_pool = ["Starboy", "Paparazzi", "Memory Reboot", "Timeless", "Montagem", "Softcore", "Love Me"]
+    for s in fallback_pool:
+        if s not in candidate_songs:
+            candidate_songs.append(s)
 
-    sub_data = scout_song_subcategories(subcat, song)
-    banner_title = sub_data.get("banner_title", f"RANKING THE BEST {song.upper()} EDITS")
-    edits = sub_data.get("edits", [])
-
+    chosen_song = None
     downloaded = []
-    for e in edits:
-        p = download_clip(e)
-        if p:
-            e["local_path"] = str(p)
-            downloaded.append(e)
+    chosen_banner = ""
+    for cand_song in candidate_songs:
+        sub_data = scout_song_subcategories(subcat, cand_song)
+        banner_title = sub_data.get("banner_title", f"RANKING THE BEST {cand_song.upper()} EDITS")
+        edits = sub_data.get("edits", [])
+        cand_downloaded = []
+        for e in edits:
+            p = download_clip(e)
+            if p:
+                e["local_path"] = str(p)
+                cand_downloaded.append(e)
+                if len(cand_downloaded) >= 3:
+                    break
+        if len(cand_downloaded) >= 2:
+            chosen_song = cand_song
+            downloaded = cand_downloaded
+            chosen_banner = banner_title
+            break
+        logging.warning(f"[Day 4 Song] Insufficient clips ({len(cand_downloaded)}) for '{cand_song}', trying next candidate...")
 
-    if len(downloaded) < 2:
-        raise RuntimeError(f"Not enough clean clips harvested for song trend '{song}'")
+    if not chosen_song or len(downloaded) < 2:
+        raise RuntimeError(f"Not enough clean clips harvested across candidate songs for subcategory '{subcat}'")
 
-    safe_name = re.sub(r"[^a-z0-9]+", "_", song.lower()).strip("_")
+    safe_name = re.sub(r"[^a-z0-9]+", "_", chosen_song.lower()).strip("_")
     out_mp4 = ROOT / "output" / f"song_ranking_{safe_name}_{subcat}_master.mp4"
-    render_song_edit_ranking(banner_title, downloaded, out_mp4, clip_dur=8.0)
+    render_song_edit_ranking(chosen_banner, downloaded, out_mp4, clip_dur=8.0)
 
     from qa_gate import verify_video
     qa = verify_video(out_mp4, make_proof=True)
@@ -251,10 +273,10 @@ def run_day_4_song_edits(subcat: str, top_song: str | None = None, dry_run: bool
         if not qa["passed"]:
             raise RuntimeError(f"QA Gate failed ({qa['issues']}); upload aborted.")
         from metadata_uploader import build_metadata, upload_private_canary_and_schedule
-        meta = build_metadata(song, "edit_ranking", downloaded, handle="@OtakuSnapster")
-        meta["title"] = f"Ranking Best {song} Edits! 🔥💀 #shorts #naofloppa #shortsfeed"[:100]
+        meta = build_metadata(chosen_song, "edit_ranking", downloaded, handle="@OtakuSnapster")
+        meta["title"] = f"Ranking Best {chosen_song} Edits! 🔥💀 #shorts #naofloppa #shortsfeed"[:100]
         out_mp4.with_suffix(".meta.json").write_text(
-            json.dumps({"song": song, "qa": qa, "metadata": meta}, indent=2, ensure_ascii=False),
+            json.dumps({"song": chosen_song, "qa": qa, "metadata": meta}, indent=2, ensure_ascii=False),
             encoding="utf-8"
         )
         upload_res = upload_private_canary_and_schedule(out_mp4, meta)
@@ -262,7 +284,7 @@ def run_day_4_song_edits(subcat: str, top_song: str | None = None, dry_run: bool
     return {
         "status": "success",
         "day": 4,
-        "song": song,
+        "song": chosen_song,
         "subcategory": subcat,
         "video": str(out_mp4),
         "qa": qa,
@@ -333,23 +355,39 @@ def execute_batch_cadence(
             logging.error(f"[Batch Step {step_num + 1}] Failed with error: {e}", exc_info=True)
             batch_results.append({"status": "failed", "day": curr_day, "error": str(e)})
 
-        # Advance state wheel after each video
-        state["current_day_index"] = (curr_day % 4) + 1
-        state["last_run_utc"] = now_iso
-        if curr_day == 4:
-            state["cycle_count"] = state.get("cycle_count", 1) + 1
+        # Only advance state wheel on SUCCESSFUL video production
+        if result.get("status") == "success":
+            state["current_day_index"] = (curr_day % 4) + 1
+            state["last_run_utc"] = now_iso
+            if curr_day == 4:
+                state["cycle_count"] = state.get("cycle_count", 1) + 1
 
-        state["history"].append({
-            "timestamp_utc": now_iso,
-            "day": curr_day,
-            "name": CADENCE_NAMES[curr_day],
-            "result": result.get("status", "completed"),
-        })
+            state["history"].append({
+                "timestamp_utc": now_iso,
+                "day": curr_day,
+                "name": CADENCE_NAMES[curr_day],
+                "result": "success",
+            })
+        else:
+            state["last_run_utc"] = now_iso
+            state["history"].append({
+                "timestamp_utc": now_iso,
+                "day": curr_day,
+                "name": CADENCE_NAMES[curr_day],
+                "result": "failed",
+                "error": str(batch_results[-1].get("error", "Production step failed")),
+            })
+
         state["history"] = state["history"][-30:]
         save_cadence_state(state)
 
         # Cleanup temp scratch files after each step to prevent disk pressure
         cleanup_temp_files()
+
+    failed_runs = [r for r in batch_results if r.get("status") == "failed"]
+    if failed_runs:
+        logging.error(f"⚠️ BATCH FINISHED WITH {len(failed_runs)} FAILURE(S): {failed_runs}")
+        raise RuntimeError(f"{len(failed_runs)} production step(s) failed in batch: {failed_runs}")
 
     logging.info(f"\n🎉 BATCH COMPLETE: Successfully processed {len(batch_results)}/{batch_count} videos.")
     return batch_results

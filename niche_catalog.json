@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-21T20:16:35Z",
+  "last_3day_sync_utc": "2026-11-22T07:09:40Z",
   "recent_topics": [
     "Queen of Tears",
     "Aragorn Black Gate",
@@ -28,44 +28,51 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 918.5,
+      "total_score": 936.2,
       "top_topic": "I Play Rocky",
-      "count": 47
+      "count": 49
     },
     {
       "genre": "animated_cinema",
       "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 421.6,
-      "top_topic": "Spider-Man",
-      "count": 13
-    },
-    {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 311.3,
-      "top_topic": "David Fincher",
-      "count": 18
-    },
-    {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 268.0,
-      "top_topic": "Ramayana",
-      "count": 9
-    },
-    {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 250.1,
-      "top_topic": "Artificial",
-      "count": 10
+      "total_score": 380.8,
+      "top_topic": "Korben Dallas",
+      "count": 12
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 196.3,
-      "top_topic": "Hunger Games",
-      "count": 8
+      "total_score": 231.4,
+      "top_topic": "People Don",
+      "count": 11
+    },
+    {
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 198.3,
+      "top_topic": "Artificial",
+      "count": 7
+    },
+    {
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 192.5,
+      "top_topic": "Ramayana",
+      "count": 11
+    },
+    {
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 173.3,
+      "top_topic": "David Fincher",
+      "count": 10
+    },
+    {
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 118.6,
+      "top_topic": "Ranbir Kapoor",
+      "count": 12
     },
     {
       "genre": "sports_underdog",
@@ -75,17 +82,17 @@
       "count": 5
     },
     {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 20.1,
-      "top_topic": "Shri Ram",
-      "count": 3
-    },
-    {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 16.8,
-      "top_topic": "Until Dawn",
+      "total_score": 71.4,
+      "top_topic": "World War",
+      "count": 4
+    },
+    {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 17.8,
+      "top_topic": "TSRStaff ST",
       "count": 1
     },
     {
@@ -101,13 +108,6 @@
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
-    },
-    {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
     }
   ],
   "live_3day_top_topics": [
@@ -116,66 +116,10 @@
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 79.6,
+      "score": 80.0,
       "sources": [
         "Reddit-7d(r/boxoffice)",
         "Variety"
-      ]
-    },
-    {
-      "topic": "Ramayana",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
-      "score": 63.4,
-      "sources": [
-        "The Times of India",
-        "The Week"
-      ]
-    },
-    {
-      "topic": "Sai Pallavi",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
-      "score": 63.4,
-      "sources": [
-        "The Hindu",
-        "The Times of India"
-      ]
-    },
-    {
-      "topic": "Ranbir Kapoor",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
-      "score": 63.4,
-      "sources": [
-        "NDTV",
-        "The Indian Express"
-      ]
-    },
-    {
-      "topic": "Spider-Man",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
-      "format": "edit_ranking",
-      "score": 60.53,
-      "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)",
-        "Reddit-7d(r/boxoffice)"
-      ]
-    },
-    {
-      "topic": "Hunger Games",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 57.18,
-      "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "Yahoo"
       ]
     },
     {
@@ -198,26 +142,6 @@
       "sources": [
         "Indy100",
         "Variety"
-      ]
-    },
-    {
-      "topic": "PostTrak",
-      "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
-      "format": "scene_commentary",
-      "score": 40.22,
-      "sources": [
-        "Reddit-7d(r/boxoffice)"
-      ]
-    },
-    {
-      "topic": "Hunger Games: Sunrise",
-      "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
-      "format": "scene_commentary",
-      "score": 38.42,
-      "sources": [
-        "Reddit-7d(r/boxoffice)"
       ]
     },
     {
@@ -254,11 +178,22 @@
       ]
     },
     {
+      "topic": "Spider-Man",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 36.84,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
       "topic": "In Spider",
       "genre": "animated_cinema",
       "subcategory": "animated_peak_edit_ranking",
       "format": "edit_ranking",
-      "score": 36.35,
+      "score": 36.84,
       "sources": [
         "Reddit-30d(r/MovieDetails)",
         "Reddit-7d(r/MovieDetails)"
@@ -269,10 +204,74 @@
       "genre": "animated_cinema",
       "subcategory": "animated_peak_edit_ranking",
       "format": "edit_ranking",
-      "score": 36.35,
+      "score": 36.84,
       "sources": [
         "Reddit-30d(r/MovieDetails)",
         "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Ramayana",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "format": "release_hype",
+      "score": 35.6,
+      "sources": [
+        "The Times of India"
+      ]
+    },
+    {
+      "topic": "Sai Pallavi",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "format": "release_hype",
+      "score": 35.6,
+      "sources": [
+        "The Times of India"
+      ]
+    },
+    {
+      "topic": "Rotten Tomatoes Score",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 33.0,
+      "sources": [
+        "Collider",
+        "Polygon.com"
+      ]
+    },
+    {
+      "topic": "In Harry Potter",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 32.73,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Ranbir Kapoor",
+      "genre": "world_indian_cinema",
+      "subcategory": "global_cinema_hype",
+      "format": "release_hype",
+      "score": 30.09,
+      "sources": [
+        "NDTV",
+        "Reddit-30d(r/bollywood)"
+      ]
+    },
+    {
+      "topic": "People Don",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 29.45,
+      "sources": [
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
       ]
     }
   ],
