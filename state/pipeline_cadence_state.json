@@ -1,8 +1,8 @@
 {
   "current_day_index": 2,
-  "song_subcat_index": 2,
-  "cycle_count": 4,
-  "last_run_utc": "2026-11-22T07:18:16Z",
+  "song_subcat_index": 1,
+  "cycle_count": 6,
+  "last_run_utc": "2026-11-22T08:11:20Z",
   "history": [
     {
       "timestamp_utc": "2026-11-19T10:46:07Z",
@@ -72,6 +72,62 @@
     },
     {
       "timestamp_utc": "2026-11-22T07:18:16Z",
+      "day": 1,
+      "name": "Cinema Group",
+      "result": "success"
+    },
+    {
+      "timestamp_utc": "2026-11-22T07:33:36Z",
+      "day": 2,
+      "name": "TV & Web Series Group",
+      "result": "failed",
+      "error": "Command '['C:\\\\Users\\\\saumy\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python311\\\\python.exe', 'run_pipeline.py', '--genre', 'drama_prestige', '--topic', 'My Demon Ep 6', '--format', 'edit_ranking', '--upload']' returned non-zero exit status 1."
+    },
+    {
+      "timestamp_utc": "2026-11-22T07:33:36Z",
+      "day": 3,
+      "name": "The Mentalist Series (Locked Pillar)",
+      "result": "success"
+    },
+    {
+      "timestamp_utc": "2026-11-22T07:41:47Z",
+      "day": 4,
+      "name": "Song Trend Edits (Zero Voiceover)",
+      "result": "success"
+    },
+    {
+      "timestamp_utc": "2026-11-22T07:45:30Z",
+      "day": 1,
+      "name": "Cinema Group",
+      "result": "failed",
+      "error": "Command '['C:\\\\Users\\\\saumy\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python311\\\\python.exe', 'run_pipeline.py', '--format', 'edit_ranking', '--topic', 'Artificial', '--genre', 'comedy_sitcom', '--upload']' returned non-zero exit status 1."
+    },
+    {
+      "timestamp_utc": "2026-11-22T07:47:08Z",
+      "day": 1,
+      "name": "Cinema Group",
+      "result": "success"
+    },
+    {
+      "timestamp_utc": "2026-11-22T07:56:46Z",
+      "day": 2,
+      "name": "TV & Web Series Group",
+      "result": "success"
+    },
+    {
+      "timestamp_utc": "2026-11-22T08:01:58Z",
+      "day": 3,
+      "name": "The Mentalist Series (Locked Pillar)",
+      "result": "success"
+    },
+    {
+      "timestamp_utc": "2026-11-22T08:08:04Z",
+      "day": 4,
+      "name": "Song Trend Edits (Zero Voiceover)",
+      "result": "success"
+    },
+    {
+      "timestamp_utc": "2026-11-22T08:11:20Z",
       "day": 1,
       "name": "Cinema Group",
       "result": "success"

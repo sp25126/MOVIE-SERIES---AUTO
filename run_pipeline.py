@@ -6,6 +6,7 @@ import json
 import os
 import re
 import sys
+import time
 from pathlib import Path
 
 from clip_harvester import harvest_intro_hook, harvest_video_pack, passes_copyright_prefilter

@@ -9,17 +9,23 @@
   "min_clip_duration": 8,
   "max_clip_duration": 65,
   "full_uncut": true,
-  "completed_episodes": 4,
+  "completed_episodes": 6,
   "used_clip_ids": [
+    "ig_DFikPZNKwbl",
+    "ig_DGbMloaqHCj",
+    "yt_4V_8S8ArYQ8",
     "yt_DD2KH4Ypd7w",
+    "yt_I3hy8IQFZ_s",
     "yt_JpsbubrMHzE",
     "yt_Oz4ut9rfl0w",
     "yt_WT3qfnO4bLE",
     "yt_Zio6-F3_6do",
+    "yt__pDWfkWsAZM",
     "yt_c2_uUnLGohE",
     "yt_dnObDTp33Y0",
     "yt_o0-Dhceseb0",
     "yt_qaqsAUmw1Rw",
+    "yt_sBBEB8JRI2Q",
     "yt_tynkGnpf8CA",
     "yt_xOURr1faz9s"
   ],
@@ -47,5 +53,5 @@
     "Wayne Rigsby Grace Van Pelt edit #shorts",
     "Patrick Jane smartest moment edit #shorts"
   ],
-  "last_run_utc": "2026-11-22T06:51:15Z"
+  "last_run_utc": "2026-11-22T08:05:14Z"
 }

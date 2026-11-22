@@ -1,7 +1,6 @@
 {
-  "last_3day_sync_utc": "2026-11-22T07:18:16Z",
+  "last_3day_sync_utc": "2026-11-22T08:11:21Z",
   "recent_topics": [
-    "Aragorn Black Gate",
     "Interstellar",
     "Mr Darcy",
     "Drive to Survive",
@@ -10,215 +9,150 @@
     "House of the Dragon",
     "Award Winning",
     "Robert Pattinson",
-    "My Demon Ep 6",
+    "I Play Rocky",
     "Ramayana",
-    "I Play Rocky"
+    "My Demon Ep 6",
+    "Sai Pallavi"
   ],
   "recent_genres": [
-    "drama_prestige",
-    "horror_mystery",
-    "fantasy_mythology",
     "horror_mystery",
     "superhero_scifi",
     "drama_prestige",
     "fantasy_mythology",
-    "action_thriller"
+    "action_thriller",
+    "fantasy_mythology",
+    "action_thriller",
+    "fantasy_mythology"
   ],
   "live_genre_leaderboard": [
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 1140.2,
+      "total_score": 948.8,
       "top_topic": "I Play Rocky",
-      "count": 53
-    },
-    {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 521.0,
-      "top_topic": "Family Kirana Store",
-      "count": 16
-    },
-    {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 309.6,
-      "top_topic": "Lord Vishnu",
-      "count": 14
-    },
-    {
-      "genre": "romance_teen_drama",
-      "label": "Romance, Heartbreak & Teen Series",
-      "total_score": 304.9,
-      "top_topic": "ajavemahiya",
-      "count": 8
-    },
-    {
-      "genre": "superhero_scifi",
-      "label": "Superhero & Sci-Fi",
-      "total_score": 298.2,
-      "top_topic": "James Gunn",
-      "count": 14
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 266.8,
-      "top_topic": "Fame Motivational Song",
-      "count": 10
-    },
-    {
-      "genre": "crime_mafia",
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 264.4,
-      "top_topic": "Mumbai Mafia",
-      "count": 7
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 262.8,
-      "top_topic": "Yoon Sae Bom",
-      "count": 17
-    },
-    {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 251.1,
-      "top_topic": "POWERFUL Suryaputra Karna",
-      "count": 7
-    },
-    {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 173.3,
-      "top_topic": "David Fincher",
-      "count": 10
-    },
-    {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 110.4,
-      "top_topic": "Class Rules",
-      "count": 5
+      "count": 54
     },
     {
       "genre": "animated_cinema",
       "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 85.4,
-      "top_topic": "In Harry Potter",
+      "total_score": 380.8,
+      "top_topic": "Korben Dallas",
       "count": 12
+    },
+    {
+      "genre": "superhero_scifi",
+      "label": "Superhero & Sci-Fi",
+      "total_score": 266.2,
+      "top_topic": "James Gunn",
+      "count": 11
+    },
+    {
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 204.7,
+      "top_topic": "Artificial",
+      "count": 7
+    },
+    {
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 201.0,
+      "top_topic": "Ramayana",
+      "count": 6
+    },
+    {
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 165.2,
+      "top_topic": "Ranbir Kapoor",
+      "count": 13
+    },
+    {
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 99.7,
+      "top_topic": "Doesn",
+      "count": 10
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 89.0,
+      "top_topic": "Elsinore",
+      "count": 5
+    },
+    {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 73.6,
+      "top_topic": "Other Mommy",
+      "count": 4
+    },
+    {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 17.8,
+      "top_topic": "TSRStaff ST",
+      "count": 1
+    },
+    {
+      "genre": "crime_mafia",
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
+    },
+    {
+      "genre": "romance_teen_drama",
+      "label": "Romance, Heartbreak & Teen Series",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
     }
   ],
   "live_3day_top_topics": [
+    {
+      "topic": "Ramayana",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "format": "release_hype",
+      "score": 76.4,
+      "sources": [
+        "The Times of India",
+        "The Week"
+      ]
+    },
+    {
+      "topic": "Ranbir Kapoor",
+      "genre": "world_indian_cinema",
+      "subcategory": "global_cinema_hype",
+      "format": "release_hype",
+      "score": 75.69,
+      "sources": [
+        "NDTV",
+        "Reddit-30d(r/bollywood)",
+        "The Times of India"
+      ]
+    },
     {
       "topic": "I Play Rocky",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 80.0,
+      "score": 68.39,
       "sources": [
         "Reddit-7d(r/boxoffice)",
         "Variety"
       ]
     },
     {
-      "topic": "Gina Carano Thriller",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
+      "topic": "Sai Pallavi",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "format": "release_hype",
+      "score": 53.4,
       "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Nana Patekar Action",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Never Underestimate Me",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Retta Thala Action",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Family Kirana Store",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
-      "format": "edit_ranking",
-      "score": 50.71,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Mohalle Mein Gundagardi",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
-      "format": "edit_ranking",
-      "score": 50.71,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Shrikant Verma",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
-      "format": "edit_ranking",
-      "score": 50.71,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Like Ft",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
-      "format": "edit_ranking",
-      "score": 48.12,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Aaryan Kelvin",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
-      "format": "edit_ranking",
-      "score": 48.12,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
+        "The Times of India"
       ]
     },
     {
@@ -244,33 +178,102 @@
       ]
     },
     {
-      "topic": "ajavemahiya",
-      "genre": "romance_teen_drama",
-      "subcategory": "romance_heartbreak_ranking",
+      "topic": "Korben Dallas",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
       "format": "edit_ranking",
-      "score": 39.0,
+      "score": 38.16,
       "sources": [
-        "YT-Week"
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
       ]
     },
     {
-      "topic": "POWERFUL Suryaputra Karna",
-      "genre": "war_historical",
-      "subcategory": "war_epic_battle_ranking",
+      "topic": "Bruce Willis",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
       "format": "edit_ranking",
-      "score": 39.0,
+      "score": 38.16,
       "sources": [
-        "YT-Week"
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
       ]
     },
     {
-      "topic": "Lord Vishnu",
-      "genre": "fantasy_mythology",
-      "subcategory": "mythology_epic_edits",
+      "topic": "Spider-Man",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
       "format": "edit_ranking",
-      "score": 39.0,
+      "score": 36.84,
       "sources": [
-        "YT-Week"
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "In Spider",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 36.84,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Bruce Banner",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 36.84,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "James Gunn",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 33.38,
+      "sources": [
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
+      ]
+    },
+    {
+      "topic": "In Harry Potter",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 32.73,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "People Don",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 30.51,
+      "sources": [
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
+      ]
+    },
+    {
+      "topic": "Its Kinda Beautiful",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 30.51,
+      "sources": [
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
       ]
     }
   ],

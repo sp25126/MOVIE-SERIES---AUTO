@@ -174,27 +174,42 @@ def run_day_1_cinema(topic: str | None = None, genre: str | None = None, dry_run
 
 
 def run_day_2_tv_series(series_name: str | None = None, dry_run: bool = True) -> dict:
-    """Executes Day 2: Dynamic TV & Web Series Group."""
+    """Executes Day 2: Dynamic TV & Web Series Group with multi-candidate fallback cascade."""
     logging.info(f"========== DAY 2: TV & WEB SERIES GROUP [{series_name or 'Auto-Viral'}] ==========")
-    winner_show = series_name
-    if not winner_show:
-        from tv_series_radar import scan_dynamic_tv_virality
-        tv_rep = scan_dynamic_tv_virality()
-        winner_show = tv_rep.get("winner", {}).get("series_name", "Breaking Bad")
-    logging.info(f"[Day 2 TV] Selected trending series: '{winner_show}'")
+    from tv_series_radar import scan_dynamic_tv_virality
+    tv_rep = scan_dynamic_tv_virality()
+    tv_cands = []
+    if series_name:
+        tv_cands.append(series_name)
+    for s in tv_rep.get("ranked_shows", []):
+        name = s.get("series_name")
+        if name and name not in tv_cands:
+            tv_cands.append(name)
+    fallback_pool = ["Breaking Bad", "Suits", "Yellowstone", "Squid Game", "Shameless", "Snowfall", "Stranger Things", "Peaky Blinders"]
+    for s in fallback_pool:
+        if s not in tv_cands:
+            tv_cands.append(s)
 
-    cmd = [
-        sys.executable, "run_pipeline.py",
-        "--genre", "drama_prestige",
-        "--topic", winner_show,
-        "--format", "edit_ranking",
-    ]
-    if not dry_run:
-        cmd.append("--upload")
-    else:
-        cmd.append("--dry-run")
-    proc = subprocess.run(cmd, check=True)
-    return {"status": "success", "day": 2, "series": winner_show, "returncode": proc.returncode}
+    last_err = None
+    for cand_show in tv_cands[:8]:
+        logging.info(f"[Day 2 TV] Attempting series candidate: '{cand_show}'")
+        cmd = [
+            sys.executable, "run_pipeline.py",
+            "--topic", cand_show,
+            "--format", "edit_ranking",
+        ]
+        if not dry_run:
+            cmd.append("--upload")
+        else:
+            cmd.append("--dry-run")
+        try:
+            proc = subprocess.run(cmd, check=True)
+            return {"status": "success", "day": 2, "series": cand_show, "returncode": proc.returncode}
+        except subprocess.CalledProcessError as e:
+            logging.warning(f"[Day 2 TV] Candidate '{cand_show}' failed ({e}), trying next TV show...")
+            last_err = e
+
+    raise RuntimeError(f"All TV series candidates failed: {last_err}")
 
 
 def run_day_3_mentalist_pillar(dry_run: bool = True) -> dict:
