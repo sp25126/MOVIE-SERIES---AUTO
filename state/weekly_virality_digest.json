@@ -1,5 +1,5 @@
 {
-  "report_generated_utc": "2026-11-22T07:09:40Z",
+  "report_generated_utc": "2026-11-22T07:17:50Z",
   "period": "7-Day Cross-Platform Synthesis",
   "top_5_cinema": [
     {
@@ -27,14 +27,14 @@
       "topic": "Never Underestimate Me",
       "genre": "action_thriller",
       "score": 51.0,
-      "views": 4817040,
+      "views": 4817104,
       "format": "edit_ranking"
     },
     {
       "topic": "Retta Thala Action",
       "genre": "action_thriller",
       "score": 51.0,
-      "views": 4817040,
+      "views": 4817104,
       "format": "edit_ranking"
     }
   ],

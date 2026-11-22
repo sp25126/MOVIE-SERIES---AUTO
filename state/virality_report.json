@@ -1,5 +1,5 @@
 {
-  "scan_time_utc": "2026-11-22T07:09:40Z",
+  "scan_time_utc": "2026-11-22T07:18:16Z",
   "winner": {
     "topic": "I Play Rocky",
     "genre": "action_thriller",
@@ -31,37 +31,65 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 936.2,
+      "total_score": 1140.2,
       "top_topic": "I Play Rocky",
-      "count": 49
-    },
-    {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 380.8,
-      "top_topic": "Korben Dallas",
-      "count": 12
-    },
-    {
-      "genre": "superhero_scifi",
-      "label": "Superhero & Sci-Fi",
-      "total_score": 231.4,
-      "top_topic": "People Don",
-      "count": 11
+      "count": 53
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 198.3,
-      "top_topic": "Artificial",
-      "count": 7
+      "total_score": 521.0,
+      "top_topic": "Family Kirana Store",
+      "count": 16
     },
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 192.5,
-      "top_topic": "Ramayana",
-      "count": 11
+      "total_score": 309.6,
+      "top_topic": "Lord Vishnu",
+      "count": 14
+    },
+    {
+      "genre": "romance_teen_drama",
+      "label": "Romance, Heartbreak & Teen Series",
+      "total_score": 304.9,
+      "top_topic": "ajavemahiya",
+      "count": 8
+    },
+    {
+      "genre": "superhero_scifi",
+      "label": "Superhero & Sci-Fi",
+      "total_score": 298.2,
+      "top_topic": "James Gunn",
+      "count": 14
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 266.8,
+      "top_topic": "Fame Motivational Song",
+      "count": 10
+    },
+    {
+      "genre": "crime_mafia",
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "total_score": 264.4,
+      "top_topic": "Mumbai Mafia",
+      "count": 7
+    },
+    {
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 262.8,
+      "top_topic": "Yoon Sae Bom",
+      "count": 17
+    },
+    {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 251.1,
+      "top_topic": "POWERFUL Suryaputra Karna",
+      "count": 7
     },
     {
       "genre": "drama_prestige",
@@ -71,46 +99,18 @@
       "count": 10
     },
     {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 118.6,
-      "top_topic": "Ranbir Kapoor",
-      "count": 12
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 89.0,
-      "top_topic": "Elsinore",
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 110.4,
+      "top_topic": "Class Rules",
       "count": 5
     },
     {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 71.4,
-      "top_topic": "World War",
-      "count": 4
-    },
-    {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 17.8,
-      "top_topic": "TSRStaff ST",
-      "count": 1
-    },
-    {
-      "genre": "crime_mafia",
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
-    },
-    {
-      "genre": "romance_teen_drama",
-      "label": "Romance, Heartbreak & Teen Series",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 85.4,
+      "top_topic": "In Harry Potter",
+      "count": 12
     }
   ],
   "top_topics": [
@@ -140,6 +140,204 @@
         "How This Year’s Movies From ‘Artificial’ to ‘I Play Rocky’ Turn Political Anxiety Into Compelling Stories",
         "Box Office: ‘The Hunger Games: Sunrise on the Reaping’ Scores $56 Million on Friday, ‘I Play Rocky’ Follows With $3.8 Million"
       ]
+    },
+    {
+      "topic": "Gina Carano Thriller",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 51.0,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 6396100,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Nana Patekar Action",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 51.0,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 5311620,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Never Underestimate Me",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 51.0,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 4817162,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Retta Thala Action",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 51.0,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 4817162,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Family Kirana Store",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "funny moments edit shorts",
+      "score": 50.71,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 58.6,
+        "1y": 0.0
+      },
+      "yt_views": 2273150,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Mohalle Mein Gundagardi",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "funny moments edit shorts",
+      "score": 50.71,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 58.6,
+        "1y": 0.0
+      },
+      "yt_views": 2273150,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Shrikant Verma",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "funny moments edit shorts",
+      "score": 50.71,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 58.6,
+        "1y": 0.0
+      },
+      "yt_views": 2273150,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Like Ft",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "funny moments edit shorts",
+      "score": 48.12,
+      "horizons": {
+        "3d": 46.6,
+        "7d": 62.1,
+        "30d": 54.3,
+        "1y": 0.0
+      },
+      "yt_views": 829248,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Aaryan Kelvin",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "funny moments edit shorts",
+      "score": 48.12,
+      "horizons": {
+        "3d": 46.6,
+        "7d": 62.1,
+        "30d": 54.3,
+        "1y": 0.0
+      },
+      "yt_views": 829248,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
     },
     {
       "topic": "Artificial",
@@ -192,426 +390,379 @@
       ]
     },
     {
-      "topic": "Korben Dallas",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "ajavemahiya",
+      "genre": "romance_teen_drama",
+      "subcategory": "romance_heartbreak_ranking",
       "recommended_format": "edit_ranking",
-      "query_suffix": "edit 4k shorts",
-      "score": 38.16,
+      "query_suffix": "sad edit shorts",
+      "score": 39.0,
       "horizons": {
-        "3d": 38.4,
-        "7d": 48.0,
-        "30d": 42.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
-      ],
-      "headlines": [
-        "The Fifth Element (1997) - The Mangalore (antagonist-ish alien) impersonating Korben Dallas doesn't look like Bruce Willis because the police arrested someone else thinking it was Korben earlier in the movie and the Mangalores swiped that (wrong) body"
-      ]
-    },
-    {
-      "topic": "Bruce Willis",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "edit 4k shorts",
-      "score": 38.16,
-      "horizons": {
-        "3d": 38.4,
-        "7d": 48.0,
-        "30d": 42.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
-      ],
-      "headlines": [
-        "The Fifth Element (1997) - The Mangalore (antagonist-ish alien) impersonating Korben Dallas doesn't look like Bruce Willis because the police arrested someone else thinking it was Korben earlier in the movie and the Mangalores swiped that (wrong) body"
-      ]
-    },
-    {
-      "topic": "David Fincher",
-      "genre": "drama_prestige",
-      "subcategory": "prestige_finale_recap",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "finale scene shorts",
-      "score": 36.94,
-      "horizons": {
-        "3d": 37.4,
-        "7d": 46.8,
-        "30d": 39.6,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/TrueFilm)",
-        "Reddit-7d(r/TrueFilm)"
-      ],
-      "headlines": [
-        "It makes me so sad how directors like David Fincher are using AI in their movies."
-      ]
-    },
-    {
-      "topic": "Spider-Man",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "edit 4k shorts",
-      "score": 36.84,
-      "horizons": {
-        "3d": 37.3,
-        "7d": 46.7,
-        "30d": 39.5,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
-      ],
-      "headlines": [
-        "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk."
-      ]
-    },
-    {
-      "topic": "In Spider",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "edit 4k shorts",
-      "score": 36.84,
-      "horizons": {
-        "3d": 37.3,
-        "7d": 46.7,
-        "30d": 39.5,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
-      ],
-      "headlines": [
-        "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk."
-      ]
-    },
-    {
-      "topic": "Bruce Banner",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "edit 4k shorts",
-      "score": 36.84,
-      "horizons": {
-        "3d": 37.3,
-        "7d": 46.7,
-        "30d": 39.5,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
-      ],
-      "headlines": [
-        "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk."
-      ]
-    },
-    {
-      "topic": "Ramayana",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "teaser trailer shorts",
-      "score": 35.6,
-      "horizons": {
-        "3d": 56.0,
-        "7d": 44.0,
+        "3d": 48.8,
+        "7d": 65.0,
         "30d": 0.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 17516244,
+      "yt_hits": 1,
       "reddit_hits": 0,
       "sources": [
-        "The Times of India"
+        "YT-Week"
       ],
-      "headlines": [
-        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror",
-        "'Ramayana: Part 1' box office collection day 17 (LIVE): The Ranbir Kapoor, Yash, Sai Pallavi starrer cros"
-      ]
+      "headlines": []
     },
     {
-      "topic": "Sai Pallavi",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "teaser trailer shorts",
-      "score": 35.6,
+      "topic": "POWERFUL Suryaputra Karna",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "battle scene edit shorts",
+      "score": 39.0,
       "horizons": {
-        "3d": 56.0,
-        "7d": 44.0,
+        "3d": 48.8,
+        "7d": 65.0,
         "30d": 0.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 15603783,
+      "yt_hits": 1,
       "reddit_hits": 0,
       "sources": [
-        "The Times of India"
+        "YT-Week"
       ],
-      "headlines": [
-        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror",
-        "'Ramayana: Part 1' box office collection day 17 (LIVE): The Ranbir Kapoor, Yash, Sai Pallavi starrer cros"
-      ]
+      "headlines": []
     },
     {
-      "topic": "Rotten Tomatoes Score",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
+      "topic": "Lord Vishnu",
+      "genre": "fantasy_mythology",
+      "subcategory": "mythology_epic_edits",
       "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 33.0,
+      "query_suffix": "epic edit shorts",
+      "score": 39.0,
       "horizons": {
-        "3d": 28.0,
-        "7d": 22.0,
-        "30d": 26.0,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 0.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 14239013,
+      "yt_hits": 1,
       "reddit_hits": 0,
       "sources": [
-        "Collider",
-        "Polygon.com"
+        "YT-Week"
       ],
-      "headlines": [
-        "6 Intense War Films of the 2010s, Ranked by Rotten Tomatoes Score"
-      ]
+      "headlines": []
     },
     {
-      "topic": "In Harry Potter",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "GLORIOUS Entry",
+      "genre": "fantasy_mythology",
+      "subcategory": "mythology_epic_edits",
       "recommended_format": "edit_ranking",
-      "query_suffix": "edit 4k shorts",
-      "score": 32.73,
+      "query_suffix": "epic edit shorts",
+      "score": 39.0,
       "horizons": {
-        "3d": 28.8,
-        "7d": 36.0,
-        "30d": 51.9,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 0.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 3,
+      "yt_views": 14239013,
+      "yt_hits": 1,
+      "reddit_hits": 0,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Week"
       ],
-      "headlines": [
-        "In Harry Potter and the Half-Blood Prince (2009), as Dumbledore's memory of the orphanage dissolves back into the Pensieve, the swirling ink briefly forms adult Voldemort's face for a split second."
-      ]
+      "headlines": []
     },
     {
-      "topic": "Ranbir Kapoor",
-      "genre": "world_indian_cinema",
-      "subcategory": "global_cinema_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 30.09,
-      "horizons": {
-        "3d": 28.0,
-        "7d": 22.0,
-        "30d": 11.4,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "NDTV",
-        "Reddit-30d(r/bollywood)"
-      ],
-      "headlines": [
-        "Ramayana Box Office Collection Day 14: Ranbir Kapoor's Film Crosses Rs 1,500 Crore Worldwide"
-      ]
-    },
-    {
-      "topic": "People Don",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 29.45,
-      "horizons": {
-        "3d": 29.8,
-        "7d": 37.3,
-        "30d": 31.6,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ],
-      "headlines": [
-        "As Much as People Don't Like This Scene. Its Kinda Beautiful That Superman Sacrificed Himself For a World That Didn't Understand Him"
-      ]
-    },
-    {
-      "topic": "Its Kinda Beautiful",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 29.45,
-      "horizons": {
-        "3d": 29.8,
-        "7d": 37.3,
-        "30d": 31.6,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ],
-      "headlines": [
-        "As Much as People Don't Like This Scene. Its Kinda Beautiful That Superman Sacrificed Himself For a World That Didn't Understand Him"
-      ]
-    },
-    {
-      "topic": "World That Didn",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 29.45,
-      "horizons": {
-        "3d": 29.8,
-        "7d": 37.3,
-        "30d": 31.6,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ],
-      "headlines": [
-        "As Much as People Don't Like This Scene. Its Kinda Beautiful That Superman Sacrificed Himself For a World That Didn't Understand Him"
-      ]
-    },
-    {
-      "topic": "Half-Blood",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "Mahavatar Narsimha",
+      "genre": "fantasy_mythology",
+      "subcategory": "mythology_epic_edits",
       "recommended_format": "edit_ranking",
-      "query_suffix": "edit 4k shorts",
-      "score": 28.45,
+      "query_suffix": "epic edit shorts",
+      "score": 39.0,
       "horizons": {
-        "3d": 28.8,
-        "7d": 36.0,
-        "30d": 30.5,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 0.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
+      "yt_views": 14239013,
+      "yt_hits": 1,
+      "reddit_hits": 0,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Week"
       ],
-      "headlines": [
-        "In Harry Potter and the Half-Blood Prince (2009), as Dumbledore's memory of the orphanage dissolves back into the Pensieve, the swirling ink briefly forms adult Voldemort's face for a split second."
-      ]
+      "headlines": []
     },
     {
-      "topic": "Blood Prince",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "Fame Motivational Song",
+      "genre": "sports_underdog",
+      "subcategory": "sports_comeback_ranking",
       "recommended_format": "edit_ranking",
-      "query_suffix": "edit 4k shorts",
-      "score": 28.45,
+      "query_suffix": "comeback edit shorts",
+      "score": 39.0,
       "horizons": {
-        "3d": 28.8,
-        "7d": 36.0,
-        "30d": 30.5,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 0.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
+      "yt_views": 7546130,
+      "yt_hits": 1,
+      "reddit_hits": 0,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Week"
       ],
-      "headlines": [
-        "In Harry Potter and the Half-Blood Prince (2009), as Dumbledore's memory of the orphanage dissolves back into the Pensieve, the swirling ink briefly forms adult Voldemort's face for a split second."
-      ]
+      "headlines": []
     },
     {
-      "topic": "Robert Bresson",
-      "genre": "drama_prestige",
-      "subcategory": "prestige_finale_recap",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "finale scene shorts",
-      "score": 28.39,
+      "topic": "Mumbai Mafia",
+      "genre": "crime_mafia",
+      "subcategory": "crime_coldest_boss_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "coldest edit shorts",
+      "score": 39.0,
       "horizons": {
-        "3d": 28.8,
-        "7d": 36.0,
-        "30d": 30.4,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 0.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
+      "yt_views": 5660322,
+      "yt_hits": 1,
+      "reddit_hits": 0,
       "sources": [
-        "Reddit-30d(r/TrueFilm)",
-        "Reddit-7d(r/TrueFilm)"
+        "YT-Week"
       ],
-      "headlines": [
-        "Robert Bresson praised the 1981 James Bond film, For Your Eyes Only."
-      ]
+      "headlines": []
+    },
+    {
+      "topic": "In another life",
+      "genre": "romance_teen_drama",
+      "subcategory": "romance_heartbreak_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "sad edit shorts",
+      "score": 39.0,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 4164931,
+      "yt_hits": 1,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Week"
+      ],
+      "headlines": []
     }
   ],
-  "top_yt_week": [],
-  "top_yt_month": [],
-  "top_reddit_week": [
+  "top_yt_week": [
     {
-      "sub": "MovieDetails",
-      "title": "The Fifth Element (1997) - The Mangalore (antagonist-ish alien) impersonating Korben Dallas doesn't look like Bruce Willis because the police arrested someone else thinking it was Korben earlier in the movie and the Mangalores swiped that (wrong) body",
-      "score": 9349,
-      "comments": 495,
-      "engagement": 10834,
-      "days": 7,
-      "url": "https://www.reddit.com/r/MovieDetails/comments/1xyzejr/the_fifth_element_1997_the_mangalore/"
+      "id": "FY00zwMZsqM",
+      "window": "week",
+      "genre_hint": "fantasy_mythology",
+      "title": "Clash of the Titans (2010) - Medusa's Lair Scene (6/10) | Movieclips",
+      "channel": "Movieclips",
+      "views": 41973489,
+      "duration": 198.0,
+      "url": "https://www.youtube.com/watch?v=FY00zwMZsqM"
     },
+    {
+      "id": "b2KJJ8tznaQ",
+      "window": "week",
+      "genre_hint": "romance_teen_drama",
+      "title": "Aja ve mahiya x Major 🥺 || very sad status #sad #ajavemahiya",
+      "channel": "Tecotech cr",
+      "views": 17516244,
+      "duration": 64.0,
+      "url": "https://www.youtube.com/watch?v=b2KJJ8tznaQ"
+    },
+    {
+      "id": "RSZQZDHD0Fs",
+      "window": "week",
+      "genre_hint": "war_historical",
+      "title": "Prabhas as the POWERFUL Suryaputra Karna ❤️‍🔥 | Kalki 2898 AD | Netflix India",
+      "channel": "Netflix India",
+      "views": 15603783,
+      "duration": 135.0,
+      "url": "https://www.youtube.com/watch?v=RSZQZDHD0Fs"
+    },
+    {
+      "id": "w3NeT1bimY0",
+      "window": "week",
+      "genre_hint": "fantasy_mythology",
+      "title": "Lord Vishnu’s GLORIOUS Entry in His Varaha Avatar | Mahavatar Narsimha | Netflix India",
+      "channel": "Netflix India",
+      "views": 14239013,
+      "duration": 214.0,
+      "url": "https://www.youtube.com/watch?v=w3NeT1bimY0"
+    },
+    {
+      "id": "hs3paMLb9Qg",
+      "window": "week",
+      "genre_hint": "horror_mystery",
+      "title": "Ignore It - Short Horror Film ( Award Winning )",
+      "channel": "Grimoire Horror",
+      "views": 13673198,
+      "duration": 394.0,
+      "url": "https://www.youtube.com/watch?v=hs3paMLb9Qg"
+    },
+    {
+      "id": "yr9qNF0B-W4",
+      "window": "week",
+      "genre_hint": "world_indian_cinema",
+      "title": "Hey mama |  Korean multifemale",
+      "channel": "karinaluv",
+      "views": 10945641,
+      "duration": 194.0,
+      "url": "https://www.youtube.com/watch?v=yr9qNF0B-W4"
+    },
+    {
+      "id": "ey9xv4Kd0kU",
+      "window": "week",
+      "genre_hint": "sports_underdog",
+      "title": "The Script - Hall of Fame Motivational Song",
+      "channel": "Abhishek Sinha",
+      "views": 7546130,
+      "duration": 200.0,
+      "url": "https://www.youtube.com/watch?v=ey9xv4Kd0kU"
+    },
+    {
+      "id": "7Kf2ozcdk3o",
+      "window": "week",
+      "genre_hint": "sports_underdog",
+      "title": "RED",
+      "channel": "Ritzy Animation",
+      "views": 5997068,
+      "duration": 170.0,
+      "url": "https://www.youtube.com/watch?v=7Kf2ozcdk3o"
+    },
+    {
+      "id": "SdS15vKWsHo",
+      "window": "week",
+      "genre_hint": "horror_mystery",
+      "title": "The Changing Room - Short Horror Film",
+      "channel": "Grimoire Horror",
+      "views": 5726043,
+      "duration": 266.0,
+      "url": "https://www.youtube.com/watch?v=SdS15vKWsHo"
+    },
+    {
+      "id": "hIbcd_Fncvw",
+      "window": "week",
+      "genre_hint": "comedy_sitcom",
+      "title": "the office try not to laugh challenge | Comedy Bites",
+      "channel": "Comedy Bites",
+      "views": 5688173,
+      "duration": 501.0,
+      "url": "https://www.youtube.com/watch?v=hIbcd_Fncvw"
+    }
+  ],
+  "top_yt_month": [
+    {
+      "id": "hs3paMLb9Qg",
+      "window": "month",
+      "genre_hint": "horror_mystery",
+      "title": "Ignore It - Short Horror Film ( Award Winning )",
+      "channel": "Grimoire Horror",
+      "views": 13673226,
+      "duration": 394.0,
+      "url": "https://www.youtube.com/watch?v=hs3paMLb9Qg"
+    },
+    {
+      "id": "SdS15vKWsHo",
+      "window": "month",
+      "genre_hint": "horror_mystery",
+      "title": "The Changing Room - Short Horror Film",
+      "channel": "Grimoire Horror",
+      "views": 5726043,
+      "duration": 266.0,
+      "url": "https://www.youtube.com/watch?v=SdS15vKWsHo"
+    },
+    {
+      "id": "hIbcd_Fncvw",
+      "window": "month",
+      "genre_hint": "comedy_sitcom",
+      "title": "the office try not to laugh challenge | Comedy Bites",
+      "channel": "Comedy Bites",
+      "views": 5688174,
+      "duration": 501.0,
+      "url": "https://www.youtube.com/watch?v=hIbcd_Fncvw"
+    },
+    {
+      "id": "Jxq13WJxLDY",
+      "window": "month",
+      "genre_hint": "horror_mystery",
+      "title": "Hungry | Short Horror Film",
+      "channel": "ACMofficial",
+      "views": 4178403,
+      "duration": 275.0,
+      "url": "https://www.youtube.com/watch?v=Jxq13WJxLDY"
+    },
+    {
+      "id": "L7wCy1IOwOw",
+      "window": "month",
+      "genre_hint": "comedy_sitcom",
+      "title": "brooklyn nine-nine moments that have no business being this funny | Comedy Bites",
+      "channel": "Comedy Bites",
+      "views": 3378318,
+      "duration": 588.0,
+      "url": "https://www.youtube.com/watch?v=L7wCy1IOwOw"
+    },
+    {
+      "id": "jAfmmgZLqbk",
+      "window": "month",
+      "genre_hint": "horror_mystery",
+      "title": "The Painting - Horror Short Film",
+      "channel": "DarkFun - Horror Short Films",
+      "views": 3212723,
+      "duration": 384.0,
+      "url": "https://www.youtube.com/watch?v=jAfmmgZLqbk"
+    },
+    {
+      "id": "Gm7fYVXxu5o",
+      "window": "month",
+      "genre_hint": "action_thriller",
+      "title": "Extraction Movie CLIP - Guard (2015) - Gina Carano Thriller HD",
+      "channel": "Rotten Tomatoes Coming Soon",
+      "views": 3198050,
+      "duration": 38.0,
+      "url": "https://www.youtube.com/watch?v=Gm7fYVXxu5o"
+    },
+    {
+      "id": "czG9Xh5tGa0",
+      "window": "month",
+      "genre_hint": "action_thriller",
+      "title": "Shagird Thriller Scene - The order is to finish you - Nana Patekar Action Scene - HD",
+      "channel": "Bollywood Climax",
+      "views": 2655810,
+      "duration": 1036.0,
+      "url": "https://www.youtube.com/watch?v=czG9Xh5tGa0"
+    },
+    {
+      "id": "RmGd3UnxqlM",
+      "window": "month",
+      "genre_hint": "action_thriller",
+      "title": "\"Never Underestimate Me!\" | Retta Thala Action Thriller Climax Scene | Latest South Movie",
+      "channel": "South Hits",
+      "views": 2408581,
+      "duration": 1032.0,
+      "url": "https://www.youtube.com/watch?v=RmGd3UnxqlM"
+    },
+    {
+      "id": "VOJsld2_oeI",
+      "window": "month",
+      "genre_hint": "action_thriller",
+      "title": "JUMPER -  Suspense Thriller Short Film",
+      "channel": "Isaac Carlton",
+      "views": 1242526,
+      "duration": 218.0,
+      "url": "https://www.youtube.com/watch?v=VOJsld2_oeI"
+    }
+  ],
+  "top_reddit_week": [
     {
       "sub": "TrueFilm",
       "title": "It makes me so sad how directors like David Fincher are using AI in their movies.",
@@ -620,15 +771,6 @@
       "engagement": 1339,
       "days": 7,
       "url": "https://www.reddit.com/r/TrueFilm/comments/1y1fh9d/it_makes_me_so_sad_how_directors_like_david/"
-    },
-    {
-      "sub": "MovieDetails",
-      "title": "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk.",
-      "score": 1281,
-      "comments": 11,
-      "engagement": 1314,
-      "days": 7,
-      "url": "https://www.reddit.com/r/MovieDetails/comments/1y158y6/in_spiderman_brand_new_day_2026_bruce_banners/"
     },
     {
       "sub": "television",
@@ -640,13 +782,13 @@
       "url": "https://www.reddit.com/r/television/comments/1y28ig6/review_addiction/"
     },
     {
-      "sub": "marvelmemes",
-      "title": "What can the context possibly be! 😭",
-      "score": 513,
-      "comments": 16,
-      "engagement": 561,
+      "sub": "DC_Cinematic",
+      "title": "I'm not the biggest fan of James Gunn's DCU, BUT firing him right now that his universe is in the beginning was a DUMB move",
+      "score": 186,
+      "comments": 161,
+      "engagement": 669,
       "days": 7,
-      "url": "https://www.reddit.com/r/marvelmemes/comments/1y29re8/what_can_the_context_possibly_be/"
+      "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y2goxi/im_not_the_biggest_fan_of_james_gunns_dcu_but/"
     },
     {
       "sub": "bollywoodmemes",
@@ -676,15 +818,6 @@
       "url": "https://www.reddit.com/r/television/comments/1y2556o/netflixs_minimum_wage_ushers_in_streamings_short/"
     },
     {
-      "sub": "marvelmemes",
-      "title": "All thanks to Captain Carter, LOL.",
-      "score": 310,
-      "comments": 11,
-      "engagement": 343,
-      "days": 7,
-      "url": "https://www.reddit.com/r/marvelmemes/comments/1y268fj/all_thanks_to_captain_carter_lol/"
-    },
-    {
       "sub": "television",
       "title": "Kieran Culkin Says a ‘Succession’ Spinoff ‘Would Be a Terrible Idea’: ‘What Are You Hoping For? “Cousin Greg: The Sitcom?”‘",
       "score": 202,
@@ -692,6 +825,33 @@
       "engagement": 328,
       "days": 7,
       "url": "https://www.reddit.com/r/television/comments/1y2cbx7/kieran_culkin_says_a_succession_spinoff_would_be/"
+    },
+    {
+      "sub": "boxoffice",
+      "title": "Mike4 [BOT] on Avengers: Doomsday (T-25):  Surpassed the Devil Wears Prada 2's entire run and It's the same as Spider Man: Brand New Day's T-2",
+      "score": 176,
+      "comments": 49,
+      "engagement": 323,
+      "days": 7,
+      "url": "https://www.reddit.com/r/boxoffice/comments/1y2cs4r/mike4_bot_on_avengers_doomsday_t25_surpassed_the/"
+    },
+    {
+      "sub": "DC_Cinematic",
+      "title": "As Much as People Don't Like This Scene. Its Kinda Beautiful That Superman Sacrificed Himself For a World That Didn't Understand Him",
+      "score": 52,
+      "comments": 86,
+      "engagement": 310,
+      "days": 7,
+      "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y2dbwv/as_much_as_people_dont_like_this_scene_its_kinda/"
+    },
+    {
+      "sub": "boxoffice",
+      "title": "Per Deadline, the audience for 'The Hunger Games: Sunrise on the Reaping' was 68% female, 49% of which came with friends, and 22% with a partner. 64% went because of the franchise, and 33% for of the cast. The audience was 49% Caucasian, 27% Hispanic, 9% Black, and 9% Asian. 74% were ages 18-34.",
+      "score": 161,
+      "comments": 48,
+      "engagement": 305,
+      "days": 7,
+      "url": "https://www.reddit.com/r/boxoffice/comments/1y2289w/per_deadline_the_audience_for_the_hunger_games/"
     }
   ]
 }

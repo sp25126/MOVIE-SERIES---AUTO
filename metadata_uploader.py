@@ -110,6 +110,13 @@ def upload_private_canary_and_schedule(
     from googleapiclient.http import MediaFileUpload
 
     creds = Credentials.from_authorized_user_file(str(token_path))
+    if creds.expired and creds.refresh_token:
+        try:
+            from google.auth.transport.requests import Request
+            creds.refresh(Request())
+            token_path.write_text(creds.to_json(), encoding="utf-8")
+        except Exception as e:
+            print(f"[Uploader] Warning: Token refresh failed: {e}")
     youtube = build("youtube", "v3", credentials=creds)
 
     body = {

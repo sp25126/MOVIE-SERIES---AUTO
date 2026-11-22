@@ -3,7 +3,8 @@
     "2026-11-20T14:00:00Z",
     "2026-11-21T14:00:00Z",
     "2026-11-22T14:00:00Z",
-    "2026-11-23T14:00:00Z"
+    "2026-11-23T14:00:00Z",
+    "2026-11-24T14:00:00Z"
   ],
   "queue": [
     {
@@ -33,6 +34,13 @@
       "publish_at": "2026-11-22T14:00:00Z",
       "pillar": "Day 2: TV Series Group (My Demon)",
       "slot_label": "Nov 22 7:30 PM IST"
+    },
+    {
+      "video_id": "-vECg7Z8GUs",
+      "scheduled": true,
+      "publish_at": "2026-11-24T14:00:00Z",
+      "title": "Ranking Best I Play Rocky Edits! 🔥💀 #shorts #iplayrocky #naofloppa #shortsfeed",
+      "uploaded_at_utc": "2026-11-22T07:24:08Z"
     }
   ],
   "last_upload_date_utc": "2026-11-19T14:00:00Z"
