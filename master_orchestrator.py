@@ -118,10 +118,10 @@ def audit_live_virality() -> dict:
     try:
         from tv_series_radar import scan_dynamic_tv_virality
         tv_rep = scan_dynamic_tv_virality()
-        audit_results["tv_series"] = tv_rep.get("winner", {})
-        top_tv = audit_results["tv_series"].get("series_name", "Breaking Bad")
-        score_tv = audit_results["tv_series"].get("virality_score", 0)
-        logging.info(f"[Virality Audit] Top TV/Web Series: '{top_tv}' (Score: {score_tv:.1f})")
+        audit_results["tv_series"] = tv_rep.get("ranked_shows") or [tv_rep.get("winner", {})]
+        top_tv = audit_results["tv_series"][0].get("series_name", "Breaking Bad") if audit_results["tv_series"] else "Breaking Bad"
+        score_tv = audit_results["tv_series"][0].get("total_views", 0) if audit_results["tv_series"] else 0
+        logging.info(f"[Virality Audit] Top TV/Web Series: '{top_tv}' ({score_tv:,} views)")
     except Exception as e:
         logging.warning(f"[Virality Audit] TV scan error: {e}")
 
@@ -129,10 +129,10 @@ def audit_live_virality() -> dict:
     try:
         from song_trend_radar import scan_dynamic_song_virality
         song_rep = scan_dynamic_song_virality()
-        audit_results["song_trends"] = song_rep.get("winner", {})
-        top_song = audit_results["song_trends"].get("song_name", "Starboy")
-        vel_song = audit_results["song_trends"].get("velocity_score", 0)
-        logging.info(f"[Virality Audit] Top Trending Audio: '{top_song}' (Velocity: {vel_song:.1f})")
+        audit_results["song_trends"] = song_rep.get("trending_songs") or [song_rep.get("winner", {})]
+        top_song = audit_results["song_trends"][0].get("song_name", "Starboy") if audit_results["song_trends"] else "Starboy"
+        vel_song = audit_results["song_trends"][0].get("total_views", 0) if audit_results["song_trends"] else 0
+        logging.info(f"[Virality Audit] Top Trending Audio: '{top_song}' ({vel_song:,} views)")
     except Exception as e:
         logging.warning(f"[Virality Audit] Song scan error: {e}")
 
@@ -305,7 +305,8 @@ def execute_batch_cadence(
     """
     # 1. Weekly digest check
     is_sunday = datetime.datetime.now(datetime.timezone.utc).weekday() == 6
-    if force_weekly_digest or is_sunday or not DIGEST_FILE.exists():
+    digest_age = (time.time() - DIGEST_FILE.stat().st_mtime) if DIGEST_FILE.exists() else 999999
+    if force_weekly_digest or not DIGEST_FILE.exists() or (is_sunday and digest_age > 12 * 3600):
         logging.info("[Cadence] Triggering Weekly Multi-Platform Virality Synthesis...")
         try:
             from weekly_radar_digest import generate_weekly_virality_digest
@@ -337,7 +338,8 @@ def execute_batch_cadence(
                 result = run_day_1_cinema(topic=topic, genre=genre, dry_run=dry_run)
             elif curr_day == 2:
                 # Top live TV candidate
-                tv_cand = (audit.get("tv_series") or {}).get("series_name")
+                tv_list = audit.get("tv_series") or []
+                tv_cand = tv_list[step_num % len(tv_list)].get("series_name") if tv_list else None
                 result = run_day_2_tv_series(series_name=tv_cand, dry_run=dry_run)
             elif curr_day == 3:
                 # Strictly locked flagship pillar (The Mentalist)
@@ -346,7 +348,8 @@ def execute_batch_cadence(
                 # Top live song candidate
                 sub_idx = state.get("song_subcat_index", 0) % len(SONG_SUBCATEGORIES)
                 current_subcat = SONG_SUBCATEGORIES[sub_idx]
-                song_cand = (audit.get("song_trends") or {}).get("song_name")
+                song_list = audit.get("song_trends") or []
+                song_cand = song_list[step_num % len(song_list)].get("song_name") if song_list else None
                 result = run_day_4_song_edits(subcat=current_subcat, top_song=song_cand, dry_run=dry_run)
                 state["song_subcat_index"] = (sub_idx + 1) % len(SONG_SUBCATEGORIES)
 

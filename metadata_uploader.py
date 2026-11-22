@@ -180,6 +180,15 @@ def upload_private_canary_and_schedule(
     except Exception as e:
         print(f"[Uploader] Warning: failed to record in upload_queue.json: {e}")
 
+    # Release file handle before unlinking on Windows
+    try:
+        del req
+        del media
+        import gc
+        gc.collect()
+    except Exception:
+        pass
+
     # Delete local master MP4 to prevent disk bloat
     try:
         if video_path.exists():
