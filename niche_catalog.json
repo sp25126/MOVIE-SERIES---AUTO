@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-22T08:11:21Z",
+  "last_3day_sync_utc": "2026-11-22T13:05:01Z",
   "recent_topics": [
     "Interstellar",
     "Mr Darcy",
@@ -28,65 +28,65 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 948.8,
-      "top_topic": "I Play Rocky",
-      "count": 54
-    },
-    {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 380.8,
-      "top_topic": "Korben Dallas",
-      "count": 12
+      "total_score": 809.6,
+      "top_topic": "Taika Waititi",
+      "count": 52
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 266.2,
-      "top_topic": "James Gunn",
-      "count": 11
-    },
-    {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 204.7,
-      "top_topic": "Artificial",
-      "count": 7
-    },
-    {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 201.0,
-      "top_topic": "Ramayana",
-      "count": 6
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 165.2,
-      "top_topic": "Ranbir Kapoor",
+      "total_score": 328.1,
+      "top_topic": "Robert Pattinson",
       "count": 13
+    },
+    {
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 287.6,
+      "top_topic": "Spider-Man",
+      "count": 10
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 99.7,
-      "top_topic": "Doesn",
-      "count": 10
+      "total_score": 222.8,
+      "top_topic": "Robert Bresson",
+      "count": 12
     },
     {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 89.0,
-      "top_topic": "Elsinore",
-      "count": 5
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 218.6,
+      "top_topic": "Ranbir Kapoor",
+      "count": 14
+    },
+    {
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 154.7,
+      "top_topic": "Ramayana",
+      "count": 6
+    },
+    {
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 151.0,
+      "top_topic": "Minimum Wage",
+      "count": 7
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 73.6,
-      "top_topic": "Other Mommy",
-      "count": 4
+      "total_score": 53.4,
+      "top_topic": "Monster-in-Law",
+      "count": 3
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 53.4,
+      "top_topic": "Elsinore",
+      "count": 3
     },
     {
       "genre": "war_historical",
@@ -112,22 +112,11 @@
   ],
   "live_3day_top_topics": [
     {
-      "topic": "Ramayana",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
-      "score": 76.4,
-      "sources": [
-        "The Times of India",
-        "The Week"
-      ]
-    },
-    {
       "topic": "Ranbir Kapoor",
       "genre": "world_indian_cinema",
       "subcategory": "global_cinema_hype",
       "format": "release_hype",
-      "score": 75.69,
+      "score": 76.04,
       "sources": [
         "NDTV",
         "Reddit-30d(r/bollywood)",
@@ -135,68 +124,37 @@
       ]
     },
     {
-      "topic": "I Play Rocky",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 68.39,
-      "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
-      ]
-    },
-    {
-      "topic": "Sai Pallavi",
+      "topic": "Ramayana",
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
-      "score": 53.4,
+      "score": 63.4,
       "sources": [
+        "Collider",
         "The Times of India"
       ]
     },
     {
-      "topic": "Artificial",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "format": "release_hype",
-      "score": 45.6,
+      "topic": "Robert Pattinson",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 58.52,
       "sources": [
-        "Indy100",
-        "Variety"
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)",
+        "Reddit-7d(r/marvelmemes)"
       ]
     },
     {
-      "topic": "Andrew Garfield",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "format": "release_hype",
-      "score": 45.6,
+      "topic": "James Gunn",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 37.36,
       "sources": [
-        "Indy100",
-        "Variety"
-      ]
-    },
-    {
-      "topic": "Korben Dallas",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
-      "format": "edit_ranking",
-      "score": 38.16,
-      "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
-      ]
-    },
-    {
-      "topic": "Bruce Willis",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
-      "format": "edit_ranking",
-      "score": 38.16,
-      "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
       ]
     },
     {
@@ -233,14 +191,34 @@
       ]
     },
     {
-      "topic": "James Gunn",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 33.38,
+      "topic": "Sai Pallavi",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "format": "release_hype",
+      "score": 35.6,
       "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
+        "The Times of India"
+      ]
+    },
+    {
+      "topic": "Sci-Fi",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "format": "release_hype",
+      "score": 35.6,
+      "sources": [
+        "Collider"
+      ]
+    },
+    {
+      "topic": "Taika Waititi",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 33.64,
+      "sources": [
+        "IndieWire",
+        "Reddit-7d(r/boxoffice)"
       ]
     },
     {
@@ -255,25 +233,47 @@
       ]
     },
     {
-      "topic": "People Don",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 30.51,
+      "topic": "Half-Blood",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 28.45,
       "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
       ]
     },
     {
-      "topic": "Its Kinda Beautiful",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 30.51,
+      "topic": "Blood Prince",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 28.45,
       "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "In Madden",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 27.67,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Wild Card",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 27.67,
+      "sources": [
+        "Reddit-30d(r/MovieDetails)",
+        "Reddit-7d(r/MovieDetails)"
       ]
     }
   ],
