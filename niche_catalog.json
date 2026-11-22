@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-22T13:05:01Z",
+  "last_3day_sync_utc": "2026-11-22T14:01:00Z",
   "recent_topics": [
     "Interstellar",
     "Mr Darcy",
@@ -28,79 +28,79 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 809.6,
-      "top_topic": "Taika Waititi",
-      "count": 52
-    },
-    {
-      "genre": "superhero_scifi",
-      "label": "Superhero & Sci-Fi",
-      "total_score": 328.1,
-      "top_topic": "Robert Pattinson",
-      "count": 13
+      "total_score": 1043.6,
+      "top_topic": "Nana Patekar Action",
+      "count": 54
     },
     {
       "genre": "animated_cinema",
       "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 287.6,
-      "top_topic": "Spider-Man",
-      "count": 10
+      "total_score": 499.3,
+      "top_topic": "Kung Fu Panda",
+      "count": 15
     },
     {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 222.8,
-      "top_topic": "Robert Bresson",
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 348.0,
+      "top_topic": "ClipZone",
       "count": 12
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 218.6,
-      "top_topic": "Ranbir Kapoor",
+      "total_score": 248.9,
+      "top_topic": "Kdrama Badass Multifemale",
       "count": 14
     },
     {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 154.7,
-      "top_topic": "Ramayana",
-      "count": 6
-    },
-    {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 151.0,
-      "top_topic": "Minimum Wage",
-      "count": 7
-    },
-    {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 53.4,
-      "top_topic": "Monster-in-Law",
-      "count": 3
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 53.4,
-      "top_topic": "Elsinore",
-      "count": 3
-    },
-    {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 17.8,
-      "top_topic": "TSRStaff ST",
-      "count": 1
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 247.3,
+      "top_topic": "Robert Bresson",
+      "count": 16
     },
     {
       "genre": "crime_mafia",
       "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "total_score": 233.8,
+      "top_topic": "Ex-Mob",
+      "count": 6
+    },
+    {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 212.8,
+      "top_topic": "Only Action",
+      "count": 6
+    },
+    {
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 200.3,
+      "top_topic": "Ramayana",
+      "count": 6
+    },
+    {
+      "genre": "superhero_scifi",
+      "label": "Superhero & Sci-Fi",
+      "total_score": 199.9,
+      "top_topic": "Robert Pattinson",
+      "count": 8
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 170.4,
+      "top_topic": "YOU CAN",
+      "count": 6
+    },
+    {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 104.4,
+      "top_topic": "Okay Google",
+      "count": 4
     },
     {
       "genre": "romance_teen_drama",
@@ -112,15 +112,13 @@
   ],
   "live_3day_top_topics": [
     {
-      "topic": "Ranbir Kapoor",
-      "genre": "world_indian_cinema",
-      "subcategory": "global_cinema_hype",
-      "format": "release_hype",
-      "score": 76.04,
+      "topic": "ClipZone",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "format": "edit_ranking",
+      "score": 68.76,
       "sources": [
-        "NDTV",
-        "Reddit-30d(r/bollywood)",
-        "The Times of India"
+        "YT-Week"
       ]
     },
     {
@@ -135,11 +133,22 @@
       ]
     },
     {
+      "topic": "Ranbir Kapoor",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "format": "release_hype",
+      "score": 63.4,
+      "sources": [
+        "NDTV",
+        "The Times of India"
+      ]
+    },
+    {
       "topic": "Robert Pattinson",
       "genre": "superhero_scifi",
       "subcategory": "superhero_spoiler_commentary",
       "format": "scene_commentary",
-      "score": 58.52,
+      "score": 61.29,
       "sources": [
         "Reddit-30d(r/DC_Cinematic)",
         "Reddit-7d(r/DC_Cinematic)",
@@ -147,133 +156,117 @@
       ]
     },
     {
-      "topic": "James Gunn",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 37.36,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ]
-    },
-    {
-      "topic": "Spider-Man",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "Okay Google",
+      "genre": "horror_mystery",
+      "subcategory": "horror_scariest_ranking",
       "format": "edit_ranking",
-      "score": 36.84,
+      "score": 51.0,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Month",
+        "YT-Week"
       ]
     },
     {
-      "topic": "In Spider",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
-      "format": "edit_ranking",
-      "score": 36.84,
-      "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
-      ]
-    },
-    {
-      "topic": "Bruce Banner",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
-      "format": "edit_ranking",
-      "score": 36.84,
-      "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
-      ]
-    },
-    {
-      "topic": "Sai Pallavi",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
-      "score": 35.6,
-      "sources": [
-        "The Times of India"
-      ]
-    },
-    {
-      "topic": "Sci-Fi",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 35.6,
-      "sources": [
-        "Collider"
-      ]
-    },
-    {
-      "topic": "Taika Waititi",
+      "topic": "Nana Patekar Action",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 33.64,
+      "score": 51.0,
       "sources": [
-        "IndieWire",
-        "Reddit-7d(r/boxoffice)"
+        "YT-Month",
+        "YT-Week"
       ]
     },
     {
-      "topic": "In Harry Potter",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "King Ghidorah Destroys",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 32.73,
+      "score": 51.0,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Month",
+        "YT-Week"
       ]
     },
     {
-      "topic": "Half-Blood",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "An Unreal Engine",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 28.45,
+      "score": 51.0,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Month",
+        "YT-Week"
       ]
     },
     {
-      "topic": "Blood Prince",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "Only Action",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
       "format": "edit_ranking",
-      "score": 28.45,
+      "score": 39.0,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Week"
       ]
     },
     {
-      "topic": "In Madden",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "Directors Cut",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
       "format": "edit_ranking",
-      "score": 27.67,
+      "score": 39.0,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Week"
       ]
     },
     {
-      "topic": "Wild Card",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "Keanu Reeves VS",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
       "format": "edit_ranking",
-      "score": 27.67,
+      "score": 39.0,
       "sources": [
-        "Reddit-30d(r/MovieDetails)",
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Golem Samurai Death",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
+      "format": "edit_ranking",
+      "score": 39.0,
+      "sources": [
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Ex-Mob",
+      "genre": "crime_mafia",
+      "subcategory": "crime_coldest_boss_ranking",
+      "format": "edit_ranking",
+      "score": 39.0,
+      "sources": [
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Mob Boss Rates",
+      "genre": "crime_mafia",
+      "subcategory": "crime_coldest_boss_ranking",
+      "format": "edit_ranking",
+      "score": 39.0,
+      "sources": [
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Kingdom Of Heaven",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
+      "format": "edit_ranking",
+      "score": 39.0,
+      "sources": [
+        "YT-Week"
       ]
     }
   ],
