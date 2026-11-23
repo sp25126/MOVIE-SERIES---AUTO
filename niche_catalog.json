@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-23T07:34:30Z",
+  "last_3day_sync_utc": "2026-11-23T09:30:26Z",
   "recent_topics": [
     "Interstellar",
     "Mr Darcy",
@@ -28,51 +28,51 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 2900.9,
+      "total_score": 2721.0,
       "top_topic": "Hunger Games",
-      "count": 185
+      "count": 183
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 1318.5,
+      "total_score": 1197.1,
       "top_topic": "Godzilla",
-      "count": 67
+      "count": 60
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 432.1,
-      "top_topic": "Doesn",
+      "total_score": 425.0,
+      "top_topic": "Hexed",
       "count": 25
-    },
-    {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 359.8,
-      "top_topic": "In Spider",
-      "count": 16
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 246.0,
-      "top_topic": "Racialized",
-      "count": 16
+      "total_score": 278.7,
+      "top_topic": "Ocean",
+      "count": 15
+    },
+    {
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 270.6,
+      "top_topic": "In Spider",
+      "count": 12
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 199.7,
+      "total_score": 240.4,
       "top_topic": "Eager",
-      "count": 10
+      "count": 11
     },
     {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 115.8,
-      "top_topic": "Ramayana: Rise of a Legend",
-      "count": 13
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 171.5,
+      "top_topic": "Imma",
+      "count": 15
     },
     {
       "genre": "war_historical",
@@ -82,11 +82,11 @@
       "count": 5
     },
     {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 64.9,
-      "top_topic": "Actors",
-      "count": 11
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 64.0,
+      "top_topic": "Percy Jackson & the Olympians",
+      "count": 5
     },
     {
       "genre": "crime_mafia",
@@ -116,24 +116,12 @@
       "genre": "superhero_scifi",
       "subcategory": "superhero_spoiler_commentary",
       "format": "scene_commentary",
-      "score": 95.07,
+      "score": 109.4,
       "sources": [
         "Collider",
         "Crunchyroll",
         "Entertainment Weekly",
-        "Reddit-30d(r/Monsterverse)"
-      ]
-    },
-    {
-      "topic": "Hunger Games",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 75.7,
-      "sources": [
-        "ELLE",
-        "Reddit-7d(r/boxoffice)",
-        "The New York Times"
+        "Reddit-30d(r/GODZILLA)"
       ]
     },
     {
@@ -141,34 +129,12 @@
       "genre": "superhero_scifi",
       "subcategory": "superhero_spoiler_commentary",
       "format": "scene_commentary",
-      "score": 74.37,
+      "score": 80.0,
       "sources": [
         "Deadline",
         "Reddit-7d(r/boxoffice)",
-        "Reddit-7d(r/marvelmemes)"
-      ]
-    },
-    {
-      "topic": "Sunrise On The Reaping",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 66.36,
-      "sources": [
-        "Deadline",
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
-      ]
-    },
-    {
-      "topic": "Superman",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 57.44,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
+        "Reddit-7d(r/marvelmemes)",
+        "Reddit-7d(r/marvelstudios)"
       ]
     },
     {
@@ -195,37 +161,49 @@
       ]
     },
     {
-      "topic": "Ramayana",
+      "topic": "Hunger Games",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
       "score": 54.0,
       "sources": [
-        "NDTV",
-        "The Times of India",
-        "Variety"
+        "ELLE",
+        "Variety",
+        "Yahoo"
       ]
     },
     {
-      "topic": "Coming Anytime Soon",
+      "topic": "Going",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 50.7,
+      "score": 54.0,
       "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "American Institute for Stuttering",
+        "Latin Times",
+        "Yahoo"
       ]
     },
     {
-      "topic": "Another",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
+      "topic": "Ocean",
+      "genre": "drama_prestige",
+      "subcategory": "coldest_drama_edits",
       "format": "edit_ranking",
-      "score": 50.7,
+      "score": 49.3,
+      "sources": [
+        "Deadline",
+        "Reddit-7d(r/movies)"
+      ]
+    },
+    {
+      "topic": "Avengers",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 46.59,
       "sources": [
         "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "Reddit-7d(r/marvelstudios)"
       ]
     },
     {
@@ -240,15 +218,14 @@
       ]
     },
     {
-      "topic": "Thanksgiving",
+      "topic": "Sunrise On The Reaping",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 43.0,
+      "score": 41.36,
       "sources": [
-        "IMDb",
-        "TheGrio",
-        "WCNC"
+        "Deadline",
+        "Reddit-7d(r/boxoffice)"
       ]
     },
     {
@@ -282,6 +259,28 @@
       "sources": [
         "THR",
         "The Guardian"
+      ]
+    },
+    {
+      "topic": "Hexed",
+      "genre": "comedy_sitcom",
+      "subcategory": "cast_fandom_memes",
+      "format": "release_hype",
+      "score": 40.0,
+      "sources": [
+        "Deadline",
+        "Disney Plus"
+      ]
+    },
+    {
+      "topic": "Bond",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 40.0,
+      "sources": [
+        "AOL.com",
+        "JoBlo"
       ]
     }
   ],

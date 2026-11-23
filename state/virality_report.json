@@ -1,29 +1,30 @@
 {
-  "scan_time_utc": "2026-11-23T07:34:30Z",
+  "scan_time_utc": "2026-11-23T09:30:26Z",
   "winner": {
     "topic": "Godzilla",
     "genre": "superhero_scifi",
     "subcategory": "superhero_spoiler_commentary",
     "recommended_format": "scene_commentary",
     "query_suffix": "scene edit shorts",
-    "score": 95.07,
+    "score": 109.4,
     "horizons": {
-      "3d": 75.7,
-      "7d": 82.6,
+      "3d": 98.5,
+      "7d": 100.0,
       "30d": 100.0,
       "1y": 0.0
     },
     "yt_views": 0,
     "yt_hits": 0,
-    "reddit_hits": 6,
+    "reddit_hits": 8,
     "sources": [
       "Collider",
       "Crunchyroll",
       "Entertainment Weekly",
-      "Reddit-30d(r/Monsterverse)"
+      "Reddit-30d(r/GODZILLA)"
     ],
     "headlines": [
       "Who gonna win monster zero King ghidorah or Godzilla earth",
+      "Are the Godzillas in Minus One and Minus Zero the same Godzilla?",
       "I hope we can hear Godzilla use the classic roar again in Supernova",
       "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance"
     ]
@@ -32,51 +33,51 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 2900.9,
+      "total_score": 2721.0,
       "top_topic": "Hunger Games",
-      "count": 185
+      "count": 183
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 1318.5,
+      "total_score": 1197.1,
       "top_topic": "Godzilla",
-      "count": 67
+      "count": 60
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 432.1,
-      "top_topic": "Doesn",
+      "total_score": 425.0,
+      "top_topic": "Hexed",
       "count": 25
-    },
-    {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 359.8,
-      "top_topic": "In Spider",
-      "count": 16
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 246.0,
-      "top_topic": "Racialized",
-      "count": 16
+      "total_score": 278.7,
+      "top_topic": "Ocean",
+      "count": 15
+    },
+    {
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 270.6,
+      "top_topic": "In Spider",
+      "count": 12
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 199.7,
+      "total_score": 240.4,
       "top_topic": "Eager",
-      "count": 10
+      "count": 11
     },
     {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 115.8,
-      "top_topic": "Ramayana: Rise of a Legend",
-      "count": 13
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 171.5,
+      "top_topic": "Imma",
+      "count": 15
     },
     {
       "genre": "war_historical",
@@ -86,11 +87,11 @@
       "count": 5
     },
     {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 64.9,
-      "top_topic": "Actors",
-      "count": 11
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 64.0,
+      "top_topic": "Percy Jackson & the Olympians",
+      "count": 5
     },
     {
       "genre": "crime_mafia",
@@ -121,53 +122,27 @@
       "subcategory": "superhero_spoiler_commentary",
       "recommended_format": "scene_commentary",
       "query_suffix": "scene edit shorts",
-      "score": 95.07,
+      "score": 109.4,
       "horizons": {
-        "3d": 75.7,
-        "7d": 82.6,
+        "3d": 98.5,
+        "7d": 100.0,
         "30d": 100.0,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 6,
+      "reddit_hits": 8,
       "sources": [
         "Collider",
         "Crunchyroll",
         "Entertainment Weekly",
-        "Reddit-30d(r/Monsterverse)"
+        "Reddit-30d(r/GODZILLA)"
       ],
       "headlines": [
         "Who gonna win monster zero King ghidorah or Godzilla earth",
+        "Are the Godzillas in Minus One and Minus Zero the same Godzilla?",
         "I hope we can hear Godzilla use the classic roar again in Supernova",
         "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance"
-      ]
-    },
-    {
-      "topic": "Hunger Games",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 75.7,
-      "horizons": {
-        "3d": 81.2,
-        "7d": 77.4,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "ELLE",
-        "Reddit-7d(r/boxoffice)",
-        "The New York Times"
-      ],
-      "headlines": [
-        "Why Another ‘Hunger Games’ Movie Isn’t Coming Anytime Soon",
-        "Who Should the Next ‘Hunger Games’ Movie Be About? Fans Have Some Ideas.",
-        "Everything You Need to Know Before Seeing the New ‘Hunger Games’ Prequel"
       ]
     },
     {
@@ -176,77 +151,27 @@
       "subcategory": "superhero_spoiler_commentary",
       "recommended_format": "scene_commentary",
       "query_suffix": "scene edit shorts",
-      "score": 74.37,
+      "score": 80.0,
       "horizons": {
-        "3d": 87.7,
-        "7d": 97.6,
+        "3d": 100.0,
+        "7d": 100.0,
         "30d": 0.0,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 2,
+      "reddit_hits": 3,
       "sources": [
         "Deadline",
         "Reddit-7d(r/boxoffice)",
-        "Reddit-7d(r/marvelmemes)"
+        "Reddit-7d(r/marvelmemes)",
+        "Reddit-7d(r/marvelstudios)"
       ],
       "headlines": [
         "Hailee Steinfeld has joined the cast of Avengers: Doomsday",
         "I want him to narrate Doomsday.",
+        "Will you watch the final Avengers: Doomsday trailer, or will you avoid it and stick to the footage you've already seen until the movie comes out?",
         "Joe Russo Talks ‘Doomsday’ Teaser-Trailer Strategy Ahead Of Rumored Monday Drop: “I Have To interact With Fans”"
-      ]
-    },
-    {
-      "topic": "Sunrise On The Reaping",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 66.36,
-      "horizons": {
-        "3d": 69.1,
-        "7d": 62.4,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Deadline",
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
-      ],
-      "headlines": [
-        "Brighter Than The Sun: How Lionsgate Marketing & PR Turned B.O. Around For ‘Sunrise On The Reaping’",
-        "Noah Schnapp Reveals Image From His ‘Sunrise on the Reaping’ Audition For Haymitch: “They Picked Right”",
-        "‘Hunger Games’ Lead Joseph Zada on Filming His Breakout Movie Role and ‘Sunrise on the Reaping’s’ Intense Stunts: ‘I Look Like a F—ing Action Star!’"
-      ]
-    },
-    {
-      "topic": "Superman",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 57.44,
-      "horizons": {
-        "3d": 54.9,
-        "7d": 68.7,
-        "30d": 74.3,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 5,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ],
-      "headlines": [
-        "What would your reaction be if Jeremy Latcham made an announcement like this about no longer using David Corenswet as Superman in the future?",
-        "People genuinely putting Superman (2025) above Iron Man (2008) is insane. Iron Man clears in writing, acting, CGI, action, plot and character development. Hell, even the opening scene mogs."
       ]
     },
     {
@@ -301,7 +226,7 @@
       ]
     },
     {
-      "topic": "Ramayana",
+      "topic": "Hunger Games",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
@@ -317,25 +242,51 @@
       "yt_hits": 0,
       "reddit_hits": 0,
       "sources": [
-        "NDTV",
-        "The Times of India",
-        "Variety"
+        "ELLE",
+        "Variety",
+        "Yahoo"
       ],
       "headlines": [
-        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror",
-        "Ramayana Box Office Collection Day 18: Ranbir Kapoor's Film Earns More Than Dhurandhar 2 In India On 3rd Sunday"
+        "Who Should the Next ‘Hunger Games’ Movie Be About? Fans Have Some Ideas.",
+        "Why Another ‘Hunger Games’ Movie Isn’t Coming Anytime Soon"
       ]
     },
     {
-      "topic": "Coming Anytime Soon",
+      "topic": "Going",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 50.7,
+      "score": 54.0,
       "horizons": {
-        "3d": 57.2,
-        "7d": 59.4,
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 20.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "American Institute for Stuttering",
+        "Latin Times",
+        "Yahoo"
+      ],
+      "headlines": [
+        "Speaker Series: Going Viral and Raising Stuttering Awareness with Travis Althouse",
+        "Sophie Cunningham's Husband Checklist, Bond Girl Dreams, and Life After Going Viral"
+      ]
+    },
+    {
+      "topic": "Ocean",
+      "genre": "drama_prestige",
+      "subcategory": "coldest_drama_edits",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "coldest edit shorts",
+      "score": 49.3,
+      "horizons": {
+        "3d": 55.4,
+        "7d": 57.2,
         "30d": 0.0,
         "1y": 0.0
       },
@@ -343,35 +294,37 @@
       "yt_hits": 0,
       "reddit_hits": 1,
       "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "Deadline",
+        "Reddit-7d(r/movies)"
       ],
       "headlines": [
-        "Why Another ‘Hunger Games’ Movie Isn’t Coming Anytime Soon"
+        "David Leitch ('Bullet Train', 'The Fall Guy', 'How to Rob a Bank') confirmed to direct 'Ocean's 14', with George Clooney & Grant Heslov writing the screenplay",
+        "David Leitch Gives ‘Ocean’s 14’ Update, Notes “Lot Of Motivation” To Make Sequel"
       ]
     },
     {
-      "topic": "Another",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 50.7,
+      "topic": "Avengers",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "scene edit shorts",
+      "score": 46.59,
       "horizons": {
-        "3d": 57.2,
-        "7d": 59.4,
+        "3d": 60.1,
+        "7d": 75.1,
         "30d": 0.0,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 1,
+      "reddit_hits": 2,
       "sources": [
         "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "Reddit-7d(r/marvelstudios)"
       ],
       "headlines": [
-        "Why Another ‘Hunger Games’ Movie Isn’t Coming Anytime Soon"
+        "Hailee Steinfeld has joined the cast of Avengers: Doomsday",
+        "Will you watch the final Avengers: Doomsday trailer, or will you avoid it and stick to the footage you've already seen until the movie comes out?"
       ]
     },
     {
@@ -400,28 +353,28 @@
       ]
     },
     {
-      "topic": "Thanksgiving",
+      "topic": "Sunrise On The Reaping",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 43.0,
+      "score": 41.36,
       "horizons": {
-        "3d": 24.0,
-        "7d": 18.0,
-        "30d": 40.0,
+        "3d": 45.1,
+        "7d": 44.4,
+        "30d": 0.0,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 0,
+      "reddit_hits": 1,
       "sources": [
-        "IMDb",
-        "TheGrio",
-        "WCNC"
+        "Deadline",
+        "Reddit-7d(r/boxoffice)"
       ],
       "headlines": [
-        "Jamal Hinton & Wanda Dench’s Viral Thanksgiving Story Lands Lifetime Movie Deal Years After Netflix News"
+        "Brighter Than The Sun: How Lionsgate Marketing & PR Turned B.O. Around For ‘Sunrise On The Reaping’",
+        "Noah Schnapp Reveals Image From His ‘Sunrise On The Reaping’ Audition For Haymitch: “They Picked Right”"
       ]
     },
     {
@@ -500,7 +453,32 @@
       ]
     },
     {
-      "topic": "Going",
+      "topic": "Hexed",
+      "genre": "comedy_sitcom",
+      "subcategory": "cast_fandom_memes",
+      "recommended_format": "release_hype",
+      "query_suffix": "cast funny meme shorts",
+      "score": 40.0,
+      "horizons": {
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "Deadline",
+        "Disney Plus"
+      ],
+      "headlines": [
+        "Disney’s Hexed Movie: Trailer, Release Date, Cast & More | Explore Disney+",
+        "‘Hexed’ European Premiere Photos: Hailee Steinfeld, Jodie Foster, Rashida Jones & More"
+      ]
+    },
+    {
+      "topic": "Bond",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
@@ -516,16 +494,16 @@
       "yt_hits": 0,
       "reddit_hits": 0,
       "sources": [
-        "American Institute for Stuttering",
-        "Latin Times"
+        "AOL.com",
+        "JoBlo"
       ],
       "headlines": [
-        "Speaker Series: Going Viral and Raising Stuttering Awareness with Travis Althouse",
-        "Sophie Cunningham's Husband Checklist, Bond Girl Dreams, and Life After Going Viral"
+        "‘Stop pretending to be a movie star and do your job,’ Critics say to RFK Jr. for posting AI James Bond carrot meme as U.S. loses measles elimination status",
+        "Robert Pattinson Is James Bond: Why He’s a Great Choice—with a Few Reservations"
       ]
     },
     {
-      "topic": "Ranbir Kapoor",
+      "topic": "Ramayana",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
@@ -545,8 +523,8 @@
         "The Times of India"
       ],
       "headlines": [
-        "Ramayana Box Office Collection Day 18: Ranbir Kapoor's Film Earns More Than Dhurandhar 2 In India On 3rd Sunday",
-        "'Ramayana: Rise of a Legend' box office collection Day 18: Ranbir Kapoor, Sai Pallavi, and Yash starrer c"
+        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror",
+        "Ramayana Box Office Collection Day 17: Ranbir Kapoor's Film Crosses Rs 1,600 Crore Worldwide, Eyes Rs 1,700 Crore Mark"
       ]
     },
     {
@@ -597,6 +575,31 @@
       "headlines": [
         "Mahershala Ali Says Having 2 Oscars “Doesn’t Matter” When Getting Cast: “It Doesn’t Translate To Anything Real”",
         "Prime Video’s 5-Season Fantasy Series Doesn’t Have a Single Bad Season"
+      ]
+    },
+    {
+      "topic": "Weekend",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 40.0,
+      "horizons": {
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "Deadline",
+        "Variety"
+      ],
+      "headlines": [
+        "‘Cameron Winter’ Shines In Vibrant Indie Weekend, ‘Elsinore’ Opens Strong — Specialty Box Office",
+        "‘You Can See Everything’ Has Biggest Opening Weekend for Doc in U.K. Box Office History"
       ]
     },
     {
@@ -665,15 +668,6 @@
       "url": "https://www.reddit.com/r/marvelmemes/comments/1y33zyt/when_mysterio_ordered_edith_to_kill_the_high/"
     },
     {
-      "sub": "boxoffice",
-      "title": "Why Another ‘Hunger Games’ Movie Isn’t Coming Anytime Soon",
-      "score": 197,
-      "comments": 130,
-      "engagement": 587,
-      "days": 7,
-      "url": "https://www.reddit.com/r/boxoffice/comments/1y328m6/why_another_hunger_games_movie_isnt_coming/"
-    },
-    {
       "sub": "DC_Cinematic",
       "title": "BOX OFFICE: Clayface hit $126M this weekend. It will surpass Supergirl's $126.4M in the next day or two",
       "score": 394,
@@ -692,13 +686,13 @@
       "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y34djt/gunn_flumbled_the_easiest_job_in_hollywood/"
     },
     {
-      "sub": "marvelmemes",
-      "title": "Jean grey",
-      "score": 381,
-      "comments": 7,
-      "engagement": 402,
+      "sub": "movies",
+      "title": "David Leitch ('Bullet Train', 'The Fall Guy', 'How to Rob a Bank') confirmed to direct 'Ocean's 14', with George Clooney & Grant Heslov writing the screenplay",
+      "score": 214,
+      "comments": 67,
+      "engagement": 415,
       "days": 7,
-      "url": "https://www.reddit.com/r/marvelmemes/comments/1y2zl9c/jean_grey/"
+      "url": "https://www.reddit.com/r/movies/comments/1y3bkp5/david_leitch_bullet_train_the_fall_guy_how_to_rob/"
     },
     {
       "sub": "scifi",
@@ -710,13 +704,22 @@
       "url": "https://www.reddit.com/r/scifi/comments/1y2dspd/im_an_aerospace_engineer_and_i_made_a_board_game/"
     },
     {
-      "sub": "GODZILLA",
-      "title": "What is your Movies Big 4?",
-      "score": 110,
-      "comments": 78,
-      "engagement": 344,
+      "sub": "ActionMovies",
+      "title": "Billy Campbell and Jennifer Connelly - The Rocketeer (1991)",
+      "score": 238,
+      "comments": 28,
+      "engagement": 322,
       "days": 7,
-      "url": "https://www.reddit.com/r/GODZILLA/comments/1y39kdj/what_is_your_movies_big_4/"
+      "url": "https://www.reddit.com/r/ActionMovies/comments/1y267r2/billy_campbell_and_jennifer_connelly_the/"
+    },
+    {
+      "sub": "bollywoodmemes",
+      "title": "Imma head out",
+      "score": 287,
+      "comments": 11,
+      "engagement": 320,
+      "days": 7,
+      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y2z5u7/imma_head_out/"
     }
   ]
 }
