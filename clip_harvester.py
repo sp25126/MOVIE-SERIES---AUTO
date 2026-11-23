@@ -2,6 +2,7 @@
 
 import json
 import re
+import shutil
 import subprocess
 import sys
 import urllib.parse
@@ -76,7 +77,6 @@ CID_DESC_TERMS = (
     "song -", "song:", "song used:", "music used:", "track:",
 )
 YT_HTML_CID_MARKERS = (
-    "horizontalCardListRenderer",
     "videoDescriptionMusicSectionRenderer",
     "Licensed to YouTube by",
     "musicWatchMetadataRenderer",
@@ -87,7 +87,7 @@ def has_youtube_cid_claim(video_id: str) -> tuple[bool, str]:
     """Probes YouTube watch HTML for active Content-ID music/claim cards before downloading."""
     try:
         req = urllib.request.Request(f"https://www.youtube.com/watch?v={video_id}", headers={"User-Agent": UA})
-        with urllib.request.urlopen(req, timeout=8) as resp:
+        with urllib.request.urlopen(req, timeout=3) as resp:
             html = resp.read().decode("utf-8", errors="ignore")
         for m in YT_HTML_CID_MARKERS:
             if m in html:
@@ -295,21 +295,22 @@ def scout_instagram_reels(query: str, count: int = 3, ignore_history: bool = Fal
     discovered_urls = []
     clean_q = re.sub(r"[#@]", "", query).strip()
 
-    # 1. Primary Engine: agent-reach web search (Exa index)
-    try:
-        cmd = ["agent-reach", "web", "search", f"{clean_q} edit instagram reel", "--limit", str(count * 3)]
-        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", timeout=12)
-        if proc.returncode == 0:
-            data = json.loads(proc.stdout)
-            for item in data.get("items", []):
-                blob = f"{item.get('text', '')} {item.get('url', '')}"
-                found = re.findall(r'https?://(?:www\.)?instagram\.com/(?:[a-zA-Z0-9_\.]+/)?reel/([a-zA-Z0-9_\-]+)', blob)
-                for code in found:
-                    u = f"https://www.instagram.com/reel/{code}/"
-                    if u not in discovered_urls:
-                        discovered_urls.append(u)
-    except Exception as e:
-        print(f"[Harvester] Instagram scout agent-reach skipped: {e}", file=sys.stderr)
+    # 1. Primary Engine: agent-reach web search (Exa index) if CLI is available
+    if shutil.which("agent-reach"):
+        try:
+            cmd = ["agent-reach", "web", "search", f"{clean_q} edit instagram reel", "--limit", str(count * 3)]
+            proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", timeout=8)
+            if proc.returncode == 0:
+                data = json.loads(proc.stdout)
+                for item in data.get("items", []):
+                    blob = f"{item.get('text', '')} {item.get('url', '')}"
+                    found = re.findall(r'https?://(?:www\.)?instagram\.com/(?:[a-zA-Z0-9_\.]+/)?reel/([a-zA-Z0-9_\-]+)', blob)
+                    for code in found:
+                        u = f"https://www.instagram.com/reel/{code}/"
+                        if u not in discovered_urls:
+                            discovered_urls.append(u)
+        except Exception as e:
+            print(f"[Harvester] Instagram scout agent-reach skipped: {e}", file=sys.stderr)
 
     # 2. Redundant Engine: DuckDuckGo Lite search for instagram.com/reel
     if len(discovered_urls) < count:
@@ -317,7 +318,7 @@ def scout_instagram_reels(query: str, count: int = 3, ignore_history: bool = Fal
             url = "https://lite.duckduckgo.com/lite/"
             body = urllib.parse.urlencode({"q": f"site:instagram.com/reel {clean_q} edit"}).encode("utf-8")
             req = urllib.request.Request(url, data=body, headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=10) as resp:
+            with urllib.request.urlopen(req, timeout=4) as resp:
                 html = resp.read().decode("utf-8", errors="ignore")
                 for code in re.findall(r'instagram\.com/reel/([a-zA-Z0-9_\-]+)', html):
                     u = f"https://www.instagram.com/reel/{code}/"
@@ -368,29 +369,30 @@ def scout_tiktok_videos(query: str, count: int = 3, ignore_history: bool = False
     clean_q = re.sub(r"[#@]", "", query).strip()
     discovered = []
 
-    # 1. Primary Engine: agent-reach web search (Toklytics / TikTok analytics index)
-    try:
-        cmd = ["agent-reach", "web", "search", f"{clean_q} edit tiktok video", "--limit", str(count * 3)]
-        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", timeout=12)
-        if proc.returncode == 0:
-            data = json.loads(proc.stdout)
-            for item in data.get("items", []):
-                blob = f"{item.get('text', '')} {item.get('url', '')}"
-                found_ids = re.findall(r'(?:tiktok\.com/@[^/]+/video/|toklytics\.app/video/|/video/)(\d{15,22})', blob)
-                author = item.get("author") or "tiktok_creator"
-                views = 25000
-                vm = re.search(r'([\d\.]+)M\s+Views', blob, re.I)
-                if vm:
-                    views = int(float(vm.group(1)) * 1_000_000)
-                vk = re.search(r'([\d\.]+)K\s+Views', blob, re.I)
-                if vk:
-                    views = int(float(vk.group(1)) * 1_000)
-                for tid in found_ids:
-                    u = f"https://www.tiktok.com/video/{tid}"
-                    if tid not in [x[0] for x in discovered]:
-                        discovered.append((tid, u, item.get("title") or f"{clean_q} TikTok Edit", author, views))
-    except Exception as e:
-        print(f"[Harvester] TikTok scout agent-reach skipped: {e}", file=sys.stderr)
+    # 1. Primary Engine: agent-reach web search if CLI is available
+    if shutil.which("agent-reach"):
+        try:
+            cmd = ["agent-reach", "web", "search", f"{clean_q} edit tiktok video", "--limit", str(count * 3)]
+            proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", timeout=8)
+            if proc.returncode == 0:
+                data = json.loads(proc.stdout)
+                for item in data.get("items", []):
+                    blob = f"{item.get('text', '')} {item.get('url', '')}"
+                    found_ids = re.findall(r'(?:tiktok\.com/@[^/]+/video/|toklytics\.app/video/|/video/)(\d{15,22})', blob)
+                    author = item.get("author") or "tiktok_creator"
+                    views = 25000
+                    vm = re.search(r'([\d\.]+)M\s+Views', blob, re.I)
+                    if vm:
+                        views = int(float(vm.group(1)) * 1_000_000)
+                    vk = re.search(r'([\d\.]+)K\s+Views', blob, re.I)
+                    if vk:
+                        views = int(float(vk.group(1)) * 1_000)
+                    for tid in found_ids:
+                        u = f"https://www.tiktok.com/video/{tid}"
+                        if tid not in [x[0] for x in discovered]:
+                            discovered.append((tid, u, item.get("title") or f"{clean_q} TikTok Edit", author, views))
+        except Exception as e:
+            print(f"[Harvester] TikTok scout agent-reach skipped: {e}", file=sys.stderr)
 
     candidates, seen = [], set()
     for tid, u, title, author, views in discovered:
@@ -433,6 +435,9 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
         "-f", "bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]/best[ext=mp4]/best",
         "--merge-output-format", "mp4",
         "--no-warnings",
+        "--retries", "1",
+        "--fragment-retries", "1",
+        "--socket-timeout", "10",
         "-o", str(target_dir / f"{safe_id}.%(ext)s"),
     ]
     if browser_cookies:
@@ -490,11 +495,12 @@ def _matches_topic(candidate: dict, required_topic: str, allowed_entities: list[
             if ent_tokens and all(t in hay for t in ent_tokens):
                 return True
 
-    tokens = [t for t in re.findall(r"[a-z0-9]+", required_topic.lower()) if len(t) >= 3]
+    clean_req = re.sub(r"\b(?:Ep|Episode|Season|Part|Vol)\.?\s*\d+\b", "", required_topic, flags=re.I).strip()
+    tokens = [t for t in re.findall(r"[a-z0-9]+", (clean_req or required_topic).lower()) if len(t) >= 3]
     if not tokens:
         return True
-    # Require all tokens for 1-2 word names (e.g. "Patrick Jane" must match both, not just "Jane")
-    return all(t in hay for t in tokens) if len(tokens) <= 2 else (sum(1 for t in tokens if t in hay) >= 2)
+    # Require at least 1 primary franchise token to match
+    return any(t in hay for t in tokens)
 
 
 def scout_fb_ig_fallback(query: str, count: int = 3) -> list[dict]:

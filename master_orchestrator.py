@@ -228,8 +228,10 @@ def run_day_2_tv_series(series_name: str | None = None, dry_run: bool = True) ->
             tv_cands.append(s)
 
     last_err = None
-    for cand_show in tv_cands[:8]:
-        logging.info(f"[Day 2 TV] Attempting series candidate: '{cand_show}'")
+    for raw_show in tv_cands[:8]:
+        cand_show = re.sub(r"\s*[-–—|:]\s*(?:Season|Part|Vol\.?|Episode|Ep)\s*\d+.*$", "", raw_show, flags=re.I).strip()
+        cand_show = re.sub(r"\s+\b(?:Ep|Episode|Season|Part|Vol)\.?\s*\d+\b.*$", "", cand_show, flags=re.I).strip()
+        logging.info(f"[Day 2 TV] Attempting series candidate: '{cand_show}' (raw: '{raw_show}')")
         cmd = [
             sys.executable, "run_pipeline.py",
             "--topic", cand_show,
