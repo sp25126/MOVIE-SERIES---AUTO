@@ -198,3 +198,41 @@ def upload_private_canary_and_schedule(
         print(f"[Uploader] Could not delete {video_path}: {e}")
 
     return {"video_id": vid_id, "scheduled": True, "publish_at": meta["recommended_slot_utc"]}
+
+
+def reschedule_youtube_video(video_id: str, new_publish_at_iso: str, token_path: Path = ROOT / "config" / "youtube_token.json") -> bool:
+    """Updates the scheduled publishing time of a private canary video in YouTube Studio via YouTube Data API v3."""
+    if not token_path.exists():
+        print(f"[Uploader] No token found at {token_path}; local schedule updated only.")
+        return False
+
+    from google.oauth2.credentials import Credentials
+    from googleapiclient.discovery import build
+    from google.auth.transport.requests import Request
+
+    creds = Credentials.from_authorized_user_file(str(token_path))
+    if creds.expired and creds.refresh_token:
+        try:
+            creds.refresh(Request())
+            token_path.write_text(creds.to_json(), encoding="utf-8")
+        except Exception:
+            pass
+    youtube = build("youtube", "v3", credentials=creds)
+
+    try:
+        youtube.videos().update(
+            part="status",
+            body={
+                "id": video_id,
+                "status": {
+                    "privacyStatus": "private",
+                    "publishAt": new_publish_at_iso,
+                    "selfDeclaredMadeForKids": False,
+                },
+            },
+        ).execute()
+        print(f"[Uploader] Successfully rescheduled YouTube video {video_id} -> {new_publish_at_iso}")
+        return True
+    except Exception as e:
+        print(f"[Uploader] Failed to reschedule YouTube video {video_id}: {e}")
+        return False

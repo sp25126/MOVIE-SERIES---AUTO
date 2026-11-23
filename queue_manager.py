@@ -126,6 +126,89 @@ def register_video_in_queue(video_path: Path, meta: dict, day_type: str) -> dict
     return entry
 
 
+def preempt_and_reschedule_for_breaking_event(
+    breaking_entry: dict,
+    target_slot_iso: str | None = None,
+    sync_youtube: bool = False,
+) -> dict:
+    """
+    FAST-TRACK BREAKING EVENT PRE-EMPTION:
+    Inserts a high-urgency breaking video into the earliest upcoming prime-time slot (e.g. Nov 25 or 26)
+    and shifts all subsequent scheduled videos forward by 1 calendar day (+24h).
+    Ensures 0 lost videos, 0 double-booked calendar dates, and updates YouTube schedules.
+    """
+    q_data = load_upload_queue()
+    queue = q_data.get("queue", [])
+
+    now = datetime.datetime.now(datetime.timezone.utc)
+    if not target_slot_iso:
+        # Default to tomorrow's or day after tomorrow's prime-time slot (e.g. Nov 25)
+        # Find earliest slot >= now + 12h
+        earliest_dt = (now + datetime.timedelta(days=1)).replace(
+            hour=DAILY_SLOT_HOUR_UTC, minute=DAILY_SLOT_MINUTE_UTC, second=0, microsecond=0
+        )
+        target_slot_iso = earliest_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    logger.info(f"[Queue Manager] 🚨 PRE-EMPTION TRIGGERED for Breaking Event: '{breaking_entry.get('title')}'")
+    logger.info(f"[Queue Manager] Target Slot: {target_slot_iso}. Shifting all subsequent slots forward by 1 day...")
+
+    target_dt = datetime.datetime.strptime(target_slot_iso, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=datetime.timezone.utc)
+
+    # 1. Shift existing queue items forward by 1 day
+    for item in queue:
+        pub_iso = item.get("publish_at") or item.get("assigned_slot_utc")
+        if not pub_iso:
+            continue
+        try:
+            pub_dt = datetime.datetime.strptime(pub_iso, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=datetime.timezone.utc)
+            if pub_dt >= target_dt:
+                new_dt = pub_dt + datetime.timedelta(days=1)
+                new_iso = new_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+                new_label = f"{new_dt.strftime('%b %d')} @ {DAILY_SLOT_LABEL_IST}"
+                logger.info(f"  ↪ Shifting '{item.get('title', item.get('video_id'))}' from {pub_iso} -> {new_iso}")
+                if "publish_at" in item:
+                    item["publish_at"] = new_iso
+                if "assigned_slot_utc" in item:
+                    item["assigned_slot_utc"] = new_iso
+                    item["assigned_slot_ist"] = new_label
+                item["rescheduled_reason"] = f"Preempted by breaking event '{breaking_entry.get('title')}'"
+
+                # Update live YouTube schedule if video_id exists and sync_youtube is True
+                vid_id = item.get("video_id")
+                if sync_youtube and vid_id:
+                    try:
+                        from metadata_uploader import reschedule_youtube_video
+                        reschedule_youtube_video(vid_id, new_iso)
+                    except Exception as e:
+                        logger.warning(f"  ! YouTube schedule update skipped for {vid_id}: {e}")
+        except Exception as e:
+            logger.warning(f"  ! Error shifting queue entry: {e}")
+
+    # 2. Assign breaking video to the target slot
+    breaking_entry["publish_at"] = target_slot_iso
+    breaking_entry["assigned_slot_utc"] = target_slot_iso
+    breaking_entry["assigned_slot_ist"] = f"{target_dt.strftime('%b %d')} @ {DAILY_SLOT_LABEL_IST}"
+    breaking_entry["priority"] = "BREAKING_CULTURAL_EVENT"
+    breaking_entry["scheduled"] = True
+    breaking_entry["uploaded_at_utc"] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    # Insert breaking entry into queue right at the pre-empted position
+    queue.append(breaking_entry)
+    q_data["queue"] = queue
+
+    # 3. Rebuild scheduled_slots set
+    all_slots = set()
+    for item in queue:
+        slot = item.get("publish_at") or item.get("assigned_slot_utc")
+        if slot:
+            all_slots.add(slot)
+    q_data["scheduled_slots"] = sorted(list(all_slots))
+    save_upload_queue(q_data)
+
+    logger.info(f"[Queue Manager] ✅ Breaking Video successfully scheduled into {target_slot_iso}!")
+    return breaking_entry
+
+
 if __name__ == "__main__":
     print("Testing 1-Video-Per-Day Sequential Scheduling across the 4-Day Format:")
     cadence = ["Day 3: The Mentalist Pillar", "Day 4: Song Trend Edits", "Day 1: Cinema Group", "Day 2: TV Series Group"]

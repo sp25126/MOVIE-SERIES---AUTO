@@ -201,7 +201,7 @@ def passes_copyright_prefilter(meta: dict, min_duration: int = 4, check_html: bo
 def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_duration: int = 5, ignore_history: bool = False) -> list[dict]:
     """Scouts YouTube via yt_dlp InnerTube/web extractor + Anti-CID pre-filter."""
     used = set() if ignore_history else _load_history()
-    probe_n = max(count * 8, 30)
+    probe_n = max(count * 3, 12)
     cmd = [
         sys.executable, "-m", "yt_dlp",
         "--dump-json", "--no-playlist", "--no-warnings",
@@ -210,7 +210,7 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
     ]
     candidates, seen = [], set()
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=50)
+        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=30)
         for line in proc.stdout.splitlines():
             if not line.strip():
                 continue
@@ -226,7 +226,7 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
             # Enforce virality threshold: ranking edits must have meaningful views (at least 1,500 views)
             if views < 1500:
                 continue
-            ok, _ = passes_copyright_prefilter(d, min_duration=min_duration, check_html=True)
+            ok, _ = passes_copyright_prefilter(d, min_duration=min_duration, check_html=False)
             if not ok:
                 continue
             is_edit, why_edit = is_genuine_fan_edit(d)
@@ -245,7 +245,16 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
         print(f"[Harvester] YouTube scout skipped ({query[:30]}): {e}", file=sys.stderr)
 
     candidates.sort(key=lambda x: x["views"], reverse=True)
-    return candidates[:count]
+    # Perform final HTML Content-ID check on the top candidates only
+    verified = []
+    for c in candidates:
+        vid_raw = c["id"].replace("yt_", "")
+        claimed, _ = has_youtube_cid_claim(vid_raw)
+        if not claimed:
+            verified.append(c)
+        if len(verified) >= count:
+            break
+    return verified
 
 
 def scout_reddit_memes_and_clips(topic: str = "", count: int = 5, video_only: bool = False) -> list[dict]:
@@ -565,12 +574,14 @@ def harvest_video_pack(
 
     pool: list[dict] = []
     for q in queries:
+        if "youtube" in platforms:
+            pool.extend(scout_youtube(q, count=target_count, max_duration=max_duration, min_duration=min_duration))
+        if len(pool) >= target_count * 2:
+            break
         if "instagram" in platforms:
             pool.extend(scout_instagram_reels(q, count=2))
         if "tiktok" in platforms:
             pool.extend(scout_tiktok_videos(q, count=2))
-        if "youtube" in platforms:
-            pool.extend(scout_youtube(q, count=target_count, max_duration=max_duration, min_duration=min_duration))
         if len(pool) >= target_count * 3:
             break
 
@@ -585,7 +596,7 @@ def harvest_video_pack(
     interleaved = []
     max_len = max((len(v) for v in by_platform.values()), default=0)
     for i in range(max_len):
-        for plat in ("instagram", "tiktok", "youtube", "reddit", "facebook"):
+        for plat in ("youtube", "instagram", "tiktok", "reddit", "facebook"):
             if plat in by_platform and i < len(by_platform[plat]):
                 interleaved.append(by_platform[plat][i])
 

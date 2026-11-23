@@ -127,6 +127,21 @@ def audit_live_virality(force_fresh: bool = True) -> dict:
 
         audit_results["mentalist_pillar"] = cats.get("mentalist_pillar")
         logging.info("[Virality Audit] 360° Virality Intelligence successfully loaded for all 4 category pillars.")
+
+        # Ingest LLM Zeitgeist Brain
+        try:
+            from llm_virality_brain import execute_virality_brain_scan, LLM_REPORT_PATH
+            if LLM_REPORT_PATH.exists() and (time.time() - LLM_REPORT_PATH.stat().st_mtime) < 900:
+                llm_rep = json.loads(LLM_REPORT_PATH.read_text(encoding="utf-8"))
+            else:
+                llm_rep = execute_virality_brain_scan()
+            audit_results["llm_brain"] = llm_rep
+            if llm_rep.get("breaking_event_detected"):
+                bw = llm_rep.get("breaking_winner", {})
+                logging.info(f"🚨 [LLM VIRALITY ALERT] BREAKING EVENT DETECTED: '{bw.get('topic')}' | Hype: {bw.get('hype_score')} | Proof: {bw.get('proof_rationale')}")
+        except Exception as e:
+            logging.warning(f"[Virality Audit] LLM Brain integration warning: {e}")
+
         logging.info("================================================================================\n")
         return audit_results
     except Exception as e:
@@ -194,20 +209,22 @@ def audit_live_virality(force_fresh: bool = True) -> dict:
     return audit_results
 
 
-def run_day_1_cinema(topic: str | None = None, genre: str | None = None, dry_run: bool = True) -> dict:
+def run_day_1_cinema(topic: str | None = None, genre: str | None = None, dry_run: bool = True, preempt: bool = False) -> dict:
     """Executes Day 1: Cinema Group."""
-    logging.info(f"========== DAY 1: CINEMA GROUP [{topic or 'Auto-Viral'}] ==========")
+    logging.info(f"========== DAY 1: CINEMA GROUP [{topic or 'Auto-Viral'}] {'[🚨 PREEMPT BREAKING]' if preempt else ''} ==========")
     cmd = [sys.executable, "run_pipeline.py", "--format", "edit_ranking"]
     if topic:
         cmd.extend(["--topic", topic])
     if genre:
         cmd.extend(["--genre", genre])
+    if preempt:
+        cmd.append("--preempt")
     if not dry_run:
         cmd.append("--upload")
     else:
         cmd.append("--dry-run")
     proc = subprocess.run(cmd, check=True)
-    return {"status": "success", "day": 1, "topic": topic, "returncode": proc.returncode}
+    return {"status": "success", "day": 1, "topic": topic, "returncode": proc.returncode, "preempted": preempt}
 
 
 def run_day_2_tv_series(series_name: str | None = None, dry_run: bool = True) -> dict:
@@ -385,11 +402,20 @@ def execute_batch_cadence(
         result = {}
         try:
             if curr_day == 1:
-                # Top live cinema candidate
-                cinema_cand = audit["cinema"][step_num % len(audit["cinema"])] if audit.get("cinema") else {}
-                topic = cinema_cand.get("topic")
-                genre = cinema_cand.get("genre")
-                result = run_day_1_cinema(topic=topic, genre=genre, dry_run=dry_run)
+                # Check for LLM Brain Breaking Cultural Event
+                llm_info = audit.get("llm_brain", {})
+                is_breaking = llm_info.get("breaking_event_detected", False)
+                if is_breaking and step_num == 0:
+                    bw = llm_info.get("breaking_winner", {})
+                    topic = bw.get("topic")
+                    genre = bw.get("genre", "superhero_scifi")
+                    logging.info(f"🔥 [ORCHESTRATOR PREEMPTION] Fast-tracking Breaking Event '{topic}' (Hype: {bw.get('hype_score')})")
+                    result = run_day_1_cinema(topic=topic, genre=genre, dry_run=dry_run, preempt=True)
+                else:
+                    cinema_cand = audit["cinema"][step_num % len(audit["cinema"])] if audit.get("cinema") else {}
+                    topic = cinema_cand.get("topic")
+                    genre = cinema_cand.get("genre")
+                    result = run_day_1_cinema(topic=topic, genre=genre, dry_run=dry_run)
             elif curr_day == 2:
                 # Top live TV candidate
                 tv_list = audit.get("tv_series") or []

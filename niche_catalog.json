@@ -1,7 +1,6 @@
 {
-  "last_3day_sync_utc": "2026-11-23T16:42:24Z",
+  "last_3day_sync_utc": "2026-11-23T18:08:42Z",
   "recent_topics": [
-    "Interstellar",
     "Mr Darcy",
     "Drive to Survive",
     "Succession Finale",
@@ -12,46 +11,47 @@
     "I Play Rocky",
     "Ramayana",
     "My Demon Ep 6",
-    "Sai Pallavi"
+    "Sai Pallavi",
+    "Godzilla"
   ],
   "recent_genres": [
-    "horror_mystery",
     "superhero_scifi",
     "drama_prestige",
     "fantasy_mythology",
     "action_thriller",
     "fantasy_mythology",
     "action_thriller",
-    "fantasy_mythology"
+    "fantasy_mythology",
+    "action_thriller"
   ],
   "live_genre_leaderboard": [
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 2379.8,
-      "top_topic": "Going",
-      "count": 164
+      "total_score": 2689.2,
+      "top_topic": "Substitute",
+      "count": 179
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 964.0,
-      "top_topic": "Doomsday",
-      "count": 48
+      "total_score": 813.7,
+      "top_topic": "Man of Tomorrow",
+      "count": 39
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 563.9,
-      "top_topic": "Poker Face",
-      "count": 32
+      "total_score": 610.0,
+      "top_topic": "Focker In-Law",
+      "count": 39
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 534.3,
+      "total_score": 597.0,
       "top_topic": "Episodes",
-      "count": 32
+      "count": 33
     },
     {
       "genre": "animated_cinema",
@@ -63,44 +63,30 @@
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 244.0,
-      "top_topic": "Name",
-      "count": 20
-    },
-    {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 147.9,
-      "top_topic": "Ghost Soldier",
-      "count": 9
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 120.0,
-      "top_topic": "Holler",
-      "count": 8
+      "total_score": 300.0,
+      "top_topic": "Honored",
+      "count": 18
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 118.2,
+      "total_score": 180.6,
       "top_topic": "Manhattan",
-      "count": 8
+      "count": 12
     },
     {
-      "genre": "crime_mafia",
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 45.0,
-      "top_topic": "Bruce Lee Movies Ranked",
-      "count": 3
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 180.0,
+      "top_topic": "Jimmy Jenkins",
+      "count": 12
     },
     {
-      "genre": "romance_teen_drama",
-      "label": "Romance, Heartbreak & Teen Series",
-      "total_score": 45.0,
-      "top_topic": "Gilded",
-      "count": 3
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 108.6,
+      "top_topic": "Ghost Soldier",
+      "count": 6
     },
     {
       "genre": "war_historical",
@@ -108,45 +94,23 @@
       "total_score": 30.0,
       "top_topic": "TSRStaff ST",
       "count": 2
+    },
+    {
+      "genre": "crime_mafia",
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
+    },
+    {
+      "genre": "romance_teen_drama",
+      "label": "Romance, Heartbreak & Teen Series",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
     }
   ],
   "live_3day_top_topics": [
-    {
-      "topic": "Doomsday",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 58.79,
-      "sources": [
-        "JoBlo",
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/boxoffice)"
-      ]
-    },
-    {
-      "topic": "Godzilla",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 55.97,
-      "sources": [
-        "Aurora Sentinel",
-        "Crunchyroll",
-        "Entertainment Weekly",
-        "Reddit-30d(r/GODZILLA)"
-      ]
-    },
-    {
-      "topic": "Avengers",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 54.76,
-      "sources": [
-        "JoBlo",
-        "Reddit-7d(r/boxoffice)"
-      ]
-    },
     {
       "topic": "Man of Tomorrow",
       "genre": "superhero_scifi",
@@ -166,54 +130,44 @@
       "score": 54.0,
       "sources": [
         "Ars Technica",
-        "New University",
+        "The Rider News",
         "Vulture"
       ]
     },
     {
-      "topic": "Going",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
+      "topic": "Godzilla",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "format": "release_hype",
       "score": 54.0,
       "sources": [
-        "American Institute for Stuttering",
-        "Latin Times",
-        "Yahoo"
+        "Aurora Sentinel",
+        "Crunchyroll",
+        "Entertainment Weekly"
       ]
     },
     {
-      "topic": "Poker Face",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "format": "release_hype",
-      "score": 52.52,
-      "sources": [
-        "Reddit-7d(r/television)",
-        "Variety"
-      ]
-    },
-    {
-      "topic": "James Bond",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
+      "topic": "Episodes",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
       "format": "edit_ranking",
-      "score": 52.29,
+      "score": 45.64,
       "sources": [
-        "JoBlo",
-        "NPR",
-        "Reddit-30d(r/ActionMovies)"
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)"
       ]
     },
     {
-      "topic": "Supernova",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
+      "topic": "Substitute",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
       "format": "scene_commentary",
-      "score": 48.34,
+      "score": 43.81,
       "sources": [
-        "Reddit-30d(r/Monsterverse)",
-        "Reddit-7d(r/Monsterverse)"
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/ActionMovies)",
+        "Reddit-7d(r/KDRAMA)"
       ]
     },
     {
@@ -223,8 +177,41 @@
       "format": "edit_ranking",
       "score": 40.0,
       "sources": [
-        "The Hollywood Reporter",
+        "The Guardian",
         "Variety"
+      ]
+    },
+    {
+      "topic": "Hunger",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 40.0,
+      "sources": [
+        "Britannica",
+        "Forbes"
+      ]
+    },
+    {
+      "topic": "Games",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 40.0,
+      "sources": [
+        "Britannica",
+        "Forbes"
+      ]
+    },
+    {
+      "topic": "Going",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 40.0,
+      "sources": [
+        "American Institute for Stuttering",
+        "Latin Times"
       ]
     },
     {
@@ -239,10 +226,32 @@
       ]
     },
     {
-      "topic": "Avengers: Doomsday",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
+      "topic": "Ranbir",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 40.0,
+      "sources": [
+        "The Times of India",
+        "The Week"
+      ]
+    },
+    {
+      "topic": "Kapoor",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 40.0,
+      "sources": [
+        "The Times of India",
+        "The Week"
+      ]
+    },
+    {
+      "topic": "Shawn Levy",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
       "score": 40.0,
       "sources": [
         "Deadline",
@@ -250,36 +259,25 @@
       ]
     },
     {
-      "topic": "Rian Johnson",
+      "topic": "Laps",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
       "score": 40.0,
       "sources": [
-        "Collider",
-        "Variety"
+        "Deadline",
+        "THR"
       ]
     },
     {
-      "topic": "Episodes",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
+      "topic": "Inks",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 30.48,
+      "score": 40.0,
       "sources": [
-        "Reddit-30d(r/KDRAMA)",
-        "Reddit-7d(r/KDRAMA)"
-      ]
-    },
-    {
-      "topic": "Superman",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 30.45,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
+        "Deadline",
+        "THR"
       ]
     }
   ],

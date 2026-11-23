@@ -104,6 +104,7 @@ def run_pipeline(
     extra_urls: list[str] | None = None,
     hook_url: str = "",
     browser_cookies: str = "",
+    preempt: bool = False,
 ) -> dict:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     from virality_radar import REPORT_PATH
@@ -185,7 +186,27 @@ def run_pipeline(
     if not dry_run:
         if not qa["passed"]:
             raise RuntimeError(f"QA Gate failed ({qa['issues']}); upload aborted.")
+        if preempt:
+            # Pre-empt earliest upcoming slot and shift existing queue forward
+            from queue_manager import preempt_and_reschedule_for_breaking_event
+            breaking_entry = {
+                "video_path": str(out_mp4),
+                "title": meta.get("title", ""),
+                "topic": chosen_topic,
+                "genre": chosen_genre,
+            }
+            preempt_and_reschedule_for_breaking_event(breaking_entry, sync_youtube=True)
+            meta["recommended_slot_utc"] = breaking_entry.get("publish_at")
         upload_res = upload_private_canary_and_schedule(out_mp4, meta)
+    elif preempt:
+        from queue_manager import preempt_and_reschedule_for_breaking_event
+        breaking_entry = {
+            "video_path": str(out_mp4),
+            "title": meta.get("title", ""),
+            "topic": chosen_topic,
+            "genre": chosen_genre,
+        }
+        preempt_and_reschedule_for_breaking_event(breaking_entry, sync_youtube=False)
 
     print(f"[Pipeline] Done -> {out_mp4} | QA={'PASS' if qa['passed'] else 'FAIL'} | Proof={qa.get('proof_sheet')}")
     return {"video": str(out_mp4), "target": chosen_target, "qa": qa, "metadata": meta, "upload": upload_res}
@@ -295,6 +316,7 @@ if __name__ == "__main__":
     p.add_argument("--cookies-from-browser", default="", help="Browser for optional IG/FB public session cookies (e.g. chrome)")
     p.add_argument("--upload", action="store_true", help="Upload private canary & schedule (default is local dry-run)")
     p.add_argument("--dry-run", action="store_true", help="Explicit local dry-run (default)")
+    p.add_argument("--preempt", action="store_true", help="Fast-track breaking topic and preempt upcoming schedule slot")
     args = p.parse_args()
 
     if args.self_test:
@@ -315,4 +337,5 @@ if __name__ == "__main__":
         extra_urls=args.urls,
         hook_url=args.hook_url,
         browser_cookies=args.cookies_from_browser,
+        preempt=args.preempt,
     )

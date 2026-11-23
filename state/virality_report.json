@@ -1,59 +1,58 @@
 {
-  "scan_time_utc": "2026-11-23T16:42:24Z",
+  "scan_time_utc": "2026-11-23T18:08:42Z",
   "winner": {
-    "topic": "Doomsday",
+    "topic": "Man of Tomorrow",
     "genre": "superhero_scifi",
     "subcategory": "superhero_spoiler_commentary",
     "recommended_format": "scene_commentary",
     "query_suffix": "scene edit shorts",
-    "score": 58.79,
+    "score": 54.16,
     "horizons": {
-      "3d": 62.4,
-      "7d": 66.0,
-      "30d": 20.1,
+      "3d": 54.9,
+      "7d": 68.6,
+      "30d": 58.1,
       "1y": 0.0
     },
     "yt_views": 0,
     "yt_hits": 0,
-    "reddit_hits": 2,
+    "reddit_hits": 4,
     "sources": [
-      "JoBlo",
       "Reddit-30d(r/DC_Cinematic)",
-      "Reddit-7d(r/boxoffice)"
+      "Reddit-7d(r/DC_Cinematic)"
     ],
     "headlines": [
-      "Avengers: Doomsday | Final Trailer",
-      "“Let’s get started.” The new Avengers: Doomsday trailer assembles the team to fight Doctor Doom"
+      "Neva Howell (Ma Kent) on filming 'Man of Tomorrow' \"Very surprising and intense role for me this time\"",
+      "New angle of David Corenswet hitting the Superman shirt rip pose! We need this in Man of Tomorrow. 😭❤️💙 via: (John_Stephens7)"
     ]
   },
   "genre_leaderboard": [
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 2379.8,
-      "top_topic": "Going",
-      "count": 164
+      "total_score": 2689.2,
+      "top_topic": "Substitute",
+      "count": 179
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 964.0,
-      "top_topic": "Doomsday",
-      "count": 48
+      "total_score": 813.7,
+      "top_topic": "Man of Tomorrow",
+      "count": 39
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 563.9,
-      "top_topic": "Poker Face",
-      "count": 32
+      "total_score": 610.0,
+      "top_topic": "Focker In-Law",
+      "count": 39
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 534.3,
+      "total_score": 597.0,
       "top_topic": "Episodes",
-      "count": 32
+      "count": 33
     },
     {
       "genre": "animated_cinema",
@@ -65,44 +64,30 @@
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 244.0,
-      "top_topic": "Name",
-      "count": 20
-    },
-    {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 147.9,
-      "top_topic": "Ghost Soldier",
-      "count": 9
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 120.0,
-      "top_topic": "Holler",
-      "count": 8
+      "total_score": 300.0,
+      "top_topic": "Honored",
+      "count": 18
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 118.2,
+      "total_score": 180.6,
       "top_topic": "Manhattan",
-      "count": 8
+      "count": 12
     },
     {
-      "genre": "crime_mafia",
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 45.0,
-      "top_topic": "Bruce Lee Movies Ranked",
-      "count": 3
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 180.0,
+      "top_topic": "Jimmy Jenkins",
+      "count": 12
     },
     {
-      "genre": "romance_teen_drama",
-      "label": "Romance, Heartbreak & Teen Series",
-      "total_score": 45.0,
-      "top_topic": "Gilded",
-      "count": 3
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 108.6,
+      "top_topic": "Ghost Soldier",
+      "count": 6
     },
     {
       "genre": "war_historical",
@@ -110,87 +95,23 @@
       "total_score": 30.0,
       "top_topic": "TSRStaff ST",
       "count": 2
+    },
+    {
+      "genre": "crime_mafia",
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
+    },
+    {
+      "genre": "romance_teen_drama",
+      "label": "Romance, Heartbreak & Teen Series",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
     }
   ],
   "top_topics": [
-    {
-      "topic": "Doomsday",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 58.79,
-      "horizons": {
-        "3d": 62.4,
-        "7d": 66.0,
-        "30d": 20.1,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "JoBlo",
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/boxoffice)"
-      ],
-      "headlines": [
-        "Avengers: Doomsday | Final Trailer",
-        "“Let’s get started.” The new Avengers: Doomsday trailer assembles the team to fight Doctor Doom"
-      ]
-    },
-    {
-      "topic": "Godzilla",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 55.97,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 29.9,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Aurora Sentinel",
-        "Crunchyroll",
-        "Entertainment Weekly",
-        "Reddit-30d(r/GODZILLA)"
-      ],
-      "headlines": [
-        "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance",
-        "Godzilla returns in special-effects glory in the latest movie with an anti-war message"
-      ]
-    },
-    {
-      "topic": "Avengers",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 54.76,
-      "horizons": {
-        "3d": 62.4,
-        "7d": 66.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "JoBlo",
-        "Reddit-7d(r/boxoffice)"
-      ],
-      "headlines": [
-        "Avengers: Doomsday | Final Trailer",
-        "“Let’s get started.” The new Avengers: Doomsday trailer assembles the team to fight Doctor Doom"
-      ]
-    },
     {
       "topic": "Man of Tomorrow",
       "genre": "superhero_scifi",
@@ -234,20 +155,20 @@
       "reddit_hits": 0,
       "sources": [
         "Ars Technica",
-        "New University",
+        "The Rider News",
         "Vulture"
       ],
       "headlines": [
         "Review: Godzilla Minus Zero joins the list of truly stellar sequels",
-        "‘Godzilla Minus Zero’ brings emotional weight to the monster movie"
+        "“Godzilla Minus Zero:” a monstrously good film"
       ]
     },
     {
-      "topic": "Going",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
+      "topic": "Godzilla",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "recommended_format": "release_hype",
+      "query_suffix": "trailer edit shorts",
       "score": 54.0,
       "horizons": {
         "3d": 48.0,
@@ -259,89 +180,65 @@
       "yt_hits": 0,
       "reddit_hits": 0,
       "sources": [
-        "American Institute for Stuttering",
-        "Latin Times",
-        "Yahoo"
+        "Aurora Sentinel",
+        "Crunchyroll",
+        "Entertainment Weekly"
       ],
       "headlines": [
-        "Speaker Series: Going Viral and Raising Stuttering Awareness with Travis Althouse",
-        "Sophie Cunningham's Husband Checklist, Bond Girl Dreams, and Life After Going Viral"
+        "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance",
+        "Godzilla returns in special-effects glory in the latest movie with an anti-war message"
       ]
     },
     {
-      "topic": "Poker Face",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "recommended_format": "release_hype",
-      "query_suffix": "cast funny meme shorts",
-      "score": 52.52,
-      "horizons": {
-        "3d": 59.5,
-        "7d": 62.4,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Reddit-7d(r/television)",
-        "Variety"
-      ],
-      "headlines": [
-        "Rian Johnson Says ’Poker Face’ Revival Dead",
-        "Rian Johnson, a Vocal AI Critic, Warns Against Totally ‘Demonizing’ AI and Says His ‘Poker Face’ Revival With Peter Dinklage Is Dead"
-      ]
-    },
-    {
-      "topic": "James Bond",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
+      "topic": "Episodes",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
       "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 52.29,
+      "query_suffix": "mass edit shorts",
+      "score": 45.64,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 11.4,
+        "3d": 40.0,
+        "7d": 50.0,
+        "30d": 73.2,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 1,
+      "reddit_hits": 6,
       "sources": [
-        "JoBlo",
-        "NPR",
-        "Reddit-30d(r/ActionMovies)"
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)"
       ],
       "headlines": [
-        "Can Robert Pattinson reinvent James Bond? A film expert weighs in on the new 007",
-        "James Bond’s Entire 25-Film Collection Could Be Coming to 4K Blu-ray in 2027"
+        "Love In Disguise [Episodes 11 & 12]",
+        "The Substitute [Episodes 1 & 2]"
       ]
     },
     {
-      "topic": "Supernova",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
+      "topic": "Substitute",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
       "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 48.34,
+      "query_suffix": "best scene shorts",
+      "score": 43.81,
       "horizons": {
-        "3d": 49.0,
-        "7d": 61.3,
-        "30d": 51.8,
+        "3d": 44.4,
+        "7d": 55.5,
+        "30d": 47.0,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
       "reddit_hits": 4,
       "sources": [
-        "Reddit-30d(r/Monsterverse)",
-        "Reddit-7d(r/Monsterverse)"
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/ActionMovies)",
+        "Reddit-7d(r/KDRAMA)"
       ],
       "headlines": [
-        "Remember these posters we got these 6-7 days before TNE Trailer release so, we can assume the same for Supernova right?",
-        "I dont understand one thing, early leakers described Supernova having the same tone as TNE, but test screeners its closer to KOTM/GvK?"
+        "What are your thoughts on The Substitute (1996)?",
+        "The Substitute [Episodes 1 & 2]"
       ]
     },
     {
@@ -361,12 +258,87 @@
       "yt_hits": 0,
       "reddit_hits": 0,
       "sources": [
-        "The Hollywood Reporter",
+        "The Guardian",
         "Variety"
       ],
       "headlines": [
-        "‘Home Alone’ Sequel in Development at Disney With Macaulay Culkin, Seth Rogen and Evan Goldberg",
-        "‘Home Alone’ Director Chris Columbus Said Minutes Before New Sequel Was Announced That Another Movie ‘Can’t Happen’ After Catherine O’Hara’s Death"
+        "‘Home Alone’ Director Chris Columbus Said Minutes Before New Sequel Was Announced That Another Movie ‘Can’t Happen’ After Catherine O’Hara’s Death",
+        "Home Alone sequel reportedly in development with Macaulay Culkin returning"
+      ]
+    },
+    {
+      "topic": "Hunger",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 40.0,
+      "horizons": {
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "Britannica",
+        "Forbes"
+      ],
+      "headlines": [
+        "The Hunger Games film franchise",
+        "‘The Hunger Games: Sunrise On The Reaping’ Grosses $120 Million For One Of 2026’s Strongest Debuts"
+      ]
+    },
+    {
+      "topic": "Games",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 40.0,
+      "horizons": {
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "Britannica",
+        "Forbes"
+      ],
+      "headlines": [
+        "The Hunger Games film franchise",
+        "‘The Hunger Games: Sunrise On The Reaping’ Grosses $120 Million For One Of 2026’s Strongest Debuts"
+      ]
+    },
+    {
+      "topic": "Going",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 40.0,
+      "horizons": {
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "American Institute for Stuttering",
+        "Latin Times"
+      ],
+      "headlines": [
+        "Speaker Series: Going Viral and Raising Stuttering Awareness with Travis Althouse",
+        "Sophie Cunningham's Husband Checklist, Bond Girl Dreams, and Life After Going Viral"
       ]
     },
     {
@@ -390,16 +362,66 @@
         "The Times of India"
       ],
       "headlines": [
-        "'Ramayana' Box Office Day 15: The Ranbir Kapoor, Yash, Sai Pallavi starrer crosses the lifetime collectio",
-        "Ramayana Box Office Collection Day 17: Ranbir Kapoor's Film Crosses Rs 1,600 Crore Worldwide, Eyes Rs 1,700 Crore Mark"
+        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror",
+        "Ramayana Box Office Collection Day 15: Film To Become Second Fastest To Enter Rs 650 Crore Hindi Net Club"
       ]
     },
     {
-      "topic": "Avengers: Doomsday",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
+      "topic": "Ranbir",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 40.0,
+      "horizons": {
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "The Times of India",
+        "The Week"
+      ],
+      "headlines": [
+        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror",
+        "'Ramayana' Day 19 Box Office Collection: Ranbir Kapoor starrer reaches ₹1,700 crore worldwide, eyes ₹1,000 crore net in India next"
+      ]
+    },
+    {
+      "topic": "Kapoor",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 40.0,
+      "horizons": {
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "The Times of India",
+        "The Week"
+      ],
+      "headlines": [
+        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror",
+        "'Ramayana' Day 19 Box Office Collection: Ranbir Kapoor starrer reaches ₹1,700 crore worldwide, eyes ₹1,000 crore net in India next"
+      ]
+    },
+    {
+      "topic": "Shawn Levy",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
       "score": 40.0,
       "horizons": {
         "3d": 48.0,
@@ -415,12 +437,12 @@
         "THR"
       ],
       "headlines": [
-        "Hailee Steinfeld Confirms She’s In ‘Avengers: Doomsday’",
-        "‘Avengers: Doomsday’ Final Trailer Shows Major X-Men Moment"
+        "Shawn Levy’s 21 Laps Inks First Look Film Deal At Sony Pictures",
+        "Shawn Levy’s 21 Laps Inks Overall Film Deal at Sony"
       ]
     },
     {
-      "topic": "Rian Johnson",
+      "topic": "Laps",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
@@ -436,69 +458,71 @@
       "yt_hits": 0,
       "reddit_hits": 0,
       "sources": [
-        "Collider",
+        "Deadline",
+        "THR"
+      ],
+      "headlines": [
+        "Shawn Levy’s 21 Laps Inks First Look Film Deal At Sony Pictures",
+        "Shawn Levy’s 21 Laps Inks Overall Film Deal at Sony"
+      ]
+    },
+    {
+      "topic": "Inks",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 40.0,
+      "horizons": {
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "Deadline",
+        "THR"
+      ],
+      "headlines": [
+        "Shawn Levy’s 21 Laps Inks First Look Film Deal At Sony Pictures",
+        "Shawn Levy’s 21 Laps Inks Overall Film Deal at Sony"
+      ]
+    },
+    {
+      "topic": "Deal",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 40.0,
+      "horizons": {
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "Deadline",
         "Variety"
       ],
       "headlines": [
-        "Rian Johnson, a Vocal AI Critic, Warns Against Totally ‘Demonizing’ AI and Says His ‘Poker Face’ Revival With Peter Dinklage Is Dead",
-        "Rian Johnson’s 2-Part Detective Series Is Officially Dead"
+        "Shawn Levy’s 21 Laps Inks First Look Film Deal At Sony Pictures",
+        "Shawn Levy’s 21 Laps Inks Rich Overall Film Deal at Sony"
       ]
     },
     {
-      "topic": "Episodes",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "mass edit shorts",
-      "score": 30.48,
-      "horizons": {
-        "3d": 20.4,
-        "7d": 25.6,
-        "30d": 73.2,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 5,
-      "sources": [
-        "Reddit-30d(r/KDRAMA)",
-        "Reddit-7d(r/KDRAMA)"
-      ],
-      "headlines": [
-        "Love In Disguise [Episodes 11 & 12]"
-      ]
-    },
-    {
-      "topic": "Superman",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 30.45,
-      "horizons": {
-        "3d": 25.1,
-        "7d": 31.4,
-        "30d": 55.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 4,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ],
-      "headlines": [
-        "New angle of David Corenswet hitting the Superman shirt rip pose! We need this in Man of Tomorrow. 😭❤️💙 via: (John_Stephens7)"
-      ]
-    },
-    {
-      "topic": "Sai Pallavi",
+      "topic": "Odyssey",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 30.0,
+      "score": 40.0,
       "horizons": {
         "3d": 48.0,
         "7d": 36.0,
@@ -509,20 +533,21 @@
       "yt_hits": 0,
       "reddit_hits": 0,
       "sources": [
-        "The Times of India"
+        "Deadline",
+        "THR"
       ],
       "headlines": [
-        "'Ramayana' Box Office Day 15: The Ranbir Kapoor, Yash, Sai Pallavi starrer crosses the lifetime collectio",
-        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror"
+        "‘The Odyssey’ Leads Critics Choice Awards Below-The-Line Shortlists With 11; ‘Dune: Part Three’ And ‘La Bola Negra’ Get 8 Each",
+        "‘The Odyssey’ Star Samantha Morton Honored With BFI Fellowship"
       ]
     },
     {
-      "topic": "Ranbir",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 30.0,
+      "topic": "Focker In-Law",
+      "genre": "comedy_sitcom",
+      "subcategory": "cast_fandom_memes",
+      "recommended_format": "release_hype",
+      "query_suffix": "cast funny meme shorts",
+      "score": 40.0,
       "horizons": {
         "3d": 48.0,
         "7d": 36.0,
@@ -533,20 +558,21 @@
       "yt_hits": 0,
       "reddit_hits": 0,
       "sources": [
-        "The Times of India"
+        "Deadline",
+        "Variety"
       ],
       "headlines": [
-        "'Ramayana' Box Office Day 15: The Ranbir Kapoor, Yash, Sai Pallavi starrer crosses the lifetime collectio",
-        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror"
+        "‘Focker In-Law’ Review: Robert De Niro And Ben Stiller Are Back For Laughs But Ariana Grande Steals The Show This Time",
+        "‘Focker-in-Law’ Review: Ariana Grande Sporadically Livens Up a Tired Comedy Retread"
       ]
     },
     {
-      "topic": "Kapoor",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 30.0,
+      "topic": "Honored",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "recommended_format": "release_hype",
+      "query_suffix": "teaser trailer shorts",
+      "score": 40.0,
       "horizons": {
         "3d": 48.0,
         "7d": 36.0,
@@ -557,35 +583,12 @@
       "yt_hits": 0,
       "reddit_hits": 0,
       "sources": [
-        "The Times of India"
+        "THR",
+        "Variety"
       ],
       "headlines": [
-        "'Ramayana' Box Office Day 15: The Ranbir Kapoor, Yash, Sai Pallavi starrer crosses the lifetime collectio",
-        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror"
-      ]
-    },
-    {
-      "topic": "Ranbir Kapoor",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 30.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "NDTV"
-      ],
-      "headlines": [
-        "Ramayana Box Office Collection Day 17: Ranbir Kapoor's Film Crosses Rs 1,600 Crore Worldwide, Eyes Rs 1,700 Crore Mark",
-        "Ramayana Box Office Collection Day 13: Ranbir Kapoor's Film Eyes Pushpa 2's Worldwide Gross After Beating Dhurandhar"
+        "‘The Odyssey’ Star Samantha Morton Honored With BFI Fellowship",
+        "Sandra Hüller To Be Honored With Spotlight Award At Palm Springs International Film Awards (EXCLUSIVE)"
       ]
     },
     {
@@ -617,15 +620,6 @@
   "top_yt_month": [],
   "top_reddit_week": [
     {
-      "sub": "boxoffice",
-      "title": "Avengers: Doomsday | Final Trailer",
-      "score": 561,
-      "comments": 479,
-      "engagement": 1998,
-      "days": 7,
-      "url": "https://www.reddit.com/r/boxoffice/comments/1y3iyig/avengers_doomsday_final_trailer/"
-    },
-    {
       "sub": "scifi",
       "title": "I'm an aerospace engineer, and I made a board game about exploring the solar system",
       "score": 1428,
@@ -653,42 +647,6 @@
       "url": "https://www.reddit.com/r/MovieDetails/comments/1y158y6/in_spiderman_brand_new_day_2026_bruce_banners/"
     },
     {
-      "sub": "television",
-      "title": "Rian Johnson Says ’Poker Face’ Revival Dead",
-      "score": 518,
-      "comments": 135,
-      "engagement": 923,
-      "days": 7,
-      "url": "https://www.reddit.com/r/television/comments/1y3j8t9/rian_johnson_says_poker_face_revival_dead/"
-    },
-    {
-      "sub": "television",
-      "title": "It's crazy how much I love Melissa McCarthy on Gilmore Girls yet hate her in everything else",
-      "score": 126,
-      "comments": 84,
-      "engagement": 378,
-      "days": 7,
-      "url": "https://www.reddit.com/r/television/comments/1y3j0dc/its_crazy_how_much_i_love_melissa_mccarthy_on/"
-    },
-    {
-      "sub": "ActionMovies",
-      "title": "Billy Campbell and Jennifer Connelly - The Rocketeer (1991)",
-      "score": 238,
-      "comments": 28,
-      "engagement": 322,
-      "days": 7,
-      "url": "https://www.reddit.com/r/ActionMovies/comments/1y267r2/billy_campbell_and_jennifer_connelly_the/"
-    },
-    {
-      "sub": "DC_Cinematic",
-      "title": "What they mean when they say they love female superhero.",
-      "score": 165,
-      "comments": 49,
-      "engagement": 312,
-      "days": 7,
-      "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y3c9rc/what_they_mean_when_they_say_they_love_female/"
-    },
-    {
       "sub": "DC_Cinematic",
       "title": "Neva Howell (Ma Kent) on filming 'Man of Tomorrow' \"Very surprising and intense role for me this time\"",
       "score": 181,
@@ -698,6 +656,15 @@
       "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y3iekb/neva_howell_ma_kent_on_filming_man_of_tomorrow/"
     },
     {
+      "sub": "ActionMovies",
+      "title": "I saw Ghost Soldier in the theater with my dad yesterday. It was a blast I'm not here to say it was a masterpiece, but it was a fun popcorn flick.",
+      "score": 21,
+      "comments": 73,
+      "engagement": 240,
+      "days": 7,
+      "url": "https://www.reddit.com/r/ActionMovies/comments/1y37amb/i_saw_ghost_soldier_in_the_theater_with_my_dad/"
+    },
+    {
       "sub": "Monsterverse",
       "title": "Remember these posters we got these 6-7 days before TNE Trailer release so, we can assume the same for Supernova right?",
       "score": 186,
@@ -705,6 +672,42 @@
       "engagement": 237,
       "days": 7,
       "url": "https://www.reddit.com/r/Monsterverse/comments/1y3iq43/remember_these_posters_we_got_these_67_days/"
+    },
+    {
+      "sub": "MovieDetails",
+      "title": "In Madden (2026) they used footage of the 2018 Wild Card game which wasn't commentated by John Madden but by Al Micheals and Chris Collinsworth.",
+      "score": 186,
+      "comments": 11,
+      "engagement": 219,
+      "days": 7,
+      "url": "https://www.reddit.com/r/MovieDetails/comments/1y1p87n/in_madden_2026_they_used_footage_of_the_2018_wild/"
+    },
+    {
+      "sub": "Fantasy",
+      "title": "Dungeon Crawler Carl, does it get better",
+      "score": 0,
+      "comments": 71,
+      "engagement": 213,
+      "days": 7,
+      "url": "https://www.reddit.com/r/Fantasy/comments/1y3kuky/dungeon_crawler_carl_does_it_get_better/"
+    },
+    {
+      "sub": "TrueFilm",
+      "title": "Manhattan (1979): Acceptable in the 70s?",
+      "score": 31,
+      "comments": 53,
+      "engagement": 190,
+      "days": 7,
+      "url": "https://www.reddit.com/r/TrueFilm/comments/1y3fv8f/manhattan_1979_acceptable_in_the_70s/"
+    },
+    {
+      "sub": "bollywoodmemes",
+      "title": "Padmavat if made in 70s",
+      "score": 71,
+      "comments": 35,
+      "engagement": 176,
+      "days": 7,
+      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y3d0q5/padmavat_if_made_in_70s/"
     }
   ]
 }

@@ -1,0 +1,49 @@
+{
+  "breaking_event_detected": true,
+  "breaking_winner": {
+    "topic": "Avengers Doomsday",
+    "genre": "superhero_scifi",
+    "hype_score": 92.0,
+    "urgency_level": "BREAKING_IMMEDIATE",
+    "proof_rationale": "High velocity trailer queries and Marvel fandom anticipation across Reddit and YouTube.",
+    "recommended_format": "edit_ranking",
+    "harvest_queries": [
+      "Avengers Doomsday edit #shorts",
+      "Doctor Doom edit #shorts",
+      "Avengers Doomsday trailer edit"
+    ],
+    "high_ctr_title": "Ranking Best Avengers Doomsday Edits! 🔥💀 #shorts #naofloppa #shortsfeed",
+    "pinned_debate_comment": "👇 Did #1 deserve the top spot, or is Doctor Doom taking over? Drop your thoughts!"
+  },
+  "top_ranked_contenders": [
+    {
+      "topic": "Avengers Doomsday",
+      "genre": "superhero_scifi",
+      "hype_score": 92.0,
+      "urgency_level": "BREAKING_IMMEDIATE",
+      "proof_rationale": "High velocity trailer queries and Marvel fandom anticipation across Reddit and YouTube.",
+      "recommended_format": "edit_ranking",
+      "harvest_queries": [
+        "Avengers Doomsday edit #shorts",
+        "Doctor Doom edit #shorts",
+        "Avengers Doomsday trailer edit"
+      ],
+      "high_ctr_title": "Ranking Best Avengers Doomsday Edits! 🔥💀 #shorts #naofloppa #shortsfeed",
+      "pinned_debate_comment": "👇 Did #1 deserve the top spot, or is Doctor Doom taking over? Drop your thoughts!"
+    },
+    {
+      "topic": "Godzilla",
+      "genre": "action_thriller",
+      "hype_score": 88.0,
+      "urgency_level": "TRENDING_HIGH",
+      "proof_rationale": "Consistent multi-hundred-thousand view fan edit spikes across YouTube Shorts.",
+      "recommended_format": "edit_ranking",
+      "harvest_queries": [
+        "Godzilla edit #shorts",
+        "Godzilla badass edit #shorts"
+      ]
+    }
+  ],
+  "reasoning_summary": "Heuristic fallback prioritizing global franchise blockbuster momentum.",
+  "timestamp_utc": "2026-11-23T18:00:38Z"
+}
