@@ -255,9 +255,10 @@ def render_edit_ranking(
     clip_dur: float = 12.0,
     shuffled_order: bool = False,
     genre: str = "action_thriller",
+    full_uncut: bool = False,
 ) -> Path:
     """Format 1 (Ref #9 / A5qnBoPq7t4): Dual-layer blurred BG + left ladder (countdown or shuffled 2->4->5->3->1) + 48kHz audio shield.
-    Pass clip_dur<=0 to play every clip 100% full & uncut."""
+    Pass clip_dur<=0 or full_uncut=True to play every clip 100% full & uncut."""
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
     output_mp4.parent.mkdir(parents=True, exist_ok=True)
     bgm = ensure_royalty_free_bgm(style="auto", genre=genre)
@@ -279,7 +280,11 @@ def render_edit_ranking(
         )
         seg = TEMP_DIR / f"rank_seg_{rank}.mp4"
         src_dur = float(clip.get("duration") or 30.0)
-        if clip_dur <= 0:
+        if full_uncut:
+            # 100% complete uncut edit: from frame 0 to end frame
+            ss = 0.0
+            dur = src_dur
+        elif clip_dur <= 0:
             # Full uncut edit (skip pure black fade-in <=1.5s, trim trailing 2.5s outro logo/cards)
             ss = _safe_start_offset(src, src_dur, max(1.0, src_dur - 2.0))
             ss = min(ss, 1.5)
@@ -308,7 +313,7 @@ def render_edit_ranking(
         vf = (
             f"[0:v]trim=0:{dur:.3f},setpts=(PTS-STARTPTS)/1.04,fps=30,split=2[bg0][fg0];"
             f"[bg0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=24,eq=brightness=-0.16[bg];"
-            f"[fg0]scale=1134:1008:force_original_aspect_ratio=decrease,crop=iw*0.95:ih*0.95,scale=1080:960:force_original_aspect_ratio=decrease,eq=contrast=1.10:saturation=1.18:gamma=1.03[fg];"
+            f"[fg0]crop=trunc(iw*0.96/2)*2:trunc(ih*0.96/2)*2,scale=1080:1920:force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2,eq=contrast=1.08:saturation=1.12[fg];"
             f"[bg][fg]overlay=(W-w)/2:(H-h)/2[comp];"
             f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
         )

@@ -41,10 +41,16 @@ def build_metadata(
     )
 
     credits_lines = []
+    rank_medals = {1: "🥇 Rank #1 (Gold)", 2: "🥈 Rank #2 (Silver)", 3: "🥉 Rank #3 (Bronze)"}
     for idx, c in enumerate(clips, 1):
         creator = c.get("creator") or c.get("source") or "Original Creator"
+        clip_title = c.get("title") or f"Edit #{idx}"
         url = c.get("url") or c.get("link") or ""
-        credits_lines.append(f"• Clip {idx}: {creator} {f'({url})' if url else ''}".strip())
+        medal = rank_medals.get(idx, f"• Rank #{idx}")
+        entry = f"{medal}: {creator} — \"{clip_title}\""
+        if url:
+            entry += f"\n  ▶ Watch Original: {url}"
+        credits_lines.append(entry)
 
     tags = [
         "shorts", "movies", "series", "tvshows", "cinema", "movienews", "edits", "ranking",
@@ -58,7 +64,7 @@ def build_metadata(
         "",
         debate_comment,
         "",
-        "Credits & Sources:",
+        "🔥 Featured Edits & Original Creator Credits:",
         *(credits_lines or ["• Compiled from public news & cinema press stills."]),
         "",
         "Disclaimer & Copyright Notice (Section 107, Fair Use Act):",
