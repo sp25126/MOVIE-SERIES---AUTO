@@ -107,7 +107,11 @@ def audit_live_virality() -> dict:
             skip_yt = True
         cinema_rep = scan_virality(skip_yt=skip_yt)
         top_topics = cinema_rep.get("top_topics") or [cinema_rep.get("winner", {})]
-        audit_results["cinema"] = top_topics[:5]
+        cat_file = ROOT / "niche_catalog.json"
+        cat = json.loads(cat_file.read_text(encoding="utf-8")) if cat_file.exists() else {}
+        recent = {t.lower() for t in cat.get("recent_topics", [])}
+        fresh_topics = [t for t in top_topics if t.get("topic", "").lower() not in recent and not any(r in t.get("topic", "").lower() for r in recent if len(r) > 4)]
+        audit_results["cinema"] = (fresh_topics or top_topics)[:6]
         logging.info("[Virality Audit] Top Live Cinema Candidates:")
         for idx, t in enumerate(audit_results["cinema"], 1):
             logging.info(f"   #{idx}: '{t.get('topic')}' | Genre: {t.get('genre')} | Score: {t.get('score', 0):.1f}")

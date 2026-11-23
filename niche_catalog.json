@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-22T14:01:00Z",
+  "last_3day_sync_utc": "2026-11-23T07:09:06Z",
   "recent_topics": [
     "Interstellar",
     "Mr Darcy",
@@ -28,79 +28,72 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 1043.6,
-      "top_topic": "Nana Patekar Action",
-      "count": 54
+      "total_score": 1063.3,
+      "top_topic": "Hunger Games",
+      "count": 63
     },
     {
       "genre": "animated_cinema",
       "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 499.3,
-      "top_topic": "Kung Fu Panda",
-      "count": 15
-    },
-    {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 348.0,
-      "top_topic": "ClipZone",
+      "total_score": 311.7,
+      "top_topic": "Spider-Man",
       "count": 12
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 248.9,
-      "top_topic": "Kdrama Badass Multifemale",
-      "count": 14
-    },
-    {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 247.3,
-      "top_topic": "Robert Bresson",
-      "count": 16
-    },
-    {
-      "genre": "crime_mafia",
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 233.8,
-      "top_topic": "Ex-Mob",
-      "count": 6
-    },
-    {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 212.8,
-      "top_topic": "Only Action",
-      "count": 6
-    },
-    {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 200.3,
-      "top_topic": "Ramayana",
-      "count": 6
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 199.9,
-      "top_topic": "Robert Pattinson",
-      "count": 8
+      "total_score": 296.7,
+      "top_topic": "Hailee Steinfeld",
+      "count": 14
     },
     {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 170.4,
-      "top_topic": "YOU CAN",
-      "count": 6
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 247.3,
+      "top_topic": "Ramayana",
+      "count": 12
+    },
+    {
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 195.2,
+      "top_topic": "Black Doves",
+      "count": 11
+    },
+    {
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 123.7,
+      "top_topic": "Racialized Gender Stereotyping",
+      "count": 10
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 104.4,
-      "top_topic": "Okay Google",
-      "count": 4
+      "total_score": 101.2,
+      "top_topic": "Eager",
+      "count": 5
+    },
+    {
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 54.5,
+      "top_topic": "Eun Sang",
+      "count": 11
+    },
+    {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 15.0,
+      "top_topic": "TSRStaff ST",
+      "count": 1
+    },
+    {
+      "genre": "crime_mafia",
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
     },
     {
       "genre": "romance_teen_drama",
@@ -108,17 +101,71 @@
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
     }
   ],
   "live_3day_top_topics": [
     {
-      "topic": "ClipZone",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
+      "topic": "Hunger Games",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 68.76,
+      "score": 75.7,
       "sources": [
-        "YT-Week"
+        "AOL.com",
+        "Reddit-7d(r/boxoffice)",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "Sunrise On The Reaping",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 66.36,
+      "sources": [
+        "Deadline",
+        "Reddit-7d(r/boxoffice)",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "Spider-Man",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 54.65,
+      "sources": [
+        "Reddit-7d(r/MovieDetails)",
+        "Reddit-7d(r/marvelmemes)"
+      ]
+    },
+    {
+      "topic": "Hailee Steinfeld",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "format": "release_hype",
+      "score": 51.7,
+      "sources": [
+        "Deadline",
+        "Reddit-7d(r/boxoffice)"
+      ]
+    },
+    {
+      "topic": "Coming Anytime Soon",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 50.7,
+      "sources": [
+        "Reddit-7d(r/boxoffice)",
+        "Variety"
       ]
     },
     {
@@ -126,147 +173,105 @@
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
-      "score": 63.4,
+      "score": 40.0,
       "sources": [
-        "Collider",
-        "The Times of India"
+        "The Times of India",
+        "TheWrap"
       ]
     },
     {
-      "topic": "Ranbir Kapoor",
+      "topic": "Avengers: Doomsday",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "format": "release_hype",
+      "score": 40.0,
+      "sources": [
+        "Deadline",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "Hailee Steinfeld Confirms",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "format": "release_hype",
+      "score": 40.0,
+      "sources": [
+        "Deadline",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "Eager",
+      "genre": "horror_mystery",
+      "subcategory": "horror_new_release_hype",
+      "format": "release_hype",
+      "score": 40.0,
+      "sources": [
+        "Deadline",
+        "THR"
+      ]
+    },
+    {
+      "topic": "You Can See",
       "genre": "fantasy_mythology",
       "subcategory": "epic_theatrical_hype",
       "format": "release_hype",
-      "score": 63.4,
+      "score": 38.13,
       "sources": [
-        "NDTV",
+        "Reddit-7d(r/boxoffice)",
+        "THR"
+      ]
+    },
+    {
+      "topic": "In Harry Potter",
+      "genre": "animated_cinema",
+      "subcategory": "animated_peak_edit_ranking",
+      "format": "edit_ranking",
+      "score": 38.03,
+      "sources": [
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Sai Pallavi",
+      "genre": "fantasy_mythology",
+      "subcategory": "epic_theatrical_hype",
+      "format": "release_hype",
+      "score": 30.0,
+      "sources": [
         "The Times of India"
       ]
     },
     {
-      "topic": "Robert Pattinson",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
+      "topic": "In Spider",
+      "genre": "animated_cinema",
+      "subcategory": "animated_upcoming_hype",
+      "format": "release_hype",
+      "score": 28.94,
+      "sources": [
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Bruce Banner",
+      "genre": "animated_cinema",
+      "subcategory": "animated_upcoming_hype",
+      "format": "release_hype",
+      "score": 28.94,
+      "sources": [
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Racialized Gender Stereotyping",
+      "genre": "drama_prestige",
+      "subcategory": "prestige_finale_recap",
       "format": "scene_commentary",
-      "score": 61.29,
+      "score": 25.35,
       "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)",
-        "Reddit-7d(r/marvelmemes)"
-      ]
-    },
-    {
-      "topic": "Okay Google",
-      "genre": "horror_mystery",
-      "subcategory": "horror_scariest_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Nana Patekar Action",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "King Ghidorah Destroys",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "An Unreal Engine",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Only Action",
-      "genre": "war_historical",
-      "subcategory": "war_epic_battle_ranking",
-      "format": "edit_ranking",
-      "score": 39.0,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Directors Cut",
-      "genre": "war_historical",
-      "subcategory": "war_epic_battle_ranking",
-      "format": "edit_ranking",
-      "score": 39.0,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Keanu Reeves VS",
-      "genre": "war_historical",
-      "subcategory": "war_epic_battle_ranking",
-      "format": "edit_ranking",
-      "score": 39.0,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Golem Samurai Death",
-      "genre": "war_historical",
-      "subcategory": "war_epic_battle_ranking",
-      "format": "edit_ranking",
-      "score": 39.0,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Ex-Mob",
-      "genre": "crime_mafia",
-      "subcategory": "crime_coldest_boss_ranking",
-      "format": "edit_ranking",
-      "score": 39.0,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Mob Boss Rates",
-      "genre": "crime_mafia",
-      "subcategory": "crime_coldest_boss_ranking",
-      "format": "edit_ranking",
-      "score": 39.0,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Kingdom Of Heaven",
-      "genre": "war_historical",
-      "subcategory": "war_epic_battle_ranking",
-      "format": "edit_ranking",
-      "score": 39.0,
-      "sources": [
-        "YT-Week"
+        "Reddit-30d(r/TrueFilm)",
+        "Reddit-7d(r/TrueFilm)"
       ]
     }
   ],

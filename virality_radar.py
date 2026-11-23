@@ -247,9 +247,11 @@ def fetch_social_ig_fb_and_news_buzz() -> tuple[list[dict], list[dict]]:
 
     buzz_7d = (
         fetch_rss(f"https://news.google.com/rss/search?q={q_ig_fb_7d}&hl=en-US&gl=US&ceid=US:en", "IG/FB Social Buzz", 12)
-        + fetch_rss(f"https://news.google.com/rss/search?q={q_in_7d}&hl=en-IN&gl=IN&ceid=IN:en", "Global/India Cinema Buzz", 10)
-        + fetch_rss("https://variety.com/v/film/feed/", "Variety", 10)
-        + fetch_rss("https://collider.com/feed/", "Collider", 10)
+        + fetch_rss(f"https://news.google.com/rss/search?q={q_in_7d}&hl=en-IN&gl=IN&ceid=IN:en", "Global/India Cinema Buzz", 8)
+        + fetch_rss("https://deadline.com/v/film/feed/", "Deadline", 10)
+        + fetch_rss("https://www.hollywoodreporter.com/c/movies/movie-news/feed/", "THR", 10)
+        + fetch_rss("https://variety.com/v/film/feed/", "Variety", 8)
+        + fetch_rss("https://collider.com/feed/", "Collider", 8)
     )
     buzz_30d = fetch_rss(f"https://news.google.com/rss/search?q={q_ig_fb_30d}&hl=en-US&gl=US&ceid=US:en", "Social 30d Buzz", 12)
     return buzz_7d, buzz_30d
@@ -345,13 +347,22 @@ def scan_virality(skip_yt: bool = False) -> dict:
         for ent in extract_social_entities(p["title"]):
             _add(ent, h30d=pts, source=f"Reddit-30d(r/{p['sub']})", rd_e=p["engagement"], origin_sub=p["sub"])
 
+    news_topic_counts: dict[str, int] = {}
     for n in buzz_7d:
         for ent in extract_social_entities(n["title"]):
-            _add(ent, h3d=28.0, h7d=22.0, source=n["source"], headline=n["title"])
+            ent_key = re.sub(r"[^a-z0-9]", "", ent.lower())
+            c = news_topic_counts.get(ent_key, 0)
+            if c < 2:  # Anti-monopoly: cap news headline stacking at 2 hits per topic
+                news_topic_counts[ent_key] = c + 1
+                _add(ent, h3d=24.0, h7d=18.0, source=n["source"], headline=n["title"])
 
     for n in buzz_30d:
         for ent in extract_social_entities(n["title"]):
-            _add(ent, h30d=26.0, source=n["source"])
+            ent_key = re.sub(r"[^a-z0-9]", "", ent.lower())
+            c = news_topic_counts.get(ent_key, 0)
+            if c < 3:
+                news_topic_counts[ent_key] = c + 1
+                _add(ent, h30d=20.0, source=n["source"])
 
     ranked = []
     genre_totals: dict[str, dict] = {gid: {"genre": gid, "label": g["label"], "total_score": 0.0, "top_topic": "", "count": 0} for gid, g in groups.items()}
