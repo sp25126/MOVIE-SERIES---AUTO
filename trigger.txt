@@ -1,2 +1,3 @@
-run_pipeline_triggered: 2026-11-23T07:53:00Z
-reason: manual user trigger for autonomous virality pipeline
+run_pipeline_triggered: 2026-11-23T07:56:00Z
+batch_run: 2
+reason: user requested 2 runs today for full 8-video cadence
