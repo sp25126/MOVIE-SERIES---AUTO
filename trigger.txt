@@ -1,3 +1,2 @@
-run_pipeline_triggered: 2026-11-23T07:56:00Z
-batch_run: 2
-reason: user requested 2 runs today for full 8-video cadence
+run_pipeline_triggered: 2026-11-23T17:50:00Z
+reason: trigger autonomous release after fixing CID filter and harvester timeouts
