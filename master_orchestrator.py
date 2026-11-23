@@ -82,7 +82,7 @@ def cleanup_temp_files():
                         pass
 
 
-def audit_live_virality() -> dict:
+def audit_live_virality(force_fresh: bool = True) -> dict:
     """
     VIRALITY-FIRST ENGINE:
     Scans live Google Trends, YouTube autocomplete, Reddit, and RSS across all genres
@@ -98,6 +98,39 @@ def audit_live_virality() -> dict:
         "song_trends": None,
         "mentalist_pillar": None,
     }
+
+    try:
+        from virality_engine import run_all_category_virality_scan, DAILY_DIGEST_PATH
+        # Check if daily digest was generated within the last 15 min, else run full scan
+        if DAILY_DIGEST_PATH.exists() and (time.time() - DAILY_DIGEST_PATH.stat().st_mtime) < 900:
+            logging.info("[Virality Audit] Loading fresh Daily Virality Digest...")
+            digest = json.loads(DAILY_DIGEST_PATH.read_text(encoding="utf-8"))
+        else:
+            logging.info("[Virality Audit] Running fresh 360° virality scan across all categories...")
+            digest = run_all_category_virality_scan(force_fresh_yt=force_fresh)
+
+        cats = digest.get("categories", {})
+        cinema_info = cats.get("cinema", {})
+        top_cinema = cinema_info.get("top_candidates", [])
+
+        cat_file = ROOT / "niche_catalog.json"
+        cat = json.loads(cat_file.read_text(encoding="utf-8")) if cat_file.exists() else {}
+        recent = {t.lower() for t in cat.get("recent_topics", [])}
+        fresh_topics = [t for t in top_cinema if t.get("topic", "").lower() not in recent and not any(r in t.get("topic", "").lower() for r in recent if len(r) > 4)]
+        audit_results["cinema"] = (fresh_topics or top_cinema)[:6]
+
+        tv_info = cats.get("tv_series", {})
+        audit_results["tv_series"] = tv_info.get("top_candidates", [])
+
+        song_info = cats.get("song_trends", {})
+        audit_results["song_trends"] = song_info.get("top_candidates", [])
+
+        audit_results["mentalist_pillar"] = cats.get("mentalist_pillar")
+        logging.info("[Virality Audit] 360° Virality Intelligence successfully loaded for all 4 category pillars.")
+        logging.info("================================================================================\n")
+        return audit_results
+    except Exception as e:
+        logging.warning(f"[Virality Audit] Unified virality engine fallback triggered ({e}). Running direct scans...")
 
     # 1. Cinema Scan
     try:

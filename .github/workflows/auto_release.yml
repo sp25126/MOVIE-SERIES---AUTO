@@ -77,6 +77,14 @@ jobs:
             printf '%s' '${{ secrets.YOUTUBE_TOKEN_JSON }}' > config/youtube_token.json
           fi
 
+      - name: Run 360° Virality Engine Pre-Scan Across All Categories
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: |
+          echo "🔥 [Virality Engine] Executing 360° Pre-Scan Across All Categories (Cinema, TV Series, The Mentalist, Song Trends)..."
+          python -u virality_engine.py
+
       - name: Run Master Virality-First Autonomous Cadence Pipeline
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

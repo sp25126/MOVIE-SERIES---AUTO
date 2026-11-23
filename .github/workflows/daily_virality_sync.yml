@@ -1,9 +1,9 @@
-name: 3-Day Virality Radar Sync
+name: Daily 360° Virality Engine Sync
 
 on:
   schedule:
-    # Runs every 3 days at 06:00 UTC (11:30 AM IST)
-    - cron: '0 6 */3 * *'
+    # Runs every day at 03:00 UTC (8:30 AM IST - before morning release run)
+    - cron: '0 3 * * *'
   workflow_dispatch:
 
 permissions:
@@ -25,16 +25,17 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run 3-day social virality scan & self-test
+      - name: Run Daily 360° Virality Engine Pre-Scan Across All Categories
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python run_pipeline.py --self-test
-          python virality_radar.py
+          python -u virality_engine.py
 
-      - name: Commit updated 3-day catalog back to repo
+      - name: Commit updated daily virality intelligence back to repo
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add niche_catalog.json
-          git diff --staged --quiet || (git commit -m "chore(radar): 3-day virality sync [skip ci]" && git push origin main)
+          git add niche_catalog.json state/
+          git diff --staged --quiet || (git commit -m "chore(radar): daily 360° virality engine sync [skip ci]" && git push origin main)

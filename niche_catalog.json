@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-23T07:28:07Z",
+  "last_3day_sync_utc": "2026-11-23T07:34:30Z",
   "recent_topics": [
     "Interstellar",
     "Mr Darcy",
@@ -28,72 +28,30 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 3784.5,
-      "top_topic": "Godzilla",
-      "count": 199
+      "total_score": 2900.9,
+      "top_topic": "Hunger Games",
+      "count": 185
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 1615.3,
-      "top_topic": "Doomsday",
-      "count": 75
+      "total_score": 1318.5,
+      "top_topic": "Godzilla",
+      "count": 67
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 968.6,
-      "top_topic": "Sequel",
-      "count": 36
-    },
-    {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 630.3,
-      "top_topic": "Odyssey",
+      "total_score": 432.1,
+      "top_topic": "Doesn",
       "count": 25
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 501.6,
-      "top_topic": "Teach You a Lesson",
-      "count": 24
-    },
-    {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 444.1,
-      "top_topic": "Changing",
-      "count": 15
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 428.4,
-      "top_topic": "Bigil Flashback",
-      "count": 11
-    },
-    {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 368.0,
-      "top_topic": "Battleship",
-      "count": 11
     },
     {
       "genre": "animated_cinema",
       "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 326.2,
+      "total_score": 359.8,
       "top_topic": "In Spider",
-      "count": 14
-    },
-    {
-      "genre": "romance_teen_drama",
-      "label": "Romance, Heartbreak & Teen Series",
-      "total_score": 312.0,
-      "top_topic": "Re Piya",
-      "count": 8
+      "count": 16
     },
     {
       "genre": "drama_prestige",
@@ -103,37 +61,67 @@
       "count": 16
     },
     {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 199.7,
+      "top_topic": "Eager",
+      "count": 10
+    },
+    {
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 115.8,
+      "top_topic": "Ramayana: Rise of a Legend",
+      "count": 13
+    },
+    {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 104.0,
+      "top_topic": "Ranked",
+      "count": 5
+    },
+    {
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 64.9,
+      "top_topic": "Actors",
+      "count": 11
+    },
+    {
       "genre": "crime_mafia",
       "label": "Crime, Gangsters, Cartels & Legal Thrillers",
       "total_score": 45.0,
       "top_topic": "Bruce Lee Movies Ranked",
       "count": 3
+    },
+    {
+      "genre": "romance_teen_drama",
+      "label": "Romance, Heartbreak & Teen Series",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
     }
   ],
   "live_3day_top_topics": [
     {
       "topic": "Godzilla",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 110.0,
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 95.07,
       "sources": [
         "Collider",
         "Crunchyroll",
         "Entertainment Weekly",
         "Reddit-30d(r/Monsterverse)"
-      ]
-    },
-    {
-      "topic": "Doomsday",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 80.0,
-      "sources": [
-        "Deadline",
-        "Reddit-7d(r/boxoffice)",
-        "Reddit-7d(r/marvelmemes)"
       ]
     },
     {
@@ -149,71 +137,27 @@
       ]
     },
     {
-      "topic": "IRON MAN",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 74.94,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Battleship",
-      "genre": "war_historical",
-      "subcategory": "war_epic_battle_ranking",
-      "format": "edit_ranking",
-      "score": 69.0,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Teach You a Lesson",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
-      "format": "edit_ranking",
-      "score": 65.4,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Heart",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 64.02,
-      "sources": [
-        "Collider",
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Master",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
-      "format": "edit_ranking",
-      "score": 58.0,
-      "sources": [
-        "Collider",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Which",
-      "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
+      "topic": "Doomsday",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
       "format": "scene_commentary",
-      "score": 57.81,
+      "score": 74.37,
       "sources": [
-        "Reddit-30d(r/ActionMovies)",
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-30d(r/Fantasy)",
-        "Reddit-7d(r/ActionMovies)"
+        "Deadline",
+        "Reddit-7d(r/boxoffice)",
+        "Reddit-7d(r/marvelmemes)"
+      ]
+    },
+    {
+      "topic": "Sunrise On The Reaping",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 66.36,
+      "sources": [
+        "Deadline",
+        "Reddit-7d(r/boxoffice)",
+        "Variety"
       ]
     },
     {
@@ -251,18 +195,6 @@
       ]
     },
     {
-      "topic": "Sequel",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "format": "release_hype",
-      "score": 54.0,
-      "sources": [
-        "Deadline",
-        "TV Insider",
-        "The Hollywood Reporter"
-      ]
-    },
-    {
       "topic": "Ramayana",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
@@ -275,15 +207,81 @@
       ]
     },
     {
-      "topic": "History",
-      "genre": "world_indian_cinema",
-      "subcategory": "global_cinema_hype",
-      "format": "release_hype",
-      "score": 54.0,
+      "topic": "Coming Anytime Soon",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 50.7,
+      "sources": [
+        "Reddit-7d(r/boxoffice)",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "Another",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 50.7,
+      "sources": [
+        "Reddit-7d(r/boxoffice)",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "Ranked",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
+      "format": "edit_ranking",
+      "score": 44.0,
+      "sources": [
+        "Collider",
+        "JoBlo"
+      ]
+    },
+    {
+      "topic": "Thanksgiving",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 43.0,
+      "sources": [
+        "IMDb",
+        "TheGrio",
+        "WCNC"
+      ]
+    },
+    {
+      "topic": "Hunger",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 40.0,
       "sources": [
         "Britannica",
-        "Collider",
         "Variety"
+      ]
+    },
+    {
+      "topic": "Games",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 40.0,
+      "sources": [
+        "Britannica",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "Home Alone",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 40.0,
+      "sources": [
+        "THR",
+        "The Guardian"
       ]
     }
   ],

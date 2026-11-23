@@ -1,0 +1,650 @@
+{
+  "scan_time_utc": "2026-11-23T07:34:30Z",
+  "categories": {
+    "cinema": {
+      "status": "success",
+      "lead_winner": "Godzilla",
+      "lead_genre": "superhero_scifi",
+      "lead_score": 95.07,
+      "top_candidates": [
+        {
+          "topic": "Godzilla",
+          "genre": "superhero_scifi",
+          "subcategory": "superhero_spoiler_commentary",
+          "recommended_format": "scene_commentary",
+          "query_suffix": "scene edit shorts",
+          "score": 95.07,
+          "horizons": {
+            "3d": 75.7,
+            "7d": 82.6,
+            "30d": 100.0,
+            "1y": 0.0
+          },
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 6,
+          "sources": [
+            "Collider",
+            "Crunchyroll",
+            "Entertainment Weekly",
+            "Reddit-30d(r/Monsterverse)"
+          ],
+          "headlines": [
+            "Who gonna win monster zero King ghidorah or Godzilla earth",
+            "I hope we can hear Godzilla use the classic roar again in Supernova",
+            "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance"
+          ]
+        },
+        {
+          "topic": "Hunger Games",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 75.7,
+          "horizons": {
+            "3d": 81.2,
+            "7d": 77.4,
+            "30d": 0.0,
+            "1y": 0.0
+          },
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 1,
+          "sources": [
+            "ELLE",
+            "Reddit-7d(r/boxoffice)",
+            "The New York Times"
+          ],
+          "headlines": [
+            "Why Another ‘Hunger Games’ Movie Isn’t Coming Anytime Soon",
+            "Who Should the Next ‘Hunger Games’ Movie Be About? Fans Have Some Ideas.",
+            "Everything You Need to Know Before Seeing the New ‘Hunger Games’ Prequel"
+          ]
+        },
+        {
+          "topic": "Doomsday",
+          "genre": "superhero_scifi",
+          "subcategory": "superhero_spoiler_commentary",
+          "recommended_format": "scene_commentary",
+          "query_suffix": "scene edit shorts",
+          "score": 74.37,
+          "horizons": {
+            "3d": 87.7,
+            "7d": 97.6,
+            "30d": 0.0,
+            "1y": 0.0
+          },
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 2,
+          "sources": [
+            "Deadline",
+            "Reddit-7d(r/boxoffice)",
+            "Reddit-7d(r/marvelmemes)"
+          ],
+          "headlines": [
+            "Hailee Steinfeld has joined the cast of Avengers: Doomsday",
+            "I want him to narrate Doomsday.",
+            "Joe Russo Talks ‘Doomsday’ Teaser-Trailer Strategy Ahead Of Rumored Monday Drop: “I Have To interact With Fans”"
+          ]
+        },
+        {
+          "topic": "Sunrise On The Reaping",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 66.36,
+          "horizons": {
+            "3d": 69.1,
+            "7d": 62.4,
+            "30d": 0.0,
+            "1y": 0.0
+          },
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 1,
+          "sources": [
+            "Deadline",
+            "Reddit-7d(r/boxoffice)",
+            "Variety"
+          ],
+          "headlines": [
+            "Brighter Than The Sun: How Lionsgate Marketing & PR Turned B.O. Around For ‘Sunrise On The Reaping’",
+            "Noah Schnapp Reveals Image From His ‘Sunrise on the Reaping’ Audition For Haymitch: “They Picked Right”",
+            "‘Hunger Games’ Lead Joseph Zada on Filming His Breakout Movie Role and ‘Sunrise on the Reaping’s’ Intense Stunts: ‘I Look Like a F—ing Action Star!’"
+          ]
+        },
+        {
+          "topic": "Superman",
+          "genre": "superhero_scifi",
+          "subcategory": "superhero_spoiler_commentary",
+          "recommended_format": "scene_commentary",
+          "query_suffix": "scene edit shorts",
+          "score": 57.44,
+          "horizons": {
+            "3d": 54.9,
+            "7d": 68.7,
+            "30d": 74.3,
+            "1y": 0.0
+          },
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 5,
+          "sources": [
+            "Reddit-30d(r/DC_Cinematic)",
+            "Reddit-7d(r/DC_Cinematic)"
+          ],
+          "headlines": [
+            "What would your reaction be if Jeremy Latcham made an announcement like this about no longer using David Corenswet as Superman in the future?",
+            "People genuinely putting Superman (2025) above Iron Man (2008) is insane. Iron Man clears in writing, acting, CGI, action, plot and character development. Hell, even the opening scene mogs."
+          ]
+        },
+        {
+          "topic": "Supergirl",
+          "genre": "superhero_scifi",
+          "subcategory": "superhero_spoiler_commentary",
+          "recommended_format": "scene_commentary",
+          "query_suffix": "scene edit shorts",
+          "score": 54.39,
+          "horizons": {
+            "3d": 55.1,
+            "7d": 68.9,
+            "30d": 58.3,
+            "1y": 0.0
+          },
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 4,
+          "sources": [
+            "Reddit-30d(r/DC_Cinematic)",
+            "Reddit-7d(r/DC_Cinematic)"
+          ],
+          "headlines": [
+            "BOX OFFICE: Clayface hit $126M this weekend. It will surpass Supergirl's $126.4M in the next day or two",
+            "If I was named studio head, I'd greenlight Supergirl 2"
+          ]
+        },
+        {
+          "topic": "Godzilla Minus Zero",
+          "genre": "superhero_scifi",
+          "subcategory": "scifi_release_hype",
+          "recommended_format": "release_hype",
+          "query_suffix": "trailer edit shorts",
+          "score": 54.0,
+          "horizons": {
+            "3d": 48.0,
+            "7d": 36.0,
+            "30d": 20.0,
+            "1y": 0.0
+          },
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 0,
+          "sources": [
+            "Ars Technica",
+            "The Rider News",
+            "Vulture"
+          ],
+          "headlines": [
+            "Review: Godzilla Minus Zero joins the list of truly stellar sequels",
+            "“Godzilla Minus Zero:” a monstrously good film"
+          ]
+        },
+        {
+          "topic": "Ramayana",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 54.0,
+          "horizons": {
+            "3d": 48.0,
+            "7d": 36.0,
+            "30d": 20.0,
+            "1y": 0.0
+          },
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 0,
+          "sources": [
+            "NDTV",
+            "The Times of India",
+            "Variety"
+          ],
+          "headlines": [
+            "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror",
+            "Ramayana Box Office Collection Day 18: Ranbir Kapoor's Film Earns More Than Dhurandhar 2 In India On 3rd Sunday"
+          ]
+        },
+        {
+          "topic": "Coming Anytime Soon",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 50.7,
+          "horizons": {
+            "3d": 57.2,
+            "7d": 59.4,
+            "30d": 0.0,
+            "1y": 0.0
+          },
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 1,
+          "sources": [
+            "Reddit-7d(r/boxoffice)",
+            "Variety"
+          ],
+          "headlines": [
+            "Why Another ‘Hunger Games’ Movie Isn’t Coming Anytime Soon"
+          ]
+        },
+        {
+          "topic": "Another",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 50.7,
+          "horizons": {
+            "3d": 57.2,
+            "7d": 59.4,
+            "30d": 0.0,
+            "1y": 0.0
+          },
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 1,
+          "sources": [
+            "Reddit-7d(r/boxoffice)",
+            "Variety"
+          ],
+          "headlines": [
+            "Why Another ‘Hunger Games’ Movie Isn’t Coming Anytime Soon"
+          ]
+        }
+      ],
+      "genre_leaderboard": [
+        {
+          "genre": "action_thriller",
+          "label": "Action, Spy & Crime Thriller",
+          "total_score": 2900.9,
+          "top_topic": "Hunger Games",
+          "count": 185
+        },
+        {
+          "genre": "superhero_scifi",
+          "label": "Superhero & Sci-Fi",
+          "total_score": 1318.5,
+          "top_topic": "Godzilla",
+          "count": 67
+        },
+        {
+          "genre": "comedy_sitcom",
+          "label": "Comedy, Sitcoms & Cast Memes",
+          "total_score": 432.1,
+          "top_topic": "Doesn",
+          "count": 25
+        },
+        {
+          "genre": "animated_cinema",
+          "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+          "total_score": 359.8,
+          "top_topic": "In Spider",
+          "count": 16
+        },
+        {
+          "genre": "drama_prestige",
+          "label": "Prestige Drama & Biopics",
+          "total_score": 246.0,
+          "top_topic": "Racialized",
+          "count": 16
+        },
+        {
+          "genre": "horror_mystery",
+          "label": "Horror & Psychological Mystery",
+          "total_score": 199.7,
+          "top_topic": "Eager",
+          "count": 10
+        },
+        {
+          "genre": "fantasy_mythology",
+          "label": "Epic Fantasy, Historical & Mythology",
+          "total_score": 115.8,
+          "top_topic": "Ramayana: Rise of a Legend",
+          "count": 13
+        },
+        {
+          "genre": "war_historical",
+          "label": "War Epics, Battles & Historical Biopics",
+          "total_score": 104.0,
+          "top_topic": "Ranked",
+          "count": 5
+        },
+        {
+          "genre": "world_indian_cinema",
+          "label": "Indian Cinema, K-Drama & Global Hits",
+          "total_score": 64.9,
+          "top_topic": "Actors",
+          "count": 11
+        },
+        {
+          "genre": "crime_mafia",
+          "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+          "total_score": 45.0,
+          "top_topic": "Bruce Lee Movies Ranked",
+          "count": 3
+        },
+        {
+          "genre": "romance_teen_drama",
+          "label": "Romance, Heartbreak & Teen Series",
+          "total_score": 0.0,
+          "top_topic": "",
+          "count": 0
+        },
+        {
+          "genre": "sports_underdog",
+          "label": "Sports Movies, Boxing, Racing & Comebacks",
+          "total_score": 0.0,
+          "top_topic": "",
+          "count": 0
+        }
+      ]
+    },
+    "tv_series": {
+      "status": "success",
+      "lead_winner": "My Demon Ep 6",
+      "lead_views": 12454170,
+      "top_candidates": [
+        {
+          "series_name": "My Demon Ep 6",
+          "total_views": 12454170,
+          "clip_count": 1,
+          "top_clip_title": "A demon catches her right when she's about to fall off a building | My Demon Ep 6 | Netflix [ENG]",
+          "top_clip_url": "https://www.youtube.com/watch?v=b9sxqeGXDHA",
+          "max_views": 12454170
+        },
+        {
+          "series_name": "Suits",
+          "total_views": 11795968,
+          "clip_count": 3,
+          "top_clip_title": "Suits | 10 Minutes of Harvey Specter Closing Deals",
+          "top_clip_url": "https://www.youtube.com/watch?v=jjeLzr1JR4o",
+          "max_views": 6901608
+        },
+        {
+          "series_name": "niccolò (baby",
+          "total_views": 6113353,
+          "clip_count": 1,
+          "top_clip_title": "niccolò (baby) | swim",
+          "top_clip_url": "https://www.youtube.com/watch?v=s72LV_J_OiE",
+          "max_views": 6113353
+        },
+        {
+          "series_name": "swim",
+          "total_views": 6113353,
+          "clip_count": 1,
+          "top_clip_title": "niccolò (baby) | swim",
+          "top_clip_url": "https://www.youtube.com/watch?v=s72LV_J_OiE",
+          "max_views": 6113353
+        },
+        {
+          "series_name": "Shameless",
+          "total_views": 4596095,
+          "clip_count": 1,
+          "top_clip_title": "Shameless - Seo A-Ri x Han Jun-Kyung  | Celebrity ~ [𝗳𝗺𝘃]",
+          "top_clip_url": "https://www.youtube.com/watch?v=8yR-ga2Nfvc",
+          "max_views": 4596095
+        },
+        {
+          "series_name": "Celebrity ~",
+          "total_views": 4596095,
+          "clip_count": 1,
+          "top_clip_title": "Shameless - Seo A-Ri x Han Jun-Kyung  | Celebrity ~ [𝗳𝗺𝘃]",
+          "top_clip_url": "https://www.youtube.com/watch?v=8yR-ga2Nfvc",
+          "max_views": 4596095
+        },
+        {
+          "series_name": "Most Unforgettable Courtroom Moments",
+          "total_views": 3746941,
+          "clip_count": 1,
+          "top_clip_title": "Suits | Most Unforgettable Courtroom Moments",
+          "top_clip_url": "https://www.youtube.com/watch?v=X90tqks1f0s",
+          "max_views": 3746941
+        },
+        {
+          "series_name": "Yellowstone",
+          "total_views": 3538772,
+          "clip_count": 1,
+          "top_clip_title": "Yellowstone | Most Watched Yellowstone Moments (Part 1)",
+          "top_clip_url": "https://www.youtube.com/watch?v=gAkB9W3dgkw",
+          "max_views": 3538772
+        }
+      ]
+    },
+    "mentalist_pillar": {
+      "status": "success",
+      "current_episode": 7,
+      "max_episodes": 40,
+      "next_theme": "The Mentalist savage edit #shorts",
+      "pillar_locked": true
+    },
+    "song_trends": {
+      "status": "success",
+      "lead_winner": "Fendi 2",
+      "lead_views": 3383317,
+      "top_candidates": [
+        {
+          "song_name": "Fendi 2",
+          "banner_title": "RANKING THE BEST FENDI 2 TREND EDITS",
+          "total_views": 3383317,
+          "virality_score": 104.45,
+          "edits": [
+            {
+              "id": "ig_Cc50NMfgXk_",
+              "platform": "instagram",
+              "title": "Video by highsnobiety",
+              "creator": "@HIGHSNOBIETY (Insta)",
+              "views": 3353096,
+              "duration": 15.0,
+              "url": "https://www.instagram.com/reel/Cc50NMfgXk_/"
+            },
+            {
+              "id": "tt_5225170105305868583",
+              "platform": "tiktok",
+              "title": "Trend Dance Tiktok Viral 2026 | Fendi 2 #tiktok​​​ ...| Kwai",
+              "creator": "@𝙆𝙚𝙫𝙝𝙖𝙣𝙯𝙞 (TikTok)",
+              "views": 25000,
+              "duration": 20.0,
+              "url": "https://www.tiktok.com/video/5225170105305868583"
+            },
+            {
+              "id": "yt_4slQc3EuFvc",
+              "platform": "youtube",
+              "title": "\"FENDI 2\" TREND EDIT PRESET | ALIGHT MOTION",
+              "creator": "@𝓥𝓲𝓬𝓴𝔂",
+              "views": 5221,
+              "duration": 29.0,
+              "url": "https://www.youtube.com/watch?v=4slQc3EuFvc"
+            }
+          ]
+        },
+        {
+          "song_name": "Vampire Heart",
+          "banner_title": "RANKING THE BEST VAMPIRE HEART TREND EDITS",
+          "total_views": 2756185,
+          "virality_score": 96.93,
+          "edits": [
+            {
+              "id": "ig_DCo57LMgTZQ",
+              "platform": "instagram",
+              "title": "Video by enhypenxo",
+              "creator": "@enhypenxo (Insta)",
+              "views": 81728,
+              "duration": 15.0,
+              "url": "https://www.instagram.com/reel/DCo57LMgTZQ/"
+            },
+            {
+              "id": "tt_7633880356126526742",
+              "platform": "tiktok",
+              "title": "TikTok Video by @maxsterae | 263K Views | Toklytics",
+              "creator": "@TvduCore (TikTok)",
+              "views": 263000,
+              "duration": 20.0,
+              "url": "https://www.tiktok.com/video/7633880356126526742"
+            },
+            {
+              "id": "yt_k_573toSJ-4",
+              "platform": "youtube",
+              "title": "\" Six little egg..🖤💔 \" // ⭐️ Animation ⭐️ // Aphmau💜",
+              "creator": "@•LittleMindXD•",
+              "views": 2411457,
+              "duration": 36.0,
+              "url": "https://www.youtube.com/watch?v=k_573toSJ-4"
+            }
+          ]
+        },
+        {
+          "song_name": "Freaked Out",
+          "banner_title": "RANKING THE BEST FREAKED OUT TREND EDITS",
+          "total_views": 545403,
+          "virality_score": 86.43,
+          "edits": [
+            {
+              "id": "tt_7663557267828002079",
+              "platform": "tiktok",
+              "title": "@tiktokwithhasan: 5x outlier | Overshot",
+              "creator": "@tiktok_creator (TikTok)",
+              "views": 25000,
+              "duration": 20.0,
+              "url": "https://www.tiktok.com/video/7663557267828002079"
+            },
+            {
+              "id": "yt_uXw9DOSN1O8",
+              "platform": "youtube",
+              "title": "freaked out (slowed to perfection) - fat papi, prodshushy [edit audio]",
+              "creator": "@HanEditx",
+              "views": 470874,
+              "duration": 40.0,
+              "url": "https://www.youtube.com/watch?v=uXw9DOSN1O8"
+            },
+            {
+              "id": "yt_o-NzyEExtfA",
+              "platform": "youtube",
+              "title": "FREAKED OUT -EDIT AUDIO",
+              "creator": "@TANIOKOEDITS",
+              "views": 49529,
+              "duration": 22.0,
+              "url": "https://www.youtube.com/watch?v=o-NzyEExtfA"
+            }
+          ]
+        },
+        {
+          "song_name": "House",
+          "banner_title": "RANKING THE BEST HOUSE TREND EDITS",
+          "total_views": 51174,
+          "virality_score": 74.1,
+          "edits": [
+            {
+              "id": "tt_7395192251346849056",
+              "platform": "tiktok",
+              "title": "I’m back in my house era // This was heavily inspired by @han !!’s ama... | TikTok",
+              "creator": "@tiktok_creator (TikTok)",
+              "views": 25000,
+              "duration": 20.0,
+              "url": "https://www.tiktok.com/video/7395192251346849056"
+            },
+            {
+              "id": "yt_ShyW64bWglE",
+              "platform": "youtube",
+              "title": "Hyunlix \"House of memories\" Trend Edit~Naz",
+              "creator": "@AlaraLord",
+              "views": 1174,
+              "duration": 12.0,
+              "url": "https://www.youtube.com/watch?v=ShyW64bWglE"
+            },
+            {
+              "id": "tt_7480332312312302891",
+              "platform": "tiktok",
+              "title": "Frank Ocean House Remix for Your Beach Party | TikTok",
+              "creator": "@tiktok_creator (TikTok)",
+              "views": 25000,
+              "duration": 20.0,
+              "url": "https://www.tiktok.com/video/7480332312312302891"
+            }
+          ]
+        },
+        {
+          "song_name": "LV Sandals",
+          "banner_title": "RANKING THE BEST LV SANDALS TREND EDITS",
+          "total_views": 80572,
+          "virality_score": 70.77,
+          "edits": [
+            {
+              "id": "ig_DJW8gZ7R_wT",
+              "platform": "instagram",
+              "title": "Video by fifth_ave_shopping",
+              "creator": "@Galit|PersonalShopperNYC (Insta)",
+              "views": 944,
+              "duration": 15.0,
+              "url": "https://www.instagram.com/reel/DJW8gZ7R_wT/"
+            },
+            {
+              "id": "yt_DfguqI2spAM",
+              "platform": "youtube",
+              "title": "LV SANDALS (4K)",
+              "creator": "@StyLer",
+              "views": 55892,
+              "duration": 23.0,
+              "url": "https://www.youtube.com/watch?v=DfguqI2spAM"
+            },
+            {
+              "id": "yt_3QmbxS-hOxU",
+              "platform": "youtube",
+              "title": "LV Sandals | Michael Olise | 4k Edit",
+              "creator": "@Tosh",
+              "views": 23736,
+              "duration": 25.0,
+              "url": "https://www.youtube.com/watch?v=3QmbxS-hOxU"
+            }
+          ]
+        },
+        {
+          "song_name": "Keep Following",
+          "banner_title": "RANKING THE BEST KEEP FOLLOWING TREND EDITS",
+          "total_views": 473,
+          "virality_score": 41.87,
+          "edits": [
+            {
+              "id": "yt_obD7VJlw8s8",
+              "platform": "youtube",
+              "title": "Stay trend  | Roblox edit 2021| proud of this Roblox edit | Edit w ShivStar| SiimplyPxstel",
+              "creator": "@vim",
+              "views": 277,
+              "duration": 13.0,
+              "url": "https://www.youtube.com/watch?v=obD7VJlw8s8"
+            },
+            {
+              "id": "yt_-VgZWE9e2LA",
+              "platform": "youtube",
+              "title": "TREND 🔥🔥 || Free Fire Trending Status || Alight Motion Editing #shorts  #Bad_timer #Trending",
+              "creator": "@Sangeeta_Editz",
+              "views": 196,
+              "duration": 13.0,
+              "url": "https://www.youtube.com/watch?v=-VgZWE9e2LA"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "summary": {
+    "cinema_leader": "Godzilla",
+    "tv_series_leader": "My Demon Ep 6",
+    "mentalist_episode": 7,
+    "song_trend_leader": "Fendi 2"
+  }
+}
