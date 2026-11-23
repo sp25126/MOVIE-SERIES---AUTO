@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-23T07:09:06Z",
+  "last_3day_sync_utc": "2026-11-23T07:28:07Z",
   "recent_topics": [
     "Interstellar",
     "Mr Darcy",
@@ -28,89 +28,114 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 1063.3,
-      "top_topic": "Hunger Games",
-      "count": 63
-    },
-    {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 311.7,
-      "top_topic": "Spider-Man",
-      "count": 12
+      "total_score": 3784.5,
+      "top_topic": "Godzilla",
+      "count": 199
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 296.7,
-      "top_topic": "Hailee Steinfeld",
-      "count": 14
-    },
-    {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 247.3,
-      "top_topic": "Ramayana",
-      "count": 12
+      "total_score": 1615.3,
+      "top_topic": "Doomsday",
+      "count": 75
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 195.2,
-      "top_topic": "Black Doves",
-      "count": 11
+      "total_score": 968.6,
+      "top_topic": "Sequel",
+      "count": 36
     },
     {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 123.7,
-      "top_topic": "Racialized Gender Stereotyping",
-      "count": 10
-    },
-    {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 101.2,
-      "top_topic": "Eager",
-      "count": 5
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 630.3,
+      "top_topic": "Odyssey",
+      "count": 25
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 54.5,
-      "top_topic": "Eun Sang",
+      "total_score": 501.6,
+      "top_topic": "Teach You a Lesson",
+      "count": 24
+    },
+    {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 444.1,
+      "top_topic": "Changing",
+      "count": 15
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 428.4,
+      "top_topic": "Bigil Flashback",
       "count": 11
     },
     {
       "genre": "war_historical",
       "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 15.0,
-      "top_topic": "TSRStaff ST",
-      "count": 1
+      "total_score": 368.0,
+      "top_topic": "Battleship",
+      "count": 11
     },
     {
-      "genre": "crime_mafia",
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 326.2,
+      "top_topic": "In Spider",
+      "count": 14
     },
     {
       "genre": "romance_teen_drama",
       "label": "Romance, Heartbreak & Teen Series",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "total_score": 312.0,
+      "top_topic": "Re Piya",
+      "count": 8
     },
     {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 246.0,
+      "top_topic": "Racialized",
+      "count": 16
+    },
+    {
+      "genre": "crime_mafia",
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "total_score": 45.0,
+      "top_topic": "Bruce Lee Movies Ranked",
+      "count": 3
     }
   ],
   "live_3day_top_topics": [
+    {
+      "topic": "Godzilla",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 110.0,
+      "sources": [
+        "Collider",
+        "Crunchyroll",
+        "Entertainment Weekly",
+        "Reddit-30d(r/Monsterverse)"
+      ]
+    },
+    {
+      "topic": "Doomsday",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 80.0,
+      "sources": [
+        "Deadline",
+        "Reddit-7d(r/boxoffice)",
+        "Reddit-7d(r/marvelmemes)"
+      ]
+    },
     {
       "topic": "Hunger Games",
       "genre": "action_thriller",
@@ -118,160 +143,147 @@
       "format": "edit_ranking",
       "score": 75.7,
       "sources": [
-        "AOL.com",
+        "ELLE",
         "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "The New York Times"
       ]
     },
     {
-      "topic": "Sunrise On The Reaping",
+      "topic": "IRON MAN",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 66.36,
+      "score": 74.94,
       "sources": [
-        "Deadline",
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)",
+        "YT-Week"
       ]
     },
     {
-      "topic": "Spider-Man",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "topic": "Battleship",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
       "format": "edit_ranking",
-      "score": 54.65,
+      "score": 69.0,
       "sources": [
-        "Reddit-7d(r/MovieDetails)",
-        "Reddit-7d(r/marvelmemes)"
+        "YT-Week"
       ]
     },
     {
-      "topic": "Hailee Steinfeld",
+      "topic": "Teach You a Lesson",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 65.4,
+      "sources": [
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Heart",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 64.02,
+      "sources": [
+        "Collider",
+        "YT-Month",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Master",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 58.0,
+      "sources": [
+        "Collider",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Which",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "format": "scene_commentary",
+      "score": 57.81,
+      "sources": [
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-30d(r/Fantasy)",
+        "Reddit-7d(r/ActionMovies)"
+      ]
+    },
+    {
+      "topic": "Superman",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 57.44,
+      "sources": [
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
+      ]
+    },
+    {
+      "topic": "Supergirl",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 54.39,
+      "sources": [
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
+      ]
+    },
+    {
+      "topic": "Godzilla Minus Zero",
       "genre": "superhero_scifi",
       "subcategory": "scifi_release_hype",
       "format": "release_hype",
-      "score": 51.7,
+      "score": 54.0,
       "sources": [
-        "Deadline",
-        "Reddit-7d(r/boxoffice)"
+        "Ars Technica",
+        "The Rider News",
+        "Vulture"
       ]
     },
     {
-      "topic": "Coming Anytime Soon",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 50.7,
+      "topic": "Sequel",
+      "genre": "comedy_sitcom",
+      "subcategory": "cast_fandom_memes",
+      "format": "release_hype",
+      "score": 54.0,
       "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "Deadline",
+        "TV Insider",
+        "The Hollywood Reporter"
       ]
     },
     {
       "topic": "Ramayana",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
-      "score": 40.0,
-      "sources": [
-        "The Times of India",
-        "TheWrap"
-      ]
-    },
-    {
-      "topic": "Avengers: Doomsday",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 40.0,
-      "sources": [
-        "Deadline",
-        "Variety"
-      ]
-    },
-    {
-      "topic": "Hailee Steinfeld Confirms",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 40.0,
-      "sources": [
-        "Deadline",
-        "Variety"
-      ]
-    },
-    {
-      "topic": "Eager",
-      "genre": "horror_mystery",
-      "subcategory": "horror_new_release_hype",
-      "format": "release_hype",
-      "score": 40.0,
-      "sources": [
-        "Deadline",
-        "THR"
-      ]
-    },
-    {
-      "topic": "You Can See",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "format": "release_hype",
-      "score": 38.13,
-      "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "THR"
-      ]
-    },
-    {
-      "topic": "In Harry Potter",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 38.03,
+      "score": 54.0,
       "sources": [
-        "Reddit-7d(r/MovieDetails)"
+        "NDTV",
+        "The Times of India",
+        "Variety"
       ]
     },
     {
-      "topic": "Sai Pallavi",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
+      "topic": "History",
+      "genre": "world_indian_cinema",
+      "subcategory": "global_cinema_hype",
       "format": "release_hype",
-      "score": 30.0,
+      "score": 54.0,
       "sources": [
-        "The Times of India"
-      ]
-    },
-    {
-      "topic": "In Spider",
-      "genre": "animated_cinema",
-      "subcategory": "animated_upcoming_hype",
-      "format": "release_hype",
-      "score": 28.94,
-      "sources": [
-        "Reddit-7d(r/MovieDetails)"
-      ]
-    },
-    {
-      "topic": "Bruce Banner",
-      "genre": "animated_cinema",
-      "subcategory": "animated_upcoming_hype",
-      "format": "release_hype",
-      "score": 28.94,
-      "sources": [
-        "Reddit-7d(r/MovieDetails)"
-      ]
-    },
-    {
-      "topic": "Racialized Gender Stereotyping",
-      "genre": "drama_prestige",
-      "subcategory": "prestige_finale_recap",
-      "format": "scene_commentary",
-      "score": 25.35,
-      "sources": [
-        "Reddit-30d(r/TrueFilm)",
-        "Reddit-7d(r/TrueFilm)"
+        "Britannica",
+        "Collider",
+        "Variety"
       ]
     }
   ],
@@ -281,7 +293,10 @@
       "subreddits": [
         "marvelstudios",
         "marvelmemes",
-        "DC_Cinematic"
+        "DC_Cinematic",
+        "GODZILLA",
+        "Monsterverse",
+        "scifi"
       ],
       "yt_probe": "superhero sci-fi movie edit",
       "keywords": [
@@ -302,7 +317,16 @@
         "doom",
         "ultron",
         "x-men",
-        "star wars"
+        "star wars",
+        "godzilla",
+        "kong",
+        "king kong",
+        "monsterverse",
+        "kaiju",
+        "titan",
+        "jurassic",
+        "creature",
+        "monster"
       ],
       "subcategories": [
         {
@@ -327,7 +351,8 @@
       "subreddits": [
         "movies",
         "boxoffice",
-        "MovieDetails"
+        "MovieDetails",
+        "ActionMovies"
       ],
       "yt_probe": "action thriller movie fight edit",
       "keywords": [
@@ -347,7 +372,14 @@
         "agent",
         "mission",
         "budget",
-        "cost"
+        "cost",
+        "godzilla",
+        "monsterverse",
+        "kaiju",
+        "blockbuster",
+        "box office",
+        "disaster",
+        "survival"
       ],
       "subcategories": [
         {

@@ -31,7 +31,7 @@ NON_MOVIE_JUNK = (
 )
 
 STOP_WORDS = {
-    "the", "and", "for", "with", "from", "that", "this", "what", "when", "where", "how", "why",
+    "the", "and", "for", "with", "from", "that", "this", "what", "when", "where", "how", "why", "which",
     "new", "official", "trailer", "teaser", "clip", "clips", "review", "box", "office", "movie",
     "movies", "series", "show", "shows", "season", "episode", "finale", "watch", "streaming",
     "netflix", "disney", "marvel", "mcu", "hbo", "amazon", "prime", "apple", "release", "date",
@@ -41,6 +41,7 @@ STOP_WORDS = {
     "beats", "beginner", "audiences", "hollywood", "bollywood", "cinema", "film", "films",
     "theaters", "report", "says", "after", "before", "will", "could", "would", "most", "more",
     "than", "into", "over", "about", "variety", "collider", "deadline", "screenrant", "imdb",
+    "history", "sequel", "sequels", "prequel", "reboot", "remake",
     "youtube", "instagram", "facebook", "reels", "tiktok", "fyp", "status", "meme", "memes",
     "funny", "sad", "cold", "coldest", "epic", "insane", "crazy", "moments", "moment", "video",
     "videos", "love", "trend", "whatsapp", "attitudestatus", "attitude", "scenepack", "twixtor",
@@ -61,6 +62,46 @@ STOP_WORDS = {
     "golden", "globe", "globes", "worst", "ai", "editor", "editors", "battle", "prize",
     "unreleased", "leaked", "behind", "the", "scenes", "making", "of", "explained",
     "darkness", "tv", "spot", "spots", "super", "bowl", "commercial", "ad", "ads",
+    "ars", "technica", "crunchyroll", "defector", "rider", "joblo", "rotten", "tomatoes",
+    "fans", "sale", "tickets", "final", "stars", "cast", "adds", "crosses", "passes", "sequels", "list",
+    "fantasy", "thriller", "horror", "drama", "comedy", "mystery", "action", "romance",
+    "everything", "anything", "nothing", "something", "someone", "bites", "bitten",
+    "thing", "things", "stuff", "piece", "pieces", "advice", "multifemale", "india",
+}
+
+COMMON_HEADLINE_VERBS = {
+    "smashes", "returns", "released", "reveals", "says", "shows", "joins", "dominates", "explodes",
+    "confirms", "unveils", "debuts", "premieres", "arrives", "slays", "shatters", "tops", "slams",
+    "teases", "shares", "opens", "heads", "talks", "meets", "faces", "fights", "costs", "gains",
+    "rises", "falls", "starts", "stops", "stays", "sparks", "slips", "beats", "earns", "touches",
+    "edges", "claims", "denies", "urges", "eyes", "wows", "shocks", "stuns", "rocks", "crushes",
+    "speaks", "takes", "gives", "makes", "tells", "wants", "knows", "finds", "leaves", "leads",
+}
+
+GENERIC_SINGLE_WORDS = {
+    # Genres & media categories
+    "fantasy", "thriller", "horror", "drama", "comedy", "mystery", "action", "romance",
+    "scifi", "anime", "manga", "cinema", "movie", "series", "sitcom", "biopic", "crime",
+    "history", "sequel", "sequels", "prequel", "reboot", "remake", "which",
+    # Indefinite & generic nouns/pronouns
+    "everything", "anything", "nothing", "something", "someone", "anyone", "everyone",
+    "nobody", "somebody", "anybody", "everybody", "bites", "bitten", "thing", "things",
+    "stuff", "piece", "pieces", "advice", "multifemale", "multiverse", "character", "characters",
+    "people", "person", "actor", "actress", "director", "producer", "writer", "creator",
+    "audience", "audiences", "critic", "critics", "story", "stories", "chapter", "scene",
+    # Colors & generic adjectives
+    "black", "white", "red", "blue", "green", "yellow", "orange", "purple", "grey", "gray",
+    "dark", "light", "super", "ultra", "mega", "great", "good", "better", "best", "bad",
+    "worst", "epic", "wild", "crazy", "insane", "real", "true", "fake", "dead", "alive",
+    "death", "life", "future", "past", "today", "tonight", "tomorrow", "yesterday",
+    # Countries & regions (when standalone)
+    "india", "indian", "america", "american", "korea", "korean", "japan", "japanese",
+    "china", "chinese", "world", "worldwide", "global", "country", "hollywood", "bollywood",
+    # Standalone common names & celebrity tags (not franchise titles)
+    "robert", "edward", "david", "john", "james", "michael", "hailee", "steinfeld", "richard", "thomas",
+    "charles", "daniel", "matthew", "anthony", "mark", "steven", "paul", "andrew", "george",
+    # Common edit/search query tags & buzzwords
+    "multifandom", "badass", "mafia", "animation", "animated", "status", "attitude", "fight",
 }
 
 
@@ -110,9 +151,13 @@ def extract_social_entities(text: str) -> list[str]:
         c = _clean_title(val)
         k = re.sub(r"[^a-z0-9]", "", c.lower())
         words = [w.lower() for w in re.findall(r"[A-Za-z0-9]+", c)]
-        if not words or len(c) < 4 or len(c) > 36 or k in STOP_WORDS or all(w in STOP_WORDS for w in words):
+        if not words or len(c) < 4 or len(c) > 36 or k in STOP_WORDS or k in COMMON_HEADLINE_VERBS or all(w in STOP_WORDS or w in GENERIC_SINGLE_WORDS for w in words):
             return
-        if words[0] in STOP_WORDS or words[-1] in STOP_WORDS:
+        if len(words) == 1 and (words[0] in GENERIC_SINGLE_WORDS or words[0] in STOP_WORDS):
+            return
+        if words[0] in STOP_WORDS or (words[-1] in STOP_WORDS and words[-1] not in {"one", "two", "three", "zero"}):
+            return
+        if words[0] in COMMON_HEADLINE_VERBS:
             return
         if k not in seen:
             seen.add(k)
@@ -122,24 +167,27 @@ def extract_social_entities(text: str) -> list[str]:
     for q in re.findall(r"['\"‘“]([A-Z][A-Za-z0-9:&\-\s]{2,34})['\"’”]", text):
         _push(q)
 
-    # 2. CamelCase or distinctive hashtags (e.g. #VisionQuest, #Ramayana, #AvengersDoomsday)
+    # 2. CamelCase or distinctive hashtags (e.g. #VisionQuest, #Ramayana, #AvengersDoomsday, #Godzilla)
     for tag in re.findall(r"#([A-Za-z][A-Za-z0-9]{3,26})", text):
         tk = tag.lower()
-        if tk in STOP_WORDS or any(tk.endswith(sfx) for sfx in ("edit", "edits", "shorts", "status", "news", "viral")):
+        if tk in STOP_WORDS or tk in GENERIC_SINGLE_WORDS or any(tk.endswith(sfx) for sfx in ("edit", "edits", "shorts", "status", "news", "viral")):
             continue
         spaced = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", tag)
         _push(spaced)
 
-    # 3. Distinctive 1-word CamelCase proper nouns in titles (e.g. VisionQuest, Daredevil, Spider-Man)
-    for cc in re.findall(r"\b([A-Z][a-z]+[A-Z][A-Za-z0-9]+|[A-Z][a-z]+-[A-Z][a-z]+)\b", text):
-        _push(cc)
+    # 3. Multi-word franchise titles with common connectors (e.g. Godzilla x Kong, Hunger Games: Sunrise on the Reaping)
+    for ph in re.findall(r"\b([A-Z][a-zA-Z0-9]+(?:\s+(?:x|vs|of|the|and|in|on|to|for|part|a)?\s*[A-Z][a-zA-Z0-9:]+){1,3})\b", text):
+        _push(ph)
 
-    # 4. Capitalized 2-3 word title phrases
-    if len(found) < 2:
-        for ph in re.findall(r"\b([A-Z][a-zA-Z0-9]+(?:\s+[A-Z][a-zA-Z0-9:]+){1,2})\b", text):
-            _push(ph)
+    # 4. Distinctive 1-word franchise & character proper nouns (e.g. Godzilla, Gladiator, Wicked, Nosferatu, Dune, Spider-Man)
+    # Only push if it is not already an individual word inside an already-found multi-word phrase!
+    for word in re.findall(r"\b([A-Z][a-z]{3,20}|[A-Z][a-z]+-[A-Z][a-z]+)\b", text):
+        wk = word.lower()
+        if wk not in COMMON_HEADLINE_VERBS and wk not in STOP_WORDS and wk not in GENERIC_SINGLE_WORDS:
+            if not any(wk in [w.lower() for w in re.findall(r"[A-Za-z0-9]+", f)] and len(re.findall(r"[A-Za-z0-9]+", f)) > 1 for f in found):
+                _push(word)
 
-    return found[:3]
+    return found[:4]
 
 
 def classify_genre(topic: str, context_text: str, origin_sub: str, groups: dict) -> str:
@@ -240,20 +288,27 @@ def fetch_rss(url: str, default_source: str, limit: int = 10) -> list[dict]:
 
 
 def fetch_social_ig_fb_and_news_buzz() -> tuple[list[dict], list[dict]]:
-    """Captures Instagram/Facebook viral movie/series buzz + Entertainment News for 7d and 30d."""
+    """Captures global blockbusters (Godzilla, MonsterVerse, Marvel, DC, A24, Box Office) + Social Buzz for 7d and 30d."""
+    q_blockbuster_7d = urllib.parse.quote_plus('(godzilla OR monsterverse OR "box office" OR blockbuster OR "in theaters" OR "trending movie" OR franchise OR sequel) (film OR movie OR trailer) when:7d')
     q_ig_fb_7d = urllib.parse.quote_plus('(instagram OR reels OR facebook OR viral OR meme) (movie OR series OR trailer OR finale) when:7d')
     q_ig_fb_30d = urllib.parse.quote_plus('(instagram OR facebook OR viral OR trending) (movie OR "tv series" OR "web series") when:30d')
+    q_blockbuster_30d = urllib.parse.quote_plus('(blockbuster OR "box office" OR franchise OR godzilla OR hollywood OR "trending movie") (film OR movie) when:30d')
     q_in_7d = urllib.parse.quote_plus('(movie OR bollywood OR kdrama OR "box office" OR "web series") when:7d')
 
     buzz_7d = (
-        fetch_rss(f"https://news.google.com/rss/search?q={q_ig_fb_7d}&hl=en-US&gl=US&ceid=US:en", "IG/FB Social Buzz", 12)
+        fetch_rss(f"https://news.google.com/rss/search?q={q_blockbuster_7d}&hl=en-US&gl=US&ceid=US:en", "Global Blockbuster Buzz", 15)
+        + fetch_rss(f"https://news.google.com/rss/search?q={q_ig_fb_7d}&hl=en-US&gl=US&ceid=US:en", "IG/FB Social Buzz", 12)
         + fetch_rss(f"https://news.google.com/rss/search?q={q_in_7d}&hl=en-IN&gl=IN&ceid=IN:en", "Global/India Cinema Buzz", 8)
         + fetch_rss("https://deadline.com/v/film/feed/", "Deadline", 10)
         + fetch_rss("https://www.hollywoodreporter.com/c/movies/movie-news/feed/", "THR", 10)
         + fetch_rss("https://variety.com/v/film/feed/", "Variety", 8)
         + fetch_rss("https://collider.com/feed/", "Collider", 8)
+        + fetch_rss("https://www.joblo.com/feed/", "JoBlo", 8)
     )
-    buzz_30d = fetch_rss(f"https://news.google.com/rss/search?q={q_ig_fb_30d}&hl=en-US&gl=US&ceid=US:en", "Social 30d Buzz", 12)
+    buzz_30d = (
+        fetch_rss(f"https://news.google.com/rss/search?q={q_blockbuster_30d}&hl=en-US&gl=US&ceid=US:en", "Blockbuster 30d Buzz", 12)
+        + fetch_rss(f"https://news.google.com/rss/search?q={q_ig_fb_30d}&hl=en-US&gl=US&ceid=US:en", "Social 30d Buzz", 10)
+    )
     return buzz_7d, buzz_30d
 
 
@@ -285,7 +340,12 @@ def scan_virality(skip_yt: bool = False) -> dict:
     yt_week, yt_month = [], []
     if not skip_yt:
         week_probes = [(gid, g["yt_probe"]) for gid, g in groups.items() if g.get("yt_probe")]
-        month_probes = week_probes[:4]
+        week_probes.extend([
+            ("action_thriller", "godzilla monsterverse 4k edit shorts"),
+            ("superhero_scifi", "trending movie 4k edit shorts"),
+            ("action_thriller", "blockbuster movie epic badass edit #shorts"),
+        ])
+        month_probes = week_probes[:5]
         yt_week = probe_youtube_window(week_probes, YT_SP_WEEK_VIEWS, "week", per_query=5)
         yt_month = probe_youtube_window(month_probes, YT_SP_MONTH_VIEWS, "month", per_query=5)
 
@@ -300,7 +360,7 @@ def scan_virality(skip_yt: bool = False) -> dict:
              source: str = "", headline: str = "", yt_v: int = 0, rd_e: int = 0, genre_hint: str = "", origin_sub: str = ""):
         clean = _clean_title(name)
         key = re.sub(r"[^a-z0-9]", "", clean.lower())
-        if len(key) < 4 or key in STOP_WORDS:
+        if len(key) < 4 or key in STOP_WORDS or key in GENERIC_SINGLE_WORDS:
             return
         if key not in buckets:
             gid = genre_hint or classify_genre(clean, headline, origin_sub, groups)

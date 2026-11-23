@@ -1,118 +1,176 @@
 {
-  "scan_time_utc": "2026-11-23T07:09:06Z",
+  "scan_time_utc": "2026-11-23T07:28:07Z",
   "winner": {
-    "topic": "Hunger Games",
+    "topic": "Godzilla",
     "genre": "action_thriller",
     "subcategory": "action_fight_ranking",
     "recommended_format": "edit_ranking",
     "query_suffix": "fight scene edit shorts",
-    "score": 75.7,
+    "score": 110.0,
     "horizons": {
-      "3d": 81.2,
-      "7d": 77.4,
-      "30d": 0.0,
+      "3d": 100.0,
+      "7d": 100.0,
+      "30d": 100.0,
       "1y": 0.0
     },
-    "yt_views": 0,
-    "yt_hits": 0,
-    "reddit_hits": 1,
+    "yt_views": 572923,
+    "yt_hits": 3,
+    "reddit_hits": 6,
     "sources": [
-      "AOL.com",
-      "Reddit-7d(r/boxoffice)",
-      "Variety"
+      "Collider",
+      "Crunchyroll",
+      "Entertainment Weekly",
+      "Reddit-30d(r/Monsterverse)"
     ],
     "headlines": [
-      "Why Another ‘Hunger Games’ Movie Isn’t Coming Anytime Soon",
-      "This Detail From The New \"Hunger Games\" Movie Is Going Viral For All The Wrong Reasons"
+      "Who gonna win monster zero King ghidorah or Godzilla earth",
+      "I hope we can hear Godzilla use the classic roar again in Supernova",
+      "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance"
     ]
   },
   "genre_leaderboard": [
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 1063.3,
-      "top_topic": "Hunger Games",
-      "count": 63
-    },
-    {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 311.7,
-      "top_topic": "Spider-Man",
-      "count": 12
+      "total_score": 3784.5,
+      "top_topic": "Godzilla",
+      "count": 199
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 296.7,
-      "top_topic": "Hailee Steinfeld",
-      "count": 14
-    },
-    {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 247.3,
-      "top_topic": "Ramayana",
-      "count": 12
+      "total_score": 1615.3,
+      "top_topic": "Doomsday",
+      "count": 75
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 195.2,
-      "top_topic": "Black Doves",
-      "count": 11
+      "total_score": 968.6,
+      "top_topic": "Sequel",
+      "count": 36
     },
     {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 123.7,
-      "top_topic": "Racialized Gender Stereotyping",
-      "count": 10
-    },
-    {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 101.2,
-      "top_topic": "Eager",
-      "count": 5
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 630.3,
+      "top_topic": "Odyssey",
+      "count": 25
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 54.5,
-      "top_topic": "Eun Sang",
+      "total_score": 501.6,
+      "top_topic": "Teach You a Lesson",
+      "count": 24
+    },
+    {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 444.1,
+      "top_topic": "Changing",
+      "count": 15
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 428.4,
+      "top_topic": "Bigil Flashback",
       "count": 11
     },
     {
       "genre": "war_historical",
       "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 15.0,
-      "top_topic": "TSRStaff ST",
-      "count": 1
+      "total_score": 368.0,
+      "top_topic": "Battleship",
+      "count": 11
     },
     {
-      "genre": "crime_mafia",
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 326.2,
+      "top_topic": "In Spider",
+      "count": 14
     },
     {
       "genre": "romance_teen_drama",
       "label": "Romance, Heartbreak & Teen Series",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "total_score": 312.0,
+      "top_topic": "Re Piya",
+      "count": 8
     },
     {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 246.0,
+      "top_topic": "Racialized",
+      "count": 16
+    },
+    {
+      "genre": "crime_mafia",
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "total_score": 45.0,
+      "top_topic": "Bruce Lee Movies Ranked",
+      "count": 3
     }
   ],
   "top_topics": [
+    {
+      "topic": "Godzilla",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 110.0,
+      "horizons": {
+        "3d": 100.0,
+        "7d": 100.0,
+        "30d": 100.0,
+        "1y": 0.0
+      },
+      "yt_views": 572923,
+      "yt_hits": 3,
+      "reddit_hits": 6,
+      "sources": [
+        "Collider",
+        "Crunchyroll",
+        "Entertainment Weekly",
+        "Reddit-30d(r/Monsterverse)"
+      ],
+      "headlines": [
+        "Who gonna win monster zero King ghidorah or Godzilla earth",
+        "I hope we can hear Godzilla use the classic roar again in Supernova",
+        "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance"
+      ]
+    },
+    {
+      "topic": "Doomsday",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "scene edit shorts",
+      "score": 80.0,
+      "horizons": {
+        "3d": 100.0,
+        "7d": 100.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 3,
+      "sources": [
+        "Deadline",
+        "Reddit-7d(r/boxoffice)",
+        "Reddit-7d(r/marvelmemes)"
+      ],
+      "headlines": [
+        "Hailee Steinfeld has joined the cast of Avengers: Doomsday",
+        "I want him to narrate Doomsday.",
+        "XXR [BOT]: Avengers: Doomsday pre sale numbers in international markets",
+        "Joe Russo Talks ‘Doomsday’ Teaser-Trailer Strategy Ahead Of Rumored Monday Drop: “I Have To interact With Fans”"
+      ]
+    },
     {
       "topic": "Hunger Games",
       "genre": "action_thriller",
@@ -130,487 +188,629 @@
       "yt_hits": 0,
       "reddit_hits": 1,
       "sources": [
-        "AOL.com",
+        "ELLE",
         "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "The New York Times"
       ],
       "headlines": [
         "Why Another ‘Hunger Games’ Movie Isn’t Coming Anytime Soon",
-        "This Detail From The New \"Hunger Games\" Movie Is Going Viral For All The Wrong Reasons"
+        "Who Should the Next ‘Hunger Games’ Movie Be About? Fans Have Some Ideas.",
+        "Everything You Need to Know Before Seeing the New ‘Hunger Games’ Prequel"
       ]
     },
     {
-      "topic": "Sunrise On The Reaping",
+      "topic": "IRON MAN",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 66.36,
+      "score": 74.94,
       "horizons": {
-        "3d": 69.1,
-        "7d": 62.4,
-        "30d": 0.0,
+        "3d": 75.0,
+        "7d": 97.9,
+        "30d": 27.8,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Deadline",
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
-      ],
-      "headlines": [
-        "Brighter Than The Sun: How Lionsgate Marketing & PR Turned B.O. Around For ‘Sunrise On The Reaping’",
-        "Noah Schnapp Reveals Image From His ‘Sunrise on the Reaping’ Audition For Haymitch: “They Picked Right”",
-        "‘Hunger Games’ Lead Joseph Zada on Filming His Breakout Movie Role and ‘Sunrise on the Reaping’s’ Intense Stunts: ‘I Look Like a F—ing Action Star!’"
-      ]
-    },
-    {
-      "topic": "Spider-Man",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "edit 4k shorts",
-      "score": 54.65,
-      "horizons": {
-        "3d": 70.5,
-        "7d": 88.2,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 1049092,
+      "yt_hits": 1,
       "reddit_hits": 2,
       "sources": [
-        "Reddit-7d(r/MovieDetails)",
-        "Reddit-7d(r/marvelmemes)"
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)",
+        "YT-Week"
       ],
       "headlines": [
-        "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk.",
-        "When Mysterio ordered EDITH to kill the high schoolers and Spider-Man"
+        "People genuinely putting Superman (2025) above Iron Man (2008) is insane. Iron Man clears in writing, acting, CGI, action, plot and character development. Hell, even the opening scene mogs."
       ]
     },
     {
-      "topic": "Hailee Steinfeld",
+      "topic": "Battleship",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "battle scene edit shorts",
+      "score": 69.0,
+      "horizons": {
+        "3d": 97.5,
+        "7d": 100.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 138388372,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Teach You a Lesson",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "mass edit shorts",
+      "score": 65.4,
+      "horizons": {
+        "3d": 88.5,
+        "7d": 100.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 595614,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Heart",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 64.02,
+      "horizons": {
+        "3d": 61.8,
+        "7d": 68.4,
+        "30d": 44.1,
+        "1y": 0.0
+      },
+      "yt_views": 71902,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "Collider",
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": [
+        "Tom Hanks’ Heart-Breaking Drama Is Still His Greatest Movie 33 Years Later"
+      ]
+    },
+    {
+      "topic": "Master",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "mass edit shorts",
+      "score": 58.0,
+      "horizons": {
+        "3d": 65.2,
+        "7d": 73.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 94572,
+      "yt_hits": 1,
+      "reddit_hits": 0,
+      "sources": [
+        "Collider",
+        "YT-Week"
+      ],
+      "headlines": [
+        "Forget Taylor Sheridan, This is the Master of the Modern Western"
+      ]
+    },
+    {
+      "topic": "Which",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "best scene shorts",
+      "score": 57.81,
+      "horizons": {
+        "3d": 53.9,
+        "7d": 67.4,
+        "30d": 80.1,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 6,
+      "sources": [
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-30d(r/Fantasy)",
+        "Reddit-7d(r/ActionMovies)"
+      ],
+      "headlines": [
+        "Which franchise feels like this?",
+        "Which actor was miscast in a TV show?"
+      ]
+    },
+    {
+      "topic": "Superman",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "scene edit shorts",
+      "score": 57.44,
+      "horizons": {
+        "3d": 54.9,
+        "7d": 68.7,
+        "30d": 74.3,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 5,
+      "sources": [
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
+      ],
+      "headlines": [
+        "What would your reaction be if Jeremy Latcham made an announcement like this about no longer using David Corenswet as Superman in the future?",
+        "People genuinely putting Superman (2025) above Iron Man (2008) is insane. Iron Man clears in writing, acting, CGI, action, plot and character development. Hell, even the opening scene mogs."
+      ]
+    },
+    {
+      "topic": "Supergirl",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "scene edit shorts",
+      "score": 54.39,
+      "horizons": {
+        "3d": 55.1,
+        "7d": 68.9,
+        "30d": 58.3,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 4,
+      "sources": [
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
+      ],
+      "headlines": [
+        "BOX OFFICE: Clayface hit $126M this weekend. It will surpass Supergirl's $126.4M in the next day or two",
+        "If I was named studio head, I'd greenlight Supergirl 2"
+      ]
+    },
+    {
+      "topic": "Godzilla Minus Zero",
       "genre": "superhero_scifi",
       "subcategory": "scifi_release_hype",
       "recommended_format": "release_hype",
       "query_suffix": "trailer edit shorts",
-      "score": 51.7,
+      "score": 54.0,
       "horizons": {
-        "3d": 58.5,
-        "7d": 61.1,
-        "30d": 0.0,
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 20.0,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 1,
+      "reddit_hits": 0,
       "sources": [
-        "Deadline",
-        "Reddit-7d(r/boxoffice)"
+        "Ars Technica",
+        "The Rider News",
+        "Vulture"
       ],
       "headlines": [
-        "Hailee Steinfeld has joined the cast of Avengers: Doomsday",
-        "‘Hexed’ European Premiere Photos: Hailee Steinfeld, Jodie Foster, Rashida Jones & More"
+        "Review: Godzilla Minus Zero joins the list of truly stellar sequels",
+        "“Godzilla Minus Zero:” a monstrously good film"
       ]
     },
     {
-      "topic": "Coming Anytime Soon",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 50.7,
+      "topic": "Sequel",
+      "genre": "comedy_sitcom",
+      "subcategory": "cast_fandom_memes",
+      "recommended_format": "release_hype",
+      "query_suffix": "cast funny meme shorts",
+      "score": 54.0,
       "horizons": {
-        "3d": 57.2,
-        "7d": 59.4,
-        "30d": 0.0,
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 20.0,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 1,
+      "reddit_hits": 0,
       "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "Deadline",
+        "TV Insider",
+        "The Hollywood Reporter"
       ],
       "headlines": [
-        "Why Another ‘Hunger Games’ Movie Isn’t Coming Anytime Soon"
+        "‘Return Of The Living Dead’ Sequel Gearing Up With Johnny Knoxville Among Cast",
+        "‘Perfect Liars 2': Release Date, Cast, Plot, and More Sequel Movie Updates"
       ]
     },
     {
       "topic": "Ramayana",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "teaser trailer shorts",
-      "score": 40.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "The Times of India",
-        "TheWrap"
-      ],
-      "headlines": [
-        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror",
-        "‘Ramayana’ Sets New U.S. Box Office Record for Indian Films"
-      ]
-    },
-    {
-      "topic": "Avengers: Doomsday",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 40.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "Deadline",
-        "Variety"
-      ],
-      "headlines": [
-        "Hailee Steinfeld Confirms She’s In ‘Avengers: Doomsday’",
-        "Hailee Steinfeld Confirms ‘Avengers: Doomsday’ Return as Kate Bishop"
-      ]
-    },
-    {
-      "topic": "Hailee Steinfeld Confirms",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 40.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "Deadline",
-        "Variety"
-      ],
-      "headlines": [
-        "Hailee Steinfeld Confirms She’s In ‘Avengers: Doomsday’",
-        "Hailee Steinfeld Confirms ‘Avengers: Doomsday’ Return as Kate Bishop"
-      ]
-    },
-    {
-      "topic": "Eager",
-      "genre": "horror_mystery",
-      "subcategory": "horror_new_release_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer shorts",
-      "score": 40.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "Deadline",
-        "THR"
-      ],
-      "headlines": [
-        "Robert Eggers Is “Eager” To Move Away From Horror Genre: “I Think I Need A Break”",
-        "Robert Eggers Says He’s “Eager” to Take a Break From Horror Genre After ‘Werwulf’"
-      ]
-    },
-    {
-      "topic": "You Can See",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "teaser trailer shorts",
-      "score": 38.13,
-      "horizons": {
-        "3d": 40.9,
-        "7d": 39.2,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "THR"
-      ],
-      "headlines": [
-        "The Hunger Games: Sunrise on the Reaping secured the top spot at the Australian box office with $11.4M. 🐨You Can See Everything took the No. 2 spot in its second weekend in cinemas with $1.29M. 🦘Ramayana: Rise of a Legend secured the No. 3 spot in its third weekend with $687k.",
-        "‘You Can See Everything’ Crosses $100M Globally, Becomes First Doc to Hit 1M Letterboxd Watches"
-      ]
-    },
-    {
-      "topic": "In Harry Potter",
-      "genre": "animated_cinema",
-      "subcategory": "animated_peak_edit_ranking",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
-      "query_suffix": "edit 4k shorts",
-      "score": 38.03,
-      "horizons": {
-        "3d": 49.1,
-        "7d": 61.3,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-7d(r/MovieDetails)"
-      ],
-      "headlines": [
-        "In Harry Potter and the Half-Blood Prince (2009), as Dumbledore's memory of the orphanage dissolves back into the Pensieve, the swirling ink briefly forms adult Voldemort's face for a split second.",
-        "In Harry Potter and the Order of the Phoenix (2007) a character obsessed with control and order, ironically appears to be a cat person"
-      ]
-    },
-    {
-      "topic": "Sai Pallavi",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "teaser trailer shorts",
-      "score": 30.0,
+      "query_suffix": "fight scene edit shorts",
+      "score": 54.0,
       "horizons": {
         "3d": 48.0,
         "7d": 36.0,
-        "30d": 0.0,
+        "30d": 20.0,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
       "reddit_hits": 0,
       "sources": [
-        "The Times of India"
+        "NDTV",
+        "The Times of India",
+        "Variety"
       ],
       "headlines": [
         "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror",
-        "'Ramayana: Part 1' box office collection day 17 (LIVE): The Ranbir Kapoor, Yash, Sai Pallavi starrer cros"
+        "Ramayana Box Office Collection Day 18: Ranbir Kapoor's Film Earns More Than Dhurandhar 2 In India On 3rd Sunday"
       ]
     },
     {
-      "topic": "In Spider",
-      "genre": "animated_cinema",
-      "subcategory": "animated_upcoming_hype",
+      "topic": "History",
+      "genre": "world_indian_cinema",
+      "subcategory": "global_cinema_hype",
       "recommended_format": "release_hype",
       "query_suffix": "trailer edit shorts",
-      "score": 28.94,
+      "score": 54.0,
       "horizons": {
-        "3d": 37.3,
-        "7d": 46.7,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Reddit-7d(r/MovieDetails)"
-      ],
-      "headlines": [
-        "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk."
-      ]
-    },
-    {
-      "topic": "Bruce Banner",
-      "genre": "animated_cinema",
-      "subcategory": "animated_upcoming_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 28.94,
-      "horizons": {
-        "3d": 37.3,
-        "7d": 46.7,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Reddit-7d(r/MovieDetails)"
-      ],
-      "headlines": [
-        "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk."
-      ]
-    },
-    {
-      "topic": "Racialized Gender Stereotyping",
-      "genre": "drama_prestige",
-      "subcategory": "prestige_finale_recap",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "finale scene shorts",
-      "score": 25.35,
-      "horizons": {
-        "3d": 25.7,
-        "7d": 32.1,
-        "30d": 27.2,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 2,
-      "sources": [
-        "Reddit-30d(r/TrueFilm)",
-        "Reddit-7d(r/TrueFilm)"
-      ],
-      "headlines": [
-        "Racialized Gender Stereotyping in Hollywood"
-      ]
-    },
-    {
-      "topic": "Black Doves",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "recommended_format": "release_hype",
-      "query_suffix": "cast funny meme shorts",
-      "score": 22.99,
-      "horizons": {
-        "3d": 29.7,
-        "7d": 37.1,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Reddit-7d(r/television)"
-      ],
-      "headlines": [
-        "Black Doves - the platonic chemistry between Keira Knightley and Ben Whishaw is nice and refreshing to see"
-      ]
-    },
-    {
-      "topic": "Keira Knightley",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "recommended_format": "release_hype",
-      "query_suffix": "cast funny meme shorts",
-      "score": 22.99,
-      "horizons": {
-        "3d": 29.7,
-        "7d": 37.1,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Reddit-7d(r/television)"
-      ],
-      "headlines": [
-        "Black Doves - the platonic chemistry between Keira Knightley and Ben Whishaw is nice and refreshing to see"
-      ]
-    },
-    {
-      "topic": "Ben Whishaw",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "recommended_format": "release_hype",
-      "query_suffix": "cast funny meme shorts",
-      "score": 22.99,
-      "horizons": {
-        "3d": 29.7,
-        "7d": 37.1,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Reddit-7d(r/television)"
-      ],
-      "headlines": [
-        "Black Doves - the platonic chemistry between Keira Knightley and Ben Whishaw is nice and refreshing to see"
-      ]
-    },
-    {
-      "topic": "Half-Blood",
-      "genre": "animated_cinema",
-      "subcategory": "animated_upcoming_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 22.35,
-      "horizons": {
-        "3d": 28.8,
+        "3d": 48.0,
         "7d": 36.0,
-        "30d": 0.0,
+        "30d": 20.0,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 1,
+      "reddit_hits": 0,
       "sources": [
-        "Reddit-7d(r/MovieDetails)"
+        "Britannica",
+        "Collider",
+        "Variety"
       ],
       "headlines": [
-        "In Harry Potter and the Half-Blood Prince (2009), as Dumbledore's memory of the orphanage dissolves back into the Pensieve, the swirling ink briefly forms adult Voldemort's face for a split second."
+        "Bollywood | History, Movies, Actors, Actresses, & Facts",
+        "The 10 Best Open Endings in Film History, Ranked"
       ]
     },
     {
-      "topic": "Blood Prince",
-      "genre": "animated_cinema",
-      "subcategory": "animated_upcoming_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 22.35,
+      "topic": "Changing",
+      "genre": "horror_mystery",
+      "subcategory": "horror_scariest_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "scary scene edit shorts",
+      "score": 51.0,
       "horizons": {
-        "3d": 28.8,
-        "7d": 36.0,
-        "30d": 0.0,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
+      "yt_views": 11455452,
+      "yt_hits": 2,
+      "reddit_hits": 0,
       "sources": [
-        "Reddit-7d(r/MovieDetails)"
+        "YT-Month",
+        "YT-Week"
       ],
-      "headlines": [
-        "In Harry Potter and the Half-Blood Prince (2009), as Dumbledore's memory of the orphanage dissolves back into the Pensieve, the swirling ink briefly forms adult Voldemort's face for a split second."
-      ]
+      "headlines": []
+    },
+    {
+      "topic": "Room",
+      "genre": "horror_mystery",
+      "subcategory": "horror_scariest_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "scary scene edit shorts",
+      "score": 51.0,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 11455452,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Hungry",
+      "genre": "horror_mystery",
+      "subcategory": "horror_scariest_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "scary scene edit shorts",
+      "score": 51.0,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 8366882,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Painting",
+      "genre": "horror_mystery",
+      "subcategory": "horror_scariest_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "scary scene edit shorts",
+      "score": 51.0,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 6429854,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Shagird",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 51.0,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 5318020,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
     }
   ],
-  "top_yt_week": [],
-  "top_yt_month": [],
-  "top_reddit_week": [
+  "top_yt_week": [
     {
-      "sub": "television",
-      "title": "Waiting 2+ years for an 8-episode season kills my interest in almost every show",
-      "score": 1717,
-      "comments": 324,
-      "engagement": 2689,
-      "days": 7,
-      "url": "https://www.reddit.com/r/television/comments/1y3265m/waiting_2_years_for_an_8episode_season_kills_my/"
+      "id": "nCqDdsZY7RA",
+      "window": "week",
+      "genre_hint": "war_historical",
+      "title": "Battleship | The Final Battle in 4K HDR",
+      "channel": "Universal Pictures",
+      "views": 111136687,
+      "duration": 620.0,
+      "url": "https://www.youtube.com/watch?v=nCqDdsZY7RA"
     },
+    {
+      "id": "Mzw2ttJD2qQ",
+      "window": "week",
+      "genre_hint": "fantasy_mythology",
+      "title": "The Odyssey | Official Trailer",
+      "channel": "Universal Pictures",
+      "views": 63752557,
+      "duration": 114.0,
+      "url": "https://www.youtube.com/watch?v=Mzw2ttJD2qQ"
+    },
+    {
+      "id": "FY00zwMZsqM",
+      "window": "week",
+      "genre_hint": "fantasy_mythology",
+      "title": "Clash of the Titans (2010) - Medusa's Lair Scene (6/10) | Movieclips",
+      "channel": "Movieclips",
+      "views": 41975575,
+      "duration": 198.0,
+      "url": "https://www.youtube.com/watch?v=FY00zwMZsqM"
+    },
+    {
+      "id": "Fm23HC3Rcac",
+      "window": "week",
+      "genre_hint": "romance_teen_drama",
+      "title": "Piya O Re Piya (Sad) - Video Song | Tere Naal Love Ho Gaya | Riteish Deshmukh & Genelia D'Souza",
+      "channel": "Tips Official",
+      "views": 39085845,
+      "duration": 131.0,
+      "url": "https://www.youtube.com/watch?v=Fm23HC3Rcac"
+    },
+    {
+      "id": "_aSS66X30Ag",
+      "window": "week",
+      "genre_hint": "war_historical",
+      "title": "MOST EPIC SCENE FROM MARVEL CINEMATIC UNIVERSE WITH A NEW SCORE",
+      "channel": "TRISTAN ",
+      "views": 34780646,
+      "duration": 287.0,
+      "url": "https://www.youtube.com/watch?v=_aSS66X30Ag"
+    },
+    {
+      "id": "73NUY_J7DoY",
+      "window": "week",
+      "genre_hint": "war_historical",
+      "title": "The Art Of War (Final Battle) | Battleship | All Action",
+      "channel": "All Action",
+      "views": 27251685,
+      "duration": 309.0,
+      "url": "https://www.youtube.com/watch?v=73NUY_J7DoY"
+    },
+    {
+      "id": "0Xc4ckTTQN0",
+      "window": "week",
+      "genre_hint": "war_historical",
+      "title": "Skirmish With A Tiger Tank | Fury | CineStream | With Captions",
+      "channel": "CineClips",
+      "views": 22824304,
+      "duration": 498.0,
+      "url": "https://www.youtube.com/watch?v=0Xc4ckTTQN0"
+    },
+    {
+      "id": "hs3paMLb9Qg",
+      "window": "week",
+      "genre_hint": "horror_mystery",
+      "title": "Ignore It - Short Horror Film ( Award Winning )",
+      "channel": "Grimoire Horror",
+      "views": 13685825,
+      "duration": 394.0,
+      "url": "https://www.youtube.com/watch?v=hs3paMLb9Qg"
+    },
+    {
+      "id": "Jz7ZWKumqfQ",
+      "window": "week",
+      "genre_hint": "war_historical",
+      "title": "Epic (1/3) Movie CLIP - War for the Forest (2013) HD",
+      "channel": "Movieclips",
+      "views": 6790378,
+      "duration": 163.0,
+      "url": "https://www.youtube.com/watch?v=Jz7ZWKumqfQ"
+    },
+    {
+      "id": "3jqt7MxifiU",
+      "window": "week",
+      "genre_hint": "superhero_scifi",
+      "title": "[4K] Breaking Bad「Edit」- (Money Trees)",
+      "channel": "Jemartob",
+      "views": 6144772,
+      "duration": 35.0,
+      "url": "https://www.youtube.com/watch?v=3jqt7MxifiU"
+    }
+  ],
+  "top_yt_month": [
+    {
+      "id": "hs3paMLb9Qg",
+      "window": "month",
+      "genre_hint": "horror_mystery",
+      "title": "Ignore It - Short Horror Film ( Award Winning )",
+      "channel": "Grimoire Horror",
+      "views": 13685825,
+      "duration": 394.0,
+      "url": "https://www.youtube.com/watch?v=hs3paMLb9Qg"
+    },
+    {
+      "id": "SdS15vKWsHo",
+      "window": "month",
+      "genre_hint": "horror_mystery",
+      "title": "The Changing Room - Short Horror Film",
+      "channel": "Grimoire Horror",
+      "views": 5727697,
+      "duration": 266.0,
+      "url": "https://www.youtube.com/watch?v=SdS15vKWsHo"
+    },
+    {
+      "id": "hIbcd_Fncvw",
+      "window": "month",
+      "genre_hint": "comedy_sitcom",
+      "title": "the office try not to laugh challenge | Comedy Bites",
+      "channel": "Comedy Bites",
+      "views": 5688481,
+      "duration": 501.0,
+      "url": "https://www.youtube.com/watch?v=hIbcd_Fncvw"
+    },
+    {
+      "id": "Jxq13WJxLDY",
+      "window": "month",
+      "genre_hint": "horror_mystery",
+      "title": "Hungry | Short Horror Film",
+      "channel": "ACMofficial",
+      "views": 4183447,
+      "duration": 275.0,
+      "url": "https://www.youtube.com/watch?v=Jxq13WJxLDY"
+    },
+    {
+      "id": "L7wCy1IOwOw",
+      "window": "month",
+      "genre_hint": "comedy_sitcom",
+      "title": "brooklyn nine-nine moments that have no business being this funny | Comedy Bites",
+      "channel": "Comedy Bites",
+      "views": 3379739,
+      "duration": 588.0,
+      "url": "https://www.youtube.com/watch?v=L7wCy1IOwOw"
+    },
+    {
+      "id": "jAfmmgZLqbk",
+      "window": "month",
+      "genre_hint": "horror_mystery",
+      "title": "The Painting - Horror Short Film",
+      "channel": "DarkFun - Horror Short Films",
+      "views": 3214927,
+      "duration": 384.0,
+      "url": "https://www.youtube.com/watch?v=jAfmmgZLqbk"
+    },
+    {
+      "id": "czG9Xh5tGa0",
+      "window": "month",
+      "genre_hint": "action_thriller",
+      "title": "Shagird Thriller Scene - The order is to finish you - Nana Patekar Action Scene - HD",
+      "channel": "Bollywood Climax",
+      "views": 2659010,
+      "duration": 1036.0,
+      "url": "https://www.youtube.com/watch?v=czG9Xh5tGa0"
+    },
+    {
+      "id": "FpD9YReYJZQ",
+      "window": "month",
+      "genre_hint": "drama_prestige",
+      "title": "The Coldest Advice ever given to MAN 👨 ",
+      "channel": "King Ben",
+      "views": 1488752,
+      "duration": 75.0,
+      "url": "https://www.youtube.com/watch?v=FpD9YReYJZQ"
+    },
+    {
+      "id": "VOJsld2_oeI",
+      "window": "month",
+      "genre_hint": "action_thriller",
+      "title": "JUMPER -  Suspense Thriller Short Film",
+      "channel": "Isaac Carlton",
+      "views": 1243023,
+      "duration": 218.0,
+      "url": "https://www.youtube.com/watch?v=VOJsld2_oeI"
+    },
+    {
+      "id": "q2L2CRy9D4c",
+      "window": "month",
+      "genre_hint": "comedy_sitcom",
+      "title": "Jethalal Funniest Dance Steps! | Comedy Scenes |  Taarak Mehta Ka Ooltah Chashmah",
+      "channel": "Taarak Mehta Ka Ooltah Chashmah",
+      "views": 1216614,
+      "duration": 865.0,
+      "url": "https://www.youtube.com/watch?v=q2L2CRy9D4c"
+    }
+  ],
+  "top_reddit_week": [
     {
       "sub": "MovieDetails",
       "title": "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk.",
@@ -657,6 +857,24 @@
       "url": "https://www.reddit.com/r/boxoffice/comments/1y328m6/why_another_hunger_games_movie_isnt_coming/"
     },
     {
+      "sub": "DC_Cinematic",
+      "title": "BOX OFFICE: Clayface hit $126M this weekend. It will surpass Supergirl's $126.4M in the next day or two",
+      "score": 394,
+      "comments": 60,
+      "engagement": 574,
+      "days": 7,
+      "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y33n6z/box_office_clayface_hit_126m_this_weekend_it_will/"
+    },
+    {
+      "sub": "DC_Cinematic",
+      "title": "Gunn flumbled the easiest job in Hollywood",
+      "score": 0,
+      "comments": 147,
+      "engagement": 441,
+      "days": 7,
+      "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y34djt/gunn_flumbled_the_easiest_job_in_hollywood/"
+    },
+    {
       "sub": "marvelmemes",
       "title": "Jean grey",
       "score": 381,
@@ -666,31 +884,22 @@
       "url": "https://www.reddit.com/r/marvelmemes/comments/1y2zl9c/jean_grey/"
     },
     {
-      "sub": "marvelmemes",
-      "title": "Eddie really needs to comeback as a Villain for Tom's New Films",
-      "score": 265,
-      "comments": 15,
-      "engagement": 310,
+      "sub": "scifi",
+      "title": "I'm an aerospace engineer, and I made a board game about exploring the solar system",
+      "score": 304,
+      "comments": 14,
+      "engagement": 346,
       "days": 7,
-      "url": "https://www.reddit.com/r/marvelmemes/comments/1y3070f/eddie_really_needs_to_comeback_as_a_villain_for/"
+      "url": "https://www.reddit.com/r/scifi/comments/1y2dspd/im_an_aerospace_engineer_and_i_made_a_board_game/"
     },
     {
-      "sub": "television",
-      "title": "Black Doves - the platonic chemistry between Keira Knightley and Ben Whishaw is nice and refreshing to see",
-      "score": 206,
-      "comments": 31,
-      "engagement": 299,
+      "sub": "GODZILLA",
+      "title": "What is your Movies Big 4?",
+      "score": 110,
+      "comments": 78,
+      "engagement": 344,
       "days": 7,
-      "url": "https://www.reddit.com/r/television/comments/1y33pl8/black_doves_the_platonic_chemistry_between_keira/"
-    },
-    {
-      "sub": "marvelmemes",
-      "title": "I want him to narrate Doomsday.",
-      "score": 201,
-      "comments": 25,
-      "engagement": 276,
-      "days": 7,
-      "url": "https://www.reddit.com/r/marvelmemes/comments/1y38dga/i_want_him_to_narrate_doomsday/"
+      "url": "https://www.reddit.com/r/GODZILLA/comments/1y39kdj/what_is_your_movies_big_4/"
     }
   ]
 }
