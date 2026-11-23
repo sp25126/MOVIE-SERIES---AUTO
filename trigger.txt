@@ -1,1 +1,2 @@
-trigger
+run_pipeline_triggered: 2026-11-23T07:53:00Z
+reason: manual user trigger for autonomous virality pipeline
