@@ -1,107 +1,109 @@
 {
-  "scan_time_utc": "2026-11-23T18:08:42Z",
+  "scan_time_utc": "2026-11-24T13:28:55Z",
   "winner": {
-    "topic": "Man of Tomorrow",
-    "genre": "superhero_scifi",
-    "subcategory": "superhero_spoiler_commentary",
-    "recommended_format": "scene_commentary",
-    "query_suffix": "scene edit shorts",
-    "score": 54.16,
+    "topic": "Godzilla",
+    "genre": "action_thriller",
+    "subcategory": "action_fight_ranking",
+    "recommended_format": "edit_ranking",
+    "query_suffix": "fight scene edit shorts",
+    "score": 94.0,
     "horizons": {
-      "3d": 54.9,
-      "7d": 68.6,
-      "30d": 58.1,
+      "3d": 100.0,
+      "7d": 100.0,
+      "30d": 20.0,
       "1y": 0.0
     },
-    "yt_views": 0,
-    "yt_hits": 0,
-    "reddit_hits": 4,
+    "yt_views": 362353,
+    "yt_hits": 2,
+    "reddit_hits": 0,
     "sources": [
-      "Reddit-30d(r/DC_Cinematic)",
-      "Reddit-7d(r/DC_Cinematic)"
+      "Aurora Sentinel",
+      "Crunchyroll",
+      "Entertainment Weekly",
+      "YT-Week"
     ],
     "headlines": [
-      "Neva Howell (Ma Kent) on filming 'Man of Tomorrow' \"Very surprising and intense role for me this time\"",
-      "New angle of David Corenswet hitting the Superman shirt rip pose! We need this in Man of Tomorrow. 😭❤️💙 via: (John_Stephens7)"
+      "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance",
+      "Godzilla returns in special-effects glory in the latest movie with an anti-war message"
     ]
   },
   "genre_leaderboard": [
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 2689.2,
-      "top_topic": "Substitute",
-      "count": 179
-    },
-    {
-      "genre": "superhero_scifi",
-      "label": "Superhero & Sci-Fi",
-      "total_score": 813.7,
-      "top_topic": "Man of Tomorrow",
-      "count": 39
-    },
-    {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 610.0,
-      "top_topic": "Focker In-Law",
-      "count": 39
+      "total_score": 3938.6,
+      "top_topic": "Godzilla",
+      "count": 199
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 597.0,
-      "top_topic": "Episodes",
-      "count": 33
+      "total_score": 1170.7,
+      "top_topic": "Poster",
+      "count": 49
     },
     {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 317.3,
-      "top_topic": "In Spider",
-      "count": 15
+      "genre": "superhero_scifi",
+      "label": "Superhero & Sci-Fi",
+      "total_score": 822.3,
+      "top_topic": "Godzilla Minus Zero",
+      "count": 41
     },
     {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 300.0,
-      "top_topic": "Honored",
-      "count": 18
-    },
-    {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 180.6,
-      "top_topic": "Manhattan",
-      "count": 12
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 180.0,
-      "top_topic": "Jimmy Jenkins",
-      "count": 12
-    },
-    {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 108.6,
-      "top_topic": "Ghost Soldier",
-      "count": 6
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 685.4,
+      "top_topic": "Arrested Development",
+      "count": 34
     },
     {
       "genre": "war_historical",
       "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 30.0,
-      "top_topic": "TSRStaff ST",
-      "count": 2
+      "total_score": 607.3,
+      "top_topic": "Battleship",
+      "count": 20
     },
     {
       "genre": "crime_mafia",
       "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "total_score": 419.6,
+      "top_topic": "Ex-Mob",
+      "count": 10
+    },
+    {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 395.8,
+      "top_topic": "No Sleep Tonight",
+      "count": 18
+    },
+    {
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 344.4,
+      "top_topic": "In Spider",
+      "count": 15
+    },
+    {
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 343.5,
+      "top_topic": "Manhattan",
+      "count": 22
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 339.0,
+      "top_topic": "Al Pacino",
+      "count": 10
+    },
+    {
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 207.5,
+      "top_topic": "Ancalagon the Black",
+      "count": 7
     },
     {
       "genre": "romance_teen_drama",
@@ -113,76 +115,26 @@
   ],
   "top_topics": [
     {
-      "topic": "Man of Tomorrow",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 54.16,
-      "horizons": {
-        "3d": 54.9,
-        "7d": 68.6,
-        "30d": 58.1,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 4,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ],
-      "headlines": [
-        "Neva Howell (Ma Kent) on filming 'Man of Tomorrow' \"Very surprising and intense role for me this time\"",
-        "New angle of David Corenswet hitting the Superman shirt rip pose! We need this in Man of Tomorrow. 😭❤️💙 via: (John_Stephens7)"
-      ]
-    },
-    {
-      "topic": "Godzilla Minus Zero",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 54.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 20.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "Ars Technica",
-        "The Rider News",
-        "Vulture"
-      ],
-      "headlines": [
-        "Review: Godzilla Minus Zero joins the list of truly stellar sequels",
-        "“Godzilla Minus Zero:” a monstrously good film"
-      ]
-    },
-    {
       "topic": "Godzilla",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 54.0,
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 94.0,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
+        "3d": 100.0,
+        "7d": 100.0,
         "30d": 20.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 362353,
+      "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
         "Aurora Sentinel",
         "Crunchyroll",
-        "Entertainment Weekly"
+        "Entertainment Weekly",
+        "YT-Week"
       ],
       "headlines": [
         "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance",
@@ -190,130 +142,165 @@
       ]
     },
     {
-      "topic": "Episodes",
+      "topic": "King",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 81.0,
+      "horizons": {
+        "3d": 97.5,
+        "7d": 100.0,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 6981393,
+      "yt_hits": 3,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Battleship",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "battle scene edit shorts",
+      "score": 69.0,
+      "horizons": {
+        "3d": 97.5,
+        "7d": 100.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 138411916,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Ex-Mob",
+      "genre": "crime_mafia",
+      "subcategory": "crime_coldest_boss_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "coldest edit shorts",
+      "score": 69.0,
+      "horizons": {
+        "3d": 97.5,
+        "7d": 100.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 25726014,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Only",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "battle scene edit shorts",
+      "score": 68.51,
+      "horizons": {
+        "3d": 96.3,
+        "7d": 100.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 141316209,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Godzilla Minus Zero",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "recommended_format": "release_hype",
+      "query_suffix": "trailer edit shorts",
+      "score": 57.67,
+      "horizons": {
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 38.3,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 1,
+      "sources": [
+        "Ars Technica",
+        "Reddit-30d(r/Monsterverse)",
+        "The Rider News",
+        "Vulture"
+      ],
+      "headlines": [
+        "Review: Godzilla Minus Zero joins the ranks of truly stellar sequels",
+        "“Godzilla Minus Zero:” a monstrously good film"
+      ]
+    },
+    {
+      "topic": "Poster",
       "genre": "world_indian_cinema",
       "subcategory": "indian_cinema_mass_edits",
       "recommended_format": "edit_ranking",
       "query_suffix": "mass edit shorts",
-      "score": 45.64,
+      "score": 56.56,
       "horizons": {
-        "3d": 40.0,
-        "7d": 50.0,
-        "30d": 73.2,
+        "3d": 54.0,
+        "7d": 67.5,
+        "30d": 73.6,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 6,
+      "reddit_hits": 5,
       "sources": [
         "Reddit-30d(r/KDRAMA)",
         "Reddit-7d(r/KDRAMA)"
       ],
       "headlines": [
-        "Love In Disguise [Episodes 11 & 12]",
-        "The Substitute [Episodes 1 & 2]"
+        "tvN 'Signal: Part 2' Teaser Poster [Premieres December 7]",
+        "Disney+ 'Portraits of Delusion' Teaser Poster [Premieres January 6]"
       ]
     },
     {
-      "topic": "Substitute",
-      "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "best scene shorts",
-      "score": 43.81,
-      "horizons": {
-        "3d": 44.4,
-        "7d": 55.5,
-        "30d": 47.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 4,
-      "sources": [
-        "Reddit-30d(r/ActionMovies)",
-        "Reddit-30d(r/KDRAMA)",
-        "Reddit-7d(r/ActionMovies)",
-        "Reddit-7d(r/KDRAMA)"
-      ],
-      "headlines": [
-        "What are your thoughts on The Substitute (1996)?",
-        "The Substitute [Episodes 1 & 2]"
-      ]
-    },
-    {
-      "topic": "Home Alone",
+      "topic": "Hunger Games",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
+      "score": 54.0,
       "horizons": {
         "3d": 48.0,
         "7d": 36.0,
-        "30d": 0.0,
+        "30d": 20.0,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
       "reddit_hits": 0,
       "sources": [
-        "The Guardian",
-        "Variety"
+        "THR",
+        "The Hollywood Reporter",
+        "Yahoo"
       ],
       "headlines": [
-        "‘Home Alone’ Director Chris Columbus Said Minutes Before New Sequel Was Announced That Another Movie ‘Can’t Happen’ After Catherine O’Hara’s Death",
-        "Home Alone sequel reportedly in development with Macaulay Culkin returning"
-      ]
-    },
-    {
-      "topic": "Hunger",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "Britannica",
-        "Forbes"
-      ],
-      "headlines": [
-        "The Hunger Games film franchise",
-        "‘The Hunger Games: Sunrise On The Reaping’ Grosses $120 Million For One Of 2026’s Strongest Debuts"
-      ]
-    },
-    {
-      "topic": "Games",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "Britannica",
-        "Forbes"
-      ],
-      "headlines": [
-        "The Hunger Games film franchise",
-        "‘The Hunger Games: Sunrise On The Reaping’ Grosses $120 Million For One Of 2026’s Strongest Debuts"
+        "New ‘Hunger Games’ Movie on the Way? Lionsgate Film Chief Shares Latest on Franchise’s Future"
       ]
     },
     {
@@ -322,11 +309,11 @@
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
+      "score": 54.0,
       "horizons": {
         "3d": 48.0,
         "7d": 36.0,
-        "30d": 0.0,
+        "30d": 20.0,
         "1y": 0.0
       },
       "yt_views": 0,
@@ -334,7 +321,8 @@
       "reddit_hits": 0,
       "sources": [
         "American Institute for Stuttering",
-        "Latin Times"
+        "Latin Times",
+        "Yahoo"
       ],
       "headlines": [
         "Speaker Series: Going Viral and Raising Stuttering Awareness with Travis Althouse",
@@ -342,301 +330,453 @@
       ]
     },
     {
-      "topic": "Ramayana",
+      "topic": "Ghidorah",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
+      "score": 51.0,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 6024034,
+      "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
-        "NDTV",
-        "The Times of India"
+        "YT-Month",
+        "YT-Week"
       ],
-      "headlines": [
-        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror",
-        "Ramayana Box Office Collection Day 15: Film To Become Second Fastest To Enter Rs 650 Crore Hindi Net Club"
-      ]
+      "headlines": []
     },
     {
-      "topic": "Ranbir",
+      "topic": "Destroys",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
+      "score": 51.0,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 6024034,
+      "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
-        "The Times of India",
-        "The Week"
+        "YT-Month",
+        "YT-Week"
       ],
-      "headlines": [
-        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror",
-        "'Ramayana' Day 19 Box Office Collection: Ranbir Kapoor starrer reaches ₹1,700 crore worldwide, eyes ₹1,000 crore net in India next"
-      ]
+      "headlines": []
     },
     {
-      "topic": "Kapoor",
+      "topic": "City",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
+      "score": 51.0,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 6024034,
+      "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
-        "The Times of India",
-        "The Week"
+        "YT-Month",
+        "YT-Week"
       ],
-      "headlines": [
-        "'Ramayana' box office collection day 16: The Ranbir Kapoor, Yash, Sai Pallavi starrer touches Rs 880 cror",
-        "'Ramayana' Day 19 Box Office Collection: Ranbir Kapoor starrer reaches ₹1,700 crore worldwide, eyes ₹1,000 crore net in India next"
-      ]
+      "headlines": []
     },
     {
-      "topic": "Shawn Levy",
+      "topic": "Shagird",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
+      "score": 51.0,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 5326050,
+      "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
-        "Deadline",
-        "THR"
+        "YT-Month",
+        "YT-Week"
       ],
-      "headlines": [
-        "Shawn Levy’s 21 Laps Inks First Look Film Deal At Sony Pictures",
-        "Shawn Levy’s 21 Laps Inks Overall Film Deal at Sony"
-      ]
+      "headlines": []
     },
     {
-      "topic": "Laps",
+      "topic": "Nana",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
+      "score": 51.0,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 5326050,
+      "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
-        "Deadline",
-        "THR"
+        "YT-Month",
+        "YT-Week"
       ],
-      "headlines": [
-        "Shawn Levy’s 21 Laps Inks First Look Film Deal At Sony Pictures",
-        "Shawn Levy’s 21 Laps Inks Overall Film Deal at Sony"
-      ]
+      "headlines": []
     },
     {
-      "topic": "Inks",
+      "topic": "Patekar",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
+      "score": 51.0,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 5326050,
+      "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
-        "Deadline",
-        "THR"
+        "YT-Month",
+        "YT-Week"
       ],
-      "headlines": [
-        "Shawn Levy’s 21 Laps Inks First Look Film Deal At Sony Pictures",
-        "Shawn Levy’s 21 Laps Inks Overall Film Deal at Sony"
-      ]
+      "headlines": []
     },
     {
-      "topic": "Deal",
+      "topic": "Rally",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
+      "score": 51.0,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 4770076,
+      "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
-        "Deadline",
-        "Variety"
+        "YT-Month",
+        "YT-Week"
       ],
-      "headlines": [
-        "Shawn Levy’s 21 Laps Inks First Look Film Deal At Sony Pictures",
-        "Shawn Levy’s 21 Laps Inks Rich Overall Film Deal at Sony"
-      ]
+      "headlines": []
     },
     {
-      "topic": "Odyssey",
+      "topic": "Unreal",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
+      "score": 51.0,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 4770076,
+      "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
-        "Deadline",
-        "THR"
+        "YT-Month",
+        "YT-Week"
       ],
-      "headlines": [
-        "‘The Odyssey’ Leads Critics Choice Awards Below-The-Line Shortlists With 11; ‘Dune: Part Three’ And ‘La Bola Negra’ Get 8 Each",
-        "‘The Odyssey’ Star Samantha Morton Honored With BFI Fellowship"
-      ]
+      "headlines": []
     },
     {
-      "topic": "Focker In-Law",
+      "topic": "Engine",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 51.0,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 4770076,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Suspense",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 50.79,
+      "horizons": {
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 58.9,
+        "1y": 0.0
+      },
+      "yt_views": 2487223,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Arrested Development",
       "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "recommended_format": "release_hype",
-      "query_suffix": "cast funny meme shorts",
-      "score": 40.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "Deadline",
-        "Variety"
-      ],
-      "headlines": [
-        "‘Focker In-Law’ Review: Robert De Niro And Ben Stiller Are Back For Laughs But Ariana Grande Steals The Show This Time",
-        "‘Focker-in-Law’ Review: Ariana Grande Sporadically Livens Up a Tired Comedy Retread"
-      ]
-    },
-    {
-      "topic": "Honored",
-      "genre": "fantasy_mythology",
-      "subcategory": "epic_theatrical_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "teaser trailer shorts",
-      "score": 40.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "THR",
-        "Variety"
-      ],
-      "headlines": [
-        "‘The Odyssey’ Star Samantha Morton Honored With BFI Fellowship",
-        "Sandra Hüller To Be Honored With Spotlight Award At Palm Springs International Film Awards (EXCLUSIVE)"
-      ]
-    },
-    {
-      "topic": "International",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
+      "subcategory": "funniest_character_ranking",
       "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 30.0,
+      "query_suffix": "funny moments edit shorts",
+      "score": 50.69,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
+        "3d": 48.8,
+        "7d": 65.0,
+        "30d": 58.4,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
+      "yt_views": 2200930,
+      "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
-        "THR"
+        "YT-Month",
+        "YT-Week"
       ],
-      "headlines": [
-        "DOC NYC Reveals U.S., International Competition and Audience Award Winners (Exclusive)",
-        "International Film Festival Rotterdam Names Pepijn Kuyper Managing Director, Succeeding Clare Stewart"
-      ]
+      "headlines": []
     }
   ],
-  "top_yt_week": [],
-  "top_yt_month": [],
+  "top_yt_week": [
+    {
+      "id": "_kvjKaTqX4c",
+      "window": "week",
+      "genre_hint": "war_historical",
+      "title": "The Hobbit (2013) - Battle of the five Armies - Part 1 - Only Action [4K] (Directors Cut)",
+      "channel": "Kimer “RawCut” Lorens",
+      "views": 140774882,
+      "duration": 256.0,
+      "url": "https://www.youtube.com/watch?v=_kvjKaTqX4c"
+    },
+    {
+      "id": "nCqDdsZY7RA",
+      "window": "week",
+      "genre_hint": "war_historical",
+      "title": "Battleship | The Final Battle in 4K HDR",
+      "channel": "Universal Pictures",
+      "views": 111158905,
+      "duration": 620.0,
+      "url": "https://www.youtube.com/watch?v=nCqDdsZY7RA"
+    },
+    {
+      "id": "73NUY_J7DoY",
+      "window": "week",
+      "genre_hint": "war_historical",
+      "title": "The Art Of War (Final Battle) | Battleship | All Action",
+      "channel": "All Action",
+      "views": 27253011,
+      "duration": 309.0,
+      "url": "https://www.youtube.com/watch?v=73NUY_J7DoY"
+    },
+    {
+      "id": "MwpmqMnngRk",
+      "window": "week",
+      "genre_hint": "crime_mafia",
+      "title": "Mafia Meeting - SNL",
+      "channel": "Saturday Night Live",
+      "views": 19672386,
+      "duration": 254.0,
+      "url": "https://www.youtube.com/watch?v=MwpmqMnngRk"
+    },
+    {
+      "id": "_HZbkdEggHI",
+      "window": "week",
+      "genre_hint": "crime_mafia",
+      "title": "Ex-Mob Boss Rates 12 Mafia Movie Scenes | How Real Is It? | Insider",
+      "channel": "Insider",
+      "views": 16253362,
+      "duration": 503.0,
+      "url": "https://www.youtube.com/watch?v=_HZbkdEggHI"
+    },
+    {
+      "id": "hs3paMLb9Qg",
+      "window": "week",
+      "genre_hint": "horror_mystery",
+      "title": "Ignore It - Short Horror Film ( Award Winning )",
+      "channel": "Grimoire Horror",
+      "views": 13700054,
+      "duration": 394.0,
+      "url": "https://www.youtube.com/watch?v=hs3paMLb9Qg"
+    },
+    {
+      "id": "nuWDXoSe9Vo",
+      "window": "week",
+      "genre_hint": "crime_mafia",
+      "title": "Ex-Mob Boss Reviews Mafia Movie Scenes",
+      "channel": "BuzzFeedVideo",
+      "views": 9472652,
+      "duration": 542.0,
+      "url": "https://www.youtube.com/watch?v=nuWDXoSe9Vo"
+    },
+    {
+      "id": "f1yWSePMqsk",
+      "window": "week",
+      "genre_hint": "sports_underdog",
+      "title": "Al Pacino best speech - Any Given Sunday - 1080p HD",
+      "channel": "Fight Back",
+      "views": 7308112,
+      "duration": 271.0,
+      "url": "https://www.youtube.com/watch?v=f1yWSePMqsk"
+    },
+    {
+      "id": "mUXpTAdu_8U",
+      "window": "week",
+      "genre_hint": "horror_mystery",
+      "title": "MORA - Short Horror Film",
+      "channel": "Grimoire Horror",
+      "views": 6122237,
+      "duration": 726.0,
+      "url": "https://www.youtube.com/watch?v=mUXpTAdu_8U"
+    },
+    {
+      "id": "7Kf2ozcdk3o",
+      "window": "week",
+      "genre_hint": "sports_underdog",
+      "title": "RED",
+      "channel": "Ritzy Animation",
+      "views": 6003602,
+      "duration": 170.0,
+      "url": "https://www.youtube.com/watch?v=7Kf2ozcdk3o"
+    }
+  ],
+  "top_yt_month": [
+    {
+      "id": "hIbcd_Fncvw",
+      "window": "month",
+      "genre_hint": "comedy_sitcom",
+      "title": "the office try not to laugh challenge | Comedy Bites",
+      "channel": "Comedy Bites",
+      "views": 5689045,
+      "duration": 501.0,
+      "url": "https://www.youtube.com/watch?v=hIbcd_Fncvw"
+    },
+    {
+      "id": "L7wCy1IOwOw",
+      "window": "month",
+      "genre_hint": "comedy_sitcom",
+      "title": "brooklyn nine-nine moments that have no business being this funny | Comedy Bites",
+      "channel": "Comedy Bites",
+      "views": 3382193,
+      "duration": 588.0,
+      "url": "https://www.youtube.com/watch?v=L7wCy1IOwOw"
+    },
+    {
+      "id": "yGsUdRPEcrQ",
+      "window": "month",
+      "genre_hint": "action_thriller",
+      "title": "King Ghidorah Destroys The City (2026) Fight Scene | Godzilla: Minus Zero Movie Clip 4K",
+      "channel": "MovieGasm‍․com",
+      "views": 3012017,
+      "duration": 99.0,
+      "url": "https://www.youtube.com/watch?v=yGsUdRPEcrQ"
+    },
+    {
+      "id": "czG9Xh5tGa0",
+      "window": "month",
+      "genre_hint": "action_thriller",
+      "title": "Shagird Thriller Scene - The order is to finish you - Nana Patekar Action Scene - HD",
+      "channel": "Bollywood Climax",
+      "views": 2663025,
+      "duration": 1036.0,
+      "url": "https://www.youtube.com/watch?v=czG9Xh5tGa0"
+    },
+    {
+      "id": "e6t7MlE7hj0",
+      "window": "month",
+      "genre_hint": "action_thriller",
+      "title": "Rally | An Unreal Engine Action Thriller Short Film",
+      "channel": "Santiago Menghini",
+      "views": 2385038,
+      "duration": 597.0,
+      "url": "https://www.youtube.com/watch?v=e6t7MlE7hj0"
+    },
+    {
+      "id": "FpD9YReYJZQ",
+      "window": "month",
+      "genre_hint": "drama_prestige",
+      "title": "The Coldest Advice ever given to MAN 👨 ",
+      "channel": "King Ben",
+      "views": 1495173,
+      "duration": 75.0,
+      "url": "https://www.youtube.com/watch?v=FpD9YReYJZQ"
+    },
+    {
+      "id": "VOJsld2_oeI",
+      "window": "month",
+      "genre_hint": "action_thriller",
+      "title": "JUMPER -  Suspense Thriller Short Film",
+      "channel": "Isaac Carlton",
+      "views": 1243639,
+      "duration": 218.0,
+      "url": "https://www.youtube.com/watch?v=VOJsld2_oeI"
+    },
+    {
+      "id": "ZFdbh7oeQrU",
+      "window": "month",
+      "genre_hint": "comedy_sitcom",
+      "title": "Arrested Development being the funniest sitcom ever (best clips compilation)",
+      "channel": "edward bluth",
+      "views": 1100465,
+      "duration": 794.0,
+      "url": "https://www.youtube.com/watch?v=ZFdbh7oeQrU"
+    },
+    {
+      "id": "_O0FmrKHXWg",
+      "window": "month",
+      "genre_hint": "drama_prestige",
+      "title": "The Coldest Lines and Deadliest Comebacks | Justified | FX",
+      "channel": "FX Networks",
+      "views": 417807,
+      "duration": 239.0,
+      "url": "https://www.youtube.com/watch?v=_O0FmrKHXWg"
+    },
+    {
+      "id": "0pCPg645jy4",
+      "window": "month",
+      "genre_hint": "action_thriller",
+      "title": "Brad Pitt and his dog face a PACK of Wolves | Heart of the Beast | CLIP",
+      "channel": "Boxoffice Movie Scenes",
+      "views": 39521,
+      "duration": 236.0,
+      "url": "https://www.youtube.com/watch?v=0pCPg645jy4"
+    }
+  ],
   "top_reddit_week": [
-    {
-      "sub": "scifi",
-      "title": "I'm an aerospace engineer, and I made a board game about exploring the solar system",
-      "score": 1428,
-      "comments": 54,
-      "engagement": 1590,
-      "days": 7,
-      "url": "https://www.reddit.com/r/scifi/comments/1y2dspd/im_an_aerospace_engineer_and_i_made_a_board_game/"
-    },
-    {
-      "sub": "bollywoodmemes",
-      "title": "Imma head out",
-      "score": 1262,
-      "comments": 29,
-      "engagement": 1349,
-      "days": 7,
-      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y2z5u7/imma_head_out/"
-    },
     {
       "sub": "MovieDetails",
       "title": "In Spider-Man: Brand New Day (2026), Bruce Banner’s inhibitor device has the code ASM-14 on it. Amazing Spider-Man #14 is the issue where Spider-Man first met and fought the Hulk.",
@@ -647,67 +787,85 @@
       "url": "https://www.reddit.com/r/MovieDetails/comments/1y158y6/in_spiderman_brand_new_day_2026_bruce_banners/"
     },
     {
-      "sub": "DC_Cinematic",
-      "title": "Neva Howell (Ma Kent) on filming 'Man of Tomorrow' \"Very surprising and intense role for me this time\"",
-      "score": 181,
-      "comments": 42,
-      "engagement": 307,
+      "sub": "bollywoodmemes",
+      "title": "So apt",
+      "score": 928,
+      "comments": 77,
+      "engagement": 1159,
       "days": 7,
-      "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y3iekb/neva_howell_ma_kent_on_filming_man_of_tomorrow/"
+      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y3rox7/so_apt/"
     },
     {
-      "sub": "ActionMovies",
-      "title": "I saw Ghost Soldier in the theater with my dad yesterday. It was a blast I'm not here to say it was a masterpiece, but it was a fun popcorn flick.",
-      "score": 21,
-      "comments": 73,
-      "engagement": 240,
+      "sub": "television",
+      "title": "Which TV show had the most satisfying ending you've ever watched?",
+      "score": 57,
+      "comments": 255,
+      "engagement": 822,
       "days": 7,
-      "url": "https://www.reddit.com/r/ActionMovies/comments/1y37amb/i_saw_ghost_soldier_in_the_theater_with_my_dad/"
+      "url": "https://www.reddit.com/r/television/comments/1y45pre/which_tv_show_had_the_most_satisfying_ending/"
     },
     {
-      "sub": "Monsterverse",
-      "title": "Remember these posters we got these 6-7 days before TNE Trailer release so, we can assume the same for Supernova right?",
-      "score": 186,
-      "comments": 17,
-      "engagement": 237,
+      "sub": "horror",
+      "title": "Saw 11 Officially Confirms Release Window After Major Creative Overhaul",
+      "score": 424,
+      "comments": 117,
+      "engagement": 775,
       "days": 7,
-      "url": "https://www.reddit.com/r/Monsterverse/comments/1y3iq43/remember_these_posters_we_got_these_67_days/"
+      "url": "https://www.reddit.com/r/horror/comments/1y446x0/saw_11_officially_confirms_release_window_after/"
     },
     {
-      "sub": "MovieDetails",
-      "title": "In Madden (2026) they used footage of the 2018 Wild Card game which wasn't commentated by John Madden but by Al Micheals and Chris Collinsworth.",
-      "score": 186,
-      "comments": 11,
-      "engagement": 219,
+      "sub": "bollywood",
+      "title": "Today marks 20 Years of Dhoom 2",
+      "score": 514,
+      "comments": 38,
+      "engagement": 628,
       "days": 7,
-      "url": "https://www.reddit.com/r/MovieDetails/comments/1y1p87n/in_madden_2026_they_used_footage_of_the_2018_wild/"
+      "url": "https://www.reddit.com/r/bollywood/comments/1y41jqn/today_marks_20_years_of_dhoom_2/"
     },
     {
-      "sub": "Fantasy",
-      "title": "Dungeon Crawler Carl, does it get better",
-      "score": 0,
-      "comments": 71,
-      "engagement": 213,
+      "sub": "bollywoodmemes",
+      "title": "Jensen Huang meeting with female employee after rejoining Nivida",
+      "score": 576,
+      "comments": 7,
+      "engagement": 597,
       "days": 7,
-      "url": "https://www.reddit.com/r/Fantasy/comments/1y3kuky/dungeon_crawler_carl_does_it_get_better/"
+      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y44j1b/jensen_huang_meeting_with_female_employee_after/"
     },
     {
       "sub": "TrueFilm",
       "title": "Manhattan (1979): Acceptable in the 70s?",
-      "score": 31,
-      "comments": 53,
-      "engagement": 190,
+      "score": 77,
+      "comments": 123,
+      "engagement": 446,
       "days": 7,
       "url": "https://www.reddit.com/r/TrueFilm/comments/1y3fv8f/manhattan_1979_acceptable_in_the_70s/"
     },
     {
-      "sub": "bollywoodmemes",
-      "title": "Padmavat if made in 70s",
-      "score": 71,
-      "comments": 35,
-      "engagement": 176,
+      "sub": "KDRAMA",
+      "title": "tvN 'Signal: Part 2' Teaser Poster [Premieres December 7]",
+      "score": 332,
+      "comments": 27,
+      "engagement": 413,
       "days": 7,
-      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y3d0q5/padmavat_if_made_in_70s/"
+      "url": "https://www.reddit.com/r/KDRAMA/comments/1y3bybx/tvn_signal_part_2_teaser_poster_premieres/"
+    },
+    {
+      "sub": "marvelmemes",
+      "title": "Get hulk angry to see even more green",
+      "score": 342,
+      "comments": 7,
+      "engagement": 363,
+      "days": 7,
+      "url": "https://www.reddit.com/r/marvelmemes/comments/1y49xl7/get_hulk_angry_to_see_even_more_green/"
+    },
+    {
+      "sub": "television",
+      "title": "Zosia Mamet Slams ‘Mad Men’ Boss Matthew Weiner as ‘Horrible’ Because He ‘Rules With Fear’: ‘He Dressed Me Down for 45 Minutes’",
+      "score": 148,
+      "comments": 67,
+      "engagement": 349,
+      "days": 7,
+      "url": "https://www.reddit.com/r/television/comments/1y407wr/zosia_mamet_slams_mad_men_boss_matthew_weiner_as/"
     }
   ]
 }
