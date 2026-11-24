@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-24T13:28:55Z",
+  "last_3day_sync_utc": "2026-11-24T16:42:44Z",
   "recent_topics": [
     "Mr Darcy",
     "Drive to Survive",
@@ -28,79 +28,72 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 3938.6,
-      "top_topic": "Godzilla",
-      "count": 199
+      "total_score": 2937.4,
+      "top_topic": "Last",
+      "count": 193
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 1170.7,
-      "top_topic": "Poster",
-      "count": 49
+      "total_score": 779.4,
+      "top_topic": "Disguise",
+      "count": 40
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 822.3,
+      "total_score": 664.7,
       "top_topic": "Godzilla Minus Zero",
-      "count": 41
-    },
-    {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 685.4,
-      "top_topic": "Arrested Development",
-      "count": 34
-    },
-    {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 607.3,
-      "top_topic": "Battleship",
-      "count": 20
-    },
-    {
-      "genre": "crime_mafia",
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 419.6,
-      "top_topic": "Ex-Mob",
-      "count": 10
-    },
-    {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 395.8,
-      "top_topic": "No Sleep Tonight",
-      "count": 18
+      "count": 35
     },
     {
       "genre": "animated_cinema",
       "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 344.4,
+      "total_score": 425.7,
       "top_topic": "In Spider",
-      "count": 15
+      "count": 20
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 343.5,
-      "top_topic": "Manhattan",
-      "count": 22
+      "total_score": 334.0,
+      "top_topic": "Gonna Make",
+      "count": 23
     },
     {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 339.0,
-      "top_topic": "Al Pacino",
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 226.1,
+      "top_topic": "Gotta",
+      "count": 15
+    },
+    {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 165.3,
+      "top_topic": "Ghost Soldier",
       "count": 10
+    },
+    {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 120.0,
+      "top_topic": "Once Upon a Time in Harlem",
+      "count": 8
     },
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 207.5,
-      "top_topic": "Ancalagon the Black",
-      "count": 7
+      "total_score": 83.0,
+      "top_topic": "Ranked",
+      "count": 6
+    },
+    {
+      "genre": "crime_mafia",
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
     },
     {
       "genre": "romance_teen_drama",
@@ -108,74 +101,51 @@
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
     }
   ],
   "live_3day_top_topics": [
     {
+      "topic": "Godzilla Minus Zero",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 71.09,
+      "sources": [
+        "Ars Technica",
+        "Purdue Exponent",
+        "Reddit-30d(r/Monsterverse)",
+        "Reddit-7d(r/Monsterverse)"
+      ]
+    },
+    {
       "topic": "Godzilla",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 94.0,
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "format": "release_hype",
+      "score": 55.97,
       "sources": [
         "Aurora Sentinel",
         "Crunchyroll",
         "Entertainment Weekly",
-        "YT-Week"
+        "Reddit-30d(r/GODZILLA)"
       ]
     },
     {
-      "topic": "King",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
+      "topic": "Disguise",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
       "format": "edit_ranking",
-      "score": 81.0,
+      "score": 53.15,
       "sources": [
-        "YT-Month",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Battleship",
-      "genre": "war_historical",
-      "subcategory": "war_epic_battle_ranking",
-      "format": "edit_ranking",
-      "score": 69.0,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Ex-Mob",
-      "genre": "crime_mafia",
-      "subcategory": "crime_coldest_boss_ranking",
-      "format": "edit_ranking",
-      "score": 69.0,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Only",
-      "genre": "war_historical",
-      "subcategory": "war_epic_battle_ranking",
-      "format": "edit_ranking",
-      "score": 68.51,
-      "sources": [
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "Godzilla Minus Zero",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 57.67,
-      "sources": [
-        "Ars Technica",
-        "Reddit-30d(r/Monsterverse)",
-        "The Rider News",
-        "Vulture"
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)"
       ]
     },
     {
@@ -183,10 +153,22 @@
       "genre": "world_indian_cinema",
       "subcategory": "indian_cinema_mass_edits",
       "format": "edit_ranking",
-      "score": 56.56,
+      "score": 49.99,
       "sources": [
         "Reddit-30d(r/KDRAMA)",
         "Reddit-7d(r/KDRAMA)"
+      ]
+    },
+    {
+      "topic": "Last",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "format": "scene_commentary",
+      "score": 48.14,
+      "sources": [
+        "Collider",
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-7d(r/ActionMovies)"
       ]
     },
     {
@@ -194,89 +176,109 @@
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 54.0,
+      "score": 40.0,
+      "sources": [
+        "NPR",
+        "The Hollywood Reporter"
+      ]
+    },
+    {
+      "topic": "Lionsgate Film Chief Shares",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 40.0,
       "sources": [
         "THR",
-        "The Hollywood Reporter",
-        "Yahoo"
+        "The Hollywood Reporter"
       ]
     },
     {
-      "topic": "Going",
+      "topic": "Latest on Franchise",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 54.0,
+      "score": 40.0,
       "sources": [
-        "American Institute for Stuttering",
-        "Latin Times",
-        "Yahoo"
+        "THR",
+        "The Hollywood Reporter"
       ]
     },
     {
-      "topic": "Ghidorah",
+      "topic": "Sunrise on the Reaping",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 51.0,
+      "score": 40.0,
       "sources": [
-        "YT-Month",
-        "YT-Week"
+        "NPR",
+        "Variety"
       ]
     },
     {
-      "topic": "Destroys",
+      "topic": "Sets",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 51.0,
+      "score": 40.0,
       "sources": [
-        "YT-Month",
-        "YT-Week"
+        "Deadline",
+        "Polygon.com"
       ]
     },
     {
-      "topic": "City",
+      "topic": "Ramayana",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 51.0,
+      "score": 40.0,
       "sources": [
-        "YT-Month",
-        "YT-Week"
+        "NDTV",
+        "The Times of India"
       ]
     },
     {
-      "topic": "Shagird",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 51.0,
+      "topic": "Feature",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "format": "release_hype",
+      "score": 40.0,
       "sources": [
-        "YT-Month",
-        "YT-Week"
+        "The Walt Disney Company",
+        "Variety"
       ]
     },
     {
-      "topic": "Nana",
+      "topic": "See Buildings Fall Like",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 51.0,
+      "score": 40.0,
       "sources": [
-        "YT-Month",
-        "YT-Week"
+        "Deadline",
+        "THR"
       ]
     },
     {
-      "topic": "Patekar",
+      "topic": "British",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 51.0,
+      "score": 40.0,
       "sources": [
-        "YT-Month",
-        "YT-Week"
+        "Deadline",
+        "THR"
+      ]
+    },
+    {
+      "topic": "Hooters",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 40.0,
+      "sources": [
+        "Deadline",
+        "JoBlo"
       ]
     }
   ],
