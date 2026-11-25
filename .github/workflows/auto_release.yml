@@ -19,7 +19,7 @@ on:
       batch_count:
         description: 'Number of videos to produce (each scheduled 1 per day in 4-group rotating format)'
         required: false
-        default: '4'
+        default: '1'
       day_override:
         description: 'Day override (0=auto-advance 4-day wheel, 1=Cinema, 2=TV Series, 3=The Mentalist, 4=Song Edits)'
         required: false
@@ -91,7 +91,7 @@ jobs:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           TAKEDOWN_EMAIL: ${{ secrets.TAKEDOWN_EMAIL }}
         run: |
-          ARGS="--batch-count ${{ inputs.batch_count || '4' }} --day ${{ inputs.day_override || '0' }}"
+          ARGS="--batch-count ${{ inputs.batch_count || '1' }} --day ${{ inputs.day_override || '0' }}"
           if [ "${{ inputs.force_weekly_digest }}" = "true" ]; then
             ARGS="$ARGS --weekly-digest"
           fi

@@ -101,8 +101,8 @@ def audit_live_virality(force_fresh: bool = True) -> dict:
 
     try:
         from virality_engine import run_all_category_virality_scan, DAILY_DIGEST_PATH
-        # Check if daily digest was generated within the last 15 min, else run full scan
-        if DAILY_DIGEST_PATH.exists() and (time.time() - DAILY_DIGEST_PATH.stat().st_mtime) < 900:
+        # Check if daily digest was generated within the last 4 hours, else run full scan
+        if DAILY_DIGEST_PATH.exists() and (time.time() - DAILY_DIGEST_PATH.stat().st_mtime) < 14400:
             logging.info("[Virality Audit] Loading fresh Daily Virality Digest...")
             digest = json.loads(DAILY_DIGEST_PATH.read_text(encoding="utf-8"))
         else:
@@ -245,7 +245,7 @@ def run_day_2_tv_series(series_name: str | None = None, dry_run: bool = True) ->
             tv_cands.append(s)
 
     last_err = None
-    for raw_show in tv_cands[:8]:
+    for raw_show in tv_cands[:4]:
         cand_show = re.sub(r"\s*[-–—|:]\s*(?:Season|Part|Vol\.?|Episode|Ep)\s*\d+.*$", "", raw_show, flags=re.I).strip()
         cand_show = re.sub(r"\s+\b(?:Ep|Episode|Season|Part|Vol)\.?\s*\d+\b.*$", "", cand_show, flags=re.I).strip()
         logging.info(f"[Day 2 TV] Attempting series candidate: '{cand_show}' (raw: '{raw_show}')")
@@ -309,7 +309,7 @@ def run_day_4_song_edits(subcat: str, top_song: str | None = None, dry_run: bool
     chosen_song = None
     downloaded = []
     chosen_banner = ""
-    for cand_song in candidate_songs:
+    for cand_song in candidate_songs[:4]:
         sub_data = scout_song_subcategories(subcat, cand_song)
         banner_title = sub_data.get("banner_title", f"RANKING THE BEST {cand_song.upper()} EDITS")
         edits = sub_data.get("edits", [])

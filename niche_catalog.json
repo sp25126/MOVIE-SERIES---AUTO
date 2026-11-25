@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-23T18:08:42Z",
+  "last_3day_sync_utc": "2026-11-25T09:21:19Z",
   "recent_topics": [
     "Mr Darcy",
     "Drive to Survive",
@@ -28,79 +28,79 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 2689.2,
-      "top_topic": "Substitute",
-      "count": 179
+      "total_score": 4209.7,
+      "top_topic": "Hexed",
+      "count": 209
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 813.7,
-      "top_topic": "Man of Tomorrow",
-      "count": 39
-    },
-    {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 610.0,
-      "top_topic": "Focker In-Law",
-      "count": 39
+      "total_score": 1512.2,
+      "top_topic": "Godzilla",
+      "count": 79
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 597.0,
-      "top_topic": "Episodes",
-      "count": 33
+      "total_score": 814.0,
+      "top_topic": "Arijit Singh",
+      "count": 34
     },
     {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 317.3,
-      "top_topic": "In Spider",
-      "count": 15
-    },
-    {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 300.0,
-      "top_topic": "Honored",
-      "count": 18
-    },
-    {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 180.6,
-      "top_topic": "Manhattan",
-      "count": 12
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 180.0,
-      "top_topic": "Jimmy Jenkins",
-      "count": 12
-    },
-    {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 108.6,
-      "top_topic": "Ghost Soldier",
-      "count": 6
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 792.3,
+      "top_topic": "Taarak Mehta Ka Ooltah",
+      "count": 27
     },
     {
       "genre": "war_historical",
       "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 30.0,
-      "top_topic": "TSRStaff ST",
-      "count": 2
+      "total_score": 511.3,
+      "top_topic": "Only",
+      "count": 15
     },
     {
       "genre": "crime_mafia",
       "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
+      "total_score": 490.2,
+      "top_topic": "Mumbai Mafia",
+      "count": 13
+    },
+    {
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 448.4,
+      "top_topic": "Directors",
+      "count": 28
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 346.9,
+      "top_topic": "Hall of Fame Motivational Song",
+      "count": 10
+    },
+    {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 328.9,
+      "top_topic": "Changing",
+      "count": 14
+    },
+    {
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 229.9,
+      "top_topic": "Street",
+      "count": 11
+    },
+    {
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 111.9,
+      "top_topic": "Dune: Part Three",
+      "count": 12
     },
     {
       "genre": "romance_teen_drama",
@@ -112,14 +112,93 @@
   ],
   "live_3day_top_topics": [
     {
-      "topic": "Man of Tomorrow",
+      "topic": "Hexed",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "format": "scene_commentary",
+      "score": 90.0,
+      "sources": [
+        "Deadline",
+        "Reddit-7d(r/boxoffice)",
+        "THR"
+      ]
+    },
+    {
+      "topic": "Focker-In-Law",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "format": "scene_commentary",
+      "score": 90.0,
+      "sources": [
+        "Deadline",
+        "Reddit-7d(r/boxoffice)",
+        "THR"
+      ]
+    },
+    {
+      "topic": "Godzilla",
       "genre": "superhero_scifi",
       "subcategory": "superhero_spoiler_commentary",
       "format": "scene_commentary",
-      "score": 54.16,
+      "score": 87.89,
       "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
+        "Aurora Sentinel",
+        "Crunchyroll",
+        "Reddit-30d(r/GODZILLA)",
+        "Reddit-7d(r/GODZILLA)"
+      ]
+    },
+    {
+      "topic": "Taarak Mehta Ka Ooltah",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "format": "edit_ranking",
+      "score": 84.65,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Chashmah",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "format": "edit_ranking",
+      "score": 84.65,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Monsters",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 69.0,
+      "sources": [
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Only",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
+      "format": "edit_ranking",
+      "score": 68.51,
+      "sources": [
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Arijit Singh",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 67.94,
+      "sources": [
+        "Reddit-7d(r/bollywoodmemes)",
+        "YT-Week"
       ]
     },
     {
@@ -127,157 +206,77 @@
       "genre": "superhero_scifi",
       "subcategory": "scifi_release_hype",
       "format": "release_hype",
-      "score": 54.0,
+      "score": 58.7,
       "sources": [
         "Ars Technica",
-        "The Rider News",
-        "Vulture"
+        "Reddit-30d(r/GODZILLA)",
+        "The Rider News"
       ]
     },
     {
-      "topic": "Godzilla",
+      "topic": "Avengers",
       "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 54.0,
-      "sources": [
-        "Aurora Sentinel",
-        "Crunchyroll",
-        "Entertainment Weekly"
-      ]
-    },
-    {
-      "topic": "Episodes",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
+      "subcategory": "superhero_edit_ranking",
       "format": "edit_ranking",
-      "score": 45.64,
+      "score": 51.52,
       "sources": [
-        "Reddit-30d(r/KDRAMA)",
-        "Reddit-7d(r/KDRAMA)"
+        "JoBlo",
+        "YT-Month"
       ]
     },
     {
-      "topic": "Substitute",
-      "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
-      "format": "scene_commentary",
-      "score": 43.81,
-      "sources": [
-        "Reddit-30d(r/ActionMovies)",
-        "Reddit-30d(r/KDRAMA)",
-        "Reddit-7d(r/ActionMovies)",
-        "Reddit-7d(r/KDRAMA)"
-      ]
-    },
-    {
-      "topic": "Home Alone",
+      "topic": "Shagird",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 40.0,
+      "score": 51.0,
       "sources": [
-        "The Guardian",
-        "Variety"
+        "YT-Month",
+        "YT-Week"
       ]
     },
     {
-      "topic": "Hunger",
+      "topic": "Nana",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 40.0,
+      "score": 51.0,
       "sources": [
-        "Britannica",
-        "Forbes"
+        "YT-Month",
+        "YT-Week"
       ]
     },
     {
-      "topic": "Games",
+      "topic": "Patekar",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 40.0,
+      "score": 51.0,
       "sources": [
-        "Britannica",
-        "Forbes"
+        "YT-Month",
+        "YT-Week"
       ]
     },
     {
-      "topic": "Going",
+      "topic": "Never Underestimate Me",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 40.0,
+      "score": 51.0,
       "sources": [
-        "American Institute for Stuttering",
-        "Latin Times"
+        "YT-Month",
+        "YT-Week"
       ]
     },
     {
-      "topic": "Ramayana",
+      "topic": "Retta",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 40.0,
+      "score": 51.0,
       "sources": [
-        "NDTV",
-        "The Times of India"
-      ]
-    },
-    {
-      "topic": "Ranbir",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.0,
-      "sources": [
-        "The Times of India",
-        "The Week"
-      ]
-    },
-    {
-      "topic": "Kapoor",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.0,
-      "sources": [
-        "The Times of India",
-        "The Week"
-      ]
-    },
-    {
-      "topic": "Shawn Levy",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.0,
-      "sources": [
-        "Deadline",
-        "THR"
-      ]
-    },
-    {
-      "topic": "Laps",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.0,
-      "sources": [
-        "Deadline",
-        "THR"
-      ]
-    },
-    {
-      "topic": "Inks",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.0,
-      "sources": [
-        "Deadline",
-        "THR"
+        "YT-Month",
+        "YT-Week"
       ]
     }
   ],
