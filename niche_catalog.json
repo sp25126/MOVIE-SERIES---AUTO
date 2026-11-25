@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-25T10:13:10Z",
+  "last_3day_sync_utc": "2026-11-25T11:48:37Z",
   "recent_topics": [
     "Mr Darcy",
     "Drive to Survive",
@@ -28,37 +28,37 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 3105.1,
+      "total_score": 1863.7,
       "top_topic": "Hexed",
-      "count": 187
+      "count": 103
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 926.9,
+      "total_score": 956.9,
       "top_topic": "Avengers",
-      "count": 66
+      "count": 57
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 426.2,
-      "top_topic": "Back",
-      "count": 25
+      "total_score": 360.3,
+      "top_topic": "Jensen Huang",
+      "count": 23
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 409.0,
+      "total_score": 301.8,
       "top_topic": "Does Columbo",
-      "count": 24
+      "count": 16
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 384.5,
+      "total_score": 262.1,
       "top_topic": "Directors",
-      "count": 24
+      "count": 17
     },
     {
       "genre": "animated_cinema",
@@ -68,32 +68,32 @@
       "count": 11
     },
     {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 150.0,
+      "top_topic": "Once Upon a Time in Harlem",
+      "count": 10
+    },
+    {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 179.6,
-      "top_topic": "Rillington Place",
-      "count": 11
+      "total_score": 105.0,
+      "top_topic": "In Joanna Natasegara",
+      "count": 7
+    },
+    {
+      "genre": "romance_teen_drama",
+      "label": "Romance, Heartbreak & Teen Series",
+      "total_score": 45.0,
+      "top_topic": "Pyre",
+      "count": 3
     },
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 129.7,
-      "top_topic": "Officially",
-      "count": 13
-    },
-    {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 60.0,
-      "top_topic": "Once Upon a Time in Harlem",
-      "count": 4
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 19.0,
-      "top_topic": "Track",
-      "count": 1
+      "total_score": 8.6,
+      "top_topic": "Looking",
+      "count": 3
     },
     {
       "genre": "crime_mafia",
@@ -103,8 +103,8 @@
       "count": 0
     },
     {
-      "genre": "romance_teen_drama",
-      "label": "Romance, Heartbreak & Teen Series",
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
@@ -119,7 +119,7 @@
       "score": 80.0,
       "sources": [
         "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "THR"
       ]
     },
     {
@@ -127,22 +127,10 @@
       "genre": "action_thriller",
       "subcategory": "thriller_plot_twist_commentary",
       "format": "scene_commentary",
-      "score": 80.0,
+      "score": 67.87,
       "sources": [
         "Reddit-7d(r/boxoffice)",
-        "Variety"
-      ]
-    },
-    {
-      "topic": "Sunrise On The Reaping",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 72.35,
-      "sources": [
-        "NPR",
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "THR"
       ]
     },
     {
@@ -168,50 +156,14 @@
       ]
     },
     {
-      "topic": "Godzilla",
+      "topic": "Books",
       "genre": "superhero_scifi",
       "subcategory": "scifi_release_hype",
       "format": "release_hype",
-      "score": 56.73,
-      "sources": [
-        "Aurora Sentinel",
-        "Crunchyroll",
-        "Entertainment Weekly",
-        "Reddit-30d(r/GODZILLA)"
-      ]
-    },
-    {
-      "topic": "Godzilla Minus Zero",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 54.0,
-      "sources": [
-        "Catholic Review",
-        "Purdue Exponent",
-        "Vulture"
-      ]
-    },
-    {
-      "topic": "Back",
-      "genre": "world_indian_cinema",
-      "subcategory": "global_cinema_hype",
-      "format": "release_hype",
-      "score": 47.44,
+      "score": 48.11,
       "sources": [
         "Collider",
-        "Reddit-7d(r/bollywoodmemes)"
-      ]
-    },
-    {
-      "topic": "Hershey",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 45.53,
-      "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "Reddit-7d(r/scifi)"
       ]
     },
     {
@@ -226,58 +178,99 @@
       ]
     },
     {
-      "topic": "Hunger Games",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.0,
+      "topic": "Lex Luthor",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 33.06,
       "sources": [
-        "NPR",
-        "The Hollywood Reporter"
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
       ]
     },
     {
-      "topic": "Lionsgate Film Chief Shares",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.0,
+      "topic": "General Zod",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 33.06,
       "sources": [
-        "THR",
-        "The Hollywood Reporter"
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
       ]
     },
     {
-      "topic": "Latest on Franchise",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.0,
+      "topic": "Superman",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 33.06,
       "sources": [
-        "THR",
-        "The Hollywood Reporter"
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
       ]
     },
     {
-      "topic": "Home Alone",
+      "topic": "Woo Dude",
       "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.0,
+      "subcategory": "thriller_plot_twist_commentary",
+      "format": "scene_commentary",
+      "score": 31.75,
       "sources": [
-        "The Guardian",
-        "Variety"
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-7d(r/ActionMovies)"
       ]
     },
     {
-      "topic": "Ramayana",
+      "topic": "Mann",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "format": "scene_commentary",
+      "score": 31.75,
+      "sources": [
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-7d(r/ActionMovies)"
+      ]
+    },
+    {
+      "topic": "Avengers: Doomsday",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "format": "release_hype",
+      "score": 30.0,
+      "sources": [
+        "Deadline"
+      ]
+    },
+    {
+      "topic": "Executive Producer",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 40.0,
+      "score": 30.0,
       "sources": [
-        "NDTV",
-        "The Times of India"
+        "THR"
+      ]
+    },
+    {
+      "topic": "Street",
+      "genre": "animated_cinema",
+      "subcategory": "animated_upcoming_hype",
+      "format": "release_hype",
+      "score": 29.76,
+      "sources": [
+        "Reddit-7d(r/MovieDetails)"
+      ]
+    },
+    {
+      "topic": "Salma Hayek",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "format": "scene_commentary",
+      "score": 29.7,
+      "sources": [
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-7d(r/ActionMovies)"
       ]
     }
   ],

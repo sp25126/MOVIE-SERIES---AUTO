@@ -1,5 +1,5 @@
 {
-  "scan_time_utc": "2026-11-25T10:13:10Z",
+  "scan_time_utc": "2026-11-25T11:48:37Z",
   "winner": {
     "topic": "Hexed",
     "genre": "action_thriller",
@@ -18,50 +18,50 @@
     "reddit_hits": 3,
     "sources": [
       "Reddit-7d(r/boxoffice)",
-      "Variety"
+      "THR"
     ],
     "headlines": [
       "‘Sunrise On The Reaping’ ($16M Tuesday/$70M+ DOM Thanksgiving 5-Day) To Gobble Up Thanksgiving; ‘Hexed’ $2M Tuesday Previews/$40M Or Below DOM/$75M+ WW Opening; ‘Focker-In-Law’ $45M DOM/$70M WW – Box Office Preview",
       "‘Hunger Games: Sunrise on the Reaping’ ($60-80M+) to Dominate Thanksgiving Box Office as ‘Focker In-Law’ ($45M), ‘Hexed’ ($45M) Join Fray - 'Hershey' and 'The Further Mis-Adventures of Cliff Booth' also head to the big screen for the five-day holiday weekend.",
       "TheFlatLannister: Strong previews walkups for Hexed at TC3. Will be well over 170% growth. Gross is identical to Hoppers so ~$2.2M previews or so...Still thinking $40M 5 day opening if walkups trend similar to today.",
-      "Thanksgiving Box Office: ‘Focker In-Law’ and Disney’s ‘Hexed’ Vie for No. 2 Behind ‘Sunrise on the Reaping’"
+      "‘Hunger Games: Sunrise on the Reaping’ to Dominate Thanksgiving Box Office as ‘Focker In-Law,’ ‘Hexed’ Join Fray"
     ]
   },
   "genre_leaderboard": [
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 3105.1,
+      "total_score": 1863.7,
       "top_topic": "Hexed",
-      "count": 187
+      "count": 103
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 926.9,
+      "total_score": 956.9,
       "top_topic": "Avengers",
-      "count": 66
+      "count": 57
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 426.2,
-      "top_topic": "Back",
-      "count": 25
+      "total_score": 360.3,
+      "top_topic": "Jensen Huang",
+      "count": 23
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 409.0,
+      "total_score": 301.8,
       "top_topic": "Does Columbo",
-      "count": 24
+      "count": 16
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 384.5,
+      "total_score": 262.1,
       "top_topic": "Directors",
-      "count": 24
+      "count": 17
     },
     {
       "genre": "animated_cinema",
@@ -71,32 +71,32 @@
       "count": 11
     },
     {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 150.0,
+      "top_topic": "Once Upon a Time in Harlem",
+      "count": 10
+    },
+    {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 179.6,
-      "top_topic": "Rillington Place",
-      "count": 11
+      "total_score": 105.0,
+      "top_topic": "In Joanna Natasegara",
+      "count": 7
+    },
+    {
+      "genre": "romance_teen_drama",
+      "label": "Romance, Heartbreak & Teen Series",
+      "total_score": 45.0,
+      "top_topic": "Pyre",
+      "count": 3
     },
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 129.7,
-      "top_topic": "Officially",
-      "count": 13
-    },
-    {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 60.0,
-      "top_topic": "Once Upon a Time in Harlem",
-      "count": 4
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 19.0,
-      "top_topic": "Track",
-      "count": 1
+      "total_score": 8.6,
+      "top_topic": "Looking",
+      "count": 3
     },
     {
       "genre": "crime_mafia",
@@ -106,8 +106,8 @@
       "count": 0
     },
     {
-      "genre": "romance_teen_drama",
-      "label": "Romance, Heartbreak & Teen Series",
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
@@ -132,13 +132,13 @@
       "reddit_hits": 3,
       "sources": [
         "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "THR"
       ],
       "headlines": [
         "‘Sunrise On The Reaping’ ($16M Tuesday/$70M+ DOM Thanksgiving 5-Day) To Gobble Up Thanksgiving; ‘Hexed’ $2M Tuesday Previews/$40M Or Below DOM/$75M+ WW Opening; ‘Focker-In-Law’ $45M DOM/$70M WW – Box Office Preview",
         "‘Hunger Games: Sunrise on the Reaping’ ($60-80M+) to Dominate Thanksgiving Box Office as ‘Focker In-Law’ ($45M), ‘Hexed’ ($45M) Join Fray - 'Hershey' and 'The Further Mis-Adventures of Cliff Booth' also head to the big screen for the five-day holiday weekend.",
         "TheFlatLannister: Strong previews walkups for Hexed at TC3. Will be well over 170% growth. Gross is identical to Hoppers so ~$2.2M previews or so...Still thinking $40M 5 day opening if walkups trend similar to today.",
-        "Thanksgiving Box Office: ‘Focker In-Law’ and Disney’s ‘Hexed’ Vie for No. 2 Behind ‘Sunrise on the Reaping’"
+        "‘Hunger Games: Sunrise on the Reaping’ to Dominate Thanksgiving Box Office as ‘Focker In-Law,’ ‘Hexed’ Join Fray"
       ]
     },
     {
@@ -147,10 +147,10 @@
       "subcategory": "thriller_plot_twist_commentary",
       "recommended_format": "scene_commentary",
       "query_suffix": "best scene shorts",
-      "score": 80.0,
+      "score": 67.87,
       "horizons": {
-        "3d": 100.0,
-        "7d": 100.0,
+        "3d": 79.3,
+        "7d": 87.2,
         "30d": 0.0,
         "1y": 0.0
       },
@@ -159,39 +159,12 @@
       "reddit_hits": 2,
       "sources": [
         "Reddit-7d(r/boxoffice)",
-        "Variety"
+        "THR"
       ],
       "headlines": [
         "‘Sunrise On The Reaping’ ($16M Tuesday/$70M+ DOM Thanksgiving 5-Day) To Gobble Up Thanksgiving; ‘Hexed’ $2M Tuesday Previews/$40M Or Below DOM/$75M+ WW Opening; ‘Focker-In-Law’ $45M DOM/$70M WW – Box Office Preview",
         "‘Hunger Games: Sunrise on the Reaping’ ($60-80M+) to Dominate Thanksgiving Box Office as ‘Focker In-Law’ ($45M), ‘Hexed’ ($45M) Join Fray - 'Hershey' and 'The Further Mis-Adventures of Cliff Booth' also head to the big screen for the five-day holiday weekend.",
-        "Thanksgiving Box Office: ‘Focker In-Law’ and Disney’s ‘Hexed’ Vie for No. 2 Behind ‘Sunrise on the Reaping’"
-      ]
-    },
-    {
-      "topic": "Sunrise On The Reaping",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 72.35,
-      "horizons": {
-        "3d": 76.8,
-        "7d": 72.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "NPR",
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
-      ],
-      "headlines": [
-        "‘Sunrise On The Reaping’ ($16M Tuesday/$70M+ DOM Thanksgiving 5-Day) To Gobble Up Thanksgiving; ‘Hexed’ $2M Tuesday Previews/$40M Or Below DOM/$75M+ WW Opening; ‘Focker-In-Law’ $45M DOM/$70M WW – Box Office Preview",
-        "'Sunrise on the Reaping' feels like sunset for the 'Hunger Games' franchise",
-        "Thanksgiving Box Office: ‘Focker In-Law’ and Disney’s ‘Hexed’ Vie for No. 2 Behind ‘Sunrise on the Reaping’"
+        "‘Focker-in-Law’ Filmmaker John Hamburg Talks Ariana Grande’s Comedic Timing and the Actor Who Made Ben Stiller Laugh Hardest on Set"
       ]
     },
     {
@@ -247,68 +220,15 @@
       ]
     },
     {
-      "topic": "Godzilla",
+      "topic": "Books",
       "genre": "superhero_scifi",
       "subcategory": "scifi_release_hype",
       "recommended_format": "release_hype",
       "query_suffix": "trailer edit shorts",
-      "score": 56.73,
+      "score": 48.11,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 33.7,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Aurora Sentinel",
-        "Crunchyroll",
-        "Entertainment Weekly",
-        "Reddit-30d(r/GODZILLA)"
-      ],
-      "headlines": [
-        "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance",
-        "Godzilla returns in special-effects glory in the latest movie with an anti-war message"
-      ]
-    },
-    {
-      "topic": "Godzilla Minus Zero",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 54.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 20.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "Catholic Review",
-        "Purdue Exponent",
-        "Vulture"
-      ],
-      "headlines": [
-        "\"Print jockey': 'Godzilla Minus Zero'",
-        "Movie Review: ‘Godzilla Minus Zero’"
-      ]
-    },
-    {
-      "topic": "Back",
-      "genre": "world_indian_cinema",
-      "subcategory": "global_cinema_hype",
-      "recommended_format": "release_hype",
-      "query_suffix": "trailer edit shorts",
-      "score": 47.44,
-      "horizons": {
-        "3d": 53.0,
-        "7d": 54.2,
+        "3d": 53.8,
+        "7d": 55.3,
         "30d": 0.0,
         "1y": 0.0
       },
@@ -317,36 +237,11 @@
       "reddit_hits": 1,
       "sources": [
         "Collider",
-        "Reddit-7d(r/bollywoodmemes)"
+        "Reddit-7d(r/scifi)"
       ],
       "headlines": [
-        "Back in the game 💸",
-        "Disney Officially Brings Back Captain Jack Sparrow for New ‘Pirates of the Caribbean’ in 2027"
-      ]
-    },
-    {
-      "topic": "Hershey",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 45.53,
-      "horizons": {
-        "3d": 50.5,
-        "7d": 51.1,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 1,
-      "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "Variety"
-      ],
-      "headlines": [
-        "‘Hunger Games: Sunrise on the Reaping’ ($60-80M+) to Dominate Thanksgiving Box Office as ‘Focker In-Law’ ($45M), ‘Hexed’ ($45M) Join Fray - 'Hershey' and 'The Further Mis-Adventures of Cliff Booth' also head to the big screen for the five-day holiday weekend.",
-        "‘Hershey’ Review: In a Sugary Sweet Biopic, Finn Wittrock Plays the Candy Man Who Turned Chocolate Into an American Empire"
+        "Books like Hail Mary?",
+        "10 Essential Cyberpunk Books That Aren’t ‘Neuromancer,’ Ranked"
       ]
     },
     {
@@ -375,198 +270,75 @@
       ]
     },
     {
-      "topic": "Hunger Games",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
+      "topic": "Lex Luthor",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "scene edit shorts",
+      "score": 33.06,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
+        "3d": 33.5,
+        "7d": 41.9,
+        "30d": 35.4,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 0,
+      "reddit_hits": 2,
       "sources": [
-        "NPR",
-        "The Hollywood Reporter"
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
       ],
       "headlines": [
-        "New ‘Hunger Games’ Movie on the Way? Lionsgate Film Chief Shares Latest on Franchise’s Future",
-        "'Sunrise on the Reaping' feels like sunset for the 'Hunger Games' franchise"
+        "Who’s your favorite Superman movie villain? Is it Lex Luthor, General Zod, Lex Luthor, General Zod, Lex Luthor, or Lex Luthor?"
       ]
     },
     {
-      "topic": "Lionsgate Film Chief Shares",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
+      "topic": "General Zod",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "scene edit shorts",
+      "score": 33.06,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
+        "3d": 33.5,
+        "7d": 41.9,
+        "30d": 35.4,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 0,
+      "reddit_hits": 2,
       "sources": [
-        "THR",
-        "The Hollywood Reporter"
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
       ],
       "headlines": [
-        "New ‘Hunger Games’ Movie on the Way? Lionsgate Film Chief Shares Latest on Franchise’s Future"
+        "Who’s your favorite Superman movie villain? Is it Lex Luthor, General Zod, Lex Luthor, General Zod, Lex Luthor, or Lex Luthor?"
       ]
     },
     {
-      "topic": "Latest on Franchise",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
+      "topic": "Superman",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "scene edit shorts",
+      "score": 33.06,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
+        "3d": 33.5,
+        "7d": 41.9,
+        "30d": 35.4,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 0,
+      "reddit_hits": 2,
       "sources": [
-        "THR",
-        "The Hollywood Reporter"
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)"
       ],
       "headlines": [
-        "New ‘Hunger Games’ Movie on the Way? Lionsgate Film Chief Shares Latest on Franchise’s Future"
-      ]
-    },
-    {
-      "topic": "Home Alone",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "The Guardian",
-        "Variety"
-      ],
-      "headlines": [
-        "‘Home Alone’ Director Chris Columbus Said Minutes Before New Sequel Was Announced That Another Movie ‘Can’t Happen’ After Catherine O’Hara’s Death",
-        "Home Alone sequel reportedly in development with Macaulay Culkin returning"
-      ]
-    },
-    {
-      "topic": "Ramayana",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 40.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "NDTV",
-        "The Times of India"
-      ],
-      "headlines": [
-        "'Ramayana' box office collection day 20: The Ranbir Kapoor, Yash, Sai Pallavi film inches towards Rs 1000",
-        "Ramayana Box Office Collection Day 15: Film To Become Second Fastest To Enter Rs 650 Crore Hindi Net Club"
-      ]
-    },
-    {
-      "topic": "Ranked",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 34.0,
-      "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 20.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "Collider"
-      ],
-      "headlines": [
-        "10 Must-Watch Movies from 2026 So Far, Ranked",
-        "The 15 Most Iconic Christmas Movie Villains, Ranked"
-      ]
-    },
-    {
-      "topic": "Thanksgiving",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 33.0,
-      "horizons": {
-        "3d": 24.0,
-        "7d": 18.0,
-        "30d": 40.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "FOX 10 Phoenix",
-        "TheGrio"
-      ],
-      "headlines": [
-        "Wanda Dench and Jamal Hinton's viral Thanksgiving text friendship is becoming a Lifetime movie"
-      ]
-    },
-    {
-      "topic": "Lifetime",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "fight scene edit shorts",
-      "score": 33.0,
-      "horizons": {
-        "3d": 24.0,
-        "7d": 18.0,
-        "30d": 40.0,
-        "1y": 0.0
-      },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 0,
-      "sources": [
-        "FOX 10 Phoenix",
-        "TheGrio"
-      ],
-      "headlines": [
-        "Wanda Dench and Jamal Hinton's viral Thanksgiving text friendship is becoming a Lifetime movie"
+        "Who’s your favorite Superman movie villain? Is it Lex Luthor, General Zod, Lex Luthor, General Zod, Lex Luthor, or Lex Luthor?"
       ]
     },
     {
@@ -616,6 +388,221 @@
       "headlines": [
         "Are you more of a Woo Dude or a Mann's Man?"
       ]
+    },
+    {
+      "topic": "Avengers: Doomsday",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "recommended_format": "release_hype",
+      "query_suffix": "trailer edit shorts",
+      "score": 30.0,
+      "horizons": {
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "Deadline"
+      ],
+      "headlines": [
+        "Marvel Plans Patrick Stewart Tribute In ‘Avengers: Doomsday’ As Anthony Russo Recalls Actor’s Last Day Of Filming: “He Was Struggling With His Health”",
+        "‘X-Men’s James Marsden On Cyclops Leading In ‘Avengers: Doomsday’ After Taking “Back Seat To Wolverine”: “It Was Important That My Return Felt Meaningful”"
+      ]
+    },
+    {
+      "topic": "Executive Producer",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 30.0,
+      "horizons": {
+        "3d": 48.0,
+        "7d": 36.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 0,
+      "sources": [
+        "THR"
+      ],
+      "headlines": [
+        "Damian Lewis Boards Short Film ‘Odessa’ as Executive Producer (Exclusive)",
+        "Jason Segel Boards ‘Meeting Your Maker,’ Short About a Suicidal TV Puppet, as Executive Producer (Exclusive)"
+      ]
+    },
+    {
+      "topic": "Street",
+      "genre": "animated_cinema",
+      "subcategory": "animated_upcoming_hype",
+      "recommended_format": "release_hype",
+      "query_suffix": "trailer edit shorts",
+      "score": 29.76,
+      "horizons": {
+        "3d": 38.4,
+        "7d": 48.0,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 1,
+      "sources": [
+        "Reddit-7d(r/MovieDetails)"
+      ],
+      "headlines": [
+        "In “The End of Oak Street” (2026) there’s a yellow school bus shown to be cut in half right where the edge of the portal was that transported the neighborhood back in time. Which is weird because it happened at 11 pm in the middle of summer break."
+      ]
+    },
+    {
+      "topic": "Salma Hayek",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "best scene shorts",
+      "score": 29.7,
+      "horizons": {
+        "3d": 30.1,
+        "7d": 37.6,
+        "30d": 31.8,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-7d(r/ActionMovies)"
+      ],
+      "headlines": [
+        "Salma Hayek in \"The Hitman's Bodyguard\" (2017)"
+      ]
+    },
+    {
+      "topic": "Hitman",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "best scene shorts",
+      "score": 29.7,
+      "horizons": {
+        "3d": 30.1,
+        "7d": 37.6,
+        "30d": 31.8,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-7d(r/ActionMovies)"
+      ],
+      "headlines": [
+        "Salma Hayek in \"The Hitman's Bodyguard\" (2017)"
+      ]
+    },
+    {
+      "topic": "Bodyguard",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "best scene shorts",
+      "score": 29.7,
+      "horizons": {
+        "3d": 30.1,
+        "7d": 37.6,
+        "30d": 31.8,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-7d(r/ActionMovies)"
+      ],
+      "headlines": [
+        "Salma Hayek in \"The Hitman's Bodyguard\" (2017)"
+      ]
+    },
+    {
+      "topic": "Albert Pyun",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "best scene shorts",
+      "score": 28.05,
+      "horizons": {
+        "3d": 28.4,
+        "7d": 35.5,
+        "30d": 30.1,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-7d(r/ActionMovies)"
+      ],
+      "headlines": [
+        "Nemesis (1992) Directed by Albert Pyun"
+      ]
+    },
+    {
+      "topic": "Nemesis",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "best scene shorts",
+      "score": 28.05,
+      "horizons": {
+        "3d": 28.4,
+        "7d": 35.5,
+        "30d": 30.1,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-7d(r/ActionMovies)"
+      ],
+      "headlines": [
+        "Nemesis (1992) Directed by Albert Pyun"
+      ]
+    },
+    {
+      "topic": "Directed",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "recommended_format": "scene_commentary",
+      "query_suffix": "best scene shorts",
+      "score": 28.05,
+      "horizons": {
+        "3d": 28.4,
+        "7d": 35.5,
+        "30d": 30.1,
+        "1y": 0.0
+      },
+      "yt_views": 0,
+      "yt_hits": 0,
+      "reddit_hits": 2,
+      "sources": [
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-7d(r/ActionMovies)"
+      ],
+      "headlines": [
+        "Nemesis (1992) Directed by Albert Pyun"
+      ]
     }
   ],
   "top_yt_week": [],
@@ -640,6 +627,15 @@
       "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y3rox7/so_apt/"
     },
     {
+      "sub": "marvelmemes",
+      "title": "Fck you steve",
+      "score": 1426,
+      "comments": 58,
+      "engagement": 1600,
+      "days": 7,
+      "url": "https://www.reddit.com/r/marvelmemes/comments/1y4zivz/fck_you_steve/"
+    },
+    {
       "sub": "bollywoodmemes",
       "title": "Jensen Huang meeting with female employee after rejoining Nivida",
       "score": 999,
@@ -649,22 +645,49 @@
       "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y44j1b/jensen_huang_meeting_with_female_employee_after/"
     },
     {
+      "sub": "bollywoodmemes",
+      "title": "Yeh kya dekh liya 💀",
+      "score": 881,
+      "comments": 23,
+      "engagement": 950,
+      "days": 7,
+      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y52r5r/yeh_kya_dekh_liya/"
+    },
+    {
       "sub": "scifi",
       "title": "This quote sums up the entire tragic dynamic between Hari Seldon and Gaal Dornick in Foundation",
-      "score": 519,
-      "comments": 68,
-      "engagement": 723,
+      "score": 614,
+      "comments": 77,
+      "engagement": 845,
       "days": 7,
       "url": "https://www.reddit.com/r/scifi/comments/1y4aaqp/this_quote_sums_up_the_entire_tragic_dynamic/"
     },
     {
       "sub": "marvelmemes",
-      "title": "Fck you steve",
-      "score": 416,
-      "comments": 25,
-      "engagement": 491,
+      "title": "Let that sink in",
+      "score": 579,
+      "comments": 42,
+      "engagement": 705,
       "days": 7,
-      "url": "https://www.reddit.com/r/marvelmemes/comments/1y4zivz/fck_you_steve/"
+      "url": "https://www.reddit.com/r/marvelmemes/comments/1y51ud1/let_that_sink_in/"
+    },
+    {
+      "sub": "DC_Cinematic",
+      "title": "Who’s your favorite Superman movie villain? Is it Lex Luthor, General Zod, Lex Luthor, General Zod, Lex Luthor, or Lex Luthor?",
+      "score": 286,
+      "comments": 114,
+      "engagement": 628,
+      "days": 7,
+      "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y4tiru/whos_your_favorite_superman_movie_villain_is_it/"
+    },
+    {
+      "sub": "Fantasy",
+      "title": "Fantasy with great prose?",
+      "score": 81,
+      "comments": 137,
+      "engagement": 492,
+      "days": 7,
+      "url": "https://www.reddit.com/r/Fantasy/comments/1y4zinm/fantasy_with_great_prose/"
     },
     {
       "sub": "ActionMovies",
@@ -674,42 +697,6 @@
       "engagement": 486,
       "days": 7,
       "url": "https://www.reddit.com/r/ActionMovies/comments/1y4pfw6/are_you_more_of_a_woo_dude_or_a_manns_man/"
-    },
-    {
-      "sub": "bollywoodmemes",
-      "title": "Om Raut is truly a visionary and a genius. Now even Marvel is copying Adipurush for Avengers Doomsday. They even copied the VFX and CGI  🥀",
-      "score": 394,
-      "comments": 22,
-      "engagement": 460,
-      "days": 7,
-      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y46p7s/om_raut_is_truly_a_visionary_and_a_genius_now/"
-    },
-    {
-      "sub": "scifi",
-      "title": "Anyone else think The Expanse was mid at best?",
-      "score": 0,
-      "comments": 124,
-      "engagement": 372,
-      "days": 7,
-      "url": "https://www.reddit.com/r/scifi/comments/1y4jpje/anyone_else_think_the_expanse_was_mid_at_best/"
-    },
-    {
-      "sub": "MovieDetails",
-      "title": "Short Circuit 2 (1988) Number 5 confesses that he was naive, gullible, schlemiel. He’s talking to Bob McKeon, who played Lenny on Laverne and Shirley. The theme song included the phrase:     Schlemiel! Schlimazel! Hasenpfeffer Incorporated!",
-      "score": 257,
-      "comments": 34,
-      "engagement": 359,
-      "days": 7,
-      "url": "https://www.reddit.com/r/MovieDetails/comments/1y4540i/short_circuit_2_1988_number_5_confesses_that_he/"
-    },
-    {
-      "sub": "ActionMovies",
-      "title": "Salma Hayek in \"The Hitman's Bodyguard\" (2017)",
-      "score": 302,
-      "comments": 8,
-      "engagement": 326,
-      "days": 7,
-      "url": "https://www.reddit.com/r/ActionMovies/comments/1y3qm04/salma_hayek_in_the_hitmans_bodyguard_2017/"
     }
   ]
 }
