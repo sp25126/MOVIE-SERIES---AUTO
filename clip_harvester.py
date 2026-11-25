@@ -74,7 +74,6 @@ def _save_history(ids: set[str]):
 CID_DESC_TERMS = (
     "licensed to youtube by", "provided to youtube by", "music in this video",
     "universal music", "warner music", "sony music", "umg", "wmg", "sme",
-    "song -", "song:", "song used:", "music used:", "track:",
 )
 YT_HTML_CID_MARKERS = (
     "videoDescriptionMusicSectionRenderer",
