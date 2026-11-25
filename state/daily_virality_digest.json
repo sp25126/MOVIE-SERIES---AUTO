@@ -1,11 +1,11 @@
 {
-  "scan_time_utc": "2026-11-25T10:40:35Z",
+  "scan_time_utc": "2026-11-25T14:37:26Z",
   "categories": {
     "cinema": {
       "status": "success",
       "lead_winner": "Godzilla",
       "lead_genre": "action_thriller",
-      "lead_score": 81.18,
+      "lead_score": 97.3,
       "top_candidates": [
         {
           "topic": "Godzilla",
@@ -13,50 +13,33 @@
           "subcategory": "action_fight_ranking",
           "recommended_format": "edit_ranking",
           "query_suffix": "fight scene edit shorts",
-          "score": 81.18,
+          "score": 97.3,
           "horizons": {
-            "3d": 84.5,
+            "3d": 100.0,
             "7d": 100.0,
-            "30d": 36.8,
+            "30d": 36.5,
             "1y": 0.0
           },
-          "yt_views": 362556,
-          "yt_hits": 2,
-          "reddit_hits": 2,
+          "yt_views": 5479474,
+          "yt_hits": 4,
+          "reddit_hits": 1,
           "sources": [
-            "Reddit-30d(r/GODZILLA)",
+            "Aurora Sentinel",
+            "Crunchyroll",
+            "Reddit-30d(r/Monsterverse)",
             "YT-Week"
           ],
-          "headlines": []
+          "headlines": [
+            "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance",
+            "Godzilla returns in special-effects glory in the latest movie with an anti-war message"
+          ]
         },
         {
-          "topic": "King",
-          "genre": "action_thriller",
-          "subcategory": "action_fight_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "fight scene edit shorts",
-          "score": 81.0,
-          "horizons": {
-            "3d": 97.5,
-            "7d": 100.0,
-            "30d": 60.0,
-            "1y": 0.0
-          },
-          "yt_views": 7207629,
-          "yt_hits": 3,
-          "reddit_hits": 0,
-          "sources": [
-            "YT-Month",
-            "YT-Week"
-          ],
-          "headlines": []
-        },
-        {
-          "topic": "Hexed",
-          "genre": "action_thriller",
-          "subcategory": "thriller_plot_twist_commentary",
+          "topic": "Avengers",
+          "genre": "superhero_scifi",
+          "subcategory": "superhero_spoiler_commentary",
           "recommended_format": "scene_commentary",
-          "query_suffix": "best scene shorts",
+          "query_suffix": "scene edit shorts",
           "score": 80.0,
           "horizons": {
             "3d": 100.0,
@@ -66,112 +49,43 @@
           },
           "yt_views": 0,
           "yt_hits": 0,
-          "reddit_hits": 3,
-          "sources": [
-            "Reddit-7d(r/boxoffice)",
-            "THR"
-          ],
-          "headlines": [
-            "‘Sunrise On The Reaping’ ($16M Tuesday/$70M+ DOM Thanksgiving 5-Day) To Gobble Up Thanksgiving; ‘Hexed’ $2M Tuesday Previews/$40M Or Below DOM/$75M+ WW Opening; ‘Focker-In-Law’ $45M DOM/$70M WW – Box Office Preview",
-            "‘Hunger Games: Sunrise on the Reaping’ ($60-80M+) to Dominate Thanksgiving Box Office as ‘Focker In-Law’ ($45M), ‘Hexed’ ($45M) Join Fray - 'Hershey' and 'The Further Mis-Adventures of Cliff Booth' also head to the big screen for the five-day holiday weekend.",
-            "TheFlatLannister: Strong previews walkups for Hexed at TC3. Will be well over 170% growth. Gross is identical to Hoppers so ~$2.2M previews or so...Still thinking $40M 5 day opening if walkups trend similar to today.",
-            "‘Hunger Games: Sunrise on the Reaping’ to Dominate Thanksgiving Box Office as ‘Focker In-Law,’ ‘Hexed’ Join Fray"
-          ]
-        },
-        {
-          "topic": "Battleship",
-          "genre": "war_historical",
-          "subcategory": "war_epic_battle_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "battle scene edit shorts",
-          "score": 69.0,
-          "horizons": {
-            "3d": 97.5,
-            "7d": 100.0,
-            "30d": 0.0,
-            "1y": 0.0
-          },
-          "yt_views": 138430455,
-          "yt_hits": 2,
-          "reddit_hits": 0,
-          "sources": [
-            "YT-Week"
-          ],
-          "headlines": []
-        },
-        {
-          "topic": "Focker-In-Law",
-          "genre": "action_thriller",
-          "subcategory": "thriller_plot_twist_commentary",
-          "recommended_format": "scene_commentary",
-          "query_suffix": "best scene shorts",
-          "score": 67.87,
-          "horizons": {
-            "3d": 79.3,
-            "7d": 87.2,
-            "30d": 0.0,
-            "1y": 0.0
-          },
-          "yt_views": 0,
-          "yt_hits": 0,
           "reddit_hits": 2,
-          "sources": [
-            "Reddit-7d(r/boxoffice)",
-            "THR"
-          ],
-          "headlines": [
-            "‘Sunrise On The Reaping’ ($16M Tuesday/$70M+ DOM Thanksgiving 5-Day) To Gobble Up Thanksgiving; ‘Hexed’ $2M Tuesday Previews/$40M Or Below DOM/$75M+ WW Opening; ‘Focker-In-Law’ $45M DOM/$70M WW – Box Office Preview",
-            "‘Hunger Games: Sunrise on the Reaping’ ($60-80M+) to Dominate Thanksgiving Box Office as ‘Focker In-Law’ ($45M), ‘Hexed’ ($45M) Join Fray - 'Hershey' and 'The Further Mis-Adventures of Cliff Booth' also head to the big screen for the five-day holiday weekend.",
-            "‘Focker-in-Law’ Filmmaker John Hamburg Talks Ariana Grande’s Comedic Timing and the Actor Who Made Ben Stiller Laugh Hardest on Set"
-          ]
-        },
-        {
-          "topic": "Ghidorah",
-          "genre": "action_thriller",
-          "subcategory": "action_fight_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "fight scene edit shorts",
-          "score": 65.21,
-          "horizons": {
-            "3d": 48.8,
-            "7d": 65.0,
-            "30d": 81.1,
-            "1y": 0.0
-          },
-          "yt_views": 6246670,
-          "yt_hits": 2,
-          "reddit_hits": 1,
-          "sources": [
-            "Reddit-30d(r/Monsterverse)",
-            "YT-Month",
-            "YT-Week"
-          ],
-          "headlines": []
-        },
-        {
-          "topic": "Avengers",
-          "genre": "superhero_scifi",
-          "subcategory": "scifi_release_hype",
-          "recommended_format": "release_hype",
-          "query_suffix": "trailer edit shorts",
-          "score": 59.89,
-          "horizons": {
-            "3d": 73.7,
-            "7d": 68.1,
-            "30d": 0.0,
-            "1y": 0.0
-          },
-          "yt_views": 0,
-          "yt_hits": 0,
-          "reddit_hits": 1,
           "sources": [
             "JoBlo",
             "Reddit-7d(r/boxoffice)"
           ],
           "headlines": [
             "Avengers Doomsday Box Office: Marvel pic storms past Rs. 50 Cr advance in India with 22 days to release. Avengers: Doomsday is poised to rewrite the record books, resetting virtually every opening record there is for Hollywood in India.",
+            "Avengers: Doomsday Opening Weekend (Worldwide) Vibe Check - Post-Trailer - 21 Days Out",
             "Avengers: Doomsday final trailer racks up 563M views to become Disney’s biggest ever",
             "Patrick Stewart seemed to know Avengers: Doomsday would be his last film, recalls Kevin Feige"
+          ]
+        },
+        {
+          "topic": "Hexed",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 70.3,
+          "horizons": {
+            "3d": 74.2,
+            "7d": 68.7,
+            "30d": 0.0,
+            "1y": 0.0
+          },
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 1,
+          "sources": [
+            "Reddit-7d(r/boxoffice)",
+            "THR",
+            "Variety"
+          ],
+          "headlines": [
+            "TheFlatLannister: Strong previews walkups for Hexed at TC3. Will be well over 170% growth. Gross is identical to Hoppers so ~$2.2M previews or so...Still thinking $40M 5 day opening if walkups trend similar to today.",
+            "Thanksgiving Box Office: ‘Focker In-Law’ and Disney’s ‘Hexed’ Vie for No. 2 Behind ‘Sunrise on the Reaping’",
+            "‘Hunger Games: Sunrise on the Reaping’ to Dominate Thanksgiving Box Office as ‘Focker In-Law,’ ‘Hexed’ Join Fray"
           ]
         },
         {
@@ -180,10 +94,10 @@
           "subcategory": "scifi_release_hype",
           "recommended_format": "release_hype",
           "query_suffix": "trailer edit shorts",
-          "score": 59.89,
+          "score": 61.68,
           "horizons": {
-            "3d": 73.7,
-            "7d": 68.1,
+            "3d": 76.0,
+            "7d": 71.0,
             "30d": 0.0,
             "1y": 0.0
           },
@@ -201,33 +115,77 @@
           ]
         },
         {
-          "topic": "Last",
+          "topic": "Ramayana",
           "genre": "action_thriller",
-          "subcategory": "thriller_plot_twist_commentary",
-          "recommended_format": "scene_commentary",
-          "query_suffix": "best scene shorts",
-          "score": 52.72,
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 54.0,
           "horizons": {
-            "3d": 52.1,
-            "7d": 53.1,
-            "30d": 29.7,
+            "3d": 48.0,
+            "7d": 36.0,
+            "30d": 20.0,
             "1y": 0.0
           },
           "yt_views": 0,
           "yt_hits": 0,
-          "reddit_hits": 2,
+          "reddit_hits": 0,
           "sources": [
-            "Collider",
-            "Reddit-30d(r/ActionMovies)",
-            "Reddit-7d(r/ActionMovies)"
+            "Deadline",
+            "NDTV",
+            "The Times of India"
           ],
           "headlines": [
-            "Anyone else enjoy The Last Stand (2013)?",
-            "10 Best Thriller Books of the Last 10 Years, Ranked"
+            "Ramayana Box Office Collection Day 17: Ranbir Kapoor's Film Crosses Rs 1,600 Crore Worldwide, Eyes Rs 1,700 Crore Mark",
+            "'Ramayana' box office collection day 20: The Ranbir Kapoor, Yash, Sai Pallavi film inches towards Rs 1000"
           ]
         },
         {
-          "topic": "Destroys",
+          "topic": "Online Premiere",
+          "genre": "horror_mystery",
+          "subcategory": "horror_scariest_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "scary scene edit shorts",
+          "score": 51.0,
+          "horizons": {
+            "3d": 48.8,
+            "7d": 65.0,
+            "30d": 60.0,
+            "1y": 0.0
+          },
+          "yt_views": 6236254,
+          "yt_hits": 2,
+          "reddit_hits": 0,
+          "sources": [
+            "YT-Month",
+            "YT-Week"
+          ],
+          "headlines": []
+        },
+        {
+          "topic": "There",
+          "genre": "horror_mystery",
+          "subcategory": "horror_scariest_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "scary scene edit shorts",
+          "score": 51.0,
+          "horizons": {
+            "3d": 48.8,
+            "7d": 65.0,
+            "30d": 60.0,
+            "1y": 0.0
+          },
+          "yt_views": 6236254,
+          "yt_hits": 2,
+          "reddit_hits": 0,
+          "sources": [
+            "YT-Month",
+            "YT-Week"
+          ],
+          "headlines": []
+        },
+        {
+          "topic": "Shagird",
           "genre": "action_thriller",
           "subcategory": "action_fight_ranking",
           "recommended_format": "edit_ranking",
@@ -239,7 +197,51 @@
             "30d": 60.0,
             "1y": 0.0
           },
-          "yt_views": 6246670,
+          "yt_views": 5332366,
+          "yt_hits": 2,
+          "reddit_hits": 0,
+          "sources": [
+            "YT-Month",
+            "YT-Week"
+          ],
+          "headlines": []
+        },
+        {
+          "topic": "Nana",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 51.0,
+          "horizons": {
+            "3d": 48.8,
+            "7d": 65.0,
+            "30d": 60.0,
+            "1y": 0.0
+          },
+          "yt_views": 5332366,
+          "yt_hits": 2,
+          "reddit_hits": 0,
+          "sources": [
+            "YT-Month",
+            "YT-Week"
+          ],
+          "headlines": []
+        },
+        {
+          "topic": "Patekar",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 51.0,
+          "horizons": {
+            "3d": 48.8,
+            "7d": 65.0,
+            "30d": 60.0,
+            "1y": 0.0
+          },
+          "yt_views": 5332366,
           "yt_hits": 2,
           "reddit_hits": 0,
           "sources": [
@@ -253,86 +255,86 @@
         {
           "genre": "action_thriller",
           "label": "Action, Spy & Crime Thriller",
-          "total_score": 3341.6,
+          "total_score": 3839.8,
           "top_topic": "Godzilla",
-          "count": 147
+          "count": 190
         },
         {
           "genre": "superhero_scifi",
           "label": "Superhero & Sci-Fi",
-          "total_score": 1202.9,
+          "total_score": 1358.4,
           "top_topic": "Avengers",
-          "count": 57
+          "count": 62
         },
         {
           "genre": "world_indian_cinema",
           "label": "Indian Cinema, K-Drama & Global Hits",
-          "total_score": 568.3,
-          "top_topic": "Back",
-          "count": 27
+          "total_score": 769.5,
+          "top_topic": "Big Mouth",
+          "count": 42
         },
         {
           "genre": "drama_prestige",
           "label": "Prestige Drama & Biopics",
-          "total_score": 513.0,
-          "top_topic": "Lines",
-          "count": 23
-        },
-        {
-          "genre": "animated_cinema",
-          "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-          "total_score": 483.9,
-          "top_topic": "Kung Fu Panda",
-          "count": 18
-        },
-        {
-          "genre": "war_historical",
-          "label": "War Epics, Battles & Historical Biopics",
-          "total_score": 472.8,
-          "top_topic": "Battleship",
-          "count": 14
-        },
-        {
-          "genre": "sports_underdog",
-          "label": "Sports Movies, Boxing, Racing & Comebacks",
-          "total_score": 408.7,
-          "top_topic": "Anger",
-          "count": 11
-        },
-        {
-          "genre": "horror_mystery",
-          "label": "Horror & Psychological Mystery",
-          "total_score": 364.4,
-          "top_topic": "Closer",
-          "count": 16
+          "total_score": 723.9,
+          "top_topic": "I Am the Danger",
+          "count": 27
         },
         {
           "genre": "comedy_sitcom",
           "label": "Comedy, Sitcoms & Cast Memes",
-          "total_score": 293.2,
-          "top_topic": "Does Columbo",
-          "count": 17
+          "total_score": 655.4,
+          "top_topic": "Arrested Development",
+          "count": 31
         },
         {
-          "genre": "fantasy_mythology",
-          "label": "Epic Fantasy, Historical & Mythology",
-          "total_score": 84.7,
-          "top_topic": "Officially",
-          "count": 10
+          "genre": "war_historical",
+          "label": "War Epics, Battles & Historical Biopics",
+          "total_score": 568.8,
+          "top_topic": "Directors Cut",
+          "count": 16
+        },
+        {
+          "genre": "animated_cinema",
+          "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+          "total_score": 518.1,
+          "top_topic": "Kung Fu Panda",
+          "count": 20
+        },
+        {
+          "genre": "sports_underdog",
+          "label": "Sports Movies, Boxing, Racing & Comebacks",
+          "total_score": 427.7,
+          "top_topic": "Tom Brady",
+          "count": 12
         },
         {
           "genre": "crime_mafia",
           "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-          "total_score": 0.0,
-          "top_topic": "",
-          "count": 0
+          "total_score": 387.6,
+          "top_topic": "Mob Boss Rates",
+          "count": 10
+        },
+        {
+          "genre": "horror_mystery",
+          "label": "Horror & Psychological Mystery",
+          "total_score": 305.7,
+          "top_topic": "Online Premiere",
+          "count": 12
+        },
+        {
+          "genre": "fantasy_mythology",
+          "label": "Epic Fantasy, Historical & Mythology",
+          "total_score": 294.4,
+          "top_topic": "Ancalagon the Black",
+          "count": 20
         },
         {
           "genre": "romance_teen_drama",
           "label": "Romance, Heartbreak & Teen Series",
-          "total_score": 0.0,
-          "top_topic": "",
-          "count": 0
+          "total_score": 198.0,
+          "top_topic": "Ajin",
+          "count": 10
         }
       ]
     },

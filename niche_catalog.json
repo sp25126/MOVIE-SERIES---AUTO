@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-25T11:48:37Z",
+  "last_3day_sync_utc": "2026-11-25T16:03:49Z",
   "recent_topics": [
     "Mr Darcy",
     "Drive to Survive",
@@ -28,72 +28,79 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 1863.7,
-      "top_topic": "Hexed",
-      "count": 103
+      "total_score": 2718.0,
+      "top_topic": "Hunger Games",
+      "count": 174
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 956.9,
+      "total_score": 1030.8,
       "top_topic": "Avengers",
-      "count": 57
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 360.3,
-      "top_topic": "Jensen Huang",
-      "count": 23
+      "count": 48
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 301.8,
-      "top_topic": "Does Columbo",
-      "count": 16
+      "total_score": 648.9,
+      "top_topic": "Watching",
+      "count": 28
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 262.1,
-      "top_topic": "Directors",
-      "count": 17
+      "total_score": 312.4,
+      "top_topic": "DWTS",
+      "count": 19
     },
     {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 229.9,
-      "top_topic": "Street",
-      "count": 11
-    },
-    {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 150.0,
-      "top_topic": "Once Upon a Time in Harlem",
-      "count": 10
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 289.0,
+      "top_topic": "January",
+      "count": 14
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 105.0,
-      "top_topic": "In Joanna Natasegara",
-      "count": 7
+      "total_score": 278.0,
+      "top_topic": "Damian",
+      "count": 15
     },
     {
-      "genre": "romance_teen_drama",
-      "label": "Romance, Heartbreak & Teen Series",
-      "total_score": 45.0,
-      "top_topic": "Pyre",
-      "count": 3
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 266.2,
+      "top_topic": "Street",
+      "count": 13
     },
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 8.6,
-      "top_topic": "Looking",
-      "count": 3
+      "total_score": 232.3,
+      "top_topic": "Everlasting",
+      "count": 18
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 153.0,
+      "top_topic": "Legend",
+      "count": 9
+    },
+    {
+      "genre": "romance_teen_drama",
+      "label": "Romance, Heartbreak & Teen Series",
+      "total_score": 60.0,
+      "top_topic": "Picture Book",
+      "count": 4
+    },
+    {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 30.0,
+      "top_topic": "TSRStaff ST",
+      "count": 2
     },
     {
       "genre": "crime_mafia",
@@ -101,47 +108,53 @@
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
     }
   ],
   "live_3day_top_topics": [
     {
-      "topic": "Hexed",
-      "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
+      "topic": "Avengers",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
       "format": "scene_commentary",
       "score": 80.0,
       "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "THR"
+        "JoBlo",
+        "Reddit-7d(r/boxoffice)"
       ]
     },
     {
-      "topic": "Focker-In-Law",
-      "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
-      "format": "scene_commentary",
-      "score": 67.87,
-      "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "THR"
-      ]
-    },
-    {
-      "topic": "Avengers",
+      "topic": "Godzilla Minus Zero",
       "genre": "superhero_scifi",
       "subcategory": "scifi_release_hype",
       "format": "release_hype",
-      "score": 59.89,
+      "score": 54.0,
       "sources": [
-        "JoBlo",
-        "Reddit-7d(r/boxoffice)"
+        "Bloody Disgusting",
+        "Purdue Exponent",
+        "Vulture"
+      ]
+    },
+    {
+      "topic": "Watching",
+      "genre": "comedy_sitcom",
+      "subcategory": "sitcom_viral_scene",
+      "format": "scene_commentary",
+      "score": 49.4,
+      "sources": [
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)",
+        "Reddit-7d(r/television)"
+      ]
+    },
+    {
+      "topic": "Damian",
+      "genre": "horror_mystery",
+      "subcategory": "horror_new_release_hype",
+      "format": "release_hype",
+      "score": 46.95,
+      "sources": [
+        "Reddit-7d(r/horror)",
+        "THR"
       ]
     },
     {
@@ -149,128 +162,122 @@
       "genre": "superhero_scifi",
       "subcategory": "scifi_release_hype",
       "format": "release_hype",
-      "score": 59.89,
+      "score": 46.68,
       "sources": [
         "JoBlo",
         "Reddit-7d(r/boxoffice)"
       ]
     },
     {
-      "topic": "Books",
+      "topic": "January",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 46.65,
+      "sources": [
+        "Deadline",
+        "Reddit-30d(r/KDRAMA)",
+        "Reddit-7d(r/KDRAMA)"
+      ]
+    },
+    {
+      "topic": "Godzilla",
       "genre": "superhero_scifi",
       "subcategory": "scifi_release_hype",
       "format": "release_hype",
-      "score": 48.11,
+      "score": 46.3,
       "sources": [
         "Collider",
+        "Crunchyroll",
+        "Entertainment Weekly",
+        "Reddit-30d(r/Monsterverse)"
+      ]
+    },
+    {
+      "topic": "Expanse",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 40.62,
+      "sources": [
         "Reddit-7d(r/scifi)"
       ]
     },
     {
-      "topic": "Hunger Games: Sunrise",
+      "topic": "Hunger Games",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 45.53,
+      "score": 40.0,
       "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "THR"
+        "THR",
+        "The Hollywood Reporter"
       ]
     },
     {
-      "topic": "Lex Luthor",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 33.06,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ]
-    },
-    {
-      "topic": "General Zod",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 33.06,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ]
-    },
-    {
-      "topic": "Superman",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "format": "scene_commentary",
-      "score": 33.06,
-      "sources": [
-        "Reddit-30d(r/DC_Cinematic)",
-        "Reddit-7d(r/DC_Cinematic)"
-      ]
-    },
-    {
-      "topic": "Woo Dude",
-      "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
-      "format": "scene_commentary",
-      "score": 31.75,
-      "sources": [
-        "Reddit-30d(r/ActionMovies)",
-        "Reddit-7d(r/ActionMovies)"
-      ]
-    },
-    {
-      "topic": "Mann",
-      "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
-      "format": "scene_commentary",
-      "score": 31.75,
-      "sources": [
-        "Reddit-30d(r/ActionMovies)",
-        "Reddit-7d(r/ActionMovies)"
-      ]
-    },
-    {
-      "topic": "Avengers: Doomsday",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 30.0,
-      "sources": [
-        "Deadline"
-      ]
-    },
-    {
-      "topic": "Executive Producer",
+      "topic": "Home Alone",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 30.0,
+      "score": 40.0,
       "sources": [
-        "THR"
+        "The Guardian",
+        "Variety"
       ]
     },
     {
-      "topic": "Street",
-      "genre": "animated_cinema",
-      "subcategory": "animated_upcoming_hype",
+      "topic": "Focker In-Law",
+      "genre": "comedy_sitcom",
+      "subcategory": "cast_fandom_memes",
       "format": "release_hype",
-      "score": 29.76,
+      "score": 40.0,
       "sources": [
-        "Reddit-7d(r/MovieDetails)"
+        "IndieWire",
+        "Variety"
       ]
     },
     {
-      "topic": "Salma Hayek",
-      "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
-      "format": "scene_commentary",
-      "score": 29.7,
+      "topic": "Focker In",
+      "genre": "comedy_sitcom",
+      "subcategory": "cast_fandom_memes",
+      "format": "release_hype",
+      "score": 40.0,
       "sources": [
-        "Reddit-30d(r/ActionMovies)",
-        "Reddit-7d(r/ActionMovies)"
+        "IndieWire",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "Hexed",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 40.0,
+      "sources": [
+        "THR",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "DWTS",
+      "genre": "drama_prestige",
+      "subcategory": "coldest_drama_edits",
+      "format": "edit_ranking",
+      "score": 40.0,
+      "sources": [
+        "ABC News - Breaking News, Latest News and Videos",
+        "Modern Ghana"
+      ]
+    },
+    {
+      "topic": "Ramayana",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 40.0,
+      "sources": [
+        "NDTV",
+        "The Times of India"
       ]
     }
   ],
