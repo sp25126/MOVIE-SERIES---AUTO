@@ -1,1 +1,2 @@
-Triggered at 2026-11-25T09:28:31Z
+Triggered at 2026-11-25T10:39:30Z - Harvester probe & filter fix deployed.
+
