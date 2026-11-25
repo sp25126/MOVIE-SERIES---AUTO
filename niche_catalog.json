@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-24T16:42:44Z",
+  "last_3day_sync_utc": "2026-11-25T10:13:10Z",
   "recent_topics": [
     "Mr Darcy",
     "Drive to Survive",
@@ -28,65 +28,72 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 2937.4,
-      "top_topic": "Last",
-      "count": 193
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 779.4,
-      "top_topic": "Disguise",
-      "count": 40
+      "total_score": 3105.1,
+      "top_topic": "Hexed",
+      "count": 187
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 664.7,
-      "top_topic": "Godzilla Minus Zero",
-      "count": 35
+      "total_score": 926.9,
+      "top_topic": "Avengers",
+      "count": 66
     },
     {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 425.7,
-      "top_topic": "In Spider",
-      "count": 20
-    },
-    {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 334.0,
-      "top_topic": "Gonna Make",
-      "count": 23
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 426.2,
+      "top_topic": "Back",
+      "count": 25
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 226.1,
-      "top_topic": "Gotta",
-      "count": 15
+      "total_score": 409.0,
+      "top_topic": "Does Columbo",
+      "count": 24
+    },
+    {
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 384.5,
+      "top_topic": "Directors",
+      "count": 24
+    },
+    {
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 229.9,
+      "top_topic": "Street",
+      "count": 11
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 165.3,
-      "top_topic": "Ghost Soldier",
-      "count": 10
-    },
-    {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 120.0,
-      "top_topic": "Once Upon a Time in Harlem",
-      "count": 8
+      "total_score": 179.6,
+      "top_topic": "Rillington Place",
+      "count": 11
     },
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 83.0,
-      "top_topic": "Ranked",
-      "count": 6
+      "total_score": 129.7,
+      "top_topic": "Officially",
+      "count": 13
+    },
+    {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 60.0,
+      "top_topic": "Once Upon a Time in Harlem",
+      "count": 4
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 19.0,
+      "top_topic": "Track",
+      "count": 1
     },
     {
       "genre": "crime_mafia",
@@ -101,27 +108,63 @@
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
-    },
-    {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
     }
   ],
   "live_3day_top_topics": [
     {
-      "topic": "Godzilla Minus Zero",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
+      "topic": "Hexed",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
       "format": "scene_commentary",
-      "score": 71.09,
+      "score": 80.0,
       "sources": [
-        "Ars Technica",
-        "Purdue Exponent",
-        "Reddit-30d(r/Monsterverse)",
-        "Reddit-7d(r/Monsterverse)"
+        "Reddit-7d(r/boxoffice)",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "Focker-In-Law",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "format": "scene_commentary",
+      "score": 80.0,
+      "sources": [
+        "Reddit-7d(r/boxoffice)",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "Sunrise On The Reaping",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 72.35,
+      "sources": [
+        "NPR",
+        "Reddit-7d(r/boxoffice)",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "Avengers",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "format": "release_hype",
+      "score": 59.89,
+      "sources": [
+        "JoBlo",
+        "Reddit-7d(r/boxoffice)"
+      ]
+    },
+    {
+      "topic": "Doomsday",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "format": "release_hype",
+      "score": 59.89,
+      "sources": [
+        "JoBlo",
+        "Reddit-7d(r/boxoffice)"
       ]
     },
     {
@@ -129,7 +172,7 @@
       "genre": "superhero_scifi",
       "subcategory": "scifi_release_hype",
       "format": "release_hype",
-      "score": 55.97,
+      "score": 56.73,
       "sources": [
         "Aurora Sentinel",
         "Crunchyroll",
@@ -138,37 +181,48 @@
       ]
     },
     {
-      "topic": "Disguise",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
-      "format": "edit_ranking",
-      "score": 53.15,
+      "topic": "Godzilla Minus Zero",
+      "genre": "superhero_scifi",
+      "subcategory": "scifi_release_hype",
+      "format": "release_hype",
+      "score": 54.0,
       "sources": [
-        "Reddit-30d(r/KDRAMA)",
-        "Reddit-7d(r/KDRAMA)"
+        "Catholic Review",
+        "Purdue Exponent",
+        "Vulture"
       ]
     },
     {
-      "topic": "Poster",
+      "topic": "Back",
       "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
-      "format": "edit_ranking",
-      "score": 49.99,
-      "sources": [
-        "Reddit-30d(r/KDRAMA)",
-        "Reddit-7d(r/KDRAMA)"
-      ]
-    },
-    {
-      "topic": "Last",
-      "genre": "action_thriller",
-      "subcategory": "thriller_plot_twist_commentary",
-      "format": "scene_commentary",
-      "score": 48.14,
+      "subcategory": "global_cinema_hype",
+      "format": "release_hype",
+      "score": 47.44,
       "sources": [
         "Collider",
-        "Reddit-30d(r/ActionMovies)",
-        "Reddit-7d(r/ActionMovies)"
+        "Reddit-7d(r/bollywoodmemes)"
+      ]
+    },
+    {
+      "topic": "Hershey",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 45.53,
+      "sources": [
+        "Reddit-7d(r/boxoffice)",
+        "Variety"
+      ]
+    },
+    {
+      "topic": "Hunger Games: Sunrise",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 45.53,
+      "sources": [
+        "Reddit-7d(r/boxoffice)",
+        "THR"
       ]
     },
     {
@@ -205,25 +259,14 @@
       ]
     },
     {
-      "topic": "Sunrise on the Reaping",
+      "topic": "Home Alone",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
       "score": 40.0,
       "sources": [
-        "NPR",
+        "The Guardian",
         "Variety"
-      ]
-    },
-    {
-      "topic": "Sets",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.0,
-      "sources": [
-        "Deadline",
-        "Polygon.com"
       ]
     },
     {
@@ -235,50 +278,6 @@
       "sources": [
         "NDTV",
         "The Times of India"
-      ]
-    },
-    {
-      "topic": "Feature",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 40.0,
-      "sources": [
-        "The Walt Disney Company",
-        "Variety"
-      ]
-    },
-    {
-      "topic": "See Buildings Fall Like",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.0,
-      "sources": [
-        "Deadline",
-        "THR"
-      ]
-    },
-    {
-      "topic": "British",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.0,
-      "sources": [
-        "Deadline",
-        "THR"
-      ]
-    },
-    {
-      "topic": "Hooters",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 40.0,
-      "sources": [
-        "Deadline",
-        "JoBlo"
       ]
     }
   ],

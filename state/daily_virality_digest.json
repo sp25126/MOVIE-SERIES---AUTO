@@ -1,11 +1,11 @@
 {
-  "scan_time_utc": "2026-11-24T14:59:25Z",
+  "scan_time_utc": "2026-11-25T09:31:07Z",
   "categories": {
     "cinema": {
       "status": "success",
       "lead_winner": "Godzilla",
       "lead_genre": "action_thriller",
-      "lead_score": 94.0,
+      "lead_score": 103.41,
       "top_candidates": [
         {
           "topic": "Godzilla",
@@ -13,33 +13,34 @@
           "subcategory": "action_fight_ranking",
           "recommended_format": "edit_ranking",
           "query_suffix": "fight scene edit shorts",
-          "score": 94.0,
+          "score": 103.41,
           "horizons": {
             "3d": 100.0,
             "7d": 100.0,
-            "30d": 20.0,
+            "30d": 67.1,
             "1y": 0.0
           },
-          "yt_views": 395774,
+          "yt_views": 395954,
           "yt_hits": 2,
-          "reddit_hits": 0,
+          "reddit_hits": 3,
           "sources": [
             "Aurora Sentinel",
             "Crunchyroll",
-            "Entertainment Weekly",
-            "YT-Week"
+            "Reddit-30d(r/GODZILLA)",
+            "Reddit-7d(r/GODZILLA)"
           ],
           "headlines": [
+            "The Oscar-winning Godzilla director and the highest grossing Godzilla director.",
             "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance",
             "Godzilla returns in special-effects glory in the latest movie with an anti-war message"
           ]
         },
         {
-          "topic": "King",
+          "topic": "Hexed",
           "genre": "action_thriller",
-          "subcategory": "action_fight_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "fight scene edit shorts",
+          "subcategory": "thriller_plot_twist_commentary",
+          "recommended_format": "scene_commentary",
+          "query_suffix": "best scene shorts",
           "score": 80.0,
           "horizons": {
             "3d": 100.0,
@@ -47,50 +48,26 @@
             "30d": 0.0,
             "1y": 0.0
           },
-          "yt_views": 3982121,
-          "yt_hits": 2,
-          "reddit_hits": 1,
-          "sources": [
-            "Reddit-7d(r/bollywood)",
-            "YT-Week"
-          ],
-          "headlines": [
-            "King poster designer Rajeev Chudasama - \"A poster of each character will be revealed, at least 12-15 posters will be released. We will have a solo poster for each one of them\""
-          ]
-        },
-        {
-          "topic": "Hunger Games",
-          "genre": "action_thriller",
-          "subcategory": "action_fight_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "fight scene edit shorts",
-          "score": 72.22,
-          "horizons": {
-            "3d": 71.5,
-            "7d": 65.4,
-            "30d": 20.0,
-            "1y": 0.0
-          },
           "yt_views": 0,
           "yt_hits": 0,
-          "reddit_hits": 1,
+          "reddit_hits": 3,
           "sources": [
             "Reddit-7d(r/boxoffice)",
-            "THR",
-            "The Hollywood Reporter",
-            "Yahoo"
+            "THR"
           ],
           "headlines": [
-            "5/6 Hunger Games movies have opened to $100m+ and looks like 4/6 will cross $300m+. Can we consider it a domestic giant franchise?",
-            "New ‘Hunger Games’ Movie on the Way? Lionsgate Film Chief Shares Latest on Franchise’s Future"
+            "‘Sunrise On The Reaping’ ($16M Tuesday/$70M+ DOM Thanksgiving 5-Day) To Gobble Up Thanksgiving; ‘Hexed’ $2M Tuesday Previews/$40M Or Below DOM/$75M+ WW Opening; ‘Focker-In-Law’ $45M DOM/$70M WW – Box Office Preview",
+            "‘Hunger Games: Sunrise on the Reaping’ ($60-80M+) to Dominate Thanksgiving Box Office as ‘Focker In-Law’ ($45M), ‘Hexed’ ($45M) Join Fray - 'Hershey' and 'The Further Mis-Adventures of Cliff Booth' also head to the big screen for the five-day holiday weekend.",
+            "TheFlatLannister: Strong previews walkups for Hexed at TC3. Will be well over 170% growth. Gross is identical to Hoppers so ~$2.2M previews or so...Still thinking $40M 5 day opening if walkups trend similar to today.",
+            "‘Hunger Games: Sunrise on the Reaping’ to Dominate Thanksgiving Box Office as ‘Focker In-Law,’ ‘Hexed’ Join Fray"
           ]
         },
         {
-          "topic": "Ex-Mob",
-          "genre": "crime_mafia",
-          "subcategory": "crime_coldest_boss_ranking",
+          "topic": "Battleship",
+          "genre": "war_historical",
+          "subcategory": "war_epic_battle_ranking",
           "recommended_format": "edit_ranking",
-          "query_suffix": "coldest edit shorts",
+          "query_suffix": "battle scene edit shorts",
           "score": 69.0,
           "horizons": {
             "3d": 97.5,
@@ -98,7 +75,7 @@
             "30d": 0.0,
             "1y": 0.0
           },
-          "yt_views": 25726048,
+          "yt_views": 138429561,
           "yt_hits": 2,
           "reddit_hits": 0,
           "sources": [
@@ -107,16 +84,87 @@
           "headlines": []
         },
         {
+          "topic": "King",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 69.0,
+          "horizons": {
+            "3d": 97.5,
+            "7d": 100.0,
+            "30d": 0.0,
+            "1y": 0.0
+          },
+          "yt_views": 4078786,
+          "yt_hits": 2,
+          "reddit_hits": 0,
+          "sources": [
+            "YT-Week"
+          ],
+          "headlines": []
+        },
+        {
+          "topic": "Focker-In-Law",
+          "genre": "action_thriller",
+          "subcategory": "thriller_plot_twist_commentary",
+          "recommended_format": "scene_commentary",
+          "query_suffix": "best scene shorts",
+          "score": 67.87,
+          "horizons": {
+            "3d": 79.3,
+            "7d": 87.2,
+            "30d": 0.0,
+            "1y": 0.0
+          },
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 2,
+          "sources": [
+            "Reddit-7d(r/boxoffice)",
+            "THR"
+          ],
+          "headlines": [
+            "‘Sunrise On The Reaping’ ($16M Tuesday/$70M+ DOM Thanksgiving 5-Day) To Gobble Up Thanksgiving; ‘Hexed’ $2M Tuesday Previews/$40M Or Below DOM/$75M+ WW Opening; ‘Focker-In-Law’ $45M DOM/$70M WW – Box Office Preview",
+            "‘Hunger Games: Sunrise on the Reaping’ ($60-80M+) to Dominate Thanksgiving Box Office as ‘Focker In-Law’ ($45M), ‘Hexed’ ($45M) Join Fray - 'Hershey' and 'The Further Mis-Adventures of Cliff Booth' also head to the big screen for the five-day holiday weekend.",
+            "‘Focker-in-Law’ Filmmaker John Hamburg Talks Ariana Grande’s Comedic Timing and the Actor Who Made Ben Stiller Laugh Hardest on Set"
+          ]
+        },
+        {
+          "topic": "John Wick",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 64.0,
+          "horizons": {
+            "3d": 72.8,
+            "7d": 83.0,
+            "30d": 0.0,
+            "1y": 0.0
+          },
+          "yt_views": 11633485,
+          "yt_hits": 1,
+          "reddit_hits": 0,
+          "sources": [
+            "Collider",
+            "YT-Week"
+          ],
+          "headlines": [
+            "HBO Max Officially Revives ‘Better Call Saul’ Star’s ‘John Wick’ Replacement"
+          ]
+        },
+        {
           "topic": "Godzilla Minus Zero",
           "genre": "superhero_scifi",
           "subcategory": "scifi_release_hype",
           "recommended_format": "release_hype",
           "query_suffix": "trailer edit shorts",
-          "score": 67.43,
+          "score": 58.7,
           "horizons": {
-            "3d": 65.3,
-            "7d": 57.7,
-            "30d": 20.0,
+            "3d": 48.0,
+            "7d": 36.0,
+            "30d": 43.5,
             "1y": 0.0
           },
           "yt_views": 0,
@@ -125,283 +173,238 @@
           "sources": [
             "Ars Technica",
             "Purdue Exponent",
-            "Reddit-7d(r/Monsterverse)",
-            "Vulture"
+            "Reddit-30d(r/GODZILLA)"
           ],
           "headlines": [
-            "Anybody seen Godzilla Minus Zero in the cinemas yet?",
             "Review: Godzilla Minus Zero joins the ranks of truly stellar sequels",
             "\"Print jockey': 'Godzilla Minus Zero'"
           ]
         },
         {
-          "topic": "Greatest",
-          "genre": "drama_prestige",
-          "subcategory": "coldest_drama_edits",
+          "topic": "Ghidorah",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
           "recommended_format": "edit_ranking",
-          "query_suffix": "coldest edit shorts",
-          "score": 64.0,
+          "query_suffix": "fight scene edit shorts",
+          "score": 53.21,
           "horizons": {
-            "3d": 72.8,
-            "7d": 83.0,
+            "3d": 48.8,
+            "7d": 65.0,
+            "30d": 21.1,
+            "1y": 0.0
+          },
+          "yt_views": 3117995,
+          "yt_hits": 1,
+          "reddit_hits": 1,
+          "sources": [
+            "Reddit-30d(r/Monsterverse)",
+            "YT-Week"
+          ],
+          "headlines": []
+        },
+        {
+          "topic": "Arrested Development",
+          "genre": "comedy_sitcom",
+          "subcategory": "funniest_character_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "funny moments edit shorts",
+          "score": 50.69,
+          "horizons": {
+            "3d": 48.8,
+            "7d": 65.0,
+            "30d": 58.4,
+            "1y": 0.0
+          },
+          "yt_views": 2204328,
+          "yt_hits": 2,
+          "reddit_hits": 0,
+          "sources": [
+            "YT-Month",
+            "YT-Week"
+          ],
+          "headlines": []
+        },
+        {
+          "topic": "Sunrise On The Reaping",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 47.35,
+          "horizons": {
+            "3d": 52.8,
+            "7d": 54.0,
             "30d": 0.0,
             "1y": 0.0
           },
-          "yt_views": 11376009,
-          "yt_hits": 1,
-          "reddit_hits": 0,
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 1,
           "sources": [
-            "Collider",
-            "YT-Week"
+            "NPR",
+            "Reddit-7d(r/boxoffice)"
           ],
           "headlines": [
-            "7 Greatest Romantasy Book Series of All Time, Ranked"
+            "‘Sunrise On The Reaping’ ($16M Tuesday/$70M+ DOM Thanksgiving 5-Day) To Gobble Up Thanksgiving; ‘Hexed’ $2M Tuesday Previews/$40M Or Below DOM/$75M+ WW Opening; ‘Focker-In-Law’ $45M DOM/$70M WW – Box Office Preview",
+            "'Sunrise on the Reaping' feels like sunset for the 'Hunger Games' franchise"
           ]
-        },
-        {
-          "topic": "Rally",
-          "genre": "action_thriller",
-          "subcategory": "action_fight_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "fight scene edit shorts",
-          "score": 51.0,
-          "horizons": {
-            "3d": 48.8,
-            "7d": 65.0,
-            "30d": 60.0,
-            "1y": 0.0
-          },
-          "yt_views": 4770158,
-          "yt_hits": 2,
-          "reddit_hits": 0,
-          "sources": [
-            "YT-Month",
-            "YT-Week"
-          ],
-          "headlines": []
-        },
-        {
-          "topic": "Unreal",
-          "genre": "action_thriller",
-          "subcategory": "action_fight_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "fight scene edit shorts",
-          "score": 51.0,
-          "horizons": {
-            "3d": 48.8,
-            "7d": 65.0,
-            "30d": 60.0,
-            "1y": 0.0
-          },
-          "yt_views": 4770158,
-          "yt_hits": 2,
-          "reddit_hits": 0,
-          "sources": [
-            "YT-Month",
-            "YT-Week"
-          ],
-          "headlines": []
-        },
-        {
-          "topic": "Engine",
-          "genre": "action_thriller",
-          "subcategory": "action_fight_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "fight scene edit shorts",
-          "score": 51.0,
-          "horizons": {
-            "3d": 48.8,
-            "7d": 65.0,
-            "30d": 60.0,
-            "1y": 0.0
-          },
-          "yt_views": 4770158,
-          "yt_hits": 2,
-          "reddit_hits": 0,
-          "sources": [
-            "YT-Month",
-            "YT-Week"
-          ],
-          "headlines": []
-        },
-        {
-          "topic": "Suspense",
-          "genre": "action_thriller",
-          "subcategory": "action_fight_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "fight scene edit shorts",
-          "score": 50.79,
-          "horizons": {
-            "3d": 48.8,
-            "7d": 65.0,
-            "30d": 58.9,
-            "1y": 0.0
-          },
-          "yt_views": 2487312,
-          "yt_hits": 2,
-          "reddit_hits": 0,
-          "sources": [
-            "YT-Month",
-            "YT-Week"
-          ],
-          "headlines": []
         }
       ],
       "genre_leaderboard": [
         {
           "genre": "action_thriller",
           "label": "Action, Spy & Crime Thriller",
-          "total_score": 4086.5,
+          "total_score": 4074.0,
           "top_topic": "Godzilla",
-          "count": 207
+          "count": 211
         },
         {
           "genre": "superhero_scifi",
           "label": "Superhero & Sci-Fi",
-          "total_score": 1023.6,
+          "total_score": 1490.1,
           "top_topic": "Godzilla Minus Zero",
-          "count": 53
-        },
-        {
-          "genre": "drama_prestige",
-          "label": "Prestige Drama & Biopics",
-          "total_score": 748.1,
-          "top_topic": "Greatest",
-          "count": 43
-        },
-        {
-          "genre": "animated_cinema",
-          "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-          "total_score": 640.7,
-          "top_topic": "Kung Fu Panda",
-          "count": 26
-        },
-        {
-          "genre": "comedy_sitcom",
-          "label": "Comedy, Sitcoms & Cast Memes",
-          "total_score": 579.5,
-          "top_topic": "Arrested Development",
-          "count": 30
-        },
-        {
-          "genre": "war_historical",
-          "label": "War Epics, Battles & Historical Biopics",
-          "total_score": 564.6,
-          "top_topic": "Directors Cut",
-          "count": 19
-        },
-        {
-          "genre": "horror_mystery",
-          "label": "Horror & Psychological Mystery",
-          "total_score": 444.2,
-          "top_topic": "Closer",
-          "count": 16
-        },
-        {
-          "genre": "crime_mafia",
-          "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-          "total_score": 419.6,
-          "top_topic": "Ex-Mob",
-          "count": 10
-        },
-        {
-          "genre": "sports_underdog",
-          "label": "Sports Movies, Boxing, Racing & Comebacks",
-          "total_score": 408.7,
-          "top_topic": "Anger",
-          "count": 11
-        },
-        {
-          "genre": "fantasy_mythology",
-          "label": "Epic Fantasy, Historical & Mythology",
-          "total_score": 333.8,
-          "top_topic": "Ancalagon the Black",
-          "count": 15
+          "count": 78
         },
         {
           "genre": "world_indian_cinema",
           "label": "Indian Cinema, K-Drama & Global Hits",
-          "total_score": 236.4,
-          "top_topic": "Chennai Express",
-          "count": 25
+          "total_score": 585.0,
+          "top_topic": "Teach You a Lesson",
+          "count": 28
+        },
+        {
+          "genre": "crime_mafia",
+          "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+          "total_score": 545.6,
+          "top_topic": "Mafia Meeting",
+          "count": 14
+        },
+        {
+          "genre": "comedy_sitcom",
+          "label": "Comedy, Sitcoms & Cast Memes",
+          "total_score": 500.3,
+          "top_topic": "Arrested Development",
+          "count": 23
+        },
+        {
+          "genre": "animated_cinema",
+          "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+          "total_score": 483.9,
+          "top_topic": "Kung Fu Panda",
+          "count": 18
+        },
+        {
+          "genre": "war_historical",
+          "label": "War Epics, Battles & Historical Biopics",
+          "total_score": 472.8,
+          "top_topic": "Battleship",
+          "count": 14
+        },
+        {
+          "genre": "drama_prestige",
+          "label": "Prestige Drama & Biopics",
+          "total_score": 414.5,
+          "top_topic": "Directors",
+          "count": 26
+        },
+        {
+          "genre": "sports_underdog",
+          "label": "Sports Movies, Boxing, Racing & Comebacks",
+          "total_score": 310.7,
+          "top_topic": "Anger",
+          "count": 9
+        },
+        {
+          "genre": "horror_mystery",
+          "label": "Horror & Psychological Mystery",
+          "total_score": 298.9,
+          "top_topic": "Class Rules",
+          "count": 16
+        },
+        {
+          "genre": "fantasy_mythology",
+          "label": "Epic Fantasy, Historical & Mythology",
+          "total_score": 267.9,
+          "top_topic": "Ancalagon the Black",
+          "count": 16
         },
         {
           "genre": "romance_teen_drama",
           "label": "Romance, Heartbreak & Teen Series",
-          "total_score": 0.0,
-          "top_topic": "",
-          "count": 0
+          "total_score": 78.0,
+          "top_topic": "Ajin",
+          "count": 2
         }
       ]
     },
     "tv_series": {
       "status": "success",
       "lead_winner": "My Demon Ep 6",
-      "lead_views": 12454170,
+      "lead_views": 12478456,
       "top_candidates": [
         {
           "series_name": "My Demon Ep 6",
-          "total_views": 12454170,
+          "total_views": 12478456,
           "clip_count": 1,
           "top_clip_title": "A demon catches her right when she's about to fall off a building | My Demon Ep 6 | Netflix [ENG]",
           "top_clip_url": "https://www.youtube.com/watch?v=b9sxqeGXDHA",
-          "max_views": 12454170
+          "max_views": 12478456
         },
         {
-          "series_name": "Suits",
-          "total_views": 11795968,
-          "clip_count": 3,
-          "top_clip_title": "Suits | 10 Minutes of Harvey Specter Closing Deals",
-          "top_clip_url": "https://www.youtube.com/watch?v=jjeLzr1JR4o",
-          "max_views": 6901608
-        },
-        {
-          "series_name": "niccolò (baby",
-          "total_views": 6113353,
+          "series_name": "Study Group",
+          "total_views": 7011350,
           "clip_count": 1,
-          "top_clip_title": "niccolò (baby) | swim",
-          "top_clip_url": "https://www.youtube.com/watch?v=s72LV_J_OiE",
-          "max_views": 6113353
+          "top_clip_title": "Study Group | La la la",
+          "top_clip_url": "https://www.youtube.com/watch?v=C6okmMi-MbE",
+          "max_views": 7011350
         },
         {
-          "series_name": "swim",
-          "total_views": 6113353,
+          "series_name": "La la la",
+          "total_views": 7011350,
           "clip_count": 1,
-          "top_clip_title": "niccolò (baby) | swim",
-          "top_clip_url": "https://www.youtube.com/watch?v=s72LV_J_OiE",
-          "max_views": 6113353
+          "top_clip_title": "Study Group | La la la",
+          "top_clip_url": "https://www.youtube.com/watch?v=C6okmMi-MbE",
+          "max_views": 7011350
         },
         {
-          "series_name": "Shameless",
-          "total_views": 4596095,
-          "clip_count": 1,
-          "top_clip_title": "Shameless - Seo A-Ri x Han Jun-Kyung  | Celebrity ~ [𝗳𝗺𝘃]",
-          "top_clip_url": "https://www.youtube.com/watch?v=8yR-ga2Nfvc",
-          "max_views": 4596095
+          "series_name": "Succession",
+          "total_views": 3033065,
+          "clip_count": 2,
+          "top_clip_title": "Succession's Coldest Insults | Succession | HBO",
+          "top_clip_url": "https://www.youtube.com/watch?v=Ut4pgRu5gHU",
+          "max_views": 2418740
         },
         {
-          "series_name": "Celebrity ~",
-          "total_views": 4596095,
+          "series_name": "Succession's Coldest Insults",
+          "total_views": 2418740,
           "clip_count": 1,
-          "top_clip_title": "Shameless - Seo A-Ri x Han Jun-Kyung  | Celebrity ~ [𝗳𝗺𝘃]",
-          "top_clip_url": "https://www.youtube.com/watch?v=8yR-ga2Nfvc",
-          "max_views": 4596095
+          "top_clip_title": "Succession's Coldest Insults | Succession | HBO",
+          "top_clip_url": "https://www.youtube.com/watch?v=Ut4pgRu5gHU",
+          "max_views": 2418740
         },
         {
-          "series_name": "Most Unforgettable Courtroom Moments",
-          "total_views": 3746941,
+          "series_name": "Billions",
+          "total_views": 2403361,
           "clip_count": 1,
-          "top_clip_title": "Suits | Most Unforgettable Courtroom Moments",
-          "top_clip_url": "https://www.youtube.com/watch?v=X90tqks1f0s",
-          "max_views": 3746941
+          "top_clip_title": "Axe’s BEST F*** You Money Moments | Billions | Paramount+",
+          "top_clip_url": "https://www.youtube.com/watch?v=T-bpMn0VMYk",
+          "max_views": 2403361
         },
         {
-          "series_name": "Yellowstone",
-          "total_views": 3538772,
+          "series_name": "Paramount+",
+          "total_views": 2403361,
           "clip_count": 1,
-          "top_clip_title": "Yellowstone | Most Watched Yellowstone Moments (Part 1)",
-          "top_clip_url": "https://www.youtube.com/watch?v=gAkB9W3dgkw",
-          "max_views": 3538772
+          "top_clip_title": "Axe’s BEST F*** You Money Moments | Billions | Paramount+",
+          "top_clip_url": "https://www.youtube.com/watch?v=T-bpMn0VMYk",
+          "max_views": 2403361
+        },
+        {
+          "series_name": "Timeless",
+          "total_views": 1904092,
+          "clip_count": 1,
+          "top_clip_title": "Timeless | Squid Game Season 2 [Edit] 4K",
+          "top_clip_url": "https://www.youtube.com/watch?v=2rsf0_hmfGU",
+          "max_views": 1904092
         }
       ]
     },

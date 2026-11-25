@@ -2,7 +2,7 @@
   "current_day_index": 2,
   "song_subcat_index": 1,
   "cycle_count": 6,
-  "last_run_utc": "2026-11-24T15:00:25Z",
+  "last_run_utc": "2026-11-25T09:32:08Z",
   "history": [
     {
       "timestamp_utc": "2026-11-19T10:46:07Z",
@@ -138,6 +138,13 @@
       "name": "TV & Web Series Group",
       "result": "failed",
       "error": "All TV series candidates failed: Command '['/opt/hostedtoolcache/Python/3.11.18/x64/bin/python', 'run_pipeline.py', '--topic', 'Yellowstone', '--format', 'edit_ranking', '--upload']' returned non-zero exit status 1."
+    },
+    {
+      "timestamp_utc": "2026-11-25T09:32:08Z",
+      "day": 2,
+      "name": "TV & Web Series Group",
+      "result": "failed",
+      "error": "All TV series candidates failed: Command '['/opt/hostedtoolcache/Python/3.11.18/x64/bin/python', 'run_pipeline.py', '--topic', 'Succession', '--format', 'edit_ranking', '--upload']' returned non-zero exit status 1."
     }
   ]
 }
