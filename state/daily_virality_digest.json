@@ -1,11 +1,11 @@
 {
-  "scan_time_utc": "2026-11-23T14:56:57Z",
+  "scan_time_utc": "2026-11-24T14:59:25Z",
   "categories": {
     "cinema": {
       "status": "success",
       "lead_winner": "Godzilla",
       "lead_genre": "action_thriller",
-      "lead_score": 105.61,
+      "lead_score": 94.0,
       "top_candidates": [
         {
           "topic": "Godzilla",
@@ -13,25 +13,23 @@
           "subcategory": "action_fight_ranking",
           "recommended_format": "edit_ranking",
           "query_suffix": "fight scene edit shorts",
-          "score": 105.61,
+          "score": 94.0,
           "horizons": {
             "3d": 100.0,
             "7d": 100.0,
-            "30d": 78.0,
+            "30d": 20.0,
             "1y": 0.0
           },
-          "yt_views": 2204070,
+          "yt_views": 395774,
           "yt_hits": 2,
-          "reddit_hits": 4,
+          "reddit_hits": 0,
           "sources": [
             "Aurora Sentinel",
             "Crunchyroll",
             "Entertainment Weekly",
-            "Reddit-30d(r/Monsterverse)"
+            "YT-Week"
           ],
           "headlines": [
-            "Who gonna win monster zero King ghidorah or Godzilla earth",
-            "I hope we can hear Godzilla use the classic roar again in Supernova",
             "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance",
             "Godzilla returns in special-effects glory in the latest movie with an anti-war message"
           ]
@@ -42,73 +40,53 @@
           "subcategory": "action_fight_ranking",
           "recommended_format": "edit_ranking",
           "query_suffix": "fight scene edit shorts",
-          "score": 86.64,
+          "score": 80.0,
           "horizons": {
             "3d": 100.0,
-            "7d": 100.0,
-            "30d": 33.2,
-            "1y": 0.0
-          },
-          "yt_views": 3810649,
-          "yt_hits": 2,
-          "reddit_hits": 2,
-          "sources": [
-            "Reddit-30d(r/Monsterverse)",
-            "Reddit-7d(r/Monsterverse)",
-            "YT-Week"
-          ],
-          "headlines": [
-            "Who gonna win monster zero King ghidorah or Godzilla earth"
-          ]
-        },
-        {
-          "topic": "City",
-          "genre": "action_thriller",
-          "subcategory": "action_fight_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "fight scene edit shorts",
-          "score": 70.72,
-          "horizons": {
-            "3d": 70.8,
-            "7d": 92.5,
-            "30d": 23.3,
-            "1y": 0.0
-          },
-          "yt_views": 2857102,
-          "yt_hits": 1,
-          "reddit_hits": 2,
-          "sources": [
-            "Reddit-30d(r/Fantasy)",
-            "Reddit-7d(r/Fantasy)",
-            "YT-Week"
-          ],
-          "headlines": [
-            "Thoughts on \"The City We Became\" as life long NYC resident."
-          ]
-        },
-        {
-          "topic": "Battleship",
-          "genre": "war_historical",
-          "subcategory": "war_epic_battle_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "battle scene edit shorts",
-          "score": 69.0,
-          "horizons": {
-            "3d": 97.5,
             "7d": 100.0,
             "30d": 0.0,
             "1y": 0.0
           },
-          "yt_views": 138393955,
+          "yt_views": 3982121,
           "yt_hits": 2,
-          "reddit_hits": 0,
+          "reddit_hits": 1,
           "sources": [
+            "Reddit-7d(r/bollywood)",
             "YT-Week"
           ],
-          "headlines": []
+          "headlines": [
+            "King poster designer Rajeev Chudasama - \"A poster of each character will be revealed, at least 12-15 posters will be released. We will have a solo poster for each one of them\""
+          ]
         },
         {
-          "topic": "Insider",
+          "topic": "Hunger Games",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 72.22,
+          "horizons": {
+            "3d": 71.5,
+            "7d": 65.4,
+            "30d": 20.0,
+            "1y": 0.0
+          },
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 1,
+          "sources": [
+            "Reddit-7d(r/boxoffice)",
+            "THR",
+            "The Hollywood Reporter",
+            "Yahoo"
+          ],
+          "headlines": [
+            "5/6 Hunger Games movies have opened to $100m+ and looks like 4/6 will cross $300m+. Can we consider it a domestic giant franchise?",
+            "New ‘Hunger Games’ Movie on the Way? Lionsgate Film Chief Shares Latest on Franchise’s Future"
+          ]
+        },
+        {
+          "topic": "Ex-Mob",
           "genre": "crime_mafia",
           "subcategory": "crime_coldest_boss_ranking",
           "recommended_format": "edit_ranking",
@@ -120,7 +98,7 @@
             "30d": 0.0,
             "1y": 0.0
           },
-          "yt_views": 26686363,
+          "yt_views": 25726048,
           "yt_hits": 2,
           "reddit_hits": 0,
           "sources": [
@@ -129,102 +107,63 @@
           "headlines": []
         },
         {
-          "topic": "Only",
-          "genre": "war_historical",
-          "subcategory": "war_epic_battle_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "battle scene edit shorts",
-          "score": 68.51,
+          "topic": "Godzilla Minus Zero",
+          "genre": "superhero_scifi",
+          "subcategory": "scifi_release_hype",
+          "recommended_format": "release_hype",
+          "query_suffix": "trailer edit shorts",
+          "score": 67.43,
           "horizons": {
-            "3d": 96.3,
-            "7d": 100.0,
-            "30d": 0.0,
-            "1y": 0.0
-          },
-          "yt_views": 141297009,
-          "yt_hits": 2,
-          "reddit_hits": 0,
-          "sources": [
-            "YT-Week"
-          ],
-          "headlines": []
-        },
-        {
-          "topic": "Going",
-          "genre": "action_thriller",
-          "subcategory": "action_fight_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "fight scene edit shorts",
-          "score": 54.0,
-          "horizons": {
-            "3d": 48.0,
-            "7d": 36.0,
+            "3d": 65.3,
+            "7d": 57.7,
             "30d": 20.0,
             "1y": 0.0
           },
           "yt_views": 0,
           "yt_hits": 0,
-          "reddit_hits": 0,
+          "reddit_hits": 1,
           "sources": [
-            "American Institute for Stuttering",
-            "Latin Times",
-            "Yahoo"
+            "Ars Technica",
+            "Purdue Exponent",
+            "Reddit-7d(r/Monsterverse)",
+            "Vulture"
           ],
           "headlines": [
-            "Speaker Series: Going Viral and Raising Stuttering Awareness with Travis Althouse",
-            "Sophie Cunningham's Husband Checklist, Bond Girl Dreams, and Life After Going Viral"
+            "Anybody seen Godzilla Minus Zero in the cinemas yet?",
+            "Review: Godzilla Minus Zero joins the ranks of truly stellar sequels",
+            "\"Print jockey': 'Godzilla Minus Zero'"
           ]
         },
         {
-          "topic": "Cinematic",
-          "genre": "fantasy_mythology",
-          "subcategory": "mythology_epic_edits",
+          "topic": "Greatest",
+          "genre": "drama_prestige",
+          "subcategory": "coldest_drama_edits",
           "recommended_format": "edit_ranking",
-          "query_suffix": "epic edit shorts",
-          "score": 53.14,
+          "query_suffix": "coldest edit shorts",
+          "score": 64.0,
           "horizons": {
-            "3d": 48.8,
-            "7d": 65.0,
-            "30d": 20.7,
+            "3d": 72.8,
+            "7d": 83.0,
+            "30d": 0.0,
             "1y": 0.0
           },
-          "yt_views": 1714828,
+          "yt_views": 11376009,
           "yt_hits": 1,
-          "reddit_hits": 1,
+          "reddit_hits": 0,
           "sources": [
-            "Reddit-30d(r/DC_Cinematic)",
+            "Collider",
             "YT-Week"
           ],
-          "headlines": []
+          "headlines": [
+            "7 Greatest Romantasy Book Series of All Time, Ranked"
+          ]
         },
         {
-          "topic": "Spider",
-          "genre": "superhero_scifi",
-          "subcategory": "superhero_edit_ranking",
+          "topic": "Rally",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
           "recommended_format": "edit_ranking",
-          "query_suffix": "edit shorts",
-          "score": 52.54,
-          "horizons": {
-            "3d": 48.8,
-            "7d": 65.0,
-            "30d": 17.7,
-            "1y": 0.0
-          },
-          "yt_views": 1576143,
-          "yt_hits": 1,
-          "reddit_hits": 1,
-          "sources": [
-            "Reddit-30d(r/DC_Cinematic)",
-            "YT-Week"
-          ],
-          "headlines": []
-        },
-        {
-          "topic": "Breaking Bad",
-          "genre": "superhero_scifi",
-          "subcategory": "superhero_edit_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "edit shorts",
+          "query_suffix": "fight scene edit shorts",
           "score": 51.0,
           "horizons": {
             "3d": 48.8,
@@ -232,7 +171,73 @@
             "30d": 60.0,
             "1y": 0.0
           },
-          "yt_views": 7977551,
+          "yt_views": 4770158,
+          "yt_hits": 2,
+          "reddit_hits": 0,
+          "sources": [
+            "YT-Month",
+            "YT-Week"
+          ],
+          "headlines": []
+        },
+        {
+          "topic": "Unreal",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 51.0,
+          "horizons": {
+            "3d": 48.8,
+            "7d": 65.0,
+            "30d": 60.0,
+            "1y": 0.0
+          },
+          "yt_views": 4770158,
+          "yt_hits": 2,
+          "reddit_hits": 0,
+          "sources": [
+            "YT-Month",
+            "YT-Week"
+          ],
+          "headlines": []
+        },
+        {
+          "topic": "Engine",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 51.0,
+          "horizons": {
+            "3d": 48.8,
+            "7d": 65.0,
+            "30d": 60.0,
+            "1y": 0.0
+          },
+          "yt_views": 4770158,
+          "yt_hits": 2,
+          "reddit_hits": 0,
+          "sources": [
+            "YT-Month",
+            "YT-Week"
+          ],
+          "headlines": []
+        },
+        {
+          "topic": "Suspense",
+          "genre": "action_thriller",
+          "subcategory": "action_fight_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "fight scene edit shorts",
+          "score": 50.79,
+          "horizons": {
+            "3d": 48.8,
+            "7d": 65.0,
+            "30d": 58.9,
+            "1y": 0.0
+          },
+          "yt_views": 2487312,
           "yt_hits": 2,
           "reddit_hits": 0,
           "sources": [
@@ -246,79 +251,79 @@
         {
           "genre": "action_thriller",
           "label": "Action, Spy & Crime Thriller",
-          "total_score": 4007.3,
+          "total_score": 4086.5,
           "top_topic": "Godzilla",
-          "count": 210
+          "count": 207
         },
         {
           "genre": "superhero_scifi",
           "label": "Superhero & Sci-Fi",
-          "total_score": 919.0,
-          "top_topic": "Spider",
+          "total_score": 1023.6,
+          "top_topic": "Godzilla Minus Zero",
           "count": 53
-        },
-        {
-          "genre": "fantasy_mythology",
-          "label": "Epic Fantasy, Historical & Mythology",
-          "total_score": 518.9,
-          "top_topic": "Cinematic",
-          "count": 25
-        },
-        {
-          "genre": "crime_mafia",
-          "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-          "total_score": 503.6,
-          "top_topic": "Insider",
-          "count": 14
-        },
-        {
-          "genre": "war_historical",
-          "label": "War Epics, Battles & Historical Biopics",
-          "total_score": 472.3,
-          "top_topic": "Battleship",
-          "count": 12
-        },
-        {
-          "genre": "world_indian_cinema",
-          "label": "Indian Cinema, K-Drama & Global Hits",
-          "total_score": 469.2,
-          "top_topic": "Episodes",
-          "count": 27
-        },
-        {
-          "genre": "sports_underdog",
-          "label": "Sports Movies, Boxing, Racing & Comebacks",
-          "total_score": 444.7,
-          "top_topic": "Remember The Titans",
-          "count": 12
-        },
-        {
-          "genre": "comedy_sitcom",
-          "label": "Comedy, Sitcoms & Cast Memes",
-          "total_score": 425.7,
-          "top_topic": "Arrested Development",
-          "count": 26
-        },
-        {
-          "genre": "horror_mystery",
-          "label": "Horror & Psychological Mystery",
-          "total_score": 409.4,
-          "top_topic": "Okay Google",
-          "count": 17
         },
         {
           "genre": "drama_prestige",
           "label": "Prestige Drama & Biopics",
-          "total_score": 343.4,
-          "top_topic": "Lines",
-          "count": 16
+          "total_score": 748.1,
+          "top_topic": "Greatest",
+          "count": 43
         },
         {
           "genre": "animated_cinema",
           "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-          "total_score": 317.3,
-          "top_topic": "In Spider",
+          "total_score": 640.7,
+          "top_topic": "Kung Fu Panda",
+          "count": 26
+        },
+        {
+          "genre": "comedy_sitcom",
+          "label": "Comedy, Sitcoms & Cast Memes",
+          "total_score": 579.5,
+          "top_topic": "Arrested Development",
+          "count": 30
+        },
+        {
+          "genre": "war_historical",
+          "label": "War Epics, Battles & Historical Biopics",
+          "total_score": 564.6,
+          "top_topic": "Directors Cut",
+          "count": 19
+        },
+        {
+          "genre": "horror_mystery",
+          "label": "Horror & Psychological Mystery",
+          "total_score": 444.2,
+          "top_topic": "Closer",
+          "count": 16
+        },
+        {
+          "genre": "crime_mafia",
+          "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+          "total_score": 419.6,
+          "top_topic": "Ex-Mob",
+          "count": 10
+        },
+        {
+          "genre": "sports_underdog",
+          "label": "Sports Movies, Boxing, Racing & Comebacks",
+          "total_score": 408.7,
+          "top_topic": "Anger",
+          "count": 11
+        },
+        {
+          "genre": "fantasy_mythology",
+          "label": "Epic Fantasy, Historical & Mythology",
+          "total_score": 333.8,
+          "top_topic": "Ancalagon the Black",
           "count": 15
+        },
+        {
+          "genre": "world_indian_cinema",
+          "label": "Indian Cinema, K-Drama & Global Hits",
+          "total_score": 236.4,
+          "top_topic": "Chennai Express",
+          "count": 25
         },
         {
           "genre": "romance_teen_drama",
