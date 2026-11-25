@@ -201,7 +201,7 @@ def passes_copyright_prefilter(meta: dict, min_duration: int = 4, check_html: bo
 def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_duration: int = 5, ignore_history: bool = False) -> list[dict]:
     """Scouts YouTube via yt_dlp InnerTube/web extractor + Anti-CID pre-filter."""
     used = set() if ignore_history else _load_history()
-    probe_n = max(count * 3, 12)
+    probe_n = max(count * 8, 35)
     cmd = [
         sys.executable, "-m", "yt_dlp",
         "--dump-json", "--no-playlist", "--no-warnings",
@@ -210,7 +210,7 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
     ]
     candidates, seen = [], set()
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=30)
+        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=60)
         for line in proc.stdout.splitlines():
             if not line.strip():
                 continue
@@ -223,8 +223,8 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
                 continue
             seen.add(vid)
             views = int(d.get("view_count") or 0)
-            # Enforce virality threshold: ranking edits must have meaningful views (at least 1,500 views)
-            if views < 1500:
+            # Enforce virality threshold: ranking edits must have meaningful views (at least 500 views)
+            if views < 500:
                 continue
             ok, _ = passes_copyright_prefilter(d, min_duration=min_duration, check_html=False)
             if not ok:
