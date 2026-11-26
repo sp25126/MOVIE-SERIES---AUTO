@@ -65,10 +65,12 @@ def load_local_vision_model(model_name: str = "moondream2"):
 
     try:
         if "moondream" in model_name.lower():
+            import transformers.dynamic_module_utils as _dmu
             from transformers import AutoModelForCausalLM, AutoTokenizer
             repo_id = "vikhyatk/moondream2"
-            # trust_remote_code=True is required for Moondream2 custom modelling code.
-            # Patch both builtins.input and sys.stdin to prevent any interactive [y/N] prompt in Colab / IPython.
+            # Force-disable transformers' interactive trust_remote_code prompt
+            _orig_resolve = getattr(_dmu, "resolve_trust_remote_code", None)
+            _dmu.resolve_trust_remote_code = lambda *a, **kw: True
             import builtins
             import io
             _orig_stdin = _sys.stdin
@@ -89,6 +91,8 @@ def load_local_vision_model(model_name: str = "moondream2"):
             finally:
                 _sys.stdin = _orig_stdin
                 builtins.input = _orig_input
+                if _orig_resolve is not None:
+                    _dmu.resolve_trust_remote_code = _orig_resolve
             if device == "cpu":
                 model = model.to(device)
             _LOCAL_MODEL = model

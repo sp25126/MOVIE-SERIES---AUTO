@@ -211,6 +211,20 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
         "--no-warnings",
         f"ytsearch{probe_n}:{query}",
     ]
+    # 3. Redundant Engine: Bing RSS search for instagram.com/reel (works on cloud IPs)
+    if len(discovered_urls) < count:
+        try:
+            rss_url = "https://www.bing.com/search?format=rss&q=" + urllib.parse.quote_plus(f"site:instagram.com/reel {clean_q} edit")
+            req = urllib.request.Request(rss_url, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=6) as resp:
+                xml_text = resp.read().decode("utf-8", errors="ignore")
+                for code in re.findall(r'instagram\.com/reel/([a-zA-Z0-9_\-]+)', xml_text):
+                    u = f"https://www.instagram.com/reel/{code}/"
+                    if u not in discovered_urls:
+                        discovered_urls.append(u)
+        except Exception as e:
+            print(f"[Harvester] Instagram Bing RSS skipped: {e}", file=sys.stderr)
+
     candidates, seen = [], set()
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=45)
@@ -336,6 +350,20 @@ def scout_instagram_reels(query: str, count: int = 3, ignore_history: bool = Fal
         except Exception as e:
             print(f"[Harvester] Instagram DDG Lite skipped: {e}", file=sys.stderr)
 
+    # 3. Redundant Engine: Bing RSS search for instagram.com/reel (works on cloud IPs)
+    if len(discovered_urls) < count:
+        try:
+            rss_url = "https://www.bing.com/search?format=rss&q=" + urllib.parse.quote_plus(f"site:instagram.com/reel {clean_q} edit")
+            req = urllib.request.Request(rss_url, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=6) as resp:
+                xml_text = resp.read().decode("utf-8", errors="ignore")
+                for code in re.findall(r'instagram\.com/reel/([a-zA-Z0-9_\-]+)', xml_text):
+                    u = f"https://www.instagram.com/reel/{code}/"
+                    if u not in discovered_urls:
+                        discovered_urls.append(u)
+        except Exception as e:
+            print(f"[Harvester] Instagram Bing RSS skipped: {e}", file=sys.stderr)
+
     candidates, seen = [], set()
     for u in discovered_urls:
         if len(candidates) >= count:
@@ -373,9 +401,43 @@ def scout_instagram_reels(query: str, count: int = 3, ignore_history: bool = Fal
 
 
 def scout_tiktok_videos(query: str, count: int = 3, ignore_history: bool = False) -> list[dict]:
-    """Scouts viral TikTok edits via multi-engine discovery (agent-reach + TikWM mirror) + direct metadata."""
+    """Scouts viral TikTok edits via TikWM public API (direct MP4, works on Colab) + agent-reach + DDG Lite."""
     used = set() if ignore_history else _load_history()
     clean_q = re.sub(r"[#@]", "", query).strip()
+    candidates, seen = [], set()
+
+    # 1. Primary Engine: TikWM public search API (returns direct watermark-free MP4 URLs)
+    try:
+        api_url = f"https://www.tikwm.com/api/feed/search?keywords={urllib.parse.quote_plus(clean_q + ' edit')}&count={max(count * 3, 10)}&cursor=0&HD=1"
+        req = urllib.request.Request(api_url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            data = json.loads(resp.read().decode("utf-8", errors="replace"))
+        for v in (data.get("data") or {}).get("videos") or []:
+            tid = str(v.get("video_id") or v.get("id") or "")
+            play_url = v.get("play") or v.get("hdplay") or ""
+            dur = float(v.get("duration") or 20)
+            if not tid or not play_url or dur < 5 or dur > 65:
+                continue
+            cid = f"tt_{tid}"
+            if cid in used or cid in seen:
+                continue
+            seen.add(cid)
+            author = (v.get("author") or {}).get("unique_id") or "tiktok_creator"
+            candidates.append({
+                "id": cid,
+                "platform": "tiktok",
+                "title": (v.get("title") or f"{clean_q} TikTok Edit")[:90],
+                "creator": f"@{author} (TikTok)",
+                "views": int(v.get("play_count") or 10000),
+                "duration": dur,
+                "url": play_url,
+                "direct_mp4": True,
+            })
+            if len(candidates) >= count:
+                return candidates
+    except Exception as e:
+        print(f"[Harvester] TikTok TikWM skipped: {e}", file=sys.stderr)
+
     discovered = []
 
     # 1. Primary Engine: agent-reach web search if CLI is available
@@ -418,6 +480,20 @@ def scout_tiktok_videos(query: str, count: int = 3, ignore_history: bool = False
                         discovered.append((tid, u, f"{clean_q} TikTok Edit", author, 30000))
         except Exception as e:
             print(f"[Harvester] TikTok DDG Lite skipped: {e}", file=sys.stderr)
+
+    # 3. Redundant Engine: Bing RSS search for instagram.com/reel (works on cloud IPs)
+    if len(discovered_urls) < count:
+        try:
+            rss_url = "https://www.bing.com/search?format=rss&q=" + urllib.parse.quote_plus(f"site:instagram.com/reel {clean_q} edit")
+            req = urllib.request.Request(rss_url, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=6) as resp:
+                xml_text = resp.read().decode("utf-8", errors="ignore")
+                for code in re.findall(r'instagram\.com/reel/([a-zA-Z0-9_\-]+)', xml_text):
+                    u = f"https://www.instagram.com/reel/{code}/"
+                    if u not in discovered_urls:
+                        discovered_urls.append(u)
+        except Exception as e:
+            print(f"[Harvester] Instagram Bing RSS skipped: {e}", file=sys.stderr)
 
     candidates, seen = [], set()
     for tid, u, title, author, views in discovered:
@@ -508,7 +584,7 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
                 return out_mp4
             print(f"[Harvester] Fallback download failed ({safe_id}): {proc2.stderr[:180]}", file=sys.stderr)
             # Cookieless rotating proxy fallback (keeps Google account 100% safe)
-            for proxy in _fetch_rotating_proxies(limit=3):
+            for proxy in _fetch_rotating_proxies(limit=8):
                 cmd_px = [c for c in cmd_fb if c not in ("--cookies", str(cookies_file))] + ["--no-cookies", "--proxy", proxy]
                 try:
                     proc3 = subprocess.run(cmd_px, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=45)
