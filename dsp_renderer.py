@@ -339,8 +339,11 @@ def render_edit_ranking(
             )
 
         bar_crop = _detect_black_bar_crop(src, ss)
+        # NOTE: ffmpeg input already seeked with -ss, so the stream starts at ss.
+        # We trim to [0, dur] in stream-time (which corresponds to [ss, ss+dur] in source-time).
+        # setpts normalises timestamps so the speedup works correctly.
         vf = (
-            f"[0:v]trim=0:{dur:.3f},setpts=(PTS-STARTPTS)/1.04,fps=30,{bar_crop}split=2[bg0][fg0];"
+            f"[0:v]trim=start=0:end={dur:.3f},setpts=(PTS-STARTPTS)/1.04,fps=30,{bar_crop}split=2[bg0][fg0];"
             f"[bg0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=24,eq=brightness=-0.16[bg];"
             f"[fg0]crop=trunc(iw*0.96/2)*2:trunc(ih*0.96/2)*2,scale=1080:1920:force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2,eq=contrast=1.08:saturation=1.12[fg];"
             f"[bg][fg]overlay=(W-w)/2:(H-h)/2[comp];"

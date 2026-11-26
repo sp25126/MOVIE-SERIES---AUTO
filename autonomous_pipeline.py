@@ -144,10 +144,11 @@ def run_autonomous_workflow(
     raw_candidates = []
 
     # 1. Scout YouTube
-    yt_cands = scout_youtube(query, count=4, ignore_history=True)
+    is_mentalist = (curr_day == 3) or ("mentalist" in chosen_topic.lower()) or ("patrick jane" in chosen_topic.lower())
+    yt_cands = scout_youtube(query, count=4, ignore_history=True, strict_edit_filter=not is_mentalist)
     if len(yt_cands) < 2:
-        alt_query = "Patrick Jane edit #shorts" if "mentalist" in chosen_topic.lower() else f"{chosen_topic} viral edit shorts"
-        yt_cands.extend(scout_youtube(alt_query, count=4, ignore_history=True))
+        alt_query = "Patrick Jane edit #shorts" if is_mentalist else f"{chosen_topic} viral edit shorts"
+        yt_cands.extend(scout_youtube(alt_query, count=4, ignore_history=True, strict_edit_filter=not is_mentalist))
     raw_candidates.extend(yt_cands)
 
     # 2. Scout Instagram Reels
@@ -251,7 +252,7 @@ def run_autonomous_workflow(
     # 2. Skip initial black fade-in (<=1.5s) to guarantee zero black frames.
     # 3. Trim trailing 2.5s outro cards/logos.
     # 4. Zero BGM clashing (preserve original dialogue 100%).
-    is_patrick_jane = (curr_day == 3) or ("mentalist" in chosen_topic.lower()) or ("patrick jane" in chosen_topic.lower())
+    is_patrick_jane = is_mentalist
 
     if is_patrick_jane:
         logging.info("🔒 [Patrick Jane Trimming Rules Enforced] Mode=Full Uncut (Dialogue preserved, dark fade-in skipped, outro trimmed).")

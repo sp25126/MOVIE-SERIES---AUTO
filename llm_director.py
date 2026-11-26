@@ -48,6 +48,14 @@ def load_local_vision_model(model_name: str = "moondream2"):
     if _LOCAL_MODEL is not None:
         return _LOCAL_MODEL, _LOCAL_TOKENIZER
 
+    # Silence transformers' interactive trust_remote_code prompt across all versions
+    os.environ.setdefault("HF_DATASETS_TRUST_REMOTE_CODE", "1")
+    os.environ.setdefault("TRANSFORMERS_TRUST_REMOTE_CODE", "1")
+    # Disable any stdin prompting in non-interactive environments (Colab / Kaggle)
+    import sys as _sys
+    if not _sys.stdin or not hasattr(_sys.stdin, "isatty") or not _sys.stdin.isatty():
+        os.environ["TRANSFORMERS_NO_ADVISORY_WARNINGS"] = "1"
+
     import torch
     device = "cuda" if torch.cuda.is_available() else "cpu"
     logger.info(f"[LLM Director] Loading local small vision model '{model_name}' on {device}...")
@@ -56,14 +64,24 @@ def load_local_vision_model(model_name: str = "moondream2"):
         if "moondream" in model_name.lower():
             from transformers import AutoModelForCausalLM, AutoTokenizer
             repo_id = "vikhyatk/moondream2"
-            tokenizer = AutoTokenizer.from_pretrained(repo_id, revision="2025-01-09")
-            model = AutoModelForCausalLM.from_pretrained(
-                repo_id,
-                revision="2025-01-09",
-                trust_remote_code=True,
-                torch_dtype=torch.float16 if device == "cuda" else torch.float32,
-                device_map="auto" if device == "cuda" else None,
-            )
+            # trust_remote_code=True is required for Moondream2 custom modelling code.
+            # We also patch stdin to prevent any interactive [y/N] prompt in Colab / Kaggle.
+            import io
+            _orig_stdin = _sys.stdin
+            try:
+                _sys.stdin = io.StringIO("y\n")  # auto-answer any remaining prompt
+                tokenizer = AutoTokenizer.from_pretrained(
+                    repo_id, revision="2025-01-09", trust_remote_code=True
+                )
+                model = AutoModelForCausalLM.from_pretrained(
+                    repo_id,
+                    revision="2025-01-09",
+                    trust_remote_code=True,
+                    torch_dtype=torch.float16 if device == "cuda" else torch.float32,
+                    device_map="auto" if device == "cuda" else None,
+                )
+            finally:
+                _sys.stdin = _orig_stdin
             if device == "cpu":
                 model = model.to(device)
             _LOCAL_MODEL = model

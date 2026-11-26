@@ -134,9 +134,10 @@ RAW_WORD_PATTERNS = (
 )
 
 
-def is_genuine_fan_edit(meta: dict) -> tuple[bool, str]:
+def is_genuine_fan_edit(meta: dict, strict: bool = True) -> tuple[bool, str]:
     """Automated strict deterministic rule gate: ensures only real creator edits pass (from YouTube, TikTok, Instagram)
-    and strictly rejects raw show scenes, TV cutdowns, and quote compilations."""
+    and strictly rejects raw show scenes, TV cutdowns, and quote compilations.
+    Pass strict=False for niche/franchise queries (e.g. The Mentalist) where edit markers may be omitted in titles."""
     title = (meta.get("title") or "").lower()
     desc = (meta.get("description") or "").lower()
     tags = f"{' '.join(meta.get('tags') or [])} {desc}".lower()
@@ -161,11 +162,11 @@ def is_genuine_fan_edit(meta: dict) -> tuple[bool, str]:
         if pat.search(title) and not has_edit_in_title:
             return False, f"Disqualified: raw episode marker '{pat.pattern}' without edit tag"
 
-    # 5. Mandatory edit signature: title or tags MUST have an edit term or social edit hashtag
+    # 5. Mandatory edit signature check (relaxed when strict=False for franchise-specific queries)
     has_social_tag = any(ht in title or ht in tags for ht in SOCIAL_EDIT_HASHTAGS)
     has_edit_in_tags = any(re.search(rf"\b{re.escape(term)}\b", tags) for term in FAN_EDIT_TITLE_TERMS)
 
-    if not (has_edit_in_title or has_social_tag or has_edit_in_tags):
+    if strict and not (has_edit_in_title or has_social_tag or has_edit_in_tags):
         return False, "Disqualified: missing mandatory fan edit signature (not a creator edit)"
 
     return True, "ok"
@@ -198,8 +199,9 @@ def passes_copyright_prefilter(meta: dict, min_duration: int = 4, check_html: bo
     return True, "ok"
 
 
-def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_duration: int = 5, ignore_history: bool = False) -> list[dict]:
-    """Scouts YouTube via fast flat-playlist extractor + Anti-CID pre-filter."""
+def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_duration: int = 5, ignore_history: bool = False, strict_edit_filter: bool = True) -> list[dict]:
+    """Scouts YouTube via fast flat-playlist extractor + Anti-CID pre-filter.
+    Pass strict_edit_filter=False for niche topics (e.g. The Mentalist) where edit markers may be omitted."""
     used = set() if ignore_history else _load_history()
     probe_n = max(count * 4, 20)
     cmd = [
@@ -230,13 +232,13 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
                 continue
 
             views = int(d.get("view_count") or 0)
-            # Enforce virality threshold: ranking edits must have meaningful views (at least 300 views)
-            if views > 0 and views < 300:
+            # Enforce virality threshold: ranking edits must have meaningful views
+            if views > 0 and views < 50:
                 continue
             ok, _ = passes_copyright_prefilter(d, min_duration=min_duration, check_html=False)
             if not ok:
                 continue
-            is_edit, why_edit = is_genuine_fan_edit(d)
+            is_edit, why_edit = is_genuine_fan_edit(d, strict=strict_edit_filter)
             if not is_edit:
                 continue
             candidates.append({
