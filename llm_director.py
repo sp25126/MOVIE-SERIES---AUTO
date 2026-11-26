@@ -26,6 +26,7 @@ GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini
 _LOCAL_MODEL = None
 _LOCAL_TOKENIZER = None
 _LOCAL_MODEL_TYPE = None
+_LOCAL_MODEL_FAILED = False
 
 
 def get_gemini_api_key(api_key: Optional[str] = None) -> str:
@@ -44,9 +45,11 @@ def get_gemini_api_key(api_key: Optional[str] = None) -> str:
 
 
 def load_local_vision_model(model_name: str = "moondream2"):
-    global _LOCAL_MODEL, _LOCAL_TOKENIZER, _LOCAL_MODEL_TYPE
+    global _LOCAL_MODEL, _LOCAL_TOKENIZER, _LOCAL_MODEL_TYPE, _LOCAL_MODEL_FAILED
     if _LOCAL_MODEL is not None:
         return _LOCAL_MODEL, _LOCAL_TOKENIZER
+    if _LOCAL_MODEL_FAILED:
+        return None, None
 
     # Silence transformers' interactive trust_remote_code prompt across all versions
     os.environ.setdefault("HF_DATASETS_TRUST_REMOTE_CODE", "1")
@@ -65,11 +68,14 @@ def load_local_vision_model(model_name: str = "moondream2"):
             from transformers import AutoModelForCausalLM, AutoTokenizer
             repo_id = "vikhyatk/moondream2"
             # trust_remote_code=True is required for Moondream2 custom modelling code.
-            # We also patch stdin to prevent any interactive [y/N] prompt in Colab / Kaggle.
+            # Patch both builtins.input and sys.stdin to prevent any interactive [y/N] prompt in Colab / IPython.
+            import builtins
             import io
             _orig_stdin = _sys.stdin
+            _orig_input = builtins.input
             try:
-                _sys.stdin = io.StringIO("y\n")  # auto-answer any remaining prompt
+                _sys.stdin = io.StringIO("y\n")
+                builtins.input = lambda *a, **kw: "y"
                 tokenizer = AutoTokenizer.from_pretrained(
                     repo_id, revision="2025-01-09", trust_remote_code=True
                 )
@@ -82,6 +88,7 @@ def load_local_vision_model(model_name: str = "moondream2"):
                 )
             finally:
                 _sys.stdin = _orig_stdin
+                builtins.input = _orig_input
             if device == "cpu":
                 model = model.to(device)
             _LOCAL_MODEL = model
@@ -90,6 +97,7 @@ def load_local_vision_model(model_name: str = "moondream2"):
             logger.info("[LLM Director] Moondream2 (1.8B) loaded successfully!")
             return _LOCAL_MODEL, _LOCAL_TOKENIZER
     except Exception as e:
+        _LOCAL_MODEL_FAILED = True
         logger.warning(f"[LLM Director] Failed loading local model ({e}); will fall back to Gemini API.")
         return None, None
 
