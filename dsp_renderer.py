@@ -280,7 +280,12 @@ def render_edit_ranking(
         )
         seg = TEMP_DIR / f"rank_seg_{rank}.mp4"
         src_dur = float(clip.get("duration") or 30.0)
-        if full_uncut:
+        ai_cut = clip.get("optimal_cut") or {}
+        if ai_cut.get("end_sec") and float(ai_cut.get("end_sec")) > float(ai_cut.get("start_sec", 0.0)) + 3.0:
+            ss = max(0.0, float(ai_cut.get("start_sec", 0.0)))
+            ai_dur = float(ai_cut["end_sec"]) - ss
+            dur = min(clip_dur, ai_dur) if clip_dur > 0 else ai_dur
+        elif full_uncut:
             # 100% complete uncut edit: from frame 0 to end frame
             ss = 0.0
             dur = src_dur
