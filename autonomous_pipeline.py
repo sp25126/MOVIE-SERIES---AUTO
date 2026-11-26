@@ -159,6 +159,22 @@ def run_autonomous_workflow(
             logging.info(f"  ✓ Downloaded: {cand['title'][:40]} ({p.stat().st_size / 1e6:.1f}MB)")
 
     if len(downloaded) < 2:
+        logging.warning(f"YouTube yielded {len(downloaded)} clips; trying Reddit fallback for '{chosen_topic}'...")
+        try:
+            from clip_harvester import scout_reddit_memes_and_clips
+            reddit_cands = scout_reddit_memes_and_clips(topic=chosen_topic, count=6, video_only=True)
+            for cand in reddit_cands:
+                p = download_clip(cand, out_dir=input_dir)
+                if p and p.exists() and p.stat().st_size > 20_000:
+                    cand["local_path"] = str(p)
+                    downloaded.append(cand)
+                    logging.info(f"  ✓ Downloaded (Reddit): {cand['title'][:40]} ({p.stat().st_size / 1e6:.1f}MB)")
+                if len(downloaded) >= 3:
+                    break
+        except Exception as re_err:
+            logging.warning(f"Reddit fallback failed: {re_err}")
+
+    if len(downloaded) < 2:
         raise RuntimeError(f"Starvation: Not enough valid clips downloaded for '{chosen_topic}'.")
 
     # =========================================================================

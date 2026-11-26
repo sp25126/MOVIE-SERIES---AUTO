@@ -457,7 +457,17 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
             used.add(tag_id)
             _save_history(used)
             return out_mp4
-        print(f"[Harvester] Download failed ({safe_id}): {proc.stderr[:180]}", file=sys.stderr)
+        print(f"[Harvester] Primary download failed ({safe_id}): {proc.stderr[:180]}", file=sys.stderr)
+        # Fallback for cloud/Colab IPs: retry with tv_embedded,ios client
+        if "youtube.com" in url or "youtu.be" in url:
+            cmd_fb = [c.replace("youtube:player_client=android,web", "youtube:player_client=tv_embedded,ios") for c in cmd]
+            proc2 = subprocess.run(cmd_fb, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120)
+            if proc2.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
+                used = _load_history()
+                used.add(tag_id)
+                _save_history(used)
+                return out_mp4
+            print(f"[Harvester] Fallback download failed ({safe_id}): {proc2.stderr[:180]}", file=sys.stderr)
     except Exception as e:
         print(f"[Harvester] Download exception ({safe_id}): {e}", file=sys.stderr)
     return None
