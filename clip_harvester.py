@@ -1,6 +1,7 @@
 """Multi-platform clip & meme harvester (YouTube, Reddit, TikTok, IG/FB) with Anti-CID pre-filter."""
 
 import json
+import os
 import re
 import shutil
 import subprocess
