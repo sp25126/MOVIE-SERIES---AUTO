@@ -447,7 +447,10 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
         "--socket-timeout", "15",
         "-o", str(target_dir / f"{safe_id}.%(ext)s"),
     ]
-    if browser_cookies:
+    cookies_file = ROOT / "config" / "cookies.txt"
+    if cookies_file.exists() and cookies_file.stat().st_size > 100:
+        cmd.extend(["--cookies", str(cookies_file)])
+    elif browser_cookies:
         cmd.extend(["--cookies-from-browser", browser_cookies])
     cmd.append(url)
     try:

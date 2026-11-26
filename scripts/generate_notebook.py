@@ -103,7 +103,22 @@ def create_colab_notebook():
                     "else:\n",
                     "    !git pull -q\n",
                     "\n",
-                    "print(\"✅ Cloud Studio Ready!\")\n"
+                    "print(\"✅ Cloud Studio Ready!\")\n",
+                    "\n",
+                    "# Load YouTube cookies.txt from Colab Secrets or Google Drive if available (bypasses Colab IP bot-check)\n",
+                    "os.makedirs('config', exist_ok=True)\n",
+                    "try:\n",
+                    "    from google.colab import userdata\n",
+                    "    _ck = userdata.get('YOUTUBE_COOKIES_TXT')\n",
+                    "    if _ck:\n",
+                    "        open('config/cookies.txt', 'w').write(_ck)\n",
+                    "        print(\"✅ Loaded YouTube cookies from Colab Secrets (anti-bot active).\")\n",
+                    "except Exception:\n",
+                    "    pass\n",
+                    "if not os.path.exists('config/cookies.txt') and os.path.exists('/content/drive/MyDrive/cookies.txt'):\n",
+                    "    import shutil\n",
+                    "    shutil.copy('/content/drive/MyDrive/cookies.txt', 'config/cookies.txt')\n",
+                    "    print(\"✅ Loaded YouTube cookies from Google Drive.\")\n"
                 ]
             },
             {
