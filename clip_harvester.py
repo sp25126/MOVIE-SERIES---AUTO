@@ -392,21 +392,32 @@ def scout_tiktok_videos(query: str, count: int = 3, ignore_history: bool = False
     clean_q = re.sub(r"[#@]", "", query).strip()
     candidates, seen = [], set()
 
-    # 1. Primary Engine: TikWM public search API (returns direct watermark-free MP4 URLs)
-    try:
-        api_url = f"https://www.tikwm.com/api/feed/search?keywords={urllib.parse.quote_plus(clean_q + ' edit')}&count={max(count * 3, 10)}&cursor=0&HD=1"
-        req = urllib.request.Request(
-            api_url,
-            headers={
-                "User-Agent": UA,
-                "Accept": "application/json, text/plain, */*",
-                "Referer": "https://www.tikwm.com/",
-                "Origin": "https://www.tikwm.com",
-            },
-        )
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            data = json.loads(resp.read().decode("utf-8", errors="replace"))
-        for v in (data.get("data") or {}).get("videos") or []:
+    # 1. Primary Engine: TikWM public search API (direct -> rotating proxy fallback, fast 4s timeout)
+    api_url = f"https://www.tikwm.com/api/feed/search?keywords={urllib.parse.quote_plus(clean_q + ' edit')}&count={max(count * 3, 10)}&cursor=0&HD=1"
+    tikwm_headers = {
+        "User-Agent": UA,
+        "Accept": "application/json, text/plain, */*",
+        "Referer": "https://www.tikwm.com/",
+        "Origin": "https://www.tikwm.com",
+    }
+    tikwm_data = None
+    for proxy in [None] + _fetch_rotating_proxies(limit=3):
+        try:
+            req = urllib.request.Request(api_url, headers=tikwm_headers)
+            if proxy:
+                opener = urllib.request.build_opener(urllib.request.ProxyHandler({"http": proxy, "https": proxy}))
+                resp_ctx = opener.open(req, timeout=4)
+            else:
+                resp_ctx = urllib.request.urlopen(req, timeout=4)
+            with resp_ctx as resp:
+                tikwm_data = json.loads(resp.read().decode("utf-8", errors="replace"))
+            if (tikwm_data.get("data") or {}).get("videos"):
+                break
+        except Exception:
+            continue
+
+    if tikwm_data:
+        for v in (tikwm_data.get("data") or {}).get("videos") or []:
             tid = str(v.get("video_id") or v.get("id") or "")
             play_url = v.get("play") or v.get("hdplay") or ""
             dur = float(v.get("duration") or 20)
@@ -429,8 +440,6 @@ def scout_tiktok_videos(query: str, count: int = 3, ignore_history: bool = False
             })
             if len(candidates) >= count:
                 return candidates
-    except Exception as e:
-        print(f"[Harvester] TikTok TikWM skipped: {e}", file=sys.stderr)
 
     discovered = []
 
