@@ -121,9 +121,12 @@ def create_colab_notebook():
                 "outputs": [],
                 "source": [
                     "#@title ⚡ Execute Autonomous Pipeline\n",
+                    "import importlib, pathlib\n",
+                    "import clip_harvester, llm_director, dsp_renderer, metadata_uploader, autonomous_pipeline\n",
+                    "for _m in (clip_harvester, llm_director, dsp_renderer, metadata_uploader, autonomous_pipeline):\n",
+                    "    importlib.reload(_m)\n",
                     "from autonomous_pipeline import run_autonomous_workflow\n",
                     "from IPython.display import Video, display\n",
-                    "import pathlib\n",
                     "\n",
                     "result = run_autonomous_workflow(\n",
                     "    day_override=int(PILLAR_DAY_OVERRIDE),\n",

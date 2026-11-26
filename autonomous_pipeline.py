@@ -148,6 +148,7 @@ def run_autonomous_workflow(
         more_candidates = scout_youtube(alt_query, count=6, ignore_history=True)
         raw_candidates.extend(more_candidates)
 
+    logging.info(f"Scouted {len(raw_candidates)} candidate clips. Downloading...")
     input_dir = ROOT / "input"
     input_dir.mkdir(exist_ok=True)
     downloaded = []
@@ -157,6 +158,8 @@ def run_autonomous_workflow(
             cand["local_path"] = str(p)
             downloaded.append(cand)
             logging.info(f"  ✓ Downloaded: {cand['title'][:40]} ({p.stat().st_size / 1e6:.1f}MB)")
+        else:
+            logging.warning(f"  ✗ Failed to download: {cand.get('title', '')[:40]} ({cand.get('url')})")
 
     if len(downloaded) < 2:
         logging.warning(f"YouTube yielded {len(downloaded)} clips; trying Reddit fallback for '{chosen_topic}'...")
