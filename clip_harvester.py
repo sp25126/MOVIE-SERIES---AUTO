@@ -211,20 +211,6 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
         "--no-warnings",
         f"ytsearch{probe_n}:{query}",
     ]
-    # 3. Redundant Engine: Bing RSS search for instagram.com/reel (works on cloud IPs)
-    if len(discovered_urls) < count:
-        try:
-            rss_url = "https://www.bing.com/search?format=rss&q=" + urllib.parse.quote_plus(f"site:instagram.com/reel {clean_q} edit")
-            req = urllib.request.Request(rss_url, headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=6) as resp:
-                xml_text = resp.read().decode("utf-8", errors="ignore")
-                for code in re.findall(r'instagram\.com/reel/([a-zA-Z0-9_\-]+)', xml_text):
-                    u = f"https://www.instagram.com/reel/{code}/"
-                    if u not in discovered_urls:
-                        discovered_urls.append(u)
-        except Exception as e:
-            print(f"[Harvester] Instagram Bing RSS skipped: {e}", file=sys.stderr)
-
     candidates, seen = [], set()
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=45)
@@ -480,20 +466,6 @@ def scout_tiktok_videos(query: str, count: int = 3, ignore_history: bool = False
                         discovered.append((tid, u, f"{clean_q} TikTok Edit", author, 30000))
         except Exception as e:
             print(f"[Harvester] TikTok DDG Lite skipped: {e}", file=sys.stderr)
-
-    # 3. Redundant Engine: Bing RSS search for instagram.com/reel (works on cloud IPs)
-    if len(discovered_urls) < count:
-        try:
-            rss_url = "https://www.bing.com/search?format=rss&q=" + urllib.parse.quote_plus(f"site:instagram.com/reel {clean_q} edit")
-            req = urllib.request.Request(rss_url, headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=6) as resp:
-                xml_text = resp.read().decode("utf-8", errors="ignore")
-                for code in re.findall(r'instagram\.com/reel/([a-zA-Z0-9_\-]+)', xml_text):
-                    u = f"https://www.instagram.com/reel/{code}/"
-                    if u not in discovered_urls:
-                        discovered_urls.append(u)
-        except Exception as e:
-            print(f"[Harvester] Instagram Bing RSS skipped: {e}", file=sys.stderr)
 
     candidates, seen = [], set()
     for tid, u, title, author, views in discovered:
