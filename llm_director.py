@@ -23,10 +23,25 @@ logger = logging.getLogger(__name__)
 
 GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
 
-_LOCAL_MODEL = None
-_LOCAL_TOKENIZER = None
-_LOCAL_MODEL_TYPE = None
-_LOCAL_MODEL_FAILED = False
+OLLAMA_API_URL = os.environ.get("OLLAMA_HOST", "http://localhost:11434").rstrip("/") + "/api/generate"
+OLLAMA_VISION_MODEL = os.environ.get("OLLAMA_VISION_MODEL", "qwen2.5vl:3b")
+
+
+def ensure_ollama_ready(model_name: str = OLLAMA_VISION_MODEL) -> bool:
+    """Checks if Ollama server is reachable and has the vision model ready."""
+    try:
+        tags_url = OLLAMA_API_URL.replace("/api/generate", "/api/tags")
+        with urllib.request.urlopen(tags_url, timeout=3) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+        models = [m.get("name", "") for m in data.get("models", [])]
+        if any(model_name.split(":")[0] in m for m in models):
+            return True
+        logger.info(f"[LLM Director] Pulling Ollama vision model '{model_name}'...")
+        subprocess.run(["ollama", "pull", model_name], check=True, timeout=300)
+        return True
+    except Exception as e:
+        logger.warning(f"[LLM Director] Ollama not available ({e}); will fall back to Gemini API.")
+        return False
 
 
 def get_gemini_api_key(api_key: Optional[str] = None) -> str:
@@ -171,12 +186,11 @@ def analyze_clip_frames(
     dur = frames_data[-1][0] / 0.95 if frames_data else 20.0
 
     if use_local_model:
-        model, tokenizer = load_local_vision_model("moondream2")
-        if model is not None:
+        if ensure_ollama_ready(OLLAMA_VISION_MODEL):
             try:
-                return _analyze_with_moondream(model, tokenizer, frames_data, dur, topic, skill=skill, clip_title=clip_title)
+                return _analyze_with_ollama(frames_data, dur, topic, skill=skill, clip_title=clip_title, skill_block=skill_block)
             except Exception as e:
-                logger.warning(f"[LLM Director] Local model inference failed: {e}; falling back to Gemini API.")
+                logger.warning(f"[LLM Director] Ollama inference failed: {e}; falling back to Gemini API.")
 
     key = get_gemini_api_key(api_key)
     if not key:
@@ -244,39 +258,63 @@ Respond ONLY with valid JSON. No markdown code blocks, no other text."""
         return _fallback_heuristic_analysis(video_path, topic=topic, clip_title=clip_title, skill=skill)
 
 
-def _analyze_with_moondream(model, tokenizer, frames_data: list, duration: float, topic: str, skill: dict | None = None, clip_title: str = "") -> dict:
-    last_frame = frames_data[-1][2]
-    wm_ans = model.answer_question(model.encode_image(last_frame), "Does this image have a watermark, CapCut logo, or social media username?", tokenizer)
-    has_wm = any(w in wm_ans.lower() for w in ["yes", "watermark", "capcut", "logo", "username", "tiktok"])
+def _analyze_with_ollama(
+    frames_data: list,
+    duration: float,
+    topic: str,
+    skill: dict | None = None,
+    clip_title: str = "",
+    skill_block: str = "",
+) -> dict:
+    """Runs multimodal frame analysis using local Ollama vision model (e.g. qwen2.5vl:3b)."""
+    frame_list_text = "\n".join([f"- Frame {i+1}: at {sec:.1f}s" for i, (sec, _, _) in enumerate(frames_data)])
+    prompt = f"""You are an elite Hollywood & viral short-form video editor.
+{skill_block}
 
-    mid_idx = len(frames_data) // 2
-    mid_frame = frames_data[mid_idx][2]
-    scene_ans = model.answer_question(model.encode_image(mid_frame), "What action or character is in this image in 2 to 3 words?", tokenizer)
-    clean_label = re.sub(r"[^A-Za-z0-9 ]+", "", scene_ans).strip()[:20] or _derive_label_from_title(clip_title, topic)
+Analyze these {len(frames_data)} sequential frames from a {duration:.1f}s clip for '{topic}' (Title: '{clip_title}'):
+{frame_list_text}
+
+Respond ONLY with valid JSON with these exact keys:
+{{
+  "approved": true,
+  "quality_score": 8.5,
+  "has_watermark_spam": false,
+  "scene_label": "2-3 word action/character label",
+  "optimal_cut": {{"start_sec": 0.0, "end_sec": {duration:.1f}, "reason": "string"}},
+  "hook_description": "string",
+  "climax_description": "string",
+  "vibe_sentiment": "hype_cool"
+}}"""
+
+    payload = json.dumps({
+        "model": OLLAMA_VISION_MODEL,
+        "prompt": prompt,
+        "images": [b64 for _, b64, _ in frames_data],
+        "stream": False,
+        "format": "json",
+    }).encode("utf-8")
+    req = urllib.request.Request(OLLAMA_API_URL, data=payload, headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=90) as resp:
+        raw_text = json.loads(resp.read().decode("utf-8")).get("response", "").strip()
+    raw_text = re.sub(r"^```(?:json)?\s*", "", raw_text)
+    raw_text = re.sub(r"\s*```$", "", raw_text).strip()
+    res = json.loads(raw_text)
 
     if skill and not skill.get("allow_trim", True):
         start, end = 0.0, duration
-        reason = f"Skill '{skill['skill_name']}' enforces 100% FULL UNCUT (zero trims)."
+        res.setdefault("optimal_cut", {})["reason"] = f"Skill '{skill['skill_name']}' enforces 100% FULL UNCUT (zero trims)."
     else:
-        start = 1.0 if duration > 14.0 else 0.0
-        end = (duration - 2.5) if (has_wm and duration > 10.0) else (duration - 0.5)
-        reason = f"Local VLM detected end watermark={has_wm}; trimmed cleanly."
-
-    return {
-        "approved": True,
-        "quality_score": 8.8,
-        "has_watermark_spam": has_wm,
-        "scene_label": clean_label,
-        "optimal_cut": {
-            "start_sec": round(start, 2),
-            "end_sec": round(end, 2),
-            "duration": round(end - start, 2),
-            "reason": reason,
-        },
-        "hook_description": "Opening hook",
-        "climax_description": scene_ans,
-        "vibe_sentiment": "hype_cool"
-    }
+        opt = res.get("optimal_cut", {})
+        start = max(0.0, float(opt.get("start_sec", 0.0)))
+        end = min(duration, float(opt.get("end_sec", duration)))
+        if end <= start + 3.0:
+            end = duration
+    res["optimal_cut"]["start_sec"] = round(start, 2)
+    res["optimal_cut"]["end_sec"] = round(end, 2)
+    res["optimal_cut"]["duration"] = round(end - start, 2)
+    if not res.get("scene_label"):
+        res["scene_label"] = _derive_label_from_title(clip_title, topic)
+    return res
 
 
 def _derive_label_from_title(clip_title: str, topic: str) -> str:
