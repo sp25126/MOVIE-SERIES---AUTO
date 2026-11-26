@@ -326,6 +326,18 @@ def run_autonomous_workflow(
     logging.info(f"Slot:  {meta['recommended_slot_utc']}")
     logging.info(f"Tags:  {meta['tags']}")
 
+    # Persist companion metadata JSON alongside the rendered MP4
+    meta_out = output_dir / f"{slug}_metadata.json"
+    meta_out.write_text(json.dumps({
+        "pillar_day": curr_day,
+        "category": category_name,
+        "topic": chosen_topic,
+        "genre": chosen_genre,
+        "video_path": str(out_mp4),
+        **meta,
+    }, indent=2, ensure_ascii=False), encoding="utf-8")
+    logging.info(f"Saved metadata JSON: {meta_out}")
+
     upload_result = {}
     if upload:
         logging.info("\n🚀 Uploading private canary & scheduling to YouTube Studio...")
@@ -358,25 +370,68 @@ def run_autonomous_workflow(
         "category": category_name,
         "topic": chosen_topic,
         "output_mp4": str(out_mp4),
+        "metadata_json": str(meta_out),
         "metadata": meta,
         "qa_result": qa_res,
         "upload_result": upload_result,
     }
 
 
+def run_full_category_cycle(
+    use_local_vlm: bool = False,
+    upload: bool = False,
+    clip_dur: float = 0.0,
+    start_day: int = 1,
+) -> list[dict]:
+    """Runs all 4 Category Pillars sequentially (Cinema -> TV Series -> The Mentalist -> Song Trends)."""
+    day_order = [((start_day - 1 + i) % 4) + 1 for i in range(4)]
+    results = []
+    logging.info(f"\n🎡 STARTING FULL 4-CATEGORY CYCLE: {day_order}")
+    for d in day_order:
+        cat_name = CADENCE_NAMES[d]
+        logging.info(f"\n{'#'*60}\n▶ CYCLE STEP: Pillar #{d} — {cat_name}\n{'#'*60}")
+        try:
+            res = run_autonomous_workflow(
+                day_override=d,
+                topic_override="",
+                use_local_vlm=use_local_vlm,
+                upload=upload,
+                clip_dur=clip_dur,
+            )
+            results.append(res)
+        except Exception as e:
+            logging.error(f"✗ Pillar #{d} ({cat_name}) failed: {e}")
+            results.append({
+                "status": "failed",
+                "pillar_day": d,
+                "category": cat_name,
+                "error": str(e),
+            })
+    return results
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Autonomous 8-Step Virality & Self-Healing Pipeline")
     parser.add_argument("--day", type=int, default=0, help="Day override (1=Cinema, 2=TV Series, 3=The Mentalist, 4=Song Edits)")
     parser.add_argument("--topic", type=str, default="", help="Topic override (or blank for auto-virality)")
-    parser.add_argument("--local-vlm", action="store_true", help="Use local small VLM (Moondream2) instead of Gemini API")
+    parser.add_argument("--local-vlm", action="store_true", help="Use local small VLM (Ollama) instead of Gemini API")
     parser.add_argument("--upload", action="store_true", help="Upload private canary & schedule to YouTube")
-    parser.add_argument("--clip-dur", type=float, default=16.0, help="Target duration per clip in seconds")
+    parser.add_argument("--clip-dur", type=float, default=0.0, help="Target duration per clip in seconds (0=AI decides)")
+    parser.add_argument("--full-cycle", action="store_true", help="Run all 4 categories one after another")
     args = parser.parse_args()
 
-    run_autonomous_workflow(
-        day_override=args.day,
-        topic_override=args.topic,
-        use_local_vlm=args.local_vlm,
-        upload=args.upload,
-        clip_dur=args.clip_dur,
-    )
+    if args.full_cycle:
+        run_full_category_cycle(
+            use_local_vlm=args.local_vlm,
+            upload=args.upload,
+            clip_dur=args.clip_dur,
+            start_day=args.day if args.day in (1, 2, 3, 4) else 1,
+        )
+    else:
+        run_autonomous_workflow(
+            day_override=args.day,
+            topic_override=args.topic,
+            use_local_vlm=args.local_vlm,
+            upload=args.upload,
+            clip_dur=args.clip_dur,
+        )
