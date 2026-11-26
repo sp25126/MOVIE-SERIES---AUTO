@@ -395,7 +395,15 @@ def scout_tiktok_videos(query: str, count: int = 3, ignore_history: bool = False
     # 1. Primary Engine: TikWM public search API (returns direct watermark-free MP4 URLs)
     try:
         api_url = f"https://www.tikwm.com/api/feed/search?keywords={urllib.parse.quote_plus(clean_q + ' edit')}&count={max(count * 3, 10)}&cursor=0&HD=1"
-        req = urllib.request.Request(api_url, headers={"User-Agent": UA})
+        req = urllib.request.Request(
+            api_url,
+            headers={
+                "User-Agent": UA,
+                "Accept": "application/json, text/plain, */*",
+                "Referer": "https://www.tikwm.com/",
+                "Origin": "https://www.tikwm.com",
+            },
+        )
         with urllib.request.urlopen(req, timeout=10) as resp:
             data = json.loads(resp.read().decode("utf-8", errors="replace"))
         for v in (data.get("data") or {}).get("videos") or []:

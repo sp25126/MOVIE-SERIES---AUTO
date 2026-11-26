@@ -15,6 +15,7 @@ import logging
 import os
 import re
 import subprocess
+import urllib.error
 import urllib.request
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -267,11 +268,16 @@ def _analyze_with_ollama(
     skill_block: str = "",
 ) -> dict:
     """Runs multimodal frame analysis using local Ollama vision model (e.g. qwen2.5vl:3b)."""
-    frame_list_text = "\n".join([f"- Frame {i+1}: at {sec:.1f}s" for i, (sec, _, _) in enumerate(frames_data)])
+    sample_frames = (
+        [frames_data[0], frames_data[len(frames_data) // 2], frames_data[-1]]
+        if len(frames_data) >= 3
+        else frames_data
+    )
+    frame_list_text = "\n".join([f"- Frame {i+1}: at {sec:.1f}s" for i, (sec, _, _) in enumerate(sample_frames)])
     prompt = f"""You are an elite Hollywood & viral short-form video editor.
 {skill_block}
 
-Analyze these {len(frames_data)} sequential frames from a {duration:.1f}s clip for '{topic}' (Title: '{clip_title}'):
+Analyze these {len(sample_frames)} sequential frames from a {duration:.1f}s clip for '{topic}' (Title: '{clip_title}'):
 {frame_list_text}
 
 Respond ONLY with valid JSON with these exact keys:
@@ -286,16 +292,27 @@ Respond ONLY with valid JSON with these exact keys:
   "vibe_sentiment": "hype_cool"
 }}"""
 
+    # Send up to 3 representative frames (start, mid, end) via /api/chat for maximum Ollama compatibility
+    chat_url = OLLAMA_API_URL.replace("/api/generate", "/api/chat")
     payload = json.dumps({
         "model": OLLAMA_VISION_MODEL,
-        "prompt": prompt,
-        "images": [b64 for _, b64, _ in frames_data],
+        "messages": [
+            {
+                "role": "user",
+                "content": prompt,
+                "images": [b64 for _, b64, _ in sample_frames],
+            }
+        ],
         "stream": False,
-        "format": "json",
     }).encode("utf-8")
-    req = urllib.request.Request(OLLAMA_API_URL, data=payload, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=90) as resp:
-        raw_text = json.loads(resp.read().decode("utf-8")).get("response", "").strip()
+    req = urllib.request.Request(chat_url, data=payload, headers={"Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=90) as resp:
+            resp_data = json.loads(resp.read().decode("utf-8"))
+        raw_text = (resp_data.get("message") or {}).get("content", "").strip()
+    except urllib.error.HTTPError as he:
+        err_body = he.read().decode("utf-8", errors="ignore")[:200]
+        raise RuntimeError(f"HTTP {he.code}: {err_body}") from he
     raw_text = re.sub(r"^```(?:json)?\s*", "", raw_text)
     raw_text = re.sub(r"\s*```$", "", raw_text).strip()
     res = json.loads(raw_text)
