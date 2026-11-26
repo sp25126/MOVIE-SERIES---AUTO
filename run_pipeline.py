@@ -108,10 +108,16 @@ def run_pipeline(
 ) -> dict:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     from virality_radar import REPORT_PATH
-    skip_yt = False
-    if REPORT_PATH.exists() and (time.time() - REPORT_PATH.stat().st_mtime) < 3 * 3600:
-        skip_yt = True
-    report = scan_virality(skip_yt=skip_yt)
+    if topic and REPORT_PATH.exists():
+        try:
+            report = json.loads(REPORT_PATH.read_text(encoding="utf-8"))
+        except Exception:
+            report = scan_virality(skip_yt=True)
+    else:
+        skip_yt = False
+        if REPORT_PATH.exists() and (time.time() - REPORT_PATH.stat().st_mtime) < 3 * 3600:
+            skip_yt = True
+        report = scan_virality(skip_yt=skip_yt)
 
     primary = (
         [{"topic": topic, "genre": genre or "action_thriller", "subcategory": "manual_override", "recommended_format": "edit_ranking" if fmt == "auto" else fmt, "query_suffix": "edit shorts"}]

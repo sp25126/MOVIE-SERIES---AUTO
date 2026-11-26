@@ -445,14 +445,14 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
         "--no-warnings",
         "--retries", "1",
         "--fragment-retries", "1",
-        "--socket-timeout", "10",
+        "--socket-timeout", "5",
         "-o", str(target_dir / f"{safe_id}.%(ext)s"),
     ]
     if browser_cookies:
         cmd.extend(["--cookies-from-browser", browser_cookies])
     cmd.append(url)
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=90)
+        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=30)
         if proc.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
             used = _load_history()
             used.add(tag_id)
@@ -595,7 +595,7 @@ def harvest_video_pack(
     interleaved = []
     max_len = max((len(v) for v in by_platform.values()), default=0)
     for i in range(max_len):
-        for plat in ("youtube", "instagram", "tiktok", "reddit", "facebook"):
+        for plat in ("youtube", "instagram", "reddit", "facebook", "tiktok"):
             if plat in by_platform and i < len(by_platform[plat]):
                 interleaved.append(by_platform[plat][i])
 

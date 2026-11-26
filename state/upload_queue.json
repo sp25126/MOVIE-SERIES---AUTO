@@ -1,10 +1,5 @@
 {
   "scheduled_slots": [
-    "2026-11-19T14:00:00Z",
-    "2026-11-20T14:00:00Z",
-    "2026-11-21T14:00:00Z",
-    "2026-11-22T14:00:00Z",
-    "2026-11-23T14:00:00Z",
     "2026-11-24T14:00:00Z",
     "2026-11-25T14:00:00Z",
     "2026-11-26T14:00:00Z",
@@ -14,7 +9,8 @@
     "2026-11-30T14:00:00Z",
     "2026-12-01T14:00:00Z",
     "2026-12-02T14:00:00Z",
-    "2026-12-03T14:00:00Z"
+    "2026-12-03T14:00:00Z",
+    "2026-12-04T14:00:00Z"
   ],
   "queue": [
     {
@@ -142,6 +138,13 @@
       "uploaded_at_utc": "2026-11-22T08:17:30Z",
       "rescheduled_reason": "Preempted by breaking event 'Ranking Best Avengers Doomsday Edits! 🔥💀 #shorts #avengersdoomsday #naofloppa #shortsfeed'",
       "assigned_slot_utc": "2026-12-03T14:00:00Z"
+    },
+    {
+      "video_id": "2SgbRCTih20",
+      "scheduled": true,
+      "publish_at": "2026-11-26T14:00:00Z",
+      "title": "Ranking Best Squid Game Edits! 🔥💀 #shorts #squidgame #naofloppa #shortsfeed",
+      "uploaded_at_utc": "2026-11-26T09:05:40Z"
     }
   ],
   "last_upload_date_utc": "2026-11-19T14:00:00Z"

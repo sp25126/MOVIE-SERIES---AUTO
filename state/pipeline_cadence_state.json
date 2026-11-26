@@ -1,8 +1,8 @@
 {
-  "current_day_index": 2,
+  "current_day_index": 3,
   "song_subcat_index": 1,
   "cycle_count": 6,
-  "last_run_utc": "2026-11-25T09:32:08Z",
+  "last_run_utc": "2026-11-26T09:06:07Z",
   "history": [
     {
       "timestamp_utc": "2026-11-19T10:46:07Z",
@@ -145,6 +145,15 @@
       "name": "TV & Web Series Group",
       "result": "failed",
       "error": "All TV series candidates failed: Command '['/opt/hostedtoolcache/Python/3.11.18/x64/bin/python', 'run_pipeline.py', '--topic', 'Succession', '--format', 'edit_ranking', '--upload']' returned non-zero exit status 1."
+    },
+    {
+      "timestamp_utc": "2026-11-26T09:06:07Z",
+      "day": 2,
+      "name": "TV & Web Series Group",
+      "result": "success",
+      "topic": "Squid Game",
+      "video_id": "2SgbRCTih20",
+      "scheduled_slot_utc": "2026-11-26T14:00:00Z"
     }
   ]
 }
