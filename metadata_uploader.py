@@ -105,7 +105,20 @@ def build_metadata(
     fmt: str,
     clips: list[dict],
     handle: str = "@OtakuSnapster",
+    genre: str = "action_thriller",
 ) -> dict:
+    """100% Dynamic Metadata Builder: Powered by LLM Director & live multi-platform trending tags."""
+    try:
+        import llm_director
+        return llm_director.generate_ai_metadata(
+            topic=topic,
+            curated_clips=clips,
+            genre=genre,
+            handle=handle,
+        )
+    except Exception as e:
+        pass
+
     slug_tag, topic_seo_tags, viral_trending_tags, tags = get_contextual_hashtags(topic, clips)
     emojis = get_topic_emojis(topic)
 

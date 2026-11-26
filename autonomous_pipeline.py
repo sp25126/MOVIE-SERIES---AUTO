@@ -101,32 +101,36 @@ def run_autonomous_workflow(
             chosen_genre = "crime_mystery"
             logging.info(f"🔒 [Pillar 3 Locked] Topic: '{chosen_topic}'")
         else:
+            logging.info("🔥 [Virality Engine] Executing live 360° virality scan across Reddit, YouTube, and news...")
             try:
-                from virality_engine import scan_live_virality_radar
-                report = scan_live_virality_radar()
+                import virality_engine
+                digest = virality_engine.run_all_category_virality_scan(force_fresh_yt=True)
             except Exception as e:
-                logging.warning(f"Virality radar scan error ({e}); reading cached state...")
-                report_file = STATE_DIR / "virality_report.json"
-                report = json.loads(report_file.read_text(encoding="utf-8")) if report_file.exists() else {}
+                logging.warning(f"Live virality scan exception ({e}); reading cached daily digest...")
+                digest_file = STATE_DIR / "daily_virality_digest.json"
+                digest = json.loads(digest_file.read_text(encoding="utf-8")) if digest_file.exists() else {}
 
+            cats = digest.get("categories", {})
             if curr_day == 1:
-                cinema_items = report.get("cinema", [])
-                winner = cinema_items[0] if cinema_items else {"topic": "Avengers Doomsday", "genre": "superhero"}
-                chosen_topic = winner.get("topic")
-                chosen_genre = winner.get("genre", "action_thriller")
+                cinema_cat = cats.get("cinema", {})
+                chosen_topic = cinema_cat.get("lead_winner")
+                chosen_genre = cinema_cat.get("lead_genre", "action_thriller")
+                logging.info(f"🎬 Dynamic Cinema Winner: '{chosen_topic}' (Score: {cinema_cat.get('lead_score')})")
             elif curr_day == 2:
-                tv_items = report.get("tv_series", [])
-                winner = tv_items[0] if tv_items else {"series_name": "Squid Game", "genre": "thriller"}
-                chosen_topic = winner.get("series_name")
-                chosen_genre = winner.get("genre", "thriller")
+                tv_cat = cats.get("tv_series", {})
+                chosen_topic = tv_cat.get("lead_winner")
+                chosen_genre = "tv_thriller"
+                logging.info(f"📺 Dynamic TV Series Winner: '{chosen_topic}' ({tv_cat.get('lead_views', 0):,} views)")
             elif curr_day == 4:
                 sub_idx = state.get("song_subcat_index", 0) % len(SONG_SUBCATEGORIES)
                 current_subcat = SONG_SUBCATEGORIES[sub_idx]
-                song_items = report.get("song_trends", [])
-                winner = song_items[0] if song_items else {"song_name": "Heartless", "genre": "song_trends"}
-                chosen_topic = winner.get("song_name")
+                song_cat = cats.get("song_trends", {})
+                chosen_topic = song_cat.get("lead_winner")
                 chosen_genre = "song_trends"
-                logging.info(f"🎵 Day 4 Subcategory: {current_subcat}")
+                logging.info(f"🎵 Dynamic Song Trends Winner: '{chosen_topic}' (Subcategory: {current_subcat})")
+
+    if not chosen_topic:
+        raise RuntimeError("Virality Engine failed to discover a live winner. Ensure network access is available.")
 
     logging.info(f"🏆 Winning Topic: '{chosen_topic}' (Genre: {chosen_genre})")
 
@@ -239,6 +243,7 @@ def run_autonomous_workflow(
         topic=chosen_topic,
         fmt="edit_ranking",
         clips=curated_clips,
+        genre=chosen_genre,
     )
 
     logging.info(f"\n--- GENERATED PUBLISHING METADATA ---")

@@ -1,239 +1,248 @@
 {
-  "scan_time_utc": "2026-11-23T07:37:25Z",
+  "scan_time_utc": "2026-11-26T12:57:35Z",
   "winner": {
-    "song_name": "Fendi 2",
-    "banner_title": "RANKING THE BEST FENDI 2 TREND EDITS",
-    "total_views": 3383317,
-    "virality_score": 104.45,
+    "song_name": "Gimme More",
+    "banner_title": "RANKING THE BEST GIMME MORE TREND EDITS",
+    "total_views": 2506888,
+    "virality_score": 101.98,
     "edits": [
       {
-        "id": "ig_Cc50NMfgXk_",
+        "id": "ig_DCR2x7BtwKp",
         "platform": "instagram",
-        "title": "Video by highsnobiety",
-        "creator": "@HIGHSNOBIETY (Insta)",
-        "views": 3353096,
+        "title": "Video by raidessq",
+        "creator": "@seungmin<3 (Insta)",
+        "views": 1984928,
         "duration": 15.0,
-        "url": "https://www.instagram.com/reel/Cc50NMfgXk_/"
+        "url": "https://www.instagram.com/reel/DCR2x7BtwKp/"
       },
       {
-        "id": "tt_5225170105305868583",
+        "id": "tt_6819185759522688261",
         "platform": "tiktok",
-        "title": "Trend Dance Tiktok Viral 2026 | Fendi 2 #tiktok​​​ ...| Kwai",
-        "creator": "@𝙆𝙚𝙫𝙝𝙖𝙣𝙯𝙞 (TikTok)",
+        "title": "#greenscreenvideo i made a remix to britney spears gimmie more... it k... | gimme more rem",
+        "creator": "@tiktok_creator (TikTok)",
         "views": 25000,
         "duration": 20.0,
-        "url": "https://www.tiktok.com/video/5225170105305868583"
+        "url": "https://www.tiktok.com/video/6819185759522688261"
       },
       {
-        "id": "yt_4slQc3EuFvc",
+        "id": "yt_w1GVnWZMpNs",
         "platform": "youtube",
-        "title": "\"FENDI 2\" TREND EDIT PRESET | ALIGHT MOTION",
-        "creator": "@𝓥𝓲𝓬𝓴𝔂",
-        "views": 5221,
-        "duration": 29.0,
-        "url": "https://www.youtube.com/watch?v=4slQc3EuFvc"
+        "title": "Gimme More - Britney Spears [Edit Audio]「Instrumental」",
+        "creator": "@HanEditx",
+        "views": 496960,
+        "duration": 36.0,
+        "url": "https://www.youtube.com/watch?v=w1GVnWZMpNs"
       }
     ]
   },
   "trending_songs": [
     {
-      "song_name": "Fendi 2",
-      "banner_title": "RANKING THE BEST FENDI 2 TREND EDITS",
-      "total_views": 3383317,
-      "virality_score": 104.45,
+      "song_name": "Gimme More",
+      "banner_title": "RANKING THE BEST GIMME MORE TREND EDITS",
+      "total_views": 2506888,
+      "virality_score": 101.98,
       "edits": [
         {
-          "id": "ig_Cc50NMfgXk_",
+          "id": "ig_DCR2x7BtwKp",
           "platform": "instagram",
-          "title": "Video by highsnobiety",
-          "creator": "@HIGHSNOBIETY (Insta)",
-          "views": 3353096,
+          "title": "Video by raidessq",
+          "creator": "@seungmin<3 (Insta)",
+          "views": 1984928,
           "duration": 15.0,
-          "url": "https://www.instagram.com/reel/Cc50NMfgXk_/"
+          "url": "https://www.instagram.com/reel/DCR2x7BtwKp/"
         },
         {
-          "id": "tt_5225170105305868583",
+          "id": "tt_6819185759522688261",
           "platform": "tiktok",
-          "title": "Trend Dance Tiktok Viral 2026 | Fendi 2 #tiktok​​​ ...| Kwai",
-          "creator": "@𝙆𝙚𝙫𝙝𝙖𝙣𝙯𝙞 (TikTok)",
-          "views": 25000,
-          "duration": 20.0,
-          "url": "https://www.tiktok.com/video/5225170105305868583"
-        },
-        {
-          "id": "yt_4slQc3EuFvc",
-          "platform": "youtube",
-          "title": "\"FENDI 2\" TREND EDIT PRESET | ALIGHT MOTION",
-          "creator": "@𝓥𝓲𝓬𝓴𝔂",
-          "views": 5221,
-          "duration": 29.0,
-          "url": "https://www.youtube.com/watch?v=4slQc3EuFvc"
-        }
-      ]
-    },
-    {
-      "song_name": "Vampire Heart",
-      "banner_title": "RANKING THE BEST VAMPIRE HEART TREND EDITS",
-      "total_views": 2756185,
-      "virality_score": 96.93,
-      "edits": [
-        {
-          "id": "ig_DCo57LMgTZQ",
-          "platform": "instagram",
-          "title": "Video by enhypenxo",
-          "creator": "@enhypenxo (Insta)",
-          "views": 81728,
-          "duration": 15.0,
-          "url": "https://www.instagram.com/reel/DCo57LMgTZQ/"
-        },
-        {
-          "id": "tt_7633880356126526742",
-          "platform": "tiktok",
-          "title": "TikTok Video by @maxsterae | 263K Views | Toklytics",
-          "creator": "@TvduCore (TikTok)",
-          "views": 263000,
-          "duration": 20.0,
-          "url": "https://www.tiktok.com/video/7633880356126526742"
-        },
-        {
-          "id": "yt_k_573toSJ-4",
-          "platform": "youtube",
-          "title": "\" Six little egg..🖤💔 \" // ⭐️ Animation ⭐️ // Aphmau💜",
-          "creator": "@•LittleMindXD•",
-          "views": 2411457,
-          "duration": 36.0,
-          "url": "https://www.youtube.com/watch?v=k_573toSJ-4"
-        }
-      ]
-    },
-    {
-      "song_name": "Freaked Out",
-      "banner_title": "RANKING THE BEST FREAKED OUT TREND EDITS",
-      "total_views": 545403,
-      "virality_score": 86.43,
-      "edits": [
-        {
-          "id": "tt_7663557267828002079",
-          "platform": "tiktok",
-          "title": "@tiktokwithhasan: 5x outlier | Overshot",
+          "title": "#greenscreenvideo i made a remix to britney spears gimmie more... it k... | gimme more rem",
           "creator": "@tiktok_creator (TikTok)",
           "views": 25000,
           "duration": 20.0,
-          "url": "https://www.tiktok.com/video/7663557267828002079"
+          "url": "https://www.tiktok.com/video/6819185759522688261"
         },
         {
-          "id": "yt_uXw9DOSN1O8",
+          "id": "yt_w1GVnWZMpNs",
           "platform": "youtube",
-          "title": "freaked out (slowed to perfection) - fat papi, prodshushy [edit audio]",
+          "title": "Gimme More - Britney Spears [Edit Audio]「Instrumental」",
           "creator": "@HanEditx",
-          "views": 470874,
-          "duration": 40.0,
-          "url": "https://www.youtube.com/watch?v=uXw9DOSN1O8"
-        },
-        {
-          "id": "yt_o-NzyEExtfA",
-          "platform": "youtube",
-          "title": "FREAKED OUT -EDIT AUDIO",
-          "creator": "@TANIOKOEDITS",
-          "views": 49529,
-          "duration": 22.0,
-          "url": "https://www.youtube.com/watch?v=o-NzyEExtfA"
+          "views": 496960,
+          "duration": 36.0,
+          "url": "https://www.youtube.com/watch?v=w1GVnWZMpNs"
         }
       ]
     },
     {
-      "song_name": "House",
-      "banner_title": "RANKING THE BEST HOUSE TREND EDITS",
-      "total_views": 51174,
-      "virality_score": 74.1,
+      "song_name": "Stateside",
+      "banner_title": "RANKING THE BEST STATESIDE TREND EDITS",
+      "total_views": 1788848,
+      "virality_score": 99.74,
       "edits": [
         {
-          "id": "tt_7395192251346849056",
-          "platform": "tiktok",
-          "title": "I’m back in my house era // This was heavily inspired by @han !!’s ama... | TikTok",
-          "creator": "@tiktok_creator (TikTok)",
-          "views": 25000,
-          "duration": 20.0,
-          "url": "https://www.tiktok.com/video/7395192251346849056"
-        },
-        {
-          "id": "yt_ShyW64bWglE",
+          "id": "yt_z1aVQJJhCK8",
           "platform": "youtube",
-          "title": "Hyunlix \"House of memories\" Trend Edit~Naz",
-          "creator": "@AlaraLord",
-          "views": 1174,
-          "duration": 12.0,
-          "url": "https://www.youtube.com/watch?v=ShyW64bWglE"
+          "title": "STATESIDE ANIMATION MEME",
+          "creator": "@Emmaartly",
+          "views": 1506968,
+          "duration": 46.0,
+          "url": "https://www.youtube.com/watch?v=z1aVQJJhCK8"
         },
         {
-          "id": "tt_7480332312312302891",
-          "platform": "tiktok",
-          "title": "Frank Ocean House Remix for Your Beach Party | TikTok",
-          "creator": "@tiktok_creator (TikTok)",
-          "views": 25000,
-          "duration": 20.0,
-          "url": "https://www.tiktok.com/video/7480332312312302891"
+          "id": "yt_fMmGKJUeR3Q",
+          "platform": "youtube",
+          "title": "STATESIDE ෆ",
+          "creator": "@chewy໒꒱",
+          "views": 276261,
+          "duration": 45.0,
+          "url": "https://www.youtube.com/watch?v=fMmGKJUeR3Q"
+        },
+        {
+          "id": "yt_qpJxOjFkeh4",
+          "platform": "youtube",
+          "title": "STATESIDE VIRAL EDIT TREND/ Tiktok Velocity Edit (alight motion)",
+          "creator": "@saranie",
+          "views": 5619,
+          "duration": 35.0,
+          "url": "https://www.youtube.com/watch?v=qpJxOjFkeh4"
         }
       ]
     },
     {
-      "song_name": "LV Sandals",
-      "banner_title": "RANKING THE BEST LV SANDALS TREND EDITS",
-      "total_views": 80572,
-      "virality_score": 70.77,
+      "song_name": "Pop dat thang",
+      "banner_title": "RANKING THE BEST POP DAT THANG TREND EDITS",
+      "total_views": 1405188,
+      "virality_score": 98.26,
       "edits": [
         {
-          "id": "ig_DJW8gZ7R_wT",
+          "id": "ig_DXxb7FIpC-R",
           "platform": "instagram",
-          "title": "Video by fifth_ave_shopping",
-          "creator": "@Galit|PersonalShopperNYC (Insta)",
-          "views": 944,
+          "title": "Video by dababy",
+          "creator": "@KIRK (Insta)",
+          "views": 1319968,
           "duration": 15.0,
-          "url": "https://www.instagram.com/reel/DJW8gZ7R_wT/"
+          "url": "https://www.instagram.com/reel/DXxb7FIpC-R/"
         },
         {
-          "id": "yt_DfguqI2spAM",
+          "id": "yt_3JQ7tWtDYw4",
           "platform": "youtube",
-          "title": "LV SANDALS (4K)",
-          "creator": "@StyLer",
-          "views": 55892,
-          "duration": 23.0,
-          "url": "https://www.youtube.com/watch?v=DfguqI2spAM"
+          "title": "Dancing- pop that thang caked up",
+          "creator": "@HarleyMariee",
+          "views": 84924,
+          "duration": 28.0,
+          "url": "https://www.youtube.com/watch?v=3JQ7tWtDYw4"
         },
         {
-          "id": "yt_3QmbxS-hOxU",
-          "platform": "youtube",
-          "title": "LV Sandals | Michael Olise | 4k Edit",
-          "creator": "@Tosh",
-          "views": 23736,
-          "duration": 25.0,
-          "url": "https://www.youtube.com/watch?v=3QmbxS-hOxU"
+          "id": "ig_DYAQMxNu8fx",
+          "platform": "instagram",
+          "title": "Video by des_serross_4",
+          "creator": "@DesireeSerros|TexasRealtor🏘️ (Insta)",
+          "views": 296,
+          "duration": 15.0,
+          "url": "https://www.instagram.com/reel/DYAQMxNu8fx/"
         }
       ]
     },
     {
-      "song_name": "Keep Following",
-      "banner_title": "RANKING THE BEST KEEP FOLLOWING TREND EDITS",
-      "total_views": 473,
-      "virality_score": 41.87,
+      "song_name": "Let me love you",
+      "banner_title": "RANKING THE BEST LET ME LOVE YOU TREND EDITS",
+      "total_views": 405736,
+      "virality_score": 89.71,
       "edits": [
         {
-          "id": "yt_obD7VJlw8s8",
-          "platform": "youtube",
-          "title": "Stay trend  | Roblox edit 2021| proud of this Roblox edit | Edit w ShivStar| SiimplyPxstel",
-          "creator": "@vim",
-          "views": 277,
-          "duration": 13.0,
-          "url": "https://www.youtube.com/watch?v=obD7VJlw8s8"
+          "id": "ig_DRaJbXXD9BU",
+          "platform": "instagram",
+          "title": "Video by alonsoruva",
+          "creator": "@AlonsoRuiz (Insta)",
+          "views": 399536,
+          "duration": 15.0,
+          "url": "https://www.instagram.com/reel/DRaJbXXD9BU/"
         },
         {
-          "id": "yt_-VgZWE9e2LA",
+          "id": "yt_Ot-pSBT99SU",
           "platform": "youtube",
-          "title": "TREND 🔥🔥 || Free Fire Trending Status || Alight Motion Editing #shorts  #Bad_timer #Trending",
-          "creator": "@Sangeeta_Editz",
-          "views": 196,
-          "duration": 13.0,
-          "url": "https://www.youtube.com/watch?v=-VgZWE9e2LA"
+          "title": "\"GTA 5 STYLE EDIT\" Tiktok Trend Edit Base | Alight Motion (preset + XML).",
+          "creator": "@Jannefs",
+          "views": 6112,
+          "duration": 33.0,
+          "url": "https://www.youtube.com/watch?v=Ot-pSBT99SU"
+        },
+        {
+          "id": "ig_Dfw2cPYKtVi",
+          "platform": "instagram",
+          "title": "Video by solaymane.aba",
+          "creator": "@solaymane|سليمان (Insta)",
+          "views": 88,
+          "duration": 15.0,
+          "url": "https://www.instagram.com/reel/Dfw2cPYKtVi/"
+        }
+      ]
+    },
+    {
+      "song_name": "Ponyboy",
+      "banner_title": "RANKING THE BEST PONYBOY TREND EDITS",
+      "total_views": 899581,
+      "virality_score": 86.52,
+      "edits": [
+        {
+          "id": "ig_DByZ8opy1w3",
+          "platform": "instagram",
+          "title": "Video by nightedits._9",
+          "creator": "@𝐍𝐈𝐆𝐇𝐓 (Insta)",
+          "views": 5856,
+          "duration": 15.0,
+          "url": "https://www.instagram.com/reel/DByZ8opy1w3/"
+        },
+        {
+          "id": "tt_7234619208158416155",
+          "platform": "tiktok",
+          "title": "#PONY + #JOHNNY ; lalala okokok — i’m so early to this trend 🥱🥱 || #... | ponyboy x johnny",
+          "creator": "@tiktok_creator (TikTok)",
+          "views": 25000,
+          "duration": 20.0,
+          "url": "https://www.tiktok.com/video/7234619208158416155"
+        },
+        {
+          "id": "yt_8qm6Pn9kYas",
+          "platform": "youtube",
+          "title": "Ponyboy | Sophie | Choreography by Isaiah Southall",
+          "creator": "@IsaiahSouthall",
+          "views": 868725,
+          "duration": 24.0,
+          "url": "https://www.youtube.com/watch?v=8qm6Pn9kYas"
+        }
+      ]
+    },
+    {
+      "song_name": "Here",
+      "banner_title": "RANKING THE BEST HERE TREND EDITS",
+      "total_views": 50131,
+      "virality_score": 73.99,
+      "edits": [
+        {
+          "id": "tt_7554861380839525663",
+          "platform": "tiktok",
+          "title": "“Wait I need a minute…”",
+          "creator": "@Guillaume (TikTok)",
+          "views": 25000,
+          "duration": 20.0,
+          "url": "https://www.tiktok.com/video/7554861380839525663"
+        },
+        {
+          "id": "yt_NXKiai4LxC0",
+          "platform": "youtube",
+          "title": "Here I am (TikTok Trend) – Scaramouche edit",
+          "creator": "@Eveᰔ.ᐟ",
+          "views": 131,
+          "duration": 17.0,
+          "url": "https://www.youtube.com/watch?v=NXKiai4LxC0"
+        },
+        {
+          "id": "tt_7546819393850805535",
+          "platform": "tiktok",
+          "title": "“Wait I need a minute…”",
+          "creator": "@Guillaume (TikTok)",
+          "views": 25000,
+          "duration": 20.0,
+          "url": "https://www.tiktok.com/video/7546819393850805535"
         }
       ]
     }
