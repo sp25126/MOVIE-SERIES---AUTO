@@ -426,6 +426,21 @@ def scout_tiktok_public(query: str, count: int = 3) -> list[dict]:
     return scout_tiktok_videos(query, count=count)
 
 
+def _fetch_rotating_proxies(limit: int = 5) -> list[str]:
+    """Fetches fresh free HTTPS proxies for cookieless cloud IP rotation (keeps Google account 100% safe)."""
+    env_proxy = os.environ.get("PROXY_URL", "").strip()
+    if env_proxy:
+        return [env_proxy]
+    try:
+        url = "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=3000&country=all&ssl=yes&anonymity=elite"
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=8) as resp:
+            lines = [f"http://{l.strip()}" for l in resp.read().decode("utf-8", errors="ignore").splitlines() if ":" in l]
+            return lines[:limit]
+    except Exception:
+        return []
+
+
 def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, browser_cookies: str = "") -> Path | None:
     """Downloads a public YouTube, TikTok, Reddit, Instagram Reel, or Facebook Watch video via yt_dlp."""
     # shortcut: IG/FB public reels sometimes require local browser session cookies (--cookies-from-browser chrome)
@@ -445,6 +460,8 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
         "--retries", "3",
         "--fragment-retries", "3",
         "--socket-timeout", "15",
+        "--sleep-interval", "2",
+        "--max-sleep-interval", "5",
         "-o", str(target_dir / f"{safe_id}.%(ext)s"),
     ]
     cookies_file = ROOT / "config" / "cookies.txt"
@@ -471,6 +488,18 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
                 _save_history(used)
                 return out_mp4
             print(f"[Harvester] Fallback download failed ({safe_id}): {proc2.stderr[:180]}", file=sys.stderr)
+            # Cookieless rotating proxy fallback (keeps Google account 100% safe)
+            for proxy in _fetch_rotating_proxies(limit=3):
+                cmd_px = [c for c in cmd_fb if c not in ("--cookies", str(cookies_file))] + ["--no-cookies", "--proxy", proxy]
+                try:
+                    proc3 = subprocess.run(cmd_px, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=45)
+                    if proc3.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
+                        used = _load_history()
+                        used.add(tag_id)
+                        _save_history(used)
+                        return out_mp4
+                except Exception:
+                    continue
     except Exception as e:
         print(f"[Harvester] Download exception ({safe_id}): {e}", file=sys.stderr)
     return None

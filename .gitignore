@@ -21,3 +21,6 @@ state/*
 __pycache__/
 *.pyc
 .pytest_cache/
+
+config/cookies.txt
+*cookies*.txt
