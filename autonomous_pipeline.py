@@ -135,31 +135,62 @@ def run_autonomous_workflow(
     logging.info(f"🏆 Winning Topic: '{chosen_topic}' (Genre: {chosen_genre})")
 
     # =========================================================================
-    # STEP 4: HARVESTING CANDIDATE CLIPS (Anti-Bot Android Extractor)
+    # STEP 4: MULTI-PLATFORM CLIP HARVESTING (YouTube + Instagram + TikTok)
     # =========================================================================
-    logging.info(f"📥 STEP 4: Harvesting Clips for '{chosen_topic}'...")
-    from clip_harvester import scout_youtube, download_clip
+    logging.info(f"📥 STEP 4: Harvesting Clips across YouTube, Instagram & TikTok for '{chosen_topic}'...")
+    from clip_harvester import scout_youtube, scout_instagram_reels, scout_tiktok_videos, download_clip
 
     query = f"{chosen_topic} edit shorts" if curr_day != 4 else f"{chosen_topic} audio edit shorts"
-    raw_candidates = scout_youtube(query, count=6, ignore_history=True)
-    if len(raw_candidates) < 3:
-        alt_query = "Patrick Jane edit #shorts" if "mentalist" in chosen_topic.lower() else f"{chosen_topic} viral edit shorts"
-        logging.info(f"Expanding scout probe with alternative query: '{alt_query}'...")
-        more_candidates = scout_youtube(alt_query, count=6, ignore_history=True)
-        raw_candidates.extend(more_candidates)
+    raw_candidates = []
 
-    logging.info(f"Scouted {len(raw_candidates)} candidate clips. Downloading...")
+    # 1. Scout YouTube
+    yt_cands = scout_youtube(query, count=4, ignore_history=True)
+    if len(yt_cands) < 2:
+        alt_query = "Patrick Jane edit #shorts" if "mentalist" in chosen_topic.lower() else f"{chosen_topic} viral edit shorts"
+        yt_cands.extend(scout_youtube(alt_query, count=4, ignore_history=True))
+    raw_candidates.extend(yt_cands)
+
+    # 2. Scout Instagram Reels
+    ig_query = "Patrick Jane" if "mentalist" in chosen_topic.lower() else chosen_topic
+    try:
+        ig_cands = scout_instagram_reels(ig_query, count=3, ignore_history=True)
+        logging.info(f"  📸 Instagram Reels scouted: {len(ig_cands)}")
+        raw_candidates.extend(ig_cands)
+    except Exception as e:
+        logging.warning(f"  Instagram scout skipped: {e}")
+
+    # 3. Scout TikTok
+    try:
+        tt_cands = scout_tiktok_videos(ig_query, count=3, ignore_history=True)
+        logging.info(f"  🎵 TikTok scouted: {len(tt_cands)}")
+        raw_candidates.extend(tt_cands)
+    except Exception as e:
+        logging.warning(f"  TikTok scout skipped: {e}")
+
+    # Interleave platforms so we get diverse edits from IG, TikTok & YouTube
+    by_plat = {"instagram": [], "tiktok": [], "youtube": []}
+    for c in raw_candidates:
+        by_plat.setdefault(c.get("platform", "youtube"), []).append(c)
+    interleaved = []
+    for i in range(max((len(v) for v in by_plat.values()), default=0)):
+        for p_name in ("instagram", "tiktok", "youtube"):
+            if i < len(by_plat.get(p_name, [])):
+                interleaved.append(by_plat[p_name][i])
+
+    logging.info(f"Scouted {len(interleaved)} multi-platform candidates (IG={len(by_plat['instagram'])}, TT={len(by_plat['tiktok'])}, YT={len(by_plat['youtube'])}). Downloading...")
     input_dir = ROOT / "input"
     input_dir.mkdir(exist_ok=True)
     downloaded = []
-    for cand in raw_candidates[:5]:
+    for cand in interleaved[:8]:
         p = download_clip(cand, out_dir=input_dir)
         if p and p.exists() and p.stat().st_size > 20_000:
             cand["local_path"] = str(p)
             downloaded.append(cand)
-            logging.info(f"  ✓ Downloaded: {cand['title'][:40]} ({p.stat().st_size / 1e6:.1f}MB)")
+            logging.info(f"  ✓ Downloaded ({cand.get('platform')}): {cand['title'][:40]} ({p.stat().st_size / 1e6:.1f}MB)")
         else:
-            logging.warning(f"  ✗ Failed to download: {cand.get('title', '')[:40]} ({cand.get('url')})")
+            logging.warning(f"  ✗ Failed ({cand.get('platform')}): {cand.get('title', '')[:40]} ({cand.get('url')})")
+        if len(downloaded) >= 4:
+            break
 
     if len(downloaded) < 2:
         logging.warning(f"YouTube yielded {len(downloaded)} clips; trying Reddit fallback for '{chosen_topic}'...")

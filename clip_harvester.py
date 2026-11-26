@@ -401,6 +401,22 @@ def scout_tiktok_videos(query: str, count: int = 3, ignore_history: bool = False
         except Exception as e:
             print(f"[Harvester] TikTok scout agent-reach skipped: {e}", file=sys.stderr)
 
+    # 2. Redundant Engine: DuckDuckGo Lite search for tiktok.com/@.../video/...
+    if len(discovered) < count:
+        try:
+            url = "https://lite.duckduckgo.com/lite/"
+            body = urllib.parse.urlencode({"q": f"site:tiktok.com {clean_q} edit"}).encode("utf-8")
+            req = urllib.request.Request(url, data=body, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=6) as resp:
+                html = resp.read().decode("utf-8", errors="ignore")
+                for m in re.findall(r'tiktok\.com/@([^/]+)/video/(\d{15,22})', html):
+                    author, tid = m[0], m[1]
+                    u = f"https://www.tiktok.com/@{author}/video/{tid}"
+                    if tid not in [x[0] for x in discovered]:
+                        discovered.append((tid, u, f"{clean_q} TikTok Edit", author, 30000))
+        except Exception as e:
+            print(f"[Harvester] TikTok DDG Lite skipped: {e}", file=sys.stderr)
+
     candidates, seen = [], set()
     for tid, u, title, author, views in discovered:
         if len(candidates) >= count:
