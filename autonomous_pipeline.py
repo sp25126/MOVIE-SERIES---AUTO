@@ -143,7 +143,10 @@ def run_autonomous_workflow(
     query = f"{chosen_topic} edit shorts" if curr_day != 4 else f"{chosen_topic} audio edit shorts"
     raw_candidates = scout_youtube(query, count=6, ignore_history=True)
     if len(raw_candidates) < 3:
-        raw_candidates = scout_youtube(f"{chosen_topic} viral edit", count=6, ignore_history=True)
+        alt_query = "Patrick Jane edit #shorts" if "mentalist" in chosen_topic.lower() else f"{chosen_topic} viral edit shorts"
+        logging.info(f"Expanding scout probe with alternative query: '{alt_query}'...")
+        more_candidates = scout_youtube(alt_query, count=6, ignore_history=True)
+        raw_candidates.extend(more_candidates)
 
     input_dir = ROOT / "input"
     input_dir.mkdir(exist_ok=True)
@@ -183,7 +186,7 @@ def run_autonomous_workflow(
         )
 
     # =========================================================================
-    # STEP 6: DSP PRECISION EDITING (1080x1920, Dual-Layer Blur, 48kHz Audio)
+    # STEP 6: DSP PRECISION EDITING (Enforcing Patrick Jane Trimming Rules)
     # =========================================================================
     logging.info(f"🎬 STEP 6: DSP Master Rendering...")
     import dsp_renderer
@@ -192,12 +195,32 @@ def run_autonomous_workflow(
     slug = "".join(ch for ch in chosen_topic.lower() if ch.isalnum())
     out_mp4 = output_dir / f"{slug}_master_short.mp4"
 
+    # Enforce Patrick Jane Category Rules:
+    # 1. Full Uncut Rule: Never truncate dialogue/mind-games arbitrarily; play full clip.
+    # 2. Skip initial black fade-in (<=1.5s) to guarantee zero black frames.
+    # 3. Trim trailing 2.5s outro cards/logos.
+    # 4. Zero BGM clashing (preserve original dialogue 100%).
+    is_patrick_jane = (curr_day == 3) or ("mentalist" in chosen_topic.lower()) or ("patrick jane" in chosen_topic.lower())
+
+    if is_patrick_jane:
+        logging.info("🔒 [Patrick Jane Trimming Rules Enforced] Mode=Full Uncut (Dialogue preserved, dark fade-in skipped, outro trimmed).")
+        effective_clip_dur = 0.0 # Full uncut mode!
+        full_uncut_flag = True
+    elif clip_dur <= 0:
+        logging.info("🧠 [AI Decision Mode] AI Vision Model optimal cut points dictate clip durations.")
+        effective_clip_dur = 0.0
+        full_uncut_flag = False
+    else:
+        effective_clip_dur = clip_dur
+        full_uncut_flag = False
+
     dsp_renderer.render_edit_ranking(
         topic=chosen_topic,
         clips=curated_clips,
         output_mp4=out_mp4,
-        clip_dur=clip_dur,
+        clip_dur=effective_clip_dur,
         genre=chosen_genre,
+        full_uncut=full_uncut_flag,
     )
     logging.info(f"Render completed: {out_mp4} ({out_mp4.stat().st_size / 1e6:.2f} MB)")
 

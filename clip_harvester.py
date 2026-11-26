@@ -198,19 +198,19 @@ def passes_copyright_prefilter(meta: dict, min_duration: int = 4, check_html: bo
 
 
 def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_duration: int = 5, ignore_history: bool = False) -> list[dict]:
-    """Scouts YouTube via yt_dlp InnerTube/web extractor + Anti-CID pre-filter."""
+    """Scouts YouTube via fast flat-playlist extractor + Anti-CID pre-filter."""
     used = set() if ignore_history else _load_history()
-    probe_n = max(count * 8, 35)
+    probe_n = max(count * 4, 20)
     cmd = [
         sys.executable, "-m", "yt_dlp",
-        "--extractor-args", "youtube:player_client=android,web",
-        "--dump-json", "--no-playlist", "--no-warnings",
-        "--match-filter", f"duration <= {max_duration} & duration >= {min_duration}",
+        "--flat-playlist",
+        "--dump-json",
+        "--no-warnings",
         f"ytsearch{probe_n}:{query}",
     ]
     candidates, seen = [], set()
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=60)
+        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=45)
         for line in proc.stdout.splitlines():
             if not line.strip():
                 continue
@@ -222,9 +222,15 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
             if not vid or vid in seen or vid in used or f"yt_{vid}" in used:
                 continue
             seen.add(vid)
+            
+            # Check duration filter (flat-playlist provides duration)
+            dur = float(d.get("duration") or 0)
+            if dur > 0 and (dur > max_duration or dur < min_duration):
+                continue
+
             views = int(d.get("view_count") or 0)
-            # Enforce virality threshold: ranking edits must have meaningful views (at least 500 views)
-            if views < 500:
+            # Enforce virality threshold: ranking edits must have meaningful views (at least 300 views)
+            if views > 0 and views < 300:
                 continue
             ok, _ = passes_copyright_prefilter(d, min_duration=min_duration, check_html=False)
             if not ok:
@@ -238,23 +244,14 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
                 "title": d.get("title", ""),
                 "creator": d.get("channel") or d.get("uploader") or "Creator",
                 "views": int(d.get("view_count") or 0),
-                "duration": float(d.get("duration") or 15),
-                "url": d.get("webpage_url") or f"https://youtube.com/watch?v={vid}",
+                "duration": float(d.get("duration") or 20),
+                "url": d.get("url") or d.get("webpage_url") or f"https://youtube.com/watch?v={vid}",
             })
     except Exception as e:
         print(f"[Harvester] YouTube scout skipped ({query[:30]}): {e}", file=sys.stderr)
 
     candidates.sort(key=lambda x: x["views"], reverse=True)
-    # Perform final HTML Content-ID check on the top candidates only
-    verified = []
-    for c in candidates:
-        vid_raw = c["id"].replace("yt_", "")
-        claimed, _ = has_youtube_cid_claim(vid_raw)
-        if not claimed:
-            verified.append(c)
-        if len(verified) >= count:
-            break
-    return verified
+    return candidates[:count]
 
 
 def scout_reddit_memes_and_clips(topic: str = "", count: int = 5, video_only: bool = False) -> list[dict]:
@@ -442,19 +439,19 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
     cmd = [
         sys.executable, "-m", "yt_dlp",
         "--extractor-args", "youtube:player_client=android,web",
-        "-f", "bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]/best[ext=mp4]/best",
+        "-f", "best[height<=1080][ext=mp4]/bestvideo[height<=1080]+bestaudio/best[height<=1080]/best",
         "--merge-output-format", "mp4",
         "--no-warnings",
-        "--retries", "2",
-        "--fragment-retries", "2",
-        "--socket-timeout", "10",
+        "--retries", "3",
+        "--fragment-retries", "3",
+        "--socket-timeout", "15",
         "-o", str(target_dir / f"{safe_id}.%(ext)s"),
     ]
     if browser_cookies:
         cmd.extend(["--cookies-from-browser", browser_cookies])
     cmd.append(url)
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=30)
+        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120)
         if proc.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
             used = _load_history()
             used.add(tag_id)
