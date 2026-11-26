@@ -266,34 +266,45 @@ def scout_reddit_memes_and_clips(topic: str = "", count: int = 5, video_only: bo
     subs = MEME_SUBREDDITS[:4]
     for sub in subs:
         q_param = f"&title={urllib.parse.quote_plus(topic)}" if topic else ""
-        url = f"https://arctic-shift.photon-reddit.com/api/posts/search?subreddit={sub}&after={after_ts}&limit=25&sort=desc{q_param}"
-        try:
-            req = urllib.request.Request(url, headers={"User-Agent": "MovieSeriesHarvester/1.0"})
-            with urllib.request.urlopen(req, timeout=10) as resp:
-                data = json.loads(resp.read().decode("utf-8", errors="replace")).get("data", [])
-            for p in data:
-                pid = f"rd_{p.get('id')}"
-                if p.get("over_18") or pid in used:
-                    continue
-                is_vid = bool(p.get("is_video"))
-                media_url = p.get("url_overridden_by_dest") or p.get("url") or ""
-                is_img = bool(re.search(r"\.(jpg|jpeg|png|webp)$", media_url, re.I))
-                if video_only and not is_vid:
-                    continue
-                if not is_vid and not is_img:
-                    continue
-                results.append({
-                    "id": pid,
-                    "platform": "reddit",
-                    "media_type": "video" if is_vid else "image",
-                    "title": p.get("title", ""),
-                    "creator": f"u/{p.get('author', 'redditor')} (r/{p.get('subreddit', sub)})",
-                    "views": int(p.get("score") or 0) * 100 + int(p.get("num_comments") or 0) * 300,
-                    "duration": float((p.get("media") or {}).get("reddit_video", {}).get("duration") or 12),
-                    "url": f"https://www.reddit.com{p.get('permalink', '')}" if is_vid else media_url,
-                })
-        except Exception as e:
-            print(f"[Harvester] ArcticShift r/{sub} skipped: {e}", file=sys.stderr)
+        data = []
+        urls_to_try = [
+            f"https://arctic-shift.photon-reddit.com/api/posts/search?subreddit={sub.lower()}&after={after_ts}&limit=25&sort=desc{q_param}",
+            f"https://www.reddit.com/r/{sub}/search.json?q={urllib.parse.quote_plus(topic or 'edit')}&restrict_sr=1&sort=top&t=week&limit=25",
+        ]
+        for url in urls_to_try:
+            try:
+                req = urllib.request.Request(url, headers={"User-Agent": "MovieSeriesHarvester/1.0"})
+                with urllib.request.urlopen(req, timeout=8) as resp:
+                    raw = json.loads(resp.read().decode("utf-8", errors="replace"))
+                if isinstance(raw.get("data"), list):
+                    data = raw["data"]
+                elif isinstance(raw.get("data"), dict):
+                    data = [c.get("data", {}) for c in raw["data"].get("children", [])]
+                if data:
+                    break
+            except Exception:
+                continue
+        for p in data:
+            pid = f"rd_{p.get('id')}"
+            if p.get("over_18") or pid in used:
+                continue
+            is_vid = bool(p.get("is_video"))
+            media_url = p.get("url_overridden_by_dest") or p.get("url") or ""
+            is_img = bool(re.search(r"\.(jpg|jpeg|png|webp)$", media_url, re.I))
+            if video_only and not is_vid:
+                continue
+            if not is_vid and not is_img:
+                continue
+            results.append({
+                "id": pid,
+                "platform": "reddit",
+                "media_type": "video" if is_vid else "image",
+                "title": p.get("title", ""),
+                "creator": f"u/{p.get('author', 'redditor')} (r/{p.get('subreddit', sub)})",
+                "views": int(p.get("score") or 0) * 100 + int(p.get("num_comments") or 0) * 300,
+                "duration": float((p.get("media") or {}).get("reddit_video", {}).get("duration") or 12),
+                "url": f"https://www.reddit.com{p.get('permalink', '')}" if is_vid else media_url,
+            })
     results.sort(key=lambda x: x["views"], reverse=True)
     return results[:count]
 

@@ -246,27 +246,37 @@ def probe_youtube_window(queries: list[tuple[str, str]], sp: str, label: str, pe
 
 
 def fetch_reddit_arcticshift(subreddits: list[str], days: int = 7, limit_per_sub: int = 25) -> list[dict]:
-    """Fetches real Reddit posts across genre subreddits from last N days via ArcticShift API."""
+    """Fetches real Reddit posts across genre subreddits from last N days via ArcticShift API (with Reddit JSON fallback)."""
     after_ts = int(time.time() - days * 86400)
     posts = []
     for sub in subreddits:
         clean_sub = sub.strip().lower()
-        url = f"https://arctic-shift.photon-reddit.com/api/posts/search?subreddit={clean_sub}&limit=15"
-        try:
-            data = json.loads(_http_get(url, timeout=4, ua=UA)).get("data", [])
-            for p in data:
-                title = (p.get("title") or "").strip()
-                score = int(p.get("score") or 0)
-                comms = int(p.get("num_comments") or 0)
-                eng = score + 3 * comms
-                if title and eng >= 5:
-                    posts.append({
-                        "sub": sub, "title": title, "score": score, "comments": comms,
-                        "engagement": eng, "days": days,
-                        "url": f"https://www.reddit.com{p.get('permalink', '')}",
-                    })
-        except Exception as e:
-            print(f"[Radar] ArcticShift r/{sub} ({days}d) skipped: {e}", file=sys.stderr)
+        data = []
+        for url in (
+            f"https://arctic-shift.photon-reddit.com/api/posts/search?subreddit={clean_sub}&after={after_ts}&limit=15&sort=desc",
+            f"https://www.reddit.com/r/{clean_sub}/hot.json?limit=15",
+        ):
+            try:
+                raw = json.loads(_http_get(url, timeout=5, ua=UA))
+                if "data" in raw and isinstance(raw["data"], list):
+                    data = raw["data"]
+                elif isinstance(raw.get("data"), dict):
+                    data = [c.get("data", {}) for c in raw["data"].get("children", [])]
+                if data:
+                    break
+            except Exception:
+                continue
+        for p in data:
+            title = (p.get("title") or "").strip()
+            score = int(p.get("score") or 0)
+            comms = int(p.get("num_comments") or 0)
+            eng = score + 3 * comms
+            if title and eng >= 5:
+                posts.append({
+                    "sub": sub, "title": title, "score": score, "comments": comms,
+                    "engagement": eng, "days": days,
+                    "url": f"https://www.reddit.com{p.get('permalink', '')}",
+                })
     posts.sort(key=lambda x: x["engagement"], reverse=True)
     return posts[:45]
 
