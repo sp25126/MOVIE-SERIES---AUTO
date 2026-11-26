@@ -452,8 +452,8 @@ def scout_tiktok_videos(query: str, count: int = 3, ignore_history: bool = False
                 data = json.loads(proc.stdout)
                 for item in data.get("items", []):
                     blob = f"{item.get('text', '')} {item.get('url', '')}"
-                    found_ids = re.findall(r'(?:tiktok\.com/@[^/]+/video/|toklytics\.app/video/|/video/)(\d{15,22})', blob)
-                    author = item.get("author") or "tiktok_creator"
+                    full_matches = re.findall(r'tiktok\.com/@([^/\s]+)/video/(\d{15,22})', blob)
+                    author = (item.get("author") or "").lstrip("@")
                     views = 25000
                     vm = re.search(r'([\d\.]+)M\s+Views', blob, re.I)
                     if vm:
@@ -461,10 +461,15 @@ def scout_tiktok_videos(query: str, count: int = 3, ignore_history: bool = False
                     vk = re.search(r'([\d\.]+)K\s+Views', blob, re.I)
                     if vk:
                         views = int(float(vk.group(1)) * 1_000)
-                    for tid in found_ids:
-                        u = f"https://www.tiktok.com/video/{tid}"
+                    for m_auth, tid in full_matches:
+                        u = f"https://www.tiktok.com/@{m_auth}/video/{tid}"
                         if tid not in [x[0] for x in discovered]:
-                            discovered.append((tid, u, item.get("title") or f"{clean_q} TikTok Edit", author, views))
+                            discovered.append((tid, u, item.get("title") or f"{clean_q} TikTok Edit", m_auth, views))
+                    if not full_matches and author and author != "tiktok_creator":
+                        for tid in re.findall(r'(?:toklytics\.app/video/|/video/)(\d{15,22})', blob):
+                            u = f"https://www.tiktok.com/@{author}/video/{tid}"
+                            if tid not in [x[0] for x in discovered]:
+                                discovered.append((tid, u, item.get("title") or f"{clean_q} TikTok Edit", author, views))
         except Exception as e:
             print(f"[Harvester] TikTok scout agent-reach skipped: {e}", file=sys.stderr)
 
@@ -562,6 +567,24 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
             _save_history(used)
             return out_mp4
         print(f"[Harvester] Primary download failed ({safe_id}): {proc.stderr[:180]}", file=sys.stderr)
+        # Fallback for TikTok: resolve direct MP4 via TikWM single-video API
+        if "tiktok.com" in url:
+            try:
+                tw_api = f"https://www.tikwm.com/api/?url={urllib.parse.quote_plus(url)}&hd=1"
+                req_tw = urllib.request.Request(tw_api, headers={"User-Agent": UA, "Referer": "https://www.tikwm.com/"})
+                with urllib.request.urlopen(req_tw, timeout=8) as resp_tw:
+                    tw_data = json.loads(resp_tw.read().decode("utf-8", errors="replace")).get("data") or {}
+                play_u = tw_data.get("hdplay") or tw_data.get("play")
+                if play_u:
+                    with urllib.request.urlopen(urllib.request.Request(play_u, headers={"User-Agent": UA}), timeout=30) as vid_r:
+                        out_mp4.write_bytes(vid_r.read())
+                    if out_mp4.exists() and out_mp4.stat().st_size > 20_000:
+                        used = _load_history()
+                        used.add(tag_id)
+                        _save_history(used)
+                        return out_mp4
+            except Exception:
+                pass
         # Fallback for cloud/Colab IPs: retry with tv_embedded,ios client
         if "youtube.com" in url or "youtu.be" in url:
             cmd_fb = [c.replace("youtube:player_client=android,web", "youtube:player_client=tv_embedded,ios") for c in cmd]
