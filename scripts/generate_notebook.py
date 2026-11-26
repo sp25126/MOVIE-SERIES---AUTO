@@ -7,7 +7,7 @@ def create_colab_notebook():
         "nbformat_minor": 0,
         "metadata": {
             "colab": {
-                "name": "Otaku AI Viral Shorts Studio",
+                "name": "Otaku Autonomous AI Shorts Studio",
                 "provenance": [],
                 "toc_visible": True
             },
@@ -24,21 +24,25 @@ def create_colab_notebook():
                 "cell_type": "markdown",
                 "metadata": {},
                 "source": [
-                    "# 🎬 Otaku AI Viral Shorts Studio (Google Colab Edition)\n",
-                    "### Fully Autonomous Cloud Pipeline Powered by **Gemini 2.5 Flash Multimodal Vision**\n",
+                    "# 🎬 Otaku Autonomous AI Shorts Studio (Colab & Kaggle Edition)\n",
+                    "### 8-Step Self-Healing Workflow with Multimodal Frame Director & Strict Category Cadence\n",
                     "\n",
-                    "**100% Free Cloud Production:** Run directly from your phone browser or laptop without keeping your computer on.\n",
-                    "- 🧠 **Multimodal LLM Director:** Samples candidate frames, detects beat drops & visual hooks, and chooses precision cut timestamps.\n",
-                    "- 💎 **DSP Renderer:** 1080×1920 edge-to-edge framing, dynamic dual-layer ambient blur, Krylo countdown ladder, 48 kHz audio mastering.\n",
-                    "- 🚀 **YouTube Studio Scheduler:** Automated canary upload, Content-ID verification, and primetime scheduling."
+                    "**100% Free Cloud Production:** Run directly from your phone browser or computer without keeping your device on.\n",
+                    "1. 🎡 **Category Choosing:** Strictly enforces the 4-Day Rotating Pillar wheel (Cinema ➔ TV Series ➔ The Mentalist ➔ Song Trends).\n",
+                    "2. 📡 **Virality Radar:** Discovers what is currently blowing up across platforms.\n",
+                    "3. 📊 **Scoring & Selection:** Algorithms pick the #1 winning cultural topic.\n",
+                    "4. 📥 **Clip Harvesting:** Anti-bot extraction of the top viral fan edits.\n",
+                    "5. 🧠 **Model Visual Inspection:** Analyzes timeline keyframes, scores quality (1-10), checks watermarks, detects beat drop, and picks precision cut points (Supports **Local Small Model** or **Gemini 2.5 Flash**).\n",
+                    "6. 🎨 **DSP Master Editing:** 1080×1920 edge-to-edge, dynamic ambient blur, Krylo countdown ladder, and 48 kHz broadcast audio.\n",
+                    "7. 🔄 **Model Self-Healing QA:** Automated gate detects defects; model diagnoses root causes and auto-repairs cuts/timing.\n",
+                    "8. 📝 **SEO Title + Viral Trending Cloud:** High-CTR title with emojis, original creator credits, legal disclaimer, and viral mega-trend tags."
                 ]
             },
             {
                 "cell_type": "markdown",
                 "metadata": {},
                 "source": [
-                    "## ⚙️ 1. Studio Configuration & Controls\n",
-                    "Set your desired topic or leave blank for automated virality scouting."
+                    "## ⚙️ 1. Studio Controls & Settings"
                 ]
             },
             {
@@ -47,10 +51,11 @@ def create_colab_notebook():
                 "metadata": {"cellView": "form"},
                 "outputs": [],
                 "source": [
-                    "#@title 🎛️ Production Settings { run: \"auto\" }\n",
-                    "TOPIC = \"The Mentalist\" #@param {type:\"string\"}\n",
-                    "CLIP_DURATION_SEC = 16 #@param {type:\"slider\", min:10, max:25, step:1}\n",
-                    "USE_LLM_VISION_CUTS = True #@param {type:\"boolean\"}\n",
+                    "#@title 🎛️ Production Controls { run: \"auto\" }\n",
+                    "TOPIC_OVERRIDE = \"\" #@param {type:\"string\"} # Leave blank for automatic virality radar\n",
+                    "PILLAR_DAY_OVERRIDE = 0 #@param [0, 1, 2, 3, 4] {type:\"raw\"} # 0=Auto 4-Day Wheel, 1=Cinema, 2=TV Series, 3=Mentalist, 4=Song Trends\n",
+                    "USE_LOCAL_SMALL_MODEL = False #@param {type:\"boolean\"} # True=Moondream2 (1.8B) on GPU, False=Gemini 2.5 Flash API\n",
+                    "CLIP_DURATION_SEC = 16 #@param {type:\"slider\", min:10, max:22, step:1}\n",
                     "UPLOAD_TO_YOUTUBE = False #@param {type:\"boolean\"}\n",
                     "GEMINI_API_KEY = \"\" #@param {type:\"string\"}\n",
                     "\n",
@@ -61,19 +66,20 @@ def create_colab_notebook():
                     "        GEMINI_API_KEY = userdata.get('GEMINI_API_KEY')\n",
                     "    except Exception:\n",
                     "        pass\n",
-                    "\n",
                     "if GEMINI_API_KEY:\n",
                     "    os.environ['GEMINI_API_KEY'] = GEMINI_API_KEY\n",
-                    "    print(f\"✅ Gemini 2.5 Flash Vision Enabled (Key loaded)\")\n",
+                    "    print(\"✅ Gemini API key configured.\")\n",
+                    "elif USE_LOCAL_SMALL_MODEL:\n",
+                    "    print(\"✅ Local small model mode enabled (Moondream2 1.8B will run on GPU).\")\n",
                     "else:\n",
-                    "    print(\"⚠️ No Gemini API key provided; falling back to heuristic audio/visual cuts.\")\n"
+                    "    print(\"⚠️ Running in heuristic visual mode.\")\n"
                 ]
             },
             {
                 "cell_type": "markdown",
                 "metadata": {},
                 "source": [
-                    "## 📦 2. Install Cloud Dependencies & Setup Engine"
+                    "## 📦 2. Setup Cloud Environment (Colab / Kaggle)"
                 ]
             },
             {
@@ -82,28 +88,27 @@ def create_colab_notebook():
                 "metadata": {},
                 "outputs": [],
                 "source": [
-                    "#@title 🚀 Install Dependencies (Takes ~20s)\n",
+                    "#@title 🚀 Install Dependencies & Pull Studio Engine\n",
                     "!apt-get update -qq && apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null\n",
-                    "!pip install -q yt-dlp pillow opencv-python-headless google-generativeai google-api-python-client google-auth-oauthlib\n",
+                    "!pip install -q yt-dlp pillow opencv-python-headless google-generativeai google-api-python-client google-auth-oauthlib transformers accelerate\n",
                     "\n",
-                    "import subprocess, sys\n",
-                    "# Clone or pull latest Otaku repo if running in a fresh Colab VM\n",
+                    "import os\n",
                     "if not os.path.exists('dsp_renderer.py'):\n",
-                    "    print(\"Cloning latest engine from GitHub...\")\n",
+                    "    print(\"Cloning latest studio engine from GitHub...\")\n",
                     "    !git clone -q https://github.com/sp25126/MOVIE-SERIES---AUTO.git otaku_repo\n",
                     "    %cd otaku_repo\n",
                     "else:\n",
                     "    !git pull -q\n",
                     "\n",
-                    "print(\"✅ Cloud Environment Ready!\")\n"
+                    "print(\"✅ Cloud Studio Ready!\")\n"
                 ]
             },
             {
                 "cell_type": "markdown",
                 "metadata": {},
                 "source": [
-                    "## 🧠 3. Scout Viral Clips & Multimodal Frame Analysis\n",
-                    "Gemini 2.5 Flash analyzes sequential video frames to detect the peak energy moments, optimal cut points, and rank candidates."
+                    "## 🎬 3. Run Autonomous 8-Step Virality & Self-Healing Pipeline\n",
+                    "Executes the full pipeline: category wheel selection ➔ trend scouting ➔ visual model inspection ➔ precision rendering ➔ QA self-healing ➔ viral SEO metadata."
                 ]
             },
             {
@@ -112,92 +117,35 @@ def create_colab_notebook():
                 "metadata": {},
                 "outputs": [],
                 "source": [
-                    "#@title 🔍 Scout & Analyze Candidate Clips\n",
-                    "import pathlib, json\n",
-                    "from clip_harvester import scout_youtube, download_clip\n",
-                    "from llm_director import curate_and_rank_clips, analyze_clip_frames\n",
-                    "\n",
-                    "topic_query = TOPIC.strip() or \"The Mentalist\"\n",
-                    "print(f\"🔎 Scouting top trending fan edits for: '{topic_query}'...\")\n",
-                    "\n",
-                    "raw_candidates = scout_youtube(f\"{topic_query} edit shorts\", count=5, ignore_history=True)\n",
-                    "if not raw_candidates:\n",
-                    "    raw_candidates = scout_youtube(f\"{topic_query} bad ass edit\", count=5, ignore_history=True)\n",
-                    "\n",
-                    "print(f\"Found {len(raw_candidates)} candidate edits. Downloading high-res source streams...\")\n",
-                    "input_dir = pathlib.Path('input')\n",
-                    "input_dir.mkdir(exist_ok=True)\n",
-                    "\n",
-                    "downloaded = []\n",
-                    "for cand in raw_candidates[:4]:\n",
-                    "    p = download_clip(cand, out_dir=input_dir)\n",
-                    "    if p and p.exists():\n",
-                    "        cand['local_path'] = str(p)\n",
-                    "        downloaded.append(cand)\n",
-                    "        print(f\"  ✓ Downloaded: {cand['title'][:40]} ({p.stat().st_size / 1e6:.1f}MB)\")\n",
-                    "\n",
-                    "if not downloaded:\n",
-                    "    raise RuntimeError(\"Failed to harvest candidate clips. Check network or search query.\")\n",
-                    "\n",
-                    "print(\"\\n🧠 Launching Gemini 2.5 Flash Multimodal Vision Inspection...\")\n",
-                    "curated_clips = curate_and_rank_clips(downloaded, topic=topic_query, target_count=3, api_key=os.environ.get('GEMINI_API_KEY'))\n",
-                    "\n",
-                    "print(\"\\n--- AI EDITORIAL RANKING REPORT ---\")\n",
-                    "for i, c in enumerate(curated_clips, 1):\n",
-                    "    ai = c.get('ai_analysis', {})\n",
-                    "    cut = c.get('optimal_cut', {})\n",
-                    "    print(f\"🥇 Rank #{i}: {c.get('title')[:35]}\")\n",
-                    "    print(f\"   • Quality Score: {c.get('quality_score')}/10 | Label: {c.get('short_label')}\")\n",
-                    "    print(f\"   • Optimal AI Cut: {cut.get('start_sec', 0.0)}s -> {cut.get('end_sec', 0.0)}s ({cut.get('duration')}s)\")\n",
-                    "    print(f\"   • Hook: {ai.get('hook_description', 'N/A')[:60]}...\")\n",
-                    "    print(f\"   • Climax: {ai.get('climax_description', 'N/A')[:60]}...\\n\")\n"
-                ]
-            },
-            {
-                "cell_type": "markdown",
-                "metadata": {},
-                "source": [
-                    "## 🎨 4. Render Master Short (1080×1920 Edge-to-Edge)\n",
-                    "Executes precision trimming on LLM cut points, adds dynamic ambient blurred background, overlays the countdown ladder, and masters 48 kHz broadcast audio."
-                ]
-            },
-            {
-                "cell_type": "code",
-                "execution_count": None,
-                "metadata": {},
-                "outputs": [],
-                "source": [
-                    "#@title 🎬 Render Video & Preview\n",
-                    "import pathlib\n",
-                    "from dsp_renderer import render_edit_ranking\n",
-                    "import qa_gate\n",
+                    "#@title ⚡ Execute Autonomous Pipeline\n",
+                    "from autonomous_pipeline import run_autonomous_workflow\n",
                     "from IPython.display import Video, display\n",
+                    "import pathlib\n",
                     "\n",
-                    "out_mp4 = pathlib.Path(f\"output/{topic_query.lower().replace(' ', '_')}_ai_master.mp4\")\n",
-                    "out_mp4.parent.mkdir(exist_ok=True)\n",
-                    "\n",
-                    "print(f\"Rendering master short to {out_mp4}...\")\n",
-                    "render_edit_ranking(\n",
-                    "    topic=topic_query,\n",
-                    "    clips=curated_clips,\n",
-                    "    output_mp4=out_mp4,\n",
+                    "result = run_autonomous_workflow(\n",
+                    "    day_override=int(PILLAR_DAY_OVERRIDE),\n",
+                    "    topic_override=TOPIC_OVERRIDE.strip(),\n",
+                    "    use_local_vlm=bool(USE_LOCAL_SMALL_MODEL),\n",
+                    "    upload=bool(UPLOAD_TO_YOUTUBE),\n",
                     "    clip_dur=float(CLIP_DURATION_SEC),\n",
                     ")\n",
                     "\n",
-                    "ok = qa_gate.verify_video(out_mp4)\n",
-                    "print(f\"QA Gate Result: {ok}\")\n",
-                    "print(f\"File Size: {out_mp4.stat().st_size / 1e6:.2f} MB\")\n",
+                    "out_video = pathlib.Path(result['output_mp4'])\n",
+                    "print(f\"\\n🎉 PIPELINE SUCCESSFUL! Generated: {out_video.name} ({out_video.stat().st_size / 1e6:.2f} MB)\")\n",
+                    "print(f\"Category: {result['category']} (Pillar #{result['pillar_day']})\")\n",
+                    "print(f\"Topic:    {result['topic']}\")\n",
+                    "print(f\"Title:    {result['metadata']['title']}\")\n",
                     "\n",
-                    "# Display video preview directly in Colab!\n",
-                    "display(Video(str(out_mp4), embed=True, width=360))\n"
+                    "# Interactive Video Preview right inside Colab/Kaggle!\n",
+                    "display(Video(str(out_video), embed=True, width=360))\n"
                 ]
             },
             {
                 "cell_type": "markdown",
                 "metadata": {},
                 "source": [
-                    "## 🚀 5. YouTube Studio Canary Upload & Scheduling (Optional)\n",
-                    "Uploads as a private canary, checks for copyright claims, and schedules for the next 7:30 PM IST primetime slot."
+                    "## 📋 4. Inspect SEO Metadata & Viral Trending Tags\n",
+                    "Review the generated title, debate hook, creator credits, legal disclaimer, and trending tags cloud."
                 ]
             },
             {
@@ -206,23 +154,16 @@ def create_colab_notebook():
                 "metadata": {},
                 "outputs": [],
                 "source": [
-                    "#@title 📤 Upload & Schedule to YouTube Studio\n",
-                    "if not UPLOAD_TO_YOUTUBE:\n",
-                    "    print(\"ℹ️ UPLOAD_TO_YOUTUBE is disabled. Master video is saved in output/ ready for download.\")\n",
-                    "else:\n",
-                    "    import metadata_uploader\n",
-                    "    meta = metadata_uploader.build_metadata(topic_query, 'edit_ranking', curated_clips)\n",
-                    "    print(\"Generated AI Metadata:\")\n",
-                    "    print(f\"  Title: {meta['title']}\")\n",
-                    "    print(f\"  Slot:  {meta['recommended_slot_utc']}\")\n",
-                    "    \n",
-                    "    print(\"\\nUploading private canary...\")\n",
-                    "    res = metadata_uploader.upload_private_canary_and_schedule(\n",
-                    "        video_path=out_mp4,\n",
-                    "        meta=meta,\n",
-                    "        canary_wait_sec=90\n",
-                    "    )\n",
-                    "    print(f\"✅ Successfully Scheduled! https://youtube.com/shorts/{res.get('video_id')}\")\n"
+                    "#@title 📝 View Publishing Metadata\n",
+                    "meta = result['metadata']\n",
+                    "print(\"=\" * 60)\n",
+                    "print(\"YOUTUBE SHORTS PUBLISHING METADATA\")\n",
+                    "print(\"=\" * 60)\n",
+                    "print(f\"TITLE:\\n{meta['title']}\\n\")\n",
+                    "print(f\"SCHEDULED SLOT:\\n{meta['recommended_slot_utc']}\\n\")\n",
+                    "print(f\"DESCRIPTION:\\n{meta['description']}\\n\")\n",
+                    "print(f\"TAGS ARRAY:\\n{meta['tags']}\")\n",
+                    "print(\"=\" * 60)\n"
                 ]
             }
         ]

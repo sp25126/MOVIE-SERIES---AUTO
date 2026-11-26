@@ -59,40 +59,45 @@ def get_topic_emojis(topic: str) -> str:
     return DEFAULT_EMOJIS[idx]
 
 
-def get_contextual_hashtags(topic: str, clips: list[dict]) -> tuple[str, list[str]]:
-    """Generates relevant, topic-specific hashtags and tag keywords (zero spam/generic filler)."""
+def get_contextual_hashtags(topic: str, clips: list[dict]) -> tuple[str, str, str, list[str]]:
+    """
+    Generates:
+    1. slug_tag: e.g. #thementalist
+    2. topic_seo_tags: High-relevance entity and topic tags
+    3. viral_trending_tags: Currently trending, high-velocity universal hashtags (Reels, TikTok, Shorts mega-trends)
+    4. tags: Array of backend YouTube Studio search keywords
+    """
     slug_tag = "#" + "".join(ch for ch in topic.lower() if ch.isalnum())
     topic_clean = re.sub(r"[^A-Za-z0-9 ]+", " ", topic).strip()
     words = [w.lower() for w in topic_clean.split() if len(w) > 2]
 
-    # Collect entity keywords from topic and clips
-    tags = ["shorts", "edits", "ranking", "viral", "trending", "cinema", "tvseries"]
+    # Backend search tags
+    tags = ["shorts", "edits", "ranking", "viral", "trending", "cinema", "tvseries", "movies"]
     tags.extend(words)
 
-    # Extract unique creator tags & edit titles
+    # Extract creator handles
     for c in clips:
         creator = c.get("creator") or ""
         c_clean = "".join(ch for ch in creator.lower() if ch.isalnum())
         if c_clean and len(c_clean) > 2 and c_clean not in tags:
             tags.append(c_clean)
 
-    # Add topic slug
     if topic.lower() not in tags:
         tags.insert(0, topic.lower())
 
-    # Build clean description cloud tags (relevant to movies, series, edits)
-    cloud_tags = [slug_tag, "#shorts", "#viral", "#edits", "#trending", "#cinema"]
-    for w in words[:3]:
-        cloud_tags.append(f"#{w}")
+    # 1. Topic-Specific SEO Tags
+    topic_seo = [slug_tag] + [f"#{w}" for w in words[:4]] + ["#cinema", "#tvseries"]
+    topic_seo_str = " ".join(dict.fromkeys(topic_seo))
 
-    seen = set()
-    deduped_cloud = []
-    for ct in cloud_tags:
-        if ct.lower() not in seen:
-            seen.add(ct.lower())
-            deduped_cloud.append(ct)
+    # 2. Currently Trending Unrelated Mega-Hashtags (Highest velocity on Shorts, TikTok & Reels)
+    viral_trending = [
+        "#shorts", "#viral", "#trending", "#reels", "#explore",
+        "#fyp", "#foryou", "#viralvideo", "#popular", "#trend",
+        "#cinematic", "#edits", "#shortsfeed", "#youtube"
+    ]
+    viral_trending_str = " ".join(viral_trending)
 
-    return slug_tag, " ".join(deduped_cloud[:8]), tags[:15]
+    return slug_tag, topic_seo_str, viral_trending_str, tags[:15]
 
 
 def build_metadata(
@@ -101,7 +106,7 @@ def build_metadata(
     clips: list[dict],
     handle: str = "@OtakuSnapster",
 ) -> dict:
-    slug_tag, cloud_tags, tags = get_contextual_hashtags(topic, clips)
+    slug_tag, topic_seo_tags, viral_trending_tags, tags = get_contextual_hashtags(topic, clips)
     emojis = get_topic_emojis(topic)
 
     titles = {
@@ -130,8 +135,6 @@ def build_metadata(
             entry += f"\n  ▶ Watch Original: {url}"
         credits_lines.append(entry)
 
-    hashtags = f"{cloud_tags} #movienews"
-
     description = "\n".join([
         f"{title}",
         "",
@@ -140,14 +143,16 @@ def build_metadata(
         "🔥 Featured Edits & Original Creator Credits:",
         *(credits_lines or ["• Compiled from public news & cinema press stills."]),
         "",
-        "Disclaimer & Copyright Notice (Section 107, Fair Use Act):",
+        "⚖️ Disclaimer & Copyright Notice (Section 107, Fair Use Act):",
         "This video is a transformative ranking, news reporting, and critical commentary edit.",
         "All visual clips, background scores, and media belong to their respective copyright owners.",
         "No copyright infringement intended. Under Section 107 of the Copyright Act 1976, allowance is made for 'fair use' for purposes such as criticism, comment, news reporting, teaching, scholarship, and research.",
         "",
         f"Channel: {handle}",
         "",
-        f"Trending Tags: {hashtags}",
+        f"🎯 SEO & Topic Tags: {topic_seo_tags}",
+        "",
+        f"🔥 Viral Trending Tags: {viral_trending_tags}",
     ])
 
     return {
