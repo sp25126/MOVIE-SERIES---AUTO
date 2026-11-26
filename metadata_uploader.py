@@ -1,38 +1,116 @@
 """CTR metadata builder, Section 107 Fair-Use credits, and optional Private-Canary YouTube uploader."""
 
 import datetime
+import hashlib
 import json
 import os
+import re
 import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
+
+# Genre and topic-aware high-CTR emotional emoji palettes
+EMOJI_PALETTES = {
+    # Psychological, crime, thriller, mystery
+    "mentalist": ["🧠♟️", "🥶🍷", "👁️🕵️‍♂️", "🍷🧠"],
+    "patrick jane": ["🧠♟️", "🥶🍷", "☕♟️", "🍷🧠"],
+    "sherlock": ["🔍🎻", "🧠⚡", "🕵️‍♂️♟️"],
+    "dexter": ["🩸🔪", "🍷💀", "🕶️🩸"],
+    "death note": ["🍎📓", "🧠⚡", "♟️💀"],
+    # Horror, survival, psychological games
+    "squid game": ["🎯🩸", "💀⚡", "🚨🎲", "⚡🩸"],
+    "alice in borderland": ["♠️🃏", "⚡🎲", "🩸🎯"],
+    # Action, superhero, sci-fi
+    "avengers": ["⚡🎬", "💥🔥", "🛡️⚡", "🔥🎬"],
+    "doomsday": ["⚡💥", "🔥🎬", "🛡️⚡", "💀⚡"],
+    "batman": ["🦇⚡", "🌑🔥", "🦇💥"],
+    "spiderman": ["🕷️⚡", "🕸️🔥", "🕷️💥"],
+    "spiderverse": ["🕷️✨", "🕸️⚡", "🎨🕷️"],
+    "marvel": ["⚡🎬", "💥🔥", "🛡️⚡"],
+    # Song trends, music, emotional
+    "heartless": ["🖤🎧", "🥀✨", "🖤🎶", "✨🎧"],
+    "weeknd": ["🖤🎧", "🥀✨", "🖤🎶", "✨🎧"],
+    "dilruba": ["✨🥀", "🎶🔥", "🖤✨", "🎵✨"],
+    "song": ["🎵✨", "🎶🔥", "🎧✨", "🖤🎶"],
+    # Mythological, epic
+    "ramayana": ["🏹✨", "🔱🔥", "👑✨", "🏹🔱"],
+    "adipurush": ["🏹✨", "🔱🔥", "👑✨"],
+    # Romance, K-Drama
+    "my demon": ["🖤✨", "😈🥀", "✨🥀", "🖤😈"],
+    "kdrama": ["✨🥀", "🖤✨", "🎭✨"],
+    # Anime, shonen
+    "anime": ["⚔️🔥", "⚡💥", "🔥⚡", "🗡️⚡"],
+    "jujutsu": ["🤞⚡", "🩸🔥", "⚡💀"],
+    "naruto": ["🍥🔥", "⚡🦊", "🔥⚔️"],
+}
+
+DEFAULT_EMOJIS = ["🔥🎬", "⚡🔥", "🤯🎬", "💥🍿", "🏆🔥", "⚡🍿"]
+
+
+def get_topic_emojis(topic: str) -> str:
+    """Selects a context-aware high-CTR emoji pair based on topic and genre sentiment."""
+    tl = topic.lower()
+    for key, palette in EMOJI_PALETTES.items():
+        if key in tl:
+            idx = int(hashlib.md5(topic.encode("utf-8")).hexdigest(), 16) % len(palette)
+            return palette[idx]
+    idx = int(hashlib.md5(topic.encode("utf-8")).hexdigest(), 16) % len(DEFAULT_EMOJIS)
+    return DEFAULT_EMOJIS[idx]
+
+
+def get_contextual_hashtags(topic: str, clips: list[dict]) -> tuple[str, list[str]]:
+    """Generates relevant, topic-specific hashtags and tag keywords (zero spam/generic filler)."""
+    slug_tag = "#" + "".join(ch for ch in topic.lower() if ch.isalnum())
+    topic_clean = re.sub(r"[^A-Za-z0-9 ]+", " ", topic).strip()
+    words = [w.lower() for w in topic_clean.split() if len(w) > 2]
+
+    # Collect entity keywords from topic and clips
+    tags = ["shorts", "edits", "ranking", "viral", "trending", "cinema", "tvseries"]
+    tags.extend(words)
+
+    # Extract unique creator tags & edit titles
+    for c in clips:
+        creator = c.get("creator") or ""
+        c_clean = "".join(ch for ch in creator.lower() if ch.isalnum())
+        if c_clean and len(c_clean) > 2 and c_clean not in tags:
+            tags.append(c_clean)
+
+    # Add topic slug
+    if topic.lower() not in tags:
+        tags.insert(0, topic.lower())
+
+    # Build clean description cloud tags (relevant to movies, series, edits)
+    cloud_tags = [slug_tag, "#shorts", "#viral", "#edits", "#trending", "#cinema"]
+    for w in words[:3]:
+        cloud_tags.append(f"#{w}")
+
+    seen = set()
+    deduped_cloud = []
+    for ct in cloud_tags:
+        if ct.lower() not in seen:
+            seen.add(ct.lower())
+            deduped_cloud.append(ct)
+
+    return slug_tag, " ".join(deduped_cloud[:8]), tags[:15]
+
+
 def build_metadata(
     topic: str,
     fmt: str,
     clips: list[dict],
     handle: str = "@OtakuSnapster",
 ) -> dict:
-    slug_tag = "#" + "".join(ch for ch in topic.lower() if ch.isalnum())
-
-    # Dynamically inject live weekly trending hashtags (including #naofloppa, #shortsfeed, etc.)
-    try:
-        from hashtag_harvester import harvest_trending_hashtags
-        dynamic_trending_tags = harvest_trending_hashtags()
-    except Exception:
-        dynamic_trending_tags = ["#naofloppa", "#shortsfeed", "#viral", "#edits", "#phonk"]
-
-    # Pick top 4 trending tags to append to title and description
-    title_tags = " ".join(dynamic_trending_tags[:2])
-    cloud_tags = " ".join(dynamic_trending_tags[:8])
+    slug_tag, cloud_tags, tags = get_contextual_hashtags(topic, clips)
+    emojis = get_topic_emojis(topic)
 
     titles = {
-        "edit_ranking": f"Ranking Best {topic} Edits! 🔥💀 #shorts {slug_tag} {title_tags}",
-        "release_hype": f"This Week Is NOT Holding Back! ({topic}) 🔥🎬 #shorts {slug_tag}",
-        "movie_trivia": f"Movie Scenes That Cost an INSANE Amount! 🤯🎬 #shorts #movies {title_tags}",
+        "edit_ranking": f"Ranking Best {topic} Edits! {emojis} #shorts {slug_tag}",
+        "release_hype": f"This Week Is NOT Holding Back! ({topic}) {emojis} #shorts {slug_tag}",
+        "movie_trivia": f"Movie Scenes That Cost an INSANE Amount! 🤯🎬 #shorts #movies",
         "scene_commentary": f"Everyone Missed THIS Detail in {topic}! 💀🎬 #shorts {slug_tag}",
     }
-    title = titles.get(fmt, f"{topic} Viral Moments Ranked! 🔥 #shorts {title_tags}")[:100]
+    title = titles.get(fmt, f"{topic} Viral Moments Ranked! {emojis} #shorts {slug_tag}")[:100]
 
     debate_comment = (
         f"👇 Honest take: Did #1 deserve the top spot for {topic}, or who got robbed? Drop your ranking!"
@@ -52,12 +130,7 @@ def build_metadata(
             entry += f"\n  ▶ Watch Original: {url}"
         credits_lines.append(entry)
 
-    tags = [
-        "shorts", "movies", "series", "tvshows", "cinema", "movienews", "edits", "ranking",
-        topic.lower(), "viral", "trending", "hollywood", "bollywood", "mcu", "netflix",
-        "naofloppa", "shortsfeed",
-    ]
-    hashtags = f"#shorts #movies #series #cinema {slug_tag} {cloud_tags} #movienews"
+    hashtags = f"{cloud_tags} #movienews"
 
     description = "\n".join([
         f"{title}",

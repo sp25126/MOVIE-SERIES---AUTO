@@ -27,7 +27,7 @@ on:
       upload:
         description: 'Upload private canary & schedule to YouTube (requires YOUTUBE_TOKEN_JSON secret)'
         type: boolean
-        default: false
+        default: true
       force_weekly_digest:
         description: 'Force weekly virality synthesis scan'
         type: boolean

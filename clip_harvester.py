@@ -203,6 +203,7 @@ def scout_youtube(query: str, count: int = 5, max_duration: int = 65, min_durati
     probe_n = max(count * 8, 35)
     cmd = [
         sys.executable, "-m", "yt_dlp",
+        "--extractor-args", "youtube:player_client=android,web",
         "--dump-json", "--no-playlist", "--no-warnings",
         "--match-filter", f"duration <= {max_duration} & duration >= {min_duration}",
         f"ytsearch{probe_n}:{query}",
@@ -440,12 +441,13 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
 
     cmd = [
         sys.executable, "-m", "yt_dlp",
+        "--extractor-args", "youtube:player_client=android,web",
         "-f", "bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]/best[ext=mp4]/best",
         "--merge-output-format", "mp4",
         "--no-warnings",
-        "--retries", "1",
-        "--fragment-retries", "1",
-        "--socket-timeout", "5",
+        "--retries", "2",
+        "--fragment-retries", "2",
+        "--socket-timeout", "10",
         "-o", str(target_dir / f"{safe_id}.%(ext)s"),
     ]
     if browser_cookies:
