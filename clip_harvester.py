@@ -567,24 +567,44 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
             _save_history(used)
             return out_mp4
         print(f"[Harvester] Primary download failed ({safe_id}): {proc.stderr[:180]}", file=sys.stderr)
-        # Fallback for TikTok: resolve direct MP4 via TikWM single-video API
+        # Fallback for TikTok: resolve direct MP4 via TikWM API (direct -> rotating proxy), then proxied yt-dlp
         if "tiktok.com" in url:
-            try:
-                tw_api = f"https://www.tikwm.com/api/?url={urllib.parse.quote_plus(url)}&hd=1"
-                req_tw = urllib.request.Request(tw_api, headers={"User-Agent": UA, "Referer": "https://www.tikwm.com/"})
-                with urllib.request.urlopen(req_tw, timeout=8) as resp_tw:
-                    tw_data = json.loads(resp_tw.read().decode("utf-8", errors="replace")).get("data") or {}
-                play_u = tw_data.get("hdplay") or tw_data.get("play")
-                if play_u:
-                    with urllib.request.urlopen(urllib.request.Request(play_u, headers={"User-Agent": UA}), timeout=30) as vid_r:
-                        out_mp4.write_bytes(vid_r.read())
-                    if out_mp4.exists() and out_mp4.stat().st_size > 20_000:
+            tw_api = f"https://www.tikwm.com/api/?url={urllib.parse.quote_plus(url)}&hd=1"
+            tw_headers = {"User-Agent": UA, "Referer": "https://www.tikwm.com/", "Origin": "https://www.tikwm.com"}
+            for proxy in [None] + _fetch_rotating_proxies(limit=4):
+                try:
+                    req_tw = urllib.request.Request(tw_api, headers=tw_headers)
+                    if proxy:
+                        opener = urllib.request.build_opener(urllib.request.ProxyHandler({"http": proxy, "https": proxy}))
+                        resp_ctx = opener.open(req_tw, timeout=5)
+                    else:
+                        resp_ctx = urllib.request.urlopen(req_tw, timeout=5)
+                    with resp_ctx as resp_tw:
+                        tw_data = json.loads(resp_tw.read().decode("utf-8", errors="replace")).get("data") or {}
+                    play_u = tw_data.get("hdplay") or tw_data.get("play") or ""
+                    if play_u.startswith("/"):
+                        play_u = "https://www.tikwm.com" + play_u
+                    if play_u:
+                        req_v = urllib.request.Request(play_u, headers={"User-Agent": UA, "Referer": "https://www.tikwm.com/"})
+                        with urllib.request.urlopen(req_v, timeout=25) as vid_r:
+                            out_mp4.write_bytes(vid_r.read())
+                        if out_mp4.exists() and out_mp4.stat().st_size > 20_000:
+                            used = _load_history()
+                            used.add(tag_id)
+                            _save_history(used)
+                            return out_mp4
+                except Exception:
+                    continue
+            for proxy in _fetch_rotating_proxies(limit=4):
+                try:
+                    proc_tt = subprocess.run(cmd + ["--proxy", proxy], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=35)
+                    if proc_tt.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
                         used = _load_history()
                         used.add(tag_id)
                         _save_history(used)
                         return out_mp4
-            except Exception:
-                pass
+                except Exception:
+                    continue
         # Fallback for cloud/Colab IPs: retry with tv_embedded,ios client
         if "youtube.com" in url or "youtu.be" in url:
             cmd_fb = [c.replace("youtube:player_client=android,web", "youtube:player_client=tv_embedded,ios") for c in cmd]
