@@ -222,6 +222,7 @@ def run_autonomous_workflow(
         topic=chosen_topic,
         target_count=3,
         use_local_model=use_local_vlm,
+        pillar_day=curr_day,
     )
 
     if not curated_clips:

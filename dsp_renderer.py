@@ -18,15 +18,20 @@ FFMPEG = r"C:\ffmpeg-7.1.1-full_build\bin\ffmpeg.exe" if os.path.exists(r"C:\ffm
 
 
 def _font(size: int, bold: bool = True) -> ImageFont.FreeTypeFont:
+    bundled_anton = str(ROOT / "assets" / "fonts" / "Anton-Regular.ttf")
     candidates = (
         [
+            bundled_anton,
             "C:/Windows/Fonts/impact.ttf", "C:/Windows/Fonts/arialbd.ttf", "C:/Windows/Fonts/segoeuib.ttf",
             "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
         ]
         if bold
         else [
+            bundled_anton,
             "C:/Windows/Fonts/segoeuib.ttf", "C:/Windows/Fonts/arial.ttf",
             "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
         ]
     )
     for fp in candidates:
@@ -229,6 +234,24 @@ def _has_audio_stream(video_path: Path) -> bool:
     return "audio" in (proc.stdout or "")
 
 
+def _detect_black_bar_crop(video_path: Path, ss: float) -> str:
+    """Detects baked-in black letterbox/pillarbox bars and returns an ffmpeg crop=... filter or empty string."""
+    try:
+        proc = subprocess.run(
+            [FFMPEG, "-hide_banner", "-ss", f"{ss + 1.0:.2f}", "-t", "2", "-i", str(video_path), "-vf", "cropdetect=24:16:0", "-f", "null", "-"],
+            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=10,
+        )
+        import re as _re
+        matches = _re.findall(r"crop=(\d+:\d+:\d+:\d+)", proc.stderr)
+        if matches:
+            w, h, x, y = map(int, matches[-1].split(":"))
+            if w >= 240 and h >= 240:
+                return f"crop={w}:{h}:{x}:{y},"
+    except Exception:
+        pass
+    return ""
+
+
 def _safe_start_offset(video_path: Path, src_dur: float, target_dur: float) -> float:
     """Skips dark fade-in intros (>0.2s black frames at start) so renders pass 0-black-frame QA."""
     if src_dur <= target_dur + 2.5:
@@ -281,14 +304,14 @@ def render_edit_ranking(
         seg = TEMP_DIR / f"rank_seg_{rank}.mp4"
         src_dur = float(clip.get("duration") or 30.0)
         ai_cut = clip.get("optimal_cut") or {}
-        if ai_cut.get("end_sec") and float(ai_cut.get("end_sec")) > float(ai_cut.get("start_sec", 0.0)) + 3.0:
+        if full_uncut:
+            # 100% complete uncut edit: ZERO trims, ZERO cuts (e.g. Patrick Jane / The Mentalist)
+            ss = 0.0
+            dur = src_dur
+        elif ai_cut.get("end_sec") and float(ai_cut.get("end_sec")) > float(ai_cut.get("start_sec", 0.0)) + 3.0:
             ss = max(0.0, float(ai_cut.get("start_sec", 0.0)))
             ai_dur = float(ai_cut["end_sec"]) - ss
             dur = min(clip_dur, ai_dur) if clip_dur > 0 else ai_dur
-        elif full_uncut:
-            # 100% complete uncut edit: from frame 0 to end frame
-            ss = 0.0
-            dur = src_dur
         elif clip_dur <= 0:
             # Full uncut edit (skip pure black fade-in <=1.5s, trim trailing 2.5s outro logo/cards)
             ss = _safe_start_offset(src, src_dur, max(1.0, src_dur - 2.0))
@@ -315,8 +338,9 @@ def render_edit_ranking(
                 f"loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000,aformat=channel_layouts=stereo[aout]"
             )
 
+        bar_crop = _detect_black_bar_crop(src, ss)
         vf = (
-            f"[0:v]trim=0:{dur:.3f},setpts=(PTS-STARTPTS)/1.04,fps=30,split=2[bg0][fg0];"
+            f"[0:v]trim=0:{dur:.3f},setpts=(PTS-STARTPTS)/1.04,fps=30,{bar_crop}split=2[bg0][fg0];"
             f"[bg0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=24,eq=brightness=-0.16[bg];"
             f"[fg0]crop=trunc(iw*0.96/2)*2:trunc(ih*0.96/2)*2,scale=1080:1920:force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2,eq=contrast=1.08:saturation=1.12[fg];"
             f"[bg][fg]overlay=(W-w)/2:(H-h)/2[comp];"
