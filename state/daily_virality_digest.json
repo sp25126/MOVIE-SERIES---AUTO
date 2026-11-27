@@ -1,28 +1,28 @@
 {
-  "scan_time_utc": "2026-11-26T14:02:06Z",
+  "scan_time_utc": "2026-11-27T11:57:44Z",
   "categories": {
     "cinema": {
       "status": "success",
       "lead_winner": "Godzilla",
-      "lead_genre": "action_thriller",
-      "lead_score": 102.55,
+      "lead_genre": "superhero_scifi",
+      "lead_score": 88.75,
       "top_candidates": [
         {
           "topic": "Godzilla",
-          "genre": "action_thriller",
-          "subcategory": "action_fight_ranking",
-          "recommended_format": "edit_ranking",
-          "query_suffix": "fight scene edit shorts",
-          "score": 102.55,
+          "genre": "superhero_scifi",
+          "subcategory": "superhero_spoiler_commentary",
+          "recommended_format": "scene_commentary",
+          "query_suffix": "scene edit shorts",
+          "score": 88.75,
           "horizons": {
-            "3d": 100.0,
-            "7d": 100.0,
-            "30d": 62.8,
+            "3d": 77.0,
+            "7d": 72.2,
+            "30d": 81.5,
             "1y": 0.0
           },
-          "yt_views": 704508,
-          "yt_hits": 4,
-          "reddit_hits": 2,
+          "yt_views": 0,
+          "yt_hits": 0,
+          "reddit_hits": 4,
           "sources": [
             "Collider",
             "Crunchyroll",
@@ -30,33 +30,33 @@
             "Reddit-30d(r/Monsterverse)"
           ],
           "headlines": [
+            "Funny how Kong is more chill and benevolent than Godzilla now when in their introductions Kong is portrayed as much more threatening.",
             "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance",
             "Every Reiwa Era Godzilla Movie, Ranked"
           ]
         },
         {
-          "topic": "Nana",
-          "genre": "action_thriller",
-          "subcategory": "action_fight_ranking",
+          "topic": "Make",
+          "genre": "drama_prestige",
+          "subcategory": "coldest_drama_edits",
           "recommended_format": "edit_ranking",
-          "query_suffix": "fight scene edit shorts",
-          "score": 76.0,
+          "query_suffix": "coldest edit shorts",
+          "score": 80.0,
           "horizons": {
-            "3d": 72.8,
-            "7d": 83.0,
-            "30d": 60.0,
+            "3d": 100.0,
+            "7d": 100.0,
+            "30d": 0.0,
             "1y": 0.0
           },
-          "yt_views": 5337726,
+          "yt_views": 471299,
           "yt_hits": 2,
           "reddit_hits": 0,
           "sources": [
-            "Deadline",
-            "YT-Month",
+            "Variety",
             "YT-Week"
           ],
           "headlines": [
-            "Doc Talk Podcast: ‘The Eyes Of Ghana’s Ben Proudfoot & Nana Frimpong On Their Oscar Contender Backed By The Obamas & IShowSpeed"
+            "Chiwetel Ejiofor Was Afraid to Make ‘Backrooms’ Because of Director Kane Parsons’ Age: ‘He Was So Young!’"
           ]
         },
         {
@@ -72,7 +72,7 @@
             "30d": 0.0,
             "1y": 0.0
           },
-          "yt_views": 138456334,
+          "yt_views": 138478071,
           "yt_hits": 2,
           "reddit_hits": 0,
           "sources": [
@@ -81,101 +81,67 @@
           "headlines": []
         },
         {
-          "topic": "Becomes",
-          "genre": "comedy_sitcom",
-          "subcategory": "funniest_character_ranking",
+          "topic": "Ex-Mob",
+          "genre": "crime_mafia",
+          "subcategory": "crime_coldest_boss_ranking",
           "recommended_format": "edit_ranking",
-          "query_suffix": "funny moments edit shorts",
-          "score": 64.0,
+          "query_suffix": "coldest edit shorts",
+          "score": 69.0,
           "horizons": {
-            "3d": 72.8,
-            "7d": 83.0,
+            "3d": 97.5,
+            "7d": 100.0,
             "30d": 0.0,
             "1y": 0.0
           },
-          "yt_views": 5318603,
-          "yt_hits": 1,
+          "yt_views": 25729916,
+          "yt_hits": 2,
           "reddit_hits": 0,
           "sources": [
-            "NDTV",
             "YT-Week"
           ],
-          "headlines": [
-            "Ramayana Box Office Collection Day 21: Ranbir Kapoor's Film Becomes 4th Highest-Grossing Indian Film, Beats Pushpa 2"
-          ]
+          "headlines": []
         },
         {
-          "topic": "There",
-          "genre": "horror_mystery",
-          "subcategory": "horror_scariest_ranking",
+          "topic": "VAATHI RAID",
+          "genre": "world_indian_cinema",
+          "subcategory": "indian_cinema_mass_edits",
           "recommended_format": "edit_ranking",
-          "query_suffix": "scary scene edit shorts",
-          "score": 64.0,
+          "query_suffix": "mass edit shorts",
+          "score": 65.77,
           "horizons": {
-            "3d": 72.8,
-            "7d": 83.0,
+            "3d": 89.4,
+            "7d": 100.0,
             "30d": 0.0,
             "1y": 0.0
           },
-          "yt_views": 3123841,
-          "yt_hits": 1,
+          "yt_views": 528769,
+          "yt_hits": 2,
           "reddit_hits": 0,
           "sources": [
-            "Variety",
             "YT-Week"
           ],
-          "headlines": [
-            "Jesse Eisenberg Says Fans Aren’t Crazy With Him Because ‘There’s No Sexuality to My Work’: Life Is ‘Different’ When People ‘Want to Sleep With’ You"
-          ]
+          "headlines": []
         },
         {
-          "topic": "Doomsday",
-          "genre": "superhero_scifi",
-          "subcategory": "superhero_edit_ranking",
+          "topic": "Teach",
+          "genre": "world_indian_cinema",
+          "subcategory": "indian_cinema_mass_edits",
           "recommended_format": "edit_ranking",
-          "query_suffix": "edit shorts",
-          "score": 56.23,
+          "query_suffix": "mass edit shorts",
+          "score": 64.7,
           "horizons": {
-            "3d": 33.8,
-            "7d": 42.3,
-            "30d": 100.0,
+            "3d": 86.7,
+            "7d": 100.0,
+            "30d": 0.0,
             "1y": 0.0
           },
-          "yt_views": 61964944,
-          "yt_hits": 3,
-          "reddit_hits": 1,
+          "yt_views": 439138,
+          "yt_hits": 2,
+          "reddit_hits": 0,
           "sources": [
-            "Reddit-7d(r/bollywoodmemes)",
-            "YT-Month"
+            "YT-Week"
           ],
-          "headlines": [
-            "Doomsday cannot compete with Adipurus"
-          ]
-        },
-        {
-          "topic": "Supernova",
-          "genre": "superhero_scifi",
-          "subcategory": "superhero_spoiler_commentary",
-          "recommended_format": "scene_commentary",
-          "query_suffix": "scene edit shorts",
-          "score": 55.08,
-          "horizons": {
-            "3d": 55.8,
-            "7d": 69.8,
-            "30d": 59.0,
-            "1y": 0.0
-          },
-          "yt_views": 0,
-          "yt_hits": 0,
-          "reddit_hits": 4,
-          "sources": [
-            "Reddit-30d(r/Monsterverse)",
-            "Reddit-7d(r/Monsterverse)"
-          ],
-          "headlines": [
-            "I swear if we get this type of world ending scenes in Supernova instead of so called Rio Battle I will love the movie...",
-            "So like, what will we do if Supernova ends up being AI generated slop?"
-          ]
+          "headlines": []
         },
         {
           "topic": "Godzilla Minus Zero",
@@ -195,109 +161,130 @@
           "reddit_hits": 0,
           "sources": [
             "Ars Technica",
-            "Bloody Disgusting",
-            "The Hollywood Reporter"
+            "The Rider News",
+            "Time Magazine"
           ],
           "headlines": [
             "Review: Godzilla Minus Zero joins the ranks of truly stellar sequels",
-            "‘Godzilla Minus Zero/Minus Color’ – Black & White Version Coming to U.S. Theaters Next Month"
+            "“Godzilla Minus Zero:” a monstrously good film"
           ]
         },
         {
-          "topic": "Thanksgiving",
+          "topic": "Directed",
+          "genre": "horror_mystery",
+          "subcategory": "horror_scariest_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "scary scene edit shorts",
+          "score": 52.67,
+          "horizons": {
+            "3d": 48.8,
+            "7d": 65.0,
+            "30d": 18.3,
+            "1y": 0.0
+          },
+          "yt_views": 6825321,
+          "yt_hits": 1,
+          "reddit_hits": 1,
+          "sources": [
+            "Reddit-30d(r/ActionMovies)",
+            "YT-Week"
+          ],
+          "headlines": []
+        },
+        {
+          "topic": "Hungry",
+          "genre": "horror_mystery",
+          "subcategory": "horror_scariest_ranking",
+          "recommended_format": "edit_ranking",
+          "query_suffix": "scary scene edit shorts",
+          "score": 51.0,
+          "horizons": {
+            "3d": 48.8,
+            "7d": 65.0,
+            "30d": 60.0,
+            "1y": 0.0
+          },
+          "yt_views": 8401122,
+          "yt_hits": 2,
+          "reddit_hits": 0,
+          "sources": [
+            "YT-Month",
+            "YT-Week"
+          ],
+          "headlines": []
+        },
+        {
+          "topic": "Wolf Pack Ambush",
           "genre": "action_thriller",
           "subcategory": "action_fight_ranking",
           "recommended_format": "edit_ranking",
           "query_suffix": "fight scene edit shorts",
-          "score": 54.0,
+          "score": 51.0,
           "horizons": {
-            "3d": 48.0,
-            "7d": 36.0,
-            "30d": 20.0,
+            "3d": 48.8,
+            "7d": 65.0,
+            "30d": 60.0,
             "1y": 0.0
           },
-          "yt_views": 0,
-          "yt_hits": 0,
+          "yt_views": 3359242,
+          "yt_hits": 2,
           "reddit_hits": 0,
           "sources": [
-            "FOX 10 Phoenix",
-            "KTVU",
-            "KVUE"
+            "YT-Month",
+            "YT-Week"
           ],
-          "headlines": [
-            "Viral Thanksgiving text mix-up could become movie more than 10 years later",
-            "Wanda Dench and Jamal Hinton's viral Thanksgiving text friendship is becoming a Lifetime movie"
-          ]
-        },
-        {
-          "topic": "Ramayana",
-          "genre": "world_indian_cinema",
-          "subcategory": "global_cinema_hype",
-          "recommended_format": "release_hype",
-          "query_suffix": "trailer edit shorts",
-          "score": 54.0,
-          "horizons": {
-            "3d": 48.0,
-            "7d": 36.0,
-            "30d": 20.0,
-            "1y": 0.0
-          },
-          "yt_views": 0,
-          "yt_hits": 0,
-          "reddit_hits": 0,
-          "sources": [
-            "Deadline",
-            "NDTV",
-            "The Times of India"
-          ],
-          "headlines": [
-            "Ramayana Box Office Collection Day 21: Ranbir Kapoor's Film Becomes 4th Highest-Grossing Indian Film, Beats Pushpa 2",
-            "'Ramayana' box office collection day 20: The Ranbir Kapoor, Yash, Sai Pallavi film inches towards Rs 1000"
-          ]
+          "headlines": []
         }
       ],
       "genre_leaderboard": [
         {
           "genre": "action_thriller",
           "label": "Action, Spy & Crime Thriller",
-          "total_score": 3524.6,
-          "top_topic": "Godzilla",
-          "count": 179
-        },
-        {
-          "genre": "superhero_scifi",
-          "label": "Superhero & Sci-Fi",
-          "total_score": 1416.0,
-          "top_topic": "Doomsday",
-          "count": 69
+          "total_score": 1577.5,
+          "top_topic": "Wolf Pack Ambush",
+          "count": 102
         },
         {
           "genre": "world_indian_cinema",
           "label": "Indian Cinema, K-Drama & Global Hits",
-          "total_score": 1357.3,
-          "top_topic": "Ramayana",
-          "count": 60
+          "total_score": 1021.6,
+          "top_topic": "VAATHI RAID",
+          "count": 45
         },
         {
-          "genre": "comedy_sitcom",
-          "label": "Comedy, Sitcoms & Cast Memes",
-          "total_score": 825.7,
-          "top_topic": "Becomes",
-          "count": 32
-        },
-        {
-          "genre": "animated_cinema",
-          "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-          "total_score": 481.5,
-          "top_topic": "Kung Fu Panda",
-          "count": 17
+          "genre": "superhero_scifi",
+          "label": "Superhero & Sci-Fi",
+          "total_score": 725.8,
+          "top_topic": "Godzilla",
+          "count": 38
         },
         {
           "genre": "crime_mafia",
           "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-          "total_score": 470.3,
-          "top_topic": "Mob Boss Rates",
-          "count": 15
+          "total_score": 638.2,
+          "top_topic": "Ex-Mob",
+          "count": 17
+        },
+        {
+          "genre": "animated_cinema",
+          "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+          "total_score": 541.4,
+          "top_topic": "Kung Fu Panda",
+          "count": 20
+        },
+        {
+          "genre": "drama_prestige",
+          "label": "Prestige Drama & Biopics",
+          "total_score": 435.1,
+          "top_topic": "Make",
+          "count": 11
+        },
+        {
+          "genre": "comedy_sitcom",
+          "label": "Comedy, Sitcoms & Cast Memes",
+          "total_score": 427.9,
+          "top_topic": "Dumb and Dumber",
+          "count": 21
         },
         {
           "genre": "war_historical",
@@ -307,110 +294,103 @@
           "count": 10
         },
         {
-          "genre": "drama_prestige",
-          "label": "Prestige Drama & Biopics",
-          "total_score": 406.5,
-          "top_topic": "Lines",
-          "count": 19
-        },
-        {
-          "genre": "fantasy_mythology",
-          "label": "Epic Fantasy, Historical & Mythology",
-          "total_score": 376.7,
-          "top_topic": "Officially",
-          "count": 23
-        },
-        {
           "genre": "horror_mystery",
           "label": "Horror & Psychological Mystery",
-          "total_score": 303.8,
-          "top_topic": "There",
+          "total_score": 340.1,
+          "top_topic": "Directed",
           "count": 12
-        },
-        {
-          "genre": "romance_teen_drama",
-          "label": "Romance, Heartbreak & Teen Series",
-          "total_score": 78.0,
-          "top_topic": "Ludovico Einaudi",
-          "count": 2
         },
         {
           "genre": "sports_underdog",
           "label": "Sports Movies, Boxing, Racing & Comebacks",
-          "total_score": 19.0,
-          "top_topic": "Track",
-          "count": 1
+          "total_score": 336.7,
+          "top_topic": "Anger",
+          "count": 11
+        },
+        {
+          "genre": "fantasy_mythology",
+          "label": "Epic Fantasy, Historical & Mythology",
+          "total_score": 118.1,
+          "top_topic": "Ranbir Kapoor And Yash",
+          "count": 13
+        },
+        {
+          "genre": "romance_teen_drama",
+          "label": "Romance, Heartbreak & Teen Series",
+          "total_score": 0.0,
+          "top_topic": "",
+          "count": 0
         }
       ]
     },
     "tv_series": {
       "status": "success",
       "lead_winner": "My Demon Ep 6",
-      "lead_views": 12478456,
+      "lead_views": 12492561,
       "top_candidates": [
         {
           "series_name": "My Demon Ep 6",
-          "total_views": 12478456,
+          "total_views": 12492561,
           "clip_count": 1,
           "top_clip_title": "A demon catches her right when she's about to fall off a building | My Demon Ep 6 | Netflix [ENG]",
           "top_clip_url": "https://www.youtube.com/watch?v=b9sxqeGXDHA",
-          "max_views": 12478456
+          "max_views": 12492561
         },
         {
-          "series_name": "Study Group",
-          "total_views": 7011350,
-          "clip_count": 1,
-          "top_clip_title": "Study Group | La la la",
-          "top_clip_url": "https://www.youtube.com/watch?v=C6okmMi-MbE",
-          "max_views": 7011350
-        },
-        {
-          "series_name": "La la la",
-          "total_views": 7011350,
-          "clip_count": 1,
-          "top_clip_title": "Study Group | La la la",
-          "top_clip_url": "https://www.youtube.com/watch?v=C6okmMi-MbE",
-          "max_views": 7011350
-        },
-        {
-          "series_name": "Succession",
-          "total_views": 3033065,
+          "series_name": "Suits",
+          "total_views": 7943683,
           "clip_count": 2,
-          "top_clip_title": "Succession's Coldest Insults | Succession | HBO",
-          "top_clip_url": "https://www.youtube.com/watch?v=Ut4pgRu5gHU",
-          "max_views": 2418740
+          "top_clip_title": "Mike Ross' Badass Moments | Suits",
+          "top_clip_url": "https://www.youtube.com/watch?v=ayF0xMAdkOw",
+          "max_views": 4227434
         },
         {
-          "series_name": "Succession's Coldest Insults",
-          "total_views": 2418740,
+          "series_name": "Breaking BadEdit- (Money Trees",
+          "total_views": 6148979,
           "clip_count": 1,
-          "top_clip_title": "Succession's Coldest Insults | Succession | HBO",
-          "top_clip_url": "https://www.youtube.com/watch?v=Ut4pgRu5gHU",
-          "max_views": 2418740
+          "top_clip_title": "[4K] Breaking Bad「Edit」- (Money Trees)",
+          "top_clip_url": "https://www.youtube.com/watch?v=3jqt7MxifiU",
+          "max_views": 6148979
         },
         {
-          "series_name": "Billions",
-          "total_views": 2403361,
+          "series_name": "niccolò (baby",
+          "total_views": 6115770,
           "clip_count": 1,
-          "top_clip_title": "Axe’s BEST F*** You Money Moments | Billions | Paramount+",
-          "top_clip_url": "https://www.youtube.com/watch?v=T-bpMn0VMYk",
-          "max_views": 2403361
+          "top_clip_title": "niccolò (baby) | swim",
+          "top_clip_url": "https://www.youtube.com/watch?v=s72LV_J_OiE",
+          "max_views": 6115770
         },
         {
-          "series_name": "Paramount+",
-          "total_views": 2403361,
+          "series_name": "swim",
+          "total_views": 6115770,
           "clip_count": 1,
-          "top_clip_title": "Axe’s BEST F*** You Money Moments | Billions | Paramount+",
-          "top_clip_url": "https://www.youtube.com/watch?v=T-bpMn0VMYk",
-          "max_views": 2403361
+          "top_clip_title": "niccolò (baby) | swim",
+          "top_clip_url": "https://www.youtube.com/watch?v=s72LV_J_OiE",
+          "max_views": 6115770
         },
         {
           "series_name": "Timeless",
-          "total_views": 1904092,
+          "total_views": 1905244,
           "clip_count": 1,
           "top_clip_title": "Timeless | Squid Game Season 2 [Edit] 4K",
           "top_clip_url": "https://www.youtube.com/watch?v=2rsf0_hmfGU",
-          "max_views": 1904092
+          "max_views": 1905244
+        },
+        {
+          "series_name": "Squid Game",
+          "total_views": 1905244,
+          "clip_count": 1,
+          "top_clip_title": "Timeless | Squid Game Season 2 [Edit] 4K",
+          "top_clip_url": "https://www.youtube.com/watch?v=2rsf0_hmfGU",
+          "max_views": 1905244
+        },
+        {
+          "series_name": "Cornered",
+          "total_views": 1837560,
+          "clip_count": 1,
+          "top_clip_title": "\"I Am the Danger\" | Cornered | Breaking Bad",
+          "top_clip_url": "https://www.youtube.com/watch?v=zAjJYkUnTEs",
+          "max_views": 1837560
         }
       ]
     },
@@ -423,207 +403,216 @@
     },
     "song_trends": {
       "status": "success",
-      "lead_winner": "Fendi 2",
-      "lead_views": 3383317,
+      "lead_winner": "Gimme More",
+      "lead_views": 2506888,
       "top_candidates": [
         {
-          "song_name": "Fendi 2",
-          "banner_title": "RANKING THE BEST FENDI 2 TREND EDITS",
-          "total_views": 3383317,
-          "virality_score": 104.45,
+          "song_name": "Gimme More",
+          "banner_title": "RANKING THE BEST GIMME MORE TREND EDITS",
+          "total_views": 2506888,
+          "virality_score": 101.98,
           "edits": [
             {
-              "id": "ig_Cc50NMfgXk_",
+              "id": "ig_DCR2x7BtwKp",
               "platform": "instagram",
-              "title": "Video by highsnobiety",
-              "creator": "@HIGHSNOBIETY (Insta)",
-              "views": 3353096,
+              "title": "Video by raidessq",
+              "creator": "@seungmin<3 (Insta)",
+              "views": 1984928,
               "duration": 15.0,
-              "url": "https://www.instagram.com/reel/Cc50NMfgXk_/"
+              "url": "https://www.instagram.com/reel/DCR2x7BtwKp/"
             },
             {
-              "id": "tt_5225170105305868583",
+              "id": "tt_6819185759522688261",
               "platform": "tiktok",
-              "title": "Trend Dance Tiktok Viral 2026 | Fendi 2 #tiktok​​​ ...| Kwai",
-              "creator": "@𝙆𝙚𝙫𝙝𝙖𝙣𝙯𝙞 (TikTok)",
-              "views": 25000,
-              "duration": 20.0,
-              "url": "https://www.tiktok.com/video/5225170105305868583"
-            },
-            {
-              "id": "yt_4slQc3EuFvc",
-              "platform": "youtube",
-              "title": "\"FENDI 2\" TREND EDIT PRESET | ALIGHT MOTION",
-              "creator": "@𝓥𝓲𝓬𝓴𝔂",
-              "views": 5221,
-              "duration": 29.0,
-              "url": "https://www.youtube.com/watch?v=4slQc3EuFvc"
-            }
-          ]
-        },
-        {
-          "song_name": "Vampire Heart",
-          "banner_title": "RANKING THE BEST VAMPIRE HEART TREND EDITS",
-          "total_views": 2756185,
-          "virality_score": 96.93,
-          "edits": [
-            {
-              "id": "ig_DCo57LMgTZQ",
-              "platform": "instagram",
-              "title": "Video by enhypenxo",
-              "creator": "@enhypenxo (Insta)",
-              "views": 81728,
-              "duration": 15.0,
-              "url": "https://www.instagram.com/reel/DCo57LMgTZQ/"
-            },
-            {
-              "id": "tt_7633880356126526742",
-              "platform": "tiktok",
-              "title": "TikTok Video by @maxsterae | 263K Views | Toklytics",
-              "creator": "@TvduCore (TikTok)",
-              "views": 263000,
-              "duration": 20.0,
-              "url": "https://www.tiktok.com/video/7633880356126526742"
-            },
-            {
-              "id": "yt_k_573toSJ-4",
-              "platform": "youtube",
-              "title": "\" Six little egg..🖤💔 \" // ⭐️ Animation ⭐️ // Aphmau💜",
-              "creator": "@•LittleMindXD•",
-              "views": 2411457,
-              "duration": 36.0,
-              "url": "https://www.youtube.com/watch?v=k_573toSJ-4"
-            }
-          ]
-        },
-        {
-          "song_name": "Freaked Out",
-          "banner_title": "RANKING THE BEST FREAKED OUT TREND EDITS",
-          "total_views": 545403,
-          "virality_score": 86.43,
-          "edits": [
-            {
-              "id": "tt_7663557267828002079",
-              "platform": "tiktok",
-              "title": "@tiktokwithhasan: 5x outlier | Overshot",
+              "title": "#greenscreenvideo i made a remix to britney spears gimmie more... it k... | gimme more rem",
               "creator": "@tiktok_creator (TikTok)",
               "views": 25000,
               "duration": 20.0,
-              "url": "https://www.tiktok.com/video/7663557267828002079"
+              "url": "https://www.tiktok.com/video/6819185759522688261"
             },
             {
-              "id": "yt_uXw9DOSN1O8",
+              "id": "yt_w1GVnWZMpNs",
               "platform": "youtube",
-              "title": "freaked out (slowed to perfection) - fat papi, prodshushy [edit audio]",
+              "title": "Gimme More - Britney Spears [Edit Audio]「Instrumental」",
               "creator": "@HanEditx",
-              "views": 470874,
-              "duration": 40.0,
-              "url": "https://www.youtube.com/watch?v=uXw9DOSN1O8"
-            },
-            {
-              "id": "yt_o-NzyEExtfA",
-              "platform": "youtube",
-              "title": "FREAKED OUT -EDIT AUDIO",
-              "creator": "@TANIOKOEDITS",
-              "views": 49529,
-              "duration": 22.0,
-              "url": "https://www.youtube.com/watch?v=o-NzyEExtfA"
+              "views": 496960,
+              "duration": 36.0,
+              "url": "https://www.youtube.com/watch?v=w1GVnWZMpNs"
             }
           ]
         },
         {
-          "song_name": "House",
-          "banner_title": "RANKING THE BEST HOUSE TREND EDITS",
-          "total_views": 51174,
-          "virality_score": 74.1,
+          "song_name": "Stateside",
+          "banner_title": "RANKING THE BEST STATESIDE TREND EDITS",
+          "total_views": 1788848,
+          "virality_score": 99.74,
           "edits": [
             {
-              "id": "tt_7395192251346849056",
-              "platform": "tiktok",
-              "title": "I’m back in my house era // This was heavily inspired by @han !!’s ama... | TikTok",
-              "creator": "@tiktok_creator (TikTok)",
-              "views": 25000,
-              "duration": 20.0,
-              "url": "https://www.tiktok.com/video/7395192251346849056"
-            },
-            {
-              "id": "yt_ShyW64bWglE",
+              "id": "yt_z1aVQJJhCK8",
               "platform": "youtube",
-              "title": "Hyunlix \"House of memories\" Trend Edit~Naz",
-              "creator": "@AlaraLord",
-              "views": 1174,
-              "duration": 12.0,
-              "url": "https://www.youtube.com/watch?v=ShyW64bWglE"
+              "title": "STATESIDE ANIMATION MEME",
+              "creator": "@Emmaartly",
+              "views": 1506968,
+              "duration": 46.0,
+              "url": "https://www.youtube.com/watch?v=z1aVQJJhCK8"
             },
             {
-              "id": "tt_7480332312312302891",
-              "platform": "tiktok",
-              "title": "Frank Ocean House Remix for Your Beach Party | TikTok",
-              "creator": "@tiktok_creator (TikTok)",
-              "views": 25000,
-              "duration": 20.0,
-              "url": "https://www.tiktok.com/video/7480332312312302891"
+              "id": "yt_fMmGKJUeR3Q",
+              "platform": "youtube",
+              "title": "STATESIDE ෆ",
+              "creator": "@chewy໒꒱",
+              "views": 276261,
+              "duration": 45.0,
+              "url": "https://www.youtube.com/watch?v=fMmGKJUeR3Q"
+            },
+            {
+              "id": "yt_qpJxOjFkeh4",
+              "platform": "youtube",
+              "title": "STATESIDE VIRAL EDIT TREND/ Tiktok Velocity Edit (alight motion)",
+              "creator": "@saranie",
+              "views": 5619,
+              "duration": 35.0,
+              "url": "https://www.youtube.com/watch?v=qpJxOjFkeh4"
             }
           ]
         },
         {
-          "song_name": "LV Sandals",
-          "banner_title": "RANKING THE BEST LV SANDALS TREND EDITS",
-          "total_views": 80572,
-          "virality_score": 70.77,
+          "song_name": "Pop dat thang",
+          "banner_title": "RANKING THE BEST POP DAT THANG TREND EDITS",
+          "total_views": 1405188,
+          "virality_score": 98.26,
           "edits": [
             {
-              "id": "ig_DJW8gZ7R_wT",
+              "id": "ig_DXxb7FIpC-R",
               "platform": "instagram",
-              "title": "Video by fifth_ave_shopping",
-              "creator": "@Galit|PersonalShopperNYC (Insta)",
-              "views": 944,
+              "title": "Video by dababy",
+              "creator": "@KIRK (Insta)",
+              "views": 1319968,
               "duration": 15.0,
-              "url": "https://www.instagram.com/reel/DJW8gZ7R_wT/"
+              "url": "https://www.instagram.com/reel/DXxb7FIpC-R/"
             },
             {
-              "id": "yt_DfguqI2spAM",
+              "id": "yt_3JQ7tWtDYw4",
               "platform": "youtube",
-              "title": "LV SANDALS (4K)",
-              "creator": "@StyLer",
-              "views": 55892,
-              "duration": 23.0,
-              "url": "https://www.youtube.com/watch?v=DfguqI2spAM"
+              "title": "Dancing- pop that thang caked up",
+              "creator": "@HarleyMariee",
+              "views": 84924,
+              "duration": 28.0,
+              "url": "https://www.youtube.com/watch?v=3JQ7tWtDYw4"
             },
             {
-              "id": "yt_3QmbxS-hOxU",
-              "platform": "youtube",
-              "title": "LV Sandals | Michael Olise | 4k Edit",
-              "creator": "@Tosh",
-              "views": 23736,
-              "duration": 25.0,
-              "url": "https://www.youtube.com/watch?v=3QmbxS-hOxU"
+              "id": "ig_DYAQMxNu8fx",
+              "platform": "instagram",
+              "title": "Video by des_serross_4",
+              "creator": "@DesireeSerros|TexasRealtor🏘️ (Insta)",
+              "views": 296,
+              "duration": 15.0,
+              "url": "https://www.instagram.com/reel/DYAQMxNu8fx/"
             }
           ]
         },
         {
-          "song_name": "Keep Following",
-          "banner_title": "RANKING THE BEST KEEP FOLLOWING TREND EDITS",
-          "total_views": 473,
-          "virality_score": 41.87,
+          "song_name": "Let me love you",
+          "banner_title": "RANKING THE BEST LET ME LOVE YOU TREND EDITS",
+          "total_views": 405736,
+          "virality_score": 89.71,
           "edits": [
             {
-              "id": "yt_obD7VJlw8s8",
-              "platform": "youtube",
-              "title": "Stay trend  | Roblox edit 2021| proud of this Roblox edit | Edit w ShivStar| SiimplyPxstel",
-              "creator": "@vim",
-              "views": 277,
-              "duration": 13.0,
-              "url": "https://www.youtube.com/watch?v=obD7VJlw8s8"
+              "id": "ig_DRaJbXXD9BU",
+              "platform": "instagram",
+              "title": "Video by alonsoruva",
+              "creator": "@AlonsoRuiz (Insta)",
+              "views": 399536,
+              "duration": 15.0,
+              "url": "https://www.instagram.com/reel/DRaJbXXD9BU/"
             },
             {
-              "id": "yt_-VgZWE9e2LA",
+              "id": "yt_Ot-pSBT99SU",
               "platform": "youtube",
-              "title": "TREND 🔥🔥 || Free Fire Trending Status || Alight Motion Editing #shorts  #Bad_timer #Trending",
-              "creator": "@Sangeeta_Editz",
-              "views": 196,
-              "duration": 13.0,
-              "url": "https://www.youtube.com/watch?v=-VgZWE9e2LA"
+              "title": "\"GTA 5 STYLE EDIT\" Tiktok Trend Edit Base | Alight Motion (preset + XML).",
+              "creator": "@Jannefs",
+              "views": 6112,
+              "duration": 33.0,
+              "url": "https://www.youtube.com/watch?v=Ot-pSBT99SU"
+            },
+            {
+              "id": "ig_Dfw2cPYKtVi",
+              "platform": "instagram",
+              "title": "Video by solaymane.aba",
+              "creator": "@solaymane|سليمان (Insta)",
+              "views": 88,
+              "duration": 15.0,
+              "url": "https://www.instagram.com/reel/Dfw2cPYKtVi/"
+            }
+          ]
+        },
+        {
+          "song_name": "Ponyboy",
+          "banner_title": "RANKING THE BEST PONYBOY TREND EDITS",
+          "total_views": 899581,
+          "virality_score": 86.52,
+          "edits": [
+            {
+              "id": "ig_DByZ8opy1w3",
+              "platform": "instagram",
+              "title": "Video by nightedits._9",
+              "creator": "@𝐍𝐈𝐆𝐇𝐓 (Insta)",
+              "views": 5856,
+              "duration": 15.0,
+              "url": "https://www.instagram.com/reel/DByZ8opy1w3/"
+            },
+            {
+              "id": "tt_7234619208158416155",
+              "platform": "tiktok",
+              "title": "#PONY + #JOHNNY ; lalala okokok — i’m so early to this trend 🥱🥱 || #... | ponyboy x johnny",
+              "creator": "@tiktok_creator (TikTok)",
+              "views": 25000,
+              "duration": 20.0,
+              "url": "https://www.tiktok.com/video/7234619208158416155"
+            },
+            {
+              "id": "yt_8qm6Pn9kYas",
+              "platform": "youtube",
+              "title": "Ponyboy | Sophie | Choreography by Isaiah Southall",
+              "creator": "@IsaiahSouthall",
+              "views": 868725,
+              "duration": 24.0,
+              "url": "https://www.youtube.com/watch?v=8qm6Pn9kYas"
+            }
+          ]
+        },
+        {
+          "song_name": "Here",
+          "banner_title": "RANKING THE BEST HERE TREND EDITS",
+          "total_views": 50131,
+          "virality_score": 73.99,
+          "edits": [
+            {
+              "id": "tt_7554861380839525663",
+              "platform": "tiktok",
+              "title": "“Wait I need a minute…”",
+              "creator": "@Guillaume (TikTok)",
+              "views": 25000,
+              "duration": 20.0,
+              "url": "https://www.tiktok.com/video/7554861380839525663"
+            },
+            {
+              "id": "yt_NXKiai4LxC0",
+              "platform": "youtube",
+              "title": "Here I am (TikTok Trend) – Scaramouche edit",
+              "creator": "@Eveᰔ.ᐟ",
+              "views": 131,
+              "duration": 17.0,
+              "url": "https://www.youtube.com/watch?v=NXKiai4LxC0"
+            },
+            {
+              "id": "tt_7546819393850805535",
+              "platform": "tiktok",
+              "title": "“Wait I need a minute…”",
+              "creator": "@Guillaume (TikTok)",
+              "views": 25000,
+              "duration": 20.0,
+              "url": "https://www.tiktok.com/video/7546819393850805535"
             }
           ]
         }
@@ -634,6 +623,55 @@
     "cinema_leader": "Godzilla",
     "tv_series_leader": "My Demon Ep 6",
     "mentalist_episode": 7,
-    "song_trend_leader": "Fendi 2"
+    "song_trend_leader": "Gimme More"
+  },
+  "llm_brain": {
+    "breaking_event_detected": true,
+    "breaking_winner": {
+      "topic": "Avengers Doomsday",
+      "genre": "superhero_scifi",
+      "hype_score": 92.0,
+      "urgency_level": "BREAKING_IMMEDIATE",
+      "proof_rationale": "High velocity trailer queries and Marvel fandom anticipation across Reddit and YouTube.",
+      "recommended_format": "edit_ranking",
+      "harvest_queries": [
+        "Avengers Doomsday edit #shorts",
+        "Doctor Doom edit #shorts",
+        "Avengers Doomsday trailer edit"
+      ],
+      "high_ctr_title": "Ranking Best Avengers Doomsday Edits! 🔥💀 #shorts #naofloppa #shortsfeed",
+      "pinned_debate_comment": "👇 Did #1 deserve the top spot, or is Doctor Doom taking over? Drop your thoughts!"
+    },
+    "top_ranked_contenders": [
+      {
+        "topic": "Avengers Doomsday",
+        "genre": "superhero_scifi",
+        "hype_score": 92.0,
+        "urgency_level": "BREAKING_IMMEDIATE",
+        "proof_rationale": "High velocity trailer queries and Marvel fandom anticipation across Reddit and YouTube.",
+        "recommended_format": "edit_ranking",
+        "harvest_queries": [
+          "Avengers Doomsday edit #shorts",
+          "Doctor Doom edit #shorts",
+          "Avengers Doomsday trailer edit"
+        ],
+        "high_ctr_title": "Ranking Best Avengers Doomsday Edits! 🔥💀 #shorts #naofloppa #shortsfeed",
+        "pinned_debate_comment": "👇 Did #1 deserve the top spot, or is Doctor Doom taking over? Drop your thoughts!"
+      },
+      {
+        "topic": "Godzilla",
+        "genre": "action_thriller",
+        "hype_score": 88.0,
+        "urgency_level": "TRENDING_HIGH",
+        "proof_rationale": "Consistent multi-hundred-thousand view fan edit spikes across YouTube Shorts.",
+        "recommended_format": "edit_ranking",
+        "harvest_queries": [
+          "Godzilla edit #shorts",
+          "Godzilla badass edit #shorts"
+        ]
+      }
+    ],
+    "reasoning_summary": "Heuristic fallback prioritizing global franchise blockbuster momentum.",
+    "timestamp_utc": "2026-11-26T08:50:34Z"
   }
 }

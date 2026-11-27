@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-27T07:35:18Z",
+  "last_3day_sync_utc": "2026-11-27T11:57:44Z",
   "recent_topics": [
     "Mr Darcy",
     "Drive to Survive",
@@ -28,83 +28,83 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 2614.8,
-      "top_topic": "Hunger Games",
-      "count": 164
-    },
-    {
-      "genre": "superhero_scifi",
-      "label": "Superhero & Sci-Fi",
-      "total_score": 1148.4,
-      "top_topic": "Godzilla",
-      "count": 53
-    },
-    {
-      "genre": "comedy_sitcom",
-      "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 433.8,
-      "top_topic": "Turkey",
-      "count": 22
-    },
-    {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 307.7,
-      "top_topic": "Schindler",
-      "count": 14
-    },
-    {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 287.3,
-      "top_topic": "Street",
-      "count": 14
+      "total_score": 1577.5,
+      "top_topic": "Wolf Pack Ambush",
+      "count": 102
     },
     {
       "genre": "world_indian_cinema",
       "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 140.8,
-      "top_topic": "December",
-      "count": 18
+      "total_score": 1021.6,
+      "top_topic": "VAATHI RAID",
+      "count": 45
     },
     {
-      "genre": "romance_teen_drama",
-      "label": "Romance, Heartbreak & Teen Series",
-      "total_score": 120.0,
-      "top_topic": "Chiwetel Ejiofor on How Stephen",
-      "count": 8
+      "genre": "superhero_scifi",
+      "label": "Superhero & Sci-Fi",
+      "total_score": 725.8,
+      "top_topic": "Godzilla",
+      "count": 38
     },
     {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 109.0,
-      "top_topic": "Track",
-      "count": 7
+      "genre": "crime_mafia",
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "total_score": 638.2,
+      "top_topic": "Ex-Mob",
+      "count": 17
     },
     {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 73.4,
-      "top_topic": "Book",
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 541.4,
+      "top_topic": "Kung Fu Panda",
+      "count": 20
+    },
+    {
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 435.1,
+      "top_topic": "Make",
+      "count": 11
+    },
+    {
+      "genre": "comedy_sitcom",
+      "label": "Comedy, Sitcoms & Cast Memes",
+      "total_score": 427.9,
+      "top_topic": "Dumb and Dumber",
+      "count": 21
+    },
+    {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 412.8,
+      "top_topic": "Battleship",
       "count": 10
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 58.2,
-      "top_topic": "Vampire",
-      "count": 3
+      "total_score": 340.1,
+      "top_topic": "Directed",
+      "count": 12
     },
     {
-      "genre": "crime_mafia",
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 45.0,
-      "top_topic": "Trains and Automobiles: The Deleted",
-      "count": 3
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 336.7,
+      "top_topic": "Anger",
+      "count": 11
     },
     {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 118.1,
+      "top_topic": "Ranbir Kapoor And Yash",
+      "count": 13
+    },
+    {
+      "genre": "romance_teen_drama",
+      "label": "Romance, Heartbreak & Teen Series",
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
@@ -116,101 +116,63 @@
       "genre": "superhero_scifi",
       "subcategory": "superhero_spoiler_commentary",
       "format": "scene_commentary",
-      "score": 84.34,
+      "score": 88.75,
       "sources": [
         "Collider",
         "Crunchyroll",
-        "Reddit-30d(r/Monsterverse)",
-        "Reddit-7d(r/Monsterverse)"
+        "Reddit-30d(r/GODZILLA)",
+        "Reddit-30d(r/Monsterverse)"
       ]
     },
     {
-      "topic": "Hunger Games",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
+      "topic": "Make",
+      "genre": "drama_prestige",
+      "subcategory": "coldest_drama_edits",
       "format": "edit_ranking",
-      "score": 78.07,
+      "score": 80.0,
       "sources": [
-        "Deadline",
-        "Reddit-7d(r/boxoffice)",
-        "The Hollywood Reporter"
+        "Variety",
+        "YT-Week"
       ]
     },
     {
-      "topic": "Mockingjay",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
+      "topic": "Battleship",
+      "genre": "war_historical",
+      "subcategory": "war_epic_battle_ranking",
       "format": "edit_ranking",
-      "score": 53.07,
+      "score": 69.0,
       "sources": [
-        "Deadline",
-        "Reddit-7d(r/boxoffice)"
+        "YT-Week"
       ]
     },
     {
-      "topic": "Felt",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
+      "topic": "Ex-Mob",
+      "genre": "crime_mafia",
+      "subcategory": "crime_coldest_boss_ranking",
       "format": "edit_ranking",
-      "score": 53.07,
+      "score": 69.0,
       "sources": [
-        "Deadline",
-        "Reddit-7d(r/boxoffice)"
+        "YT-Week"
       ]
     },
     {
-      "topic": "Last",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 46.93,
-      "sources": [
-        "Collider",
-        "Reddit-7d(r/scifi)"
-      ]
-    },
-    {
-      "topic": "Turkey",
-      "genre": "comedy_sitcom",
-      "subcategory": "cast_fandom_memes",
-      "format": "release_hype",
-      "score": 46.59,
-      "sources": [
-        "JoBlo",
-        "Reddit-7d(r/television)"
-      ]
-    },
-    {
-      "topic": "Hexed",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 46.21,
-      "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "THR"
-      ]
-    },
-    {
-      "topic": "Thanksgiving",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 44.0,
-      "sources": [
-        "FOX 13 Tampa Bay",
-        "KVUE"
-      ]
-    },
-    {
-      "topic": "December",
+      "topic": "VAATHI RAID",
       "genre": "world_indian_cinema",
-      "subcategory": "global_cinema_hype",
-      "format": "release_hype",
-      "score": 43.05,
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 65.77,
       "sources": [
-        "Reddit-30d(r/KDRAMA)",
-        "Variety"
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Teach",
+      "genre": "world_indian_cinema",
+      "subcategory": "indian_cinema_mass_edits",
+      "format": "edit_ranking",
+      "score": 64.7,
+      "sources": [
+        "YT-Week"
       ]
     },
     {
@@ -218,66 +180,99 @@
       "genre": "superhero_scifi",
       "subcategory": "scifi_release_hype",
       "format": "release_hype",
-      "score": 43.0,
+      "score": 54.0,
       "sources": [
-        "AP News",
         "Ars Technica",
+        "The Rider News",
         "Time Magazine"
       ]
     },
     {
-      "topic": "Ranked",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 40.0,
+      "topic": "Directed",
+      "genre": "horror_mystery",
+      "subcategory": "horror_scariest_ranking",
+      "format": "edit_ranking",
+      "score": 52.67,
       "sources": [
-        "Collider",
-        "JoBlo"
+        "Reddit-30d(r/ActionMovies)",
+        "YT-Week"
       ]
     },
     {
-      "topic": "Ramayana",
+      "topic": "Hungry",
+      "genre": "horror_mystery",
+      "subcategory": "horror_scariest_ranking",
+      "format": "edit_ranking",
+      "score": 51.0,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Wolf Pack Ambush",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 40.0,
+      "score": 51.0,
       "sources": [
-        "IMDb",
-        "NDTV"
+        "YT-Month",
+        "YT-Week"
       ]
     },
     {
-      "topic": "Schindler",
-      "genre": "drama_prestige",
-      "subcategory": "coldest_drama_edits",
+      "topic": "HEART OF THE BEAST",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 40.0,
+      "score": 51.0,
       "sources": [
-        "Deadline",
-        "THR"
+        "YT-Month",
+        "YT-Week"
       ]
     },
     {
-      "topic": "Gerald",
-      "genre": "drama_prestige",
-      "subcategory": "coldest_drama_edits",
+      "topic": "Dumb and Dumber",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
       "format": "edit_ranking",
-      "score": 40.0,
+      "score": 50.74,
       "sources": [
-        "Deadline",
-        "THR"
+        "YT-Month",
+        "YT-Week"
       ]
     },
     {
-      "topic": "Molen",
+      "topic": "Callbacks",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "format": "edit_ranking",
+      "score": 50.74,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Drink the Tap Water",
+      "genre": "horror_mystery",
+      "subcategory": "horror_scariest_ranking",
+      "format": "edit_ranking",
+      "score": 48.21,
+      "sources": [
+        "YT-Month",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Lines",
       "genre": "drama_prestige",
       "subcategory": "coldest_drama_edits",
       "format": "edit_ranking",
-      "score": 40.0,
+      "score": 48.15,
       "sources": [
-        "Deadline",
-        "THR"
+        "YT-Month",
+        "YT-Week"
       ]
     }
   ],
