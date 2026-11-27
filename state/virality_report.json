@@ -1,109 +1,97 @@
 {
-  "scan_time_utc": "2026-11-27T11:57:44Z",
+  "scan_time_utc": "2026-11-27T13:59:55Z",
   "winner": {
-    "topic": "Godzilla",
-    "genre": "superhero_scifi",
-    "subcategory": "superhero_spoiler_commentary",
-    "recommended_format": "scene_commentary",
-    "query_suffix": "scene edit shorts",
-    "score": 88.75,
+    "topic": "Wolf Pack Ambush",
+    "genre": "action_thriller",
+    "subcategory": "action_fight_ranking",
+    "recommended_format": "edit_ranking",
+    "query_suffix": "fight scene edit shorts",
+    "score": 82.0,
     "horizons": {
-      "3d": 77.0,
-      "7d": 72.2,
-      "30d": 81.5,
+      "3d": 100.0,
+      "7d": 100.0,
+      "30d": 60.0,
       "1y": 0.0
     },
-    "yt_views": 0,
-    "yt_hits": 0,
-    "reddit_hits": 4,
+    "yt_views": 5042178,
+    "yt_hits": 3,
+    "reddit_hits": 0,
     "sources": [
-      "Collider",
-      "Crunchyroll",
-      "Reddit-30d(r/GODZILLA)",
-      "Reddit-30d(r/Monsterverse)"
+      "YT-Month",
+      "YT-Today",
+      "YT-Week"
     ],
-    "headlines": [
-      "Funny how Kong is more chill and benevolent than Godzilla now when in their introductions Kong is portrayed as much more threatening.",
-      "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance",
-      "Every Reiwa Era Godzilla Movie, Ranked"
-    ]
+    "headlines": []
   },
   "genre_leaderboard": [
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 1577.5,
+      "total_score": 2423.2,
       "top_topic": "Wolf Pack Ambush",
-      "count": 102
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 1021.6,
-      "top_topic": "VAATHI RAID",
-      "count": 45
+      "count": 121
     },
     {
       "genre": "superhero_scifi",
       "label": "Superhero & Sci-Fi",
-      "total_score": 725.8,
-      "top_topic": "Godzilla",
-      "count": 38
+      "total_score": 797.6,
+      "top_topic": "Hunger Games",
+      "count": 40
+    },
+    {
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 589.8,
+      "top_topic": "Doomsday",
+      "count": 33
     },
     {
       "genre": "crime_mafia",
       "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 638.2,
+      "total_score": 498.6,
       "top_topic": "Ex-Mob",
-      "count": 17
-    },
-    {
-      "genre": "animated_cinema",
-      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 541.4,
-      "top_topic": "Kung Fu Panda",
-      "count": 20
-    },
-    {
-      "genre": "drama_prestige",
-      "label": "Prestige Drama & Biopics",
-      "total_score": 435.1,
-      "top_topic": "Make",
-      "count": 11
+      "count": 12
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 427.9,
+      "total_score": 472.7,
       "top_topic": "Dumb and Dumber",
-      "count": 21
+      "count": 25
     },
     {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 412.8,
-      "top_topic": "Battleship",
-      "count": 10
-    },
-    {
-      "genre": "horror_mystery",
-      "label": "Horror & Psychological Mystery",
-      "total_score": 340.1,
-      "top_topic": "Directed",
-      "count": 12
+      "genre": "drama_prestige",
+      "label": "Prestige Drama & Biopics",
+      "total_score": 461.6,
+      "top_topic": "Lines",
+      "count": 14
     },
     {
       "genre": "sports_underdog",
       "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 336.7,
+      "total_score": 453.7,
       "top_topic": "Anger",
-      "count": 11
+      "count": 14
     },
     {
       "genre": "fantasy_mythology",
       "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 118.1,
-      "top_topic": "Ranbir Kapoor And Yash",
+      "total_score": 352.7,
+      "top_topic": "Cinematic",
+      "count": 15
+    },
+    {
+      "genre": "animated_cinema",
+      "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
+      "total_score": 230.6,
+      "top_topic": "Kung Fu Panda",
+      "count": 7
+    },
+    {
+      "genre": "horror_mystery",
+      "label": "Horror & Psychological Mystery",
+      "total_score": 203.2,
+      "top_topic": "Black Christmas",
       "count": 13
     },
     {
@@ -112,79 +100,173 @@
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
+    },
+    {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 0.0,
+      "top_topic": "",
+      "count": 0
     }
   ],
   "top_topics": [
     {
-      "topic": "Godzilla",
-      "genre": "superhero_scifi",
-      "subcategory": "superhero_spoiler_commentary",
-      "recommended_format": "scene_commentary",
-      "query_suffix": "scene edit shorts",
-      "score": 88.75,
+      "topic": "Wolf Pack Ambush",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 82.0,
       "horizons": {
-        "3d": 77.0,
-        "7d": 72.2,
-        "30d": 81.5,
+        "3d": 100.0,
+        "7d": 100.0,
+        "30d": 60.0,
         "1y": 0.0
       },
-      "yt_views": 0,
-      "yt_hits": 0,
-      "reddit_hits": 4,
+      "yt_views": 5042178,
+      "yt_hits": 3,
+      "reddit_hits": 0,
       "sources": [
-        "Collider",
-        "Crunchyroll",
-        "Reddit-30d(r/GODZILLA)",
-        "Reddit-30d(r/Monsterverse)"
+        "YT-Month",
+        "YT-Today",
+        "YT-Week"
       ],
-      "headlines": [
-        "Funny how Kong is more chill and benevolent than Godzilla now when in their introductions Kong is portrayed as much more threatening.",
-        "Godzilla Minus Zero Film Confirms Hideaki Anno's Cameo Appearance",
-        "Every Reiwa Era Godzilla Movie, Ranked"
-      ]
+      "headlines": []
     },
     {
-      "topic": "Make",
+      "topic": "HEART OF THE BEAST",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 82.0,
+      "horizons": {
+        "3d": 100.0,
+        "7d": 100.0,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 5042178,
+      "yt_hits": 3,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Today",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Lines",
       "genre": "drama_prestige",
       "subcategory": "coldest_drama_edits",
       "recommended_format": "edit_ranking",
       "query_suffix": "coldest edit shorts",
-      "score": 80.0,
+      "score": 80.87,
       "horizons": {
         "3d": 100.0,
         "7d": 100.0,
-        "30d": 0.0,
+        "30d": 54.4,
         "1y": 0.0
       },
-      "yt_views": 471299,
-      "yt_hits": 2,
+      "yt_views": 1255860,
+      "yt_hits": 3,
       "reddit_hits": 0,
       "sources": [
-        "Variety",
+        "YT-Month",
+        "YT-Today",
         "YT-Week"
       ],
-      "headlines": [
-        "Chiwetel Ejiofor Was Afraid to Make ‘Backrooms’ Because of Director Kane Parsons’ Age: ‘He Was So Young!’"
-      ]
+      "headlines": []
     },
     {
-      "topic": "Battleship",
-      "genre": "war_historical",
-      "subcategory": "war_epic_battle_ranking",
+      "topic": "Deadliest",
+      "genre": "drama_prestige",
+      "subcategory": "coldest_drama_edits",
       "recommended_format": "edit_ranking",
-      "query_suffix": "battle scene edit shorts",
-      "score": 69.0,
+      "query_suffix": "coldest edit shorts",
+      "score": 80.87,
       "horizons": {
-        "3d": 97.5,
+        "3d": 100.0,
         "7d": 100.0,
-        "30d": 0.0,
+        "30d": 54.4,
         "1y": 0.0
       },
-      "yt_views": 138478071,
-      "yt_hits": 2,
+      "yt_views": 1255860,
+      "yt_hits": 3,
       "reddit_hits": 0,
       "sources": [
+        "YT-Month",
+        "YT-Today",
         "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Comebacks",
+      "genre": "drama_prestige",
+      "subcategory": "coldest_drama_edits",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "coldest edit shorts",
+      "score": 80.87,
+      "horizons": {
+        "3d": 100.0,
+        "7d": 100.0,
+        "30d": 54.4,
+        "1y": 0.0
+      },
+      "yt_views": 1255860,
+      "yt_hits": 3,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Today",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Justified",
+      "genre": "drama_prestige",
+      "subcategory": "coldest_drama_edits",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "coldest edit shorts",
+      "score": 80.87,
+      "horizons": {
+        "3d": 100.0,
+        "7d": 100.0,
+        "30d": 54.4,
+        "1y": 0.0
+      },
+      "yt_views": 1255860,
+      "yt_hits": 3,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Today",
+        "YT-Week"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Cinematic",
+      "genre": "fantasy_mythology",
+      "subcategory": "mythology_epic_edits",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "epic edit shorts",
+      "score": 76.38,
+      "horizons": {
+        "3d": 100.0,
+        "7d": 93.2,
+        "30d": 42.2,
+        "1y": 0.0
+      },
+      "yt_views": 1774842,
+      "yt_hits": 3,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Today"
       ],
       "headlines": []
     },
@@ -201,7 +283,7 @@
         "30d": 0.0,
         "1y": 0.0
       },
-      "yt_views": 25729916,
+      "yt_views": 25730022,
       "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
@@ -210,334 +292,229 @@
       "headlines": []
     },
     {
-      "topic": "VAATHI RAID",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "mass edit shorts",
-      "score": 65.77,
-      "horizons": {
-        "3d": 89.4,
-        "7d": 100.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 528769,
-      "yt_hits": 2,
-      "reddit_hits": 0,
-      "sources": [
-        "YT-Week"
-      ],
-      "headlines": []
-    },
-    {
-      "topic": "Teach",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "mass edit shorts",
-      "score": 64.7,
-      "horizons": {
-        "3d": 86.7,
-        "7d": 100.0,
-        "30d": 0.0,
-        "1y": 0.0
-      },
-      "yt_views": 439138,
-      "yt_hits": 2,
-      "reddit_hits": 0,
-      "sources": [
-        "YT-Week"
-      ],
-      "headlines": []
-    },
-    {
-      "topic": "Godzilla Minus Zero",
+      "topic": "Hunger Games",
       "genre": "superhero_scifi",
       "subcategory": "scifi_release_hype",
       "recommended_format": "release_hype",
       "query_suffix": "trailer edit shorts",
-      "score": 54.0,
+      "score": 67.51,
       "horizons": {
-        "3d": 48.0,
-        "7d": 36.0,
-        "30d": 20.0,
+        "3d": 70.6,
+        "7d": 64.2,
+        "30d": 0.0,
         "1y": 0.0
       },
       "yt_views": 0,
       "yt_hits": 0,
-      "reddit_hits": 0,
+      "reddit_hits": 1,
       "sources": [
-        "Ars Technica",
-        "The Rider News",
-        "Time Magazine"
+        "Reddit-7d(r/boxoffice)",
+        "The Hollywood Reporter",
+        "WTOP News"
       ],
       "headlines": [
-        "Review: Godzilla Minus Zero joins the ranks of truly stellar sequels",
-        "“Godzilla Minus Zero:” a monstrously good film"
+        "India Week Nov. 20 - 26: Ramayana nears the $120M mark. Godzilla Minus Zero has strong weekdays. O.M has a great 1st week. Hunger Games fails to make a mark.",
+        "A resurgent ‘Hunger Games’ goes big at the box office, despite competition of ‘Grand Theft Auto VI’",
+        "New ‘Hunger Games’ Movie on the Way? Lionsgate Film Chief Shares Latest on Franchise’s Future"
       ]
     },
     {
-      "topic": "Directed",
-      "genre": "horror_mystery",
-      "subcategory": "horror_scariest_ranking",
+      "topic": "Rules",
+      "genre": "crime_mafia",
+      "subcategory": "crime_coldest_boss_ranking",
       "recommended_format": "edit_ranking",
-      "query_suffix": "scary scene edit shorts",
-      "score": 52.67,
+      "query_suffix": "coldest edit shorts",
+      "score": 64.0,
       "horizons": {
-        "3d": 48.8,
-        "7d": 65.0,
-        "30d": 18.3,
+        "3d": 72.8,
+        "7d": 83.0,
+        "30d": 0.0,
         "1y": 0.0
       },
-      "yt_views": 6825321,
+      "yt_views": 1378811,
       "yt_hits": 1,
-      "reddit_hits": 1,
-      "sources": [
-        "Reddit-30d(r/ActionMovies)",
-        "YT-Week"
-      ],
-      "headlines": []
-    },
-    {
-      "topic": "Hungry",
-      "genre": "horror_mystery",
-      "subcategory": "horror_scariest_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "scary scene edit shorts",
-      "score": 51.0,
-      "horizons": {
-        "3d": 48.8,
-        "7d": 65.0,
-        "30d": 60.0,
-        "1y": 0.0
-      },
-      "yt_views": 8401122,
-      "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
-        "YT-Month",
+        "JoBlo",
         "YT-Week"
       ],
-      "headlines": []
+      "headlines": [
+        "S. Craig Zahler: The Filmmaker Who Refuses to Play by Hollywood’s Rules?"
+      ]
     },
     {
-      "topic": "Wolf Pack Ambush",
+      "topic": "Extraction",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 51.0,
+      "score": 57.75,
       "horizons": {
-        "3d": 48.8,
-        "7d": 65.0,
+        "3d": 75.0,
+        "7d": 52.5,
         "30d": 60.0,
         "1y": 0.0
       },
-      "yt_views": 3359242,
+      "yt_views": 6411584,
       "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
         "YT-Month",
-        "YT-Week"
+        "YT-Today"
       ],
       "headlines": []
     },
     {
-      "topic": "HEART OF THE BEAST",
+      "topic": "Guard",
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
       "query_suffix": "fight scene edit shorts",
-      "score": 51.0,
+      "score": 57.75,
       "horizons": {
-        "3d": 48.8,
-        "7d": 65.0,
+        "3d": 75.0,
+        "7d": 52.5,
         "30d": 60.0,
         "1y": 0.0
       },
-      "yt_views": 3359242,
+      "yt_views": 6411584,
       "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
         "YT-Month",
-        "YT-Week"
+        "YT-Today"
       ],
       "headlines": []
     },
     {
-      "topic": "Dumb and Dumber",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
+      "topic": "Gina",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
       "recommended_format": "edit_ranking",
-      "query_suffix": "funny moments edit shorts",
-      "score": 50.74,
+      "query_suffix": "fight scene edit shorts",
+      "score": 57.75,
       "horizons": {
-        "3d": 48.8,
-        "7d": 65.0,
-        "30d": 58.7,
-        "1y": 0.0
-      },
-      "yt_views": 2355624,
-      "yt_hits": 2,
-      "reddit_hits": 0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ],
-      "headlines": []
-    },
-    {
-      "topic": "Callbacks",
-      "genre": "comedy_sitcom",
-      "subcategory": "funniest_character_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "funny moments edit shorts",
-      "score": 50.74,
-      "horizons": {
-        "3d": 48.8,
-        "7d": 65.0,
-        "30d": 58.7,
-        "1y": 0.0
-      },
-      "yt_views": 2355624,
-      "yt_hits": 2,
-      "reddit_hits": 0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ],
-      "headlines": []
-    },
-    {
-      "topic": "Drink the Tap Water",
-      "genre": "horror_mystery",
-      "subcategory": "horror_scariest_ranking",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "scary scene edit shorts",
-      "score": 48.21,
-      "horizons": {
-        "3d": 46.7,
-        "7d": 62.2,
-        "30d": 54.4,
-        "1y": 0.0
-      },
-      "yt_views": 849174,
-      "yt_hits": 2,
-      "reddit_hits": 0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ],
-      "headlines": []
-    },
-    {
-      "topic": "Lines",
-      "genre": "drama_prestige",
-      "subcategory": "coldest_drama_edits",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "coldest edit shorts",
-      "score": 48.15,
-      "horizons": {
-        "3d": 46.6,
-        "7d": 62.1,
-        "30d": 54.4,
-        "1y": 0.0
-      },
-      "yt_views": 837238,
-      "yt_hits": 2,
-      "reddit_hits": 0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ],
-      "headlines": []
-    },
-    {
-      "topic": "Deadliest",
-      "genre": "drama_prestige",
-      "subcategory": "coldest_drama_edits",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "coldest edit shorts",
-      "score": 48.15,
-      "horizons": {
-        "3d": 46.6,
-        "7d": 62.1,
-        "30d": 54.4,
-        "1y": 0.0
-      },
-      "yt_views": 837238,
-      "yt_hits": 2,
-      "reddit_hits": 0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ],
-      "headlines": []
-    },
-    {
-      "topic": "Comebacks",
-      "genre": "drama_prestige",
-      "subcategory": "coldest_drama_edits",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "coldest edit shorts",
-      "score": 48.15,
-      "horizons": {
-        "3d": 46.6,
-        "7d": 62.1,
-        "30d": 54.4,
-        "1y": 0.0
-      },
-      "yt_views": 837238,
-      "yt_hits": 2,
-      "reddit_hits": 0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ],
-      "headlines": []
-    },
-    {
-      "topic": "Justified",
-      "genre": "drama_prestige",
-      "subcategory": "coldest_drama_edits",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "coldest edit shorts",
-      "score": 48.15,
-      "horizons": {
-        "3d": 46.6,
-        "7d": 62.1,
-        "30d": 54.4,
-        "1y": 0.0
-      },
-      "yt_views": 837238,
-      "yt_hits": 2,
-      "reddit_hits": 0,
-      "sources": [
-        "YT-Month",
-        "YT-Week"
-      ],
-      "headlines": []
-    },
-    {
-      "topic": "Cinematic",
-      "genre": "world_indian_cinema",
-      "subcategory": "indian_cinema_mass_edits",
-      "recommended_format": "edit_ranking",
-      "query_suffix": "mass edit shorts",
-      "score": 47.24,
-      "horizons": {
-        "3d": 44.0,
-        "7d": 58.7,
+        "3d": 75.0,
+        "7d": 52.5,
         "30d": 60.0,
         "1y": 0.0
       },
-      "yt_views": 1935206,
+      "yt_views": 6411584,
       "yt_hits": 2,
       "reddit_hits": 0,
       "sources": [
         "YT-Month",
-        "YT-Week"
+        "YT-Today"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Carano",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 57.75,
+      "horizons": {
+        "3d": 75.0,
+        "7d": 52.5,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 6411584,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Today"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Rally",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 57.75,
+      "horizons": {
+        "3d": 75.0,
+        "7d": 52.5,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 4775286,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Today"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Unreal",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 57.75,
+      "horizons": {
+        "3d": 75.0,
+        "7d": 52.5,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 4775286,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Today"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Engine",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 57.75,
+      "horizons": {
+        "3d": 75.0,
+        "7d": 52.5,
+        "30d": 60.0,
+        "1y": 0.0
+      },
+      "yt_views": 4775286,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Today"
+      ],
+      "headlines": []
+    },
+    {
+      "topic": "Suspense",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 57.54,
+      "horizons": {
+        "3d": 75.0,
+        "7d": 52.5,
+        "30d": 58.9,
+        "1y": 0.0
+      },
+      "yt_views": 2490360,
+      "yt_hits": 2,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Month",
+        "YT-Today"
       ],
       "headlines": []
     },
@@ -547,10 +524,10 @@
       "subcategory": "superhero_spoiler_commentary",
       "recommended_format": "scene_commentary",
       "query_suffix": "scene edit shorts",
-      "score": 47.04,
+      "score": 48.56,
       "horizons": {
-        "3d": 60.7,
-        "7d": 75.9,
+        "3d": 62.7,
+        "7d": 78.3,
         "30d": 0.0,
         "1y": 0.0
       },
@@ -565,16 +542,139 @@
         "Worthwhile Low-Budget/Indie Movies in the Last Five Years or So",
         "The Last Kingdom. one of the best historical dramas ever made. What's your take?"
       ]
+    },
+    {
+      "topic": "Shagird",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "recommended_format": "edit_ranking",
+      "query_suffix": "fight scene edit shorts",
+      "score": 45.75,
+      "horizons": {
+        "3d": 75.0,
+        "7d": 52.5,
+        "30d": 0.0,
+        "1y": 0.0
+      },
+      "yt_views": 2671968,
+      "yt_hits": 1,
+      "reddit_hits": 0,
+      "sources": [
+        "YT-Today"
+      ],
+      "headlines": []
+    }
+  ],
+  "top_yt_today": [
+    {
+      "id": "hIbcd_Fncvw",
+      "window": "today",
+      "genre_hint": "comedy_sitcom",
+      "title": "the office try not to laugh challenge | Comedy Bites",
+      "channel": "Comedy Bites",
+      "views": 5690592,
+      "duration": 501.0,
+      "url": "https://www.youtube.com/watch?v=hIbcd_Fncvw"
+    },
+    {
+      "id": "L7wCy1IOwOw",
+      "window": "today",
+      "genre_hint": "comedy_sitcom",
+      "title": "brooklyn nine-nine moments that have no business being this funny | Comedy Bites",
+      "channel": "Comedy Bites",
+      "views": 3389617,
+      "duration": 588.0,
+      "url": "https://www.youtube.com/watch?v=L7wCy1IOwOw"
+    },
+    {
+      "id": "Gm7fYVXxu5o",
+      "window": "today",
+      "genre_hint": "action_thriller",
+      "title": "Extraction Movie CLIP - Guard (2015) - Gina Carano Thriller HD",
+      "channel": "Rotten Tomatoes Coming Soon",
+      "views": 3205792,
+      "duration": 38.0,
+      "url": "https://www.youtube.com/watch?v=Gm7fYVXxu5o"
+    },
+    {
+      "id": "czG9Xh5tGa0",
+      "window": "today",
+      "genre_hint": "action_thriller",
+      "title": "Shagird Thriller Scene - The order is to finish you - Nana Patekar Action Scene - HD",
+      "channel": "Bollywood Climax",
+      "views": 2671968,
+      "duration": 1036.0,
+      "url": "https://www.youtube.com/watch?v=czG9Xh5tGa0"
+    },
+    {
+      "id": "e6t7MlE7hj0",
+      "window": "today",
+      "genre_hint": "action_thriller",
+      "title": "Rally | An Unreal Engine Action Thriller Short Film",
+      "channel": "Santiago Menghini",
+      "views": 2387643,
+      "duration": 597.0,
+      "url": "https://www.youtube.com/watch?v=e6t7MlE7hj0"
+    },
+    {
+      "id": "sY5dFGjGkSk",
+      "window": "today",
+      "genre_hint": "fantasy_mythology",
+      "title": "Ancalagon the Black – The Final Terror of Morgoth | Cinematic",
+      "channel": "Tales Reforged",
+      "views": 1729612,
+      "duration": 192.0,
+      "url": "https://www.youtube.com/watch?v=sY5dFGjGkSk"
+    },
+    {
+      "id": "hvUQpMSyzAY",
+      "window": "today",
+      "genre_hint": "action_thriller",
+      "title": "Wolf Pack Ambush | HEART OF THE BEAST (2026) Movie CLIP 4K",
+      "channel": "JoBlo Movie Clips",
+      "views": 1680726,
+      "duration": 312.0,
+      "url": "https://www.youtube.com/watch?v=hvUQpMSyzAY"
+    },
+    {
+      "id": "FpD9YReYJZQ",
+      "window": "today",
+      "genre_hint": "drama_prestige",
+      "title": "The Coldest Advice ever given to MAN 👨 ",
+      "channel": "King Ben",
+      "views": 1511477,
+      "duration": 75.0,
+      "url": "https://www.youtube.com/watch?v=FpD9YReYJZQ"
+    },
+    {
+      "id": "VOJsld2_oeI",
+      "window": "today",
+      "genre_hint": "action_thriller",
+      "title": "JUMPER -  Suspense Thriller Short Film",
+      "channel": "Isaac Carlton",
+      "views": 1245180,
+      "duration": 218.0,
+      "url": "https://www.youtube.com/watch?v=VOJsld2_oeI"
+    },
+    {
+      "id": "QKCeYncAAGo",
+      "window": "today",
+      "genre_hint": "comedy_sitcom",
+      "title": "Dumb and Dumber | Best Moments | ClipZone: Comedy Callbacks",
+      "channel": "ClipZone: Comedy Callbacks",
+      "views": 1177984,
+      "duration": 512.0,
+      "url": "https://www.youtube.com/watch?v=QKCeYncAAGo"
     }
   ],
   "top_yt_week": [
     {
       "id": "nCqDdsZY7RA",
       "window": "week",
-      "genre_hint": "war_historical",
+      "genre_hint": "action_thriller",
       "title": "Battleship | The Final Battle in 4K HDR",
       "channel": "Universal Pictures",
-      "views": 111221402,
+      "views": 111223317,
       "duration": 620.0,
       "url": "https://www.youtube.com/watch?v=nCqDdsZY7RA"
     },
@@ -584,39 +684,9 @@
       "genre_hint": "animated_cinema",
       "title": "THIS IS 4K ANIME | YOUR NAME 2160P 60FPS",
       "channel": "Ash Edits",
-      "views": 28620975,
+      "views": 28621254,
       "duration": 13.0,
       "url": "https://www.youtube.com/watch?v=nTbA7qrEsP0"
-    },
-    {
-      "id": "73NUY_J7DoY",
-      "window": "week",
-      "genre_hint": "war_historical",
-      "title": "The Art Of War (Final Battle) | Battleship | All Action",
-      "channel": "All Action",
-      "views": 27256669,
-      "duration": 309.0,
-      "url": "https://www.youtube.com/watch?v=73NUY_J7DoY"
-    },
-    {
-      "id": "HK6_l3xjPBg",
-      "window": "week",
-      "genre_hint": "action_thriller",
-      "title": "SONIC Vs ROBOTNIK Best Action Scenes 4K ᴴᴰ",
-      "channel": " Boxoffice ANIMATION ☆ Movie Scenes ",
-      "views": 24013175,
-      "duration": 605.0,
-      "url": "https://www.youtube.com/watch?v=HK6_l3xjPBg"
-    },
-    {
-      "id": "0Xc4ckTTQN0",
-      "window": "week",
-      "genre_hint": "war_historical",
-      "title": "Skirmish With A Tiger Tank | Fury | CineStream | With Captions",
-      "channel": "CineClips",
-      "views": 22844612,
-      "duration": 498.0,
-      "url": "https://www.youtube.com/watch?v=0Xc4ckTTQN0"
     },
     {
       "id": "ju0DMF4Vhfc",
@@ -624,7 +694,7 @@
       "genre_hint": "action_thriller",
       "title": "All the Best Scenes from The Super Mario Bros. Movie 🌀 4K",
       "channel": "Boxoffice Movie Scenes",
-      "views": 21324509,
+      "views": 21325453,
       "duration": 608.0,
       "url": "https://www.youtube.com/watch?v=ju0DMF4Vhfc"
     },
@@ -634,29 +704,19 @@
       "genre_hint": "crime_mafia",
       "title": "Ex-Mob Boss Rates 12 Mafia Movie Scenes | How Real Is It? | Insider",
       "channel": "Insider",
-      "views": 16256042,
+      "views": 16256132,
       "duration": 503.0,
       "url": "https://www.youtube.com/watch?v=_HZbkdEggHI"
     },
     {
-      "id": "hs3paMLb9Qg",
+      "id": "9YNoIdwrFWQ",
       "window": "week",
-      "genre_hint": "horror_mystery",
-      "title": "Ignore It - Short Horror Film ( Award Winning )",
-      "channel": "Grimoire Horror",
-      "views": 13759441,
-      "duration": 394.0,
-      "url": "https://www.youtube.com/watch?v=hs3paMLb9Qg"
-    },
-    {
-      "id": "EkwdYSn3Uws",
-      "window": "week",
-      "genre_hint": "horror_mystery",
-      "title": "Elf recut as a Thriller - Trailer Mix",
-      "channel": "CineFix",
-      "views": 9529986,
-      "duration": 135.0,
-      "url": "https://www.youtube.com/watch?v=EkwdYSn3Uws"
+      "genre_hint": "action_thriller",
+      "title": "7 Scenes that made John Wick's LORE Legendary ⚡ 4K",
+      "channel": "Boxoffice ACTION",
+      "views": 11685079,
+      "duration": 1411.0,
+      "url": "https://www.youtube.com/watch?v=9YNoIdwrFWQ"
     },
     {
       "id": "nuWDXoSe9Vo",
@@ -664,81 +724,71 @@
       "genre_hint": "crime_mafia",
       "title": "Ex-Mob Boss Reviews Mafia Movie Scenes",
       "channel": "BuzzFeedVideo",
-      "views": 9473874,
+      "views": 9473890,
       "duration": 542.0,
       "url": "https://www.youtube.com/watch?v=nuWDXoSe9Vo"
+    },
+    {
+      "id": "7fmW9faGDDI",
+      "window": "week",
+      "genre_hint": "animated_cinema",
+      "title": "[4K] Kung Fu Panda「Edit」(SDP Interlude)",
+      "channel": "Jemartob",
+      "views": 5568687,
+      "duration": 21.0,
+      "url": "https://www.youtube.com/watch?v=7fmW9faGDDI"
+    },
+    {
+      "id": "k_CxMefC7mA",
+      "window": "week",
+      "genre_hint": "animated_cinema",
+      "title": "D E M O N S - [Demon Slayer 4k edit]",
+      "channel": "eclips",
+      "views": 4534957,
+      "duration": 45.0,
+      "url": "https://www.youtube.com/watch?v=k_CxMefC7mA"
+    },
+    {
+      "id": "sLzgkUT7thU",
+      "window": "week",
+      "genre_hint": "world_indian_cinema",
+      "title": "That's my girl | Multifemale",
+      "channel": "Sofia 소피아",
+      "views": 4325506,
+      "duration": 205.0,
+      "url": "https://www.youtube.com/watch?v=sLzgkUT7thU"
+    },
+    {
+      "id": "mb6q7GslMYo",
+      "window": "week",
+      "genre_hint": "world_indian_cinema",
+      "title": "GOD IS A WOMAN | INDIAN MULTIFEMALE EDIT",
+      "channel": "Btsly Edits",
+      "views": 3973050,
+      "duration": 165.0,
+      "url": "https://www.youtube.com/watch?v=mb6q7GslMYo"
     }
   ],
   "top_yt_month": [
     {
-      "id": "hs3paMLb9Qg",
-      "window": "month",
-      "genre_hint": "horror_mystery",
-      "title": "Ignore It - Short Horror Film ( Award Winning )",
-      "channel": "Grimoire Horror",
-      "views": 13759441,
-      "duration": 394.0,
-      "url": "https://www.youtube.com/watch?v=hs3paMLb9Qg"
-    },
-    {
-      "id": "SdS15vKWsHo",
-      "window": "month",
-      "genre_hint": "horror_mystery",
-      "title": "The Changing Room - Short Horror Film",
-      "channel": "Grimoire Horror",
-      "views": 5734321,
-      "duration": 266.0,
-      "url": "https://www.youtube.com/watch?v=SdS15vKWsHo"
-    },
-    {
-      "id": "hIbcd_Fncvw",
+      "id": "y7dKQSYfokU",
       "window": "month",
       "genre_hint": "comedy_sitcom",
-      "title": "the office try not to laugh challenge | Comedy Bites",
-      "channel": "Comedy Bites",
-      "views": 5690574,
-      "duration": 501.0,
-      "url": "https://www.youtube.com/watch?v=hIbcd_Fncvw"
+      "title": "BLUEY - TRY NOT TO LAUGH😂[YTP] COMEDY CHAOS",
+      "channel": "PAW YTP",
+      "views": 6164686,
+      "duration": 848.0,
+      "url": "https://www.youtube.com/watch?v=y7dKQSYfokU"
     },
     {
-      "id": "Jxq13WJxLDY",
-      "window": "month",
-      "genre_hint": "horror_mystery",
-      "title": "Hungry | Short Horror Film",
-      "channel": "ACMofficial",
-      "views": 4200561,
-      "duration": 275.0,
-      "url": "https://www.youtube.com/watch?v=Jxq13WJxLDY"
-    },
-    {
-      "id": "L7wCy1IOwOw",
-      "window": "month",
-      "genre_hint": "comedy_sitcom",
-      "title": "brooklyn nine-nine moments that have no business being this funny | Comedy Bites",
-      "channel": "Comedy Bites",
-      "views": 3389460,
-      "duration": 588.0,
-      "url": "https://www.youtube.com/watch?v=L7wCy1IOwOw"
-    },
-    {
-      "id": "xm6NjBngIx0",
-      "window": "month",
-      "genre_hint": "horror_mystery",
-      "title": "CLOSING TIME - Horror Short Film",
-      "channel": "Spencer Keller",
-      "views": 3178097,
-      "duration": 469.0,
-      "url": "https://www.youtube.com/watch?v=xm6NjBngIx0"
-    },
-    {
-      "id": "czG9Xh5tGa0",
+      "id": "Gm7fYVXxu5o",
       "window": "month",
       "genre_hint": "action_thriller",
-      "title": "Shagird Thriller Scene - The order is to finish you - Nana Patekar Action Scene - HD",
-      "channel": "Bollywood Climax",
-      "views": 2671597,
-      "duration": 1036.0,
-      "url": "https://www.youtube.com/watch?v=czG9Xh5tGa0"
+      "title": "Extraction Movie CLIP - Guard (2015) - Gina Carano Thriller HD",
+      "channel": "Rotten Tomatoes Coming Soon",
+      "views": 3205792,
+      "duration": 38.0,
+      "url": "https://www.youtube.com/watch?v=Gm7fYVXxu5o"
     },
     {
       "id": "e6t7MlE7hj0",
@@ -746,19 +796,19 @@
       "genre_hint": "action_thriller",
       "title": "Rally | An Unreal Engine Action Thriller Short Film",
       "channel": "Santiago Menghini",
-      "views": 2387569,
+      "views": 2387643,
       "duration": 597.0,
       "url": "https://www.youtube.com/watch?v=e6t7MlE7hj0"
     },
     {
-      "id": "sY5dFGjGkSk",
+      "id": "zAjJYkUnTEs",
       "window": "month",
-      "genre_hint": "fantasy_mythology",
-      "title": "Ancalagon the Black – The Final Terror of Morgoth | Cinematic",
-      "channel": "Tales Reforged",
-      "views": 1729366,
-      "duration": 192.0,
-      "url": "https://www.youtube.com/watch?v=sY5dFGjGkSk"
+      "genre_hint": "drama_prestige",
+      "title": "\"I Am the Danger\" | Cornered | Breaking Bad",
+      "channel": "Breaking Bad & Beyond",
+      "views": 1839574,
+      "duration": 132.0,
+      "url": "https://www.youtube.com/watch?v=zAjJYkUnTEs"
     },
     {
       "id": "hvUQpMSyzAY",
@@ -766,30 +816,62 @@
       "genre_hint": "action_thriller",
       "title": "Wolf Pack Ambush | HEART OF THE BEAST (2026) Movie CLIP 4K",
       "channel": "JoBlo Movie Clips",
-      "views": 1679621,
+      "views": 1680726,
       "duration": 312.0,
       "url": "https://www.youtube.com/watch?v=hvUQpMSyzAY"
+    },
+    {
+      "id": "FpD9YReYJZQ",
+      "window": "month",
+      "genre_hint": "drama_prestige",
+      "title": "The Coldest Advice ever given to MAN 👨 ",
+      "channel": "King Ben",
+      "views": 1511477,
+      "duration": 75.0,
+      "url": "https://www.youtube.com/watch?v=FpD9YReYJZQ"
+    },
+    {
+      "id": "VOJsld2_oeI",
+      "window": "month",
+      "genre_hint": "action_thriller",
+      "title": "JUMPER -  Suspense Thriller Short Film",
+      "channel": "Isaac Carlton",
+      "views": 1245180,
+      "duration": 218.0,
+      "url": "https://www.youtube.com/watch?v=VOJsld2_oeI"
+    },
+    {
+      "id": "K_HHTppZzrc",
+      "window": "month",
+      "genre_hint": "comedy_sitcom",
+      "title": "Pakistani Drama Funny Scenes 😂 | Pakistani Drama Comedy 🤣 | Most Funny Moments #funnyvideo",
+      "channel": "Mazak Writes",
+      "views": 790684,
+      "duration": 517.0,
+      "url": "https://www.youtube.com/watch?v=K_HHTppZzrc"
+    },
+    {
+      "id": "1MfLWuKmmnI",
+      "window": "month",
+      "genre_hint": "comedy_sitcom",
+      "title": "Bloopers & Outtakes | Minimum Wage",
+      "channel": "American High",
+      "views": 664716,
+      "duration": 521.0,
+      "url": "https://www.youtube.com/watch?v=1MfLWuKmmnI"
+    },
+    {
+      "id": "_O0FmrKHXWg",
+      "window": "month",
+      "genre_hint": "drama_prestige",
+      "title": "The Coldest Lines and Deadliest Comebacks | Justified | FX",
+      "channel": "FX Networks",
+      "views": 418622,
+      "duration": 239.0,
+      "url": "https://www.youtube.com/watch?v=_O0FmrKHXWg"
     }
   ],
   "top_reddit_week": [
-    {
-      "sub": "MovieDetails",
-      "title": "In “The End of Oak Street” (2026) there’s a yellow school bus shown to be cut in half right where the edge of the portal was that transported the neighborhood back in time. Which is weird because it happened at 11 pm in the middle of summer break.",
-      "score": 1888,
-      "comments": 128,
-      "engagement": 2272,
-      "days": 7,
-      "url": "https://www.reddit.com/r/MovieDetails/comments/1y4urp8/in_the_end_of_oak_street_2026_theres_a_yellow/"
-    },
-    {
-      "sub": "television",
-      "title": "Amazon's Rings Of Power debuts at number 1 in the Nielsen originals list",
-      "score": 705,
-      "comments": 357,
-      "engagement": 1776,
-      "days": 7,
-      "url": "https://www.reddit.com/r/television/comments/1y6egpb/amazons_rings_of_power_debuts_at_number_1_in_the/"
-    },
     {
       "sub": "television",
       "title": "What's a line from a TV show or movie that has stayed with you long after you finished watching it?",
@@ -798,33 +880,6 @@
       "engagement": 1094,
       "days": 7,
       "url": "https://www.reddit.com/r/television/comments/1y6kan4/whats_a_line_from_a_tv_show_or_movie_that_has/"
-    },
-    {
-      "sub": "memes",
-      "title": "APK support is important to me! I want to run open source emulators—",
-      "score": 923,
-      "comments": 43,
-      "engagement": 1052,
-      "days": 7,
-      "url": "https://www.reddit.com/r/memes/comments/1y6osue/apk_support_is_important_to_me_i_want_to_run_open/"
-    },
-    {
-      "sub": "marvelmemes",
-      "title": "24-hour flight. No books. No phone. Which seat are you taking?",
-      "score": 369,
-      "comments": 216,
-      "engagement": 1017,
-      "days": 7,
-      "url": "https://www.reddit.com/r/marvelmemes/comments/1y6n4bj/24hour_flight_no_books_no_phone_which_seat_are/"
-    },
-    {
-      "sub": "MovieDetails",
-      "title": "In Deadpool & Wolverine (2024) a variant of David Hasselhoff's Nick Fury from Nick Fury: Agent of S.H.I.E.L.D. (1998) shows up as part of Cassandra Nova's group. He's played by David MacDonald and only shows up once in the whole film.",
-      "score": 807,
-      "comments": 22,
-      "engagement": 873,
-      "days": 7,
-      "url": "https://www.reddit.com/r/MovieDetails/comments/1y6lizt/in_deadpool_wolverine_2024_a_variant_of_david/"
     },
     {
       "sub": "bollywoodmemes",
@@ -845,15 +900,6 @@
       "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y5taz7/just_bhoi_things/"
     },
     {
-      "sub": "MovieDetails",
-      "title": "Planes Trains and Automobiles (1987) a dirty hand print on each side of the framed picture of the motel wall suggests activities of a previous guest",
-      "score": 405,
-      "comments": 17,
-      "engagement": 456,
-      "days": 7,
-      "url": "https://www.reddit.com/r/MovieDetails/comments/1y6leet/planes_trains_and_automobiles_1987_a_dirty_hand/"
-    },
-    {
       "sub": "scifi",
       "title": "Worthwhile Low-Budget/Indie Movies in the Last Five Years or So",
       "score": 212,
@@ -861,6 +907,60 @@
       "engagement": 452,
       "days": 7,
       "url": "https://www.reddit.com/r/scifi/comments/1y6bo93/worthwhile_lowbudgetindie_movies_in_the_last_five/"
+    },
+    {
+      "sub": "bollywoodmemes",
+      "title": "Aamir Khan’s multiverse 💀",
+      "score": 365,
+      "comments": 8,
+      "engagement": 389,
+      "days": 7,
+      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y65m98/aamir_khans_multiverse/"
+    },
+    {
+      "sub": "television",
+      "title": "The Last Kingdom. one of the best historical dramas ever made. What's your take?",
+      "score": 104,
+      "comments": 91,
+      "engagement": 377,
+      "days": 7,
+      "url": "https://www.reddit.com/r/television/comments/1y6ltf2/the_last_kingdom_one_of_the_best_historical/"
+    },
+    {
+      "sub": "bollywoodmemes",
+      "title": "\"Ham Haye doom\"",
+      "score": 320,
+      "comments": 9,
+      "engagement": 347,
+      "days": 7,
+      "url": "https://www.reddit.com/r/bollywoodmemes/comments/1y5rl73/ham_haye_doom/"
+    },
+    {
+      "sub": "DC_Cinematic",
+      "title": "DC should have just let Snyder finish his several-movie universe, then moved on.",
+      "score": 0,
+      "comments": 98,
+      "engagement": 294,
+      "days": 7,
+      "url": "https://www.reddit.com/r/DC_Cinematic/comments/1y6n1uy/dc_should_have_just_let_snyder_finish_his/"
+    },
+    {
+      "sub": "scifi",
+      "title": "When/Will we get Denis Villeneuve's Rendezvous with Rama?",
+      "score": 112,
+      "comments": 59,
+      "engagement": 289,
+      "days": 7,
+      "url": "https://www.reddit.com/r/scifi/comments/1y6apj3/whenwill_we_get_denis_villeneuves_rendezvous_with/"
+    },
+    {
+      "sub": "television",
+      "title": "Peep Show: Jez Forgot the Turkey",
+      "score": 212,
+      "comments": 25,
+      "engagement": 287,
+      "days": 7,
+      "url": "https://www.reddit.com/r/television/comments/1y6hk2b/peep_show_jez_forgot_the_turkey/"
     }
   ]
 }
