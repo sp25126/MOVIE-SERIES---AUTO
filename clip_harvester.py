@@ -347,7 +347,7 @@ def _fetch_rotating_proxies(limit: int = 5) -> list[str]:
 
 
 def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, browser_cookies: str = "") -> Path | None:
-    """Downloads a public YouTube, TikTok, Reddit, Instagram Reel, or Facebook Watch video via yt_dlp."""
+    """Downloads a public YouTube, TikTok, Reddit, Instagram Reel, or Facebook Watch video via universal_downloader."""
     target_dir = out_dir or INPUT_DIR
     target_dir.mkdir(parents=True, exist_ok=True)
     safe_id = re.sub(r"[^A-Za-z0-9_\-]", "_", tag_id)[:48]
@@ -355,158 +355,16 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
     if out_mp4.exists() and out_mp4.stat().st_size > 20_000:
         return out_mp4
 
-    is_youtube = "youtube.com" in url or "youtu.be" in url
-    is_tiktok = "tiktok.com" in url
-    is_instagram = "instagram.com" in url
-
-    def _record_success() -> Path:
-        used = _load_history()
-        used.add(tag_id)
-        _save_history(used)
-        return out_mp4
-
-    # 1. TikTok fast-path: TikWM API bypasses browser blocks and bot detection directly
-    if is_tiktok:
-        try:
-            from proxy_harvester import resolve_tikwm_mp4
-            play_u = resolve_tikwm_mp4(url)
-            if play_u:
-                req_v = urllib.request.Request(play_u, headers={"User-Agent": UA, "Referer": "https://www.tikwm.com/"})
-                with urllib.request.urlopen(req_v, timeout=35) as vid_r:
-                    out_mp4.write_bytes(vid_r.read())
-                if out_mp4.exists() and out_mp4.stat().st_size > 20_000:
-                    return _record_success()
-        except Exception as e:
-            print(f"[Harvester] TikWM fast-path skipped ({safe_id}): {e}", file=sys.stderr)
-
-    # 2. Instagram public embed fast-path before hitting login wall
-    if is_instagram:
-        try:
-            from proxy_harvester import resolve_instagram_embed_mp4
-            ig_mp4 = resolve_instagram_embed_mp4(url)
-            if ig_mp4:
-                req_ig = urllib.request.Request(ig_mp4, headers={"User-Agent": UA, "Referer": "https://www.instagram.com/"})
-                with urllib.request.urlopen(req_ig, timeout=35) as vid_r:
-                    out_mp4.write_bytes(vid_r.read())
-                if out_mp4.exists() and out_mp4.stat().st_size > 20_000:
-                    return _record_success()
-        except Exception as e:
-            print(f"[Harvester] IG embed fast-path skipped ({safe_id}): {e}", file=sys.stderr)
-
-    base_cmd = [
-        sys.executable, "-m", "yt_dlp",
-        "-f", "best[height<=1080][ext=mp4]/bestvideo[height<=1080]+bestaudio/best[height<=1080]/best",
-        "--merge-output-format", "mp4",
-        "--no-warnings",
-        "--retries", "3",
-        "--fragment-retries", "3",
-        "--socket-timeout", "15",
-        "--sleep-interval", "1",
-        "--max-sleep-interval", "3",
-        "-o", str(target_dir / f"{safe_id}.%(ext)s"),
-    ]
-
-    # Resolve cookies.txt dynamically across current dir, ROOT, and environment variables
-    env_ck = os.environ.get("YOUTUBE_COOKIES_PATH", "").strip()
-    candidate_cookies = [
-        Path("config/cookies.txt"),
-        ROOT / "config" / "cookies.txt",
-        Path("/content/otaku_repo/config/cookies.txt"),
-    ]
-    if env_ck:
-        candidate_cookies.append(Path(env_ck))
-    cookies_file = next((p.resolve() for p in candidate_cookies if p.is_file() and p.stat().st_size > 50), None)
-
-    cookie_args: list[str] = []
-    if cookies_file:
-        cookie_args = ["--cookies", str(cookies_file)]
-    elif browser_cookies:
-        cookie_args = ["--cookies-from-browser", browser_cookies]
-
     try:
-        if is_youtube:
-            # Try cookieless mobile/TV clients + PO-token/cookies fallbacks
-            yt_attempts = [
-                (["--extractor-args", "youtube:player_client=ios", "--no-cookies"], "ios"),
-                (["--extractor-args", "youtube:player_client=android_vr", "--no-cookies"], "android_vr"),
-                (["--extractor-args", "youtube:player_client=mweb", "--no-cookies"], "mweb"),
-                (["--extractor-args", "youtube:player_client=android", "--no-cookies"], "android"),
-                (["--extractor-args", "youtube:player_client=tv_embedded", "--no-cookies"], "tv_embedded"),
-            ]
-            if cookie_args:
-                yt_attempts.insert(0, (["--extractor-args", "youtube:player_client=mweb"] + cookie_args, "mweb+cookies"))
-                yt_attempts.append((["--extractor-args", "youtube:player_client=web"] + cookie_args, "web+cookies"))
-
-            last_err = ""
-            for extra_args, label in yt_attempts:
-                proc = subprocess.run(
-                    base_cmd + extra_args + [url],
-                    capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120,
-                )
-                if proc.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
-                    return _record_success()
-                last_err = proc.stderr[:180]
-            print(f"[Harvester] YouTube clients failed ({safe_id}): {last_err}", file=sys.stderr)
-
-            # pytubefix fallback (built-in PO-token / Android-VR support)
-            try:
-                from pytubefix import YouTube
-                yt = YouTube(url, client="WEB")
-                stream = yt.streams.filter(progressive=True, file_extension="mp4").order_by("resolution").desc().first()
-                if stream:
-                    stream.download(output_path=str(target_dir), filename=f"{safe_id}.mp4")
-                    if out_mp4.exists() and out_mp4.stat().st_size > 20_000:
-                        return _record_success()
-            except Exception as pt_err:
-                print(f"[Harvester] pytubefix fallback skipped ({safe_id}): {pt_err}", file=sys.stderr)
-
-            # Cookieless rotating proxy fallback
-            for proxy in _fetch_rotating_proxies(limit=6):
-                try:
-                    proc_px = subprocess.run(
-                        base_cmd + ["--extractor-args", "youtube:player_client=ios", "--no-cookies", "--proxy", proxy, url],
-                        capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=45,
-                    )
-                    if proc_px.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
-                        return _record_success()
-                except Exception:
-                    continue
-            return None
-
-        # Non-YouTube (TikTok, Instagram, Reddit, Facebook)
-        imp_args: list[str] = []
-        if is_tiktok:
-            try:
-                import curl_cffi  # noqa: F401
-                imp_args = ["--impersonate", "chrome"]
-            except ImportError:
-                pass
-        cmd = base_cmd + imp_args + cookie_args + [url]
-        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120)
-        if proc.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
-            return _record_success()
-        print(f"[Harvester] Primary download failed ({safe_id}): {proc.stderr[:180]}", file=sys.stderr)
-
-        # Fallback for TikTok & Instagram: Cobalt -> verified rotating proxies
-        if is_tiktok or is_instagram:
-            try:
-                from proxy_harvester import download_via_cobalt, get_working_proxies
-                if download_via_cobalt(url, out_mp4):
-                    return _record_success()
-                for proxy in get_working_proxies(limit=4):
-                    try:
-                        proc_px = subprocess.run(
-                            cmd + ["--proxy", proxy],
-                            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=45,
-                        )
-                        if proc_px.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
-                            return _record_success()
-                    except Exception:
-                        continue
-            except Exception as e:
-                print(f"[Harvester] Social fallback exception: {e}", file=sys.stderr)
+        from universal_downloader import download_video
+        res = download_video(url, out_mp4, browser_cookies=browser_cookies)
+        if res and res.exists() and res.stat().st_size > 20_000:
+            used = _load_history()
+            used.add(tag_id)
+            _save_history(used)
+            return res
     except Exception as e:
-        print(f"[Harvester] Download exception ({safe_id}): {e}", file=sys.stderr)
+        print(f"[Harvester] Universal downloader error ({safe_id}): {e}", file=sys.stderr)
     return None
 
 
