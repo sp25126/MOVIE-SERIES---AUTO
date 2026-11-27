@@ -123,17 +123,52 @@ def resolve_tikwm_mp4(tiktok_url: str) -> Optional[str]:
     clean_url = tiktok_url.split("?")[0]
     tw_api = f"https://www.tikwm.com/api/?url={urllib.parse.quote_plus(clean_url)}&hd=1"
     headers = {"User-Agent": UA, "Referer": "https://www.tikwm.com/", "Origin": "https://www.tikwm.com"}
-    proxies = [None] + get_working_proxies(limit=5)
-    for proxy in proxies:
+    proxies = [None] + get_working_proxies(limit=4)
+    for idx, proxy in enumerate(proxies):
         try:
+            if idx > 0:
+                time.sleep(1.1)  # Respect TikWM 1 req/sec rate limit
             req = urllib.request.Request(tw_api, headers=headers)
             with _urlopen_with_proxy(req, proxy=proxy, timeout=12.0) as resp:
-                data = json.loads(resp.read().decode("utf-8", errors="replace")).get("data") or {}
-            play_u = data.get("hdplay") or data.get("play") or ""
+                raw = json.loads(resp.read().decode("utf-8", errors="replace"))
+            if raw.get("code") == -1:
+                time.sleep(1.2)
+                continue
+            data = raw.get("data") or {}
+            play_u = data.get("hdplay") or data.get("play") or data.get("wmplay") or ""
             if play_u.startswith("/"):
                 play_u = "https://www.tikwm.com" + play_u
             if play_u:
                 return play_u
+        except Exception:
+            continue
+    return None
+
+
+def resolve_instagram_embed_mp4(ig_url: str) -> Optional[str]:
+    """Extracts direct MP4 URL from Instagram's public embed endpoint without login cookies."""
+    m = re.search(r"instagram\.com/(?:[A-Za-z0-9_.]+/)?(?:reel|p)/([A-Za-z0-9_-]+)", ig_url)
+    if not m:
+        return None
+    code = m.group(1)
+    embed_url = f"https://www.instagram.com/reel/{code}/embed/captioned/"
+    headers = {
+        "User-Agent": UA,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+    for proxy in [None] + get_working_proxies(limit=3):
+        try:
+            req = urllib.request.Request(embed_url, headers=headers)
+            with _urlopen_with_proxy(req, proxy=proxy, timeout=8.0) as resp:
+                html = resp.read().decode("utf-8", errors="ignore")
+            vm = re.search(r'"video_url"\s*:\s*"([^"]+)"', html)
+            if not vm:
+                vm = re.search(r'<video[^>]+src="([^"]+)"', html)
+            if vm:
+                vid_url = vm.group(1).replace("\\u0026", "&").replace("\\/", "/")
+                if vid_url.startswith("http"):
+                    return vid_url
         except Exception:
             continue
     return None
@@ -177,10 +212,12 @@ def scout_tiktok_robust(query: str, count: int = 4, used_ids: Optional[set] = No
     # 1. TikWM Search API (direct + verified proxies)
     api_url = f"https://www.tikwm.com/api/feed/search?keywords={urllib.parse.quote_plus(clean_q + ' edit')}&count={max(count * 3, 10)}&cursor=0&HD=1"
     headers = {"User-Agent": UA, "Accept": "application/json", "Referer": "https://www.tikwm.com/", "Origin": "https://www.tikwm.com"}
-    for proxy in [None] + get_working_proxies(limit=3):
+    for idx, proxy in enumerate([None] + get_working_proxies(limit=3)):
         try:
+            if idx > 0:
+                time.sleep(1.1)
             req = urllib.request.Request(api_url, headers=headers)
-            with _urlopen_with_proxy(req, proxy=proxy, timeout=4.5) as resp:
+            with _urlopen_with_proxy(req, proxy=proxy, timeout=8.0) as resp:
                 data = json.loads(resp.read().decode("utf-8", errors="replace"))
             videos = (data.get("data") or {}).get("videos") or []
             for v in videos:

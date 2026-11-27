@@ -149,7 +149,24 @@ def run_all_category_virality_scan(force_fresh_yt: bool = True) -> Dict[str, Any
         digest["categories"]["song_trends"] = {"status": "error", "error": str(e)}
 
     # -------------------------------------------------------------------------
-    # 5. CONSOLIDATED SUMMARY & PERSISTENCE
+    # 5. LLM CULTURAL ZEITGEIST BRAIN (Breaking Event Preemption)
+    # -------------------------------------------------------------------------
+    try:
+        from llm_virality_brain import execute_virality_brain_scan, LLM_REPORT_PATH
+        if LLM_REPORT_PATH.exists() and (time.time() - LLM_REPORT_PATH.stat().st_mtime) < 900:
+            llm_rep = json.loads(LLM_REPORT_PATH.read_text(encoding="utf-8"))
+        else:
+            llm_rep = execute_virality_brain_scan()
+        digest["llm_brain"] = llm_rep
+        if llm_rep.get("breaking_event_detected"):
+            bw = llm_rep.get("breaking_winner", {})
+            logging.info(f"  🚨 [LLM Brain] BREAKING EVENT: '{bw.get('topic')}' (Hype: {bw.get('hype_score')})")
+    except Exception as e:
+        logging.warning(f"  ! LLM Virality Brain skipped: {e}")
+        digest["llm_brain"] = {}
+
+    # -------------------------------------------------------------------------
+    # 6. CONSOLIDATED SUMMARY & PERSISTENCE
     # -------------------------------------------------------------------------
     digest["summary"] = {
         "cinema_leader": digest["categories"]["cinema"].get("lead_winner", "N/A"),

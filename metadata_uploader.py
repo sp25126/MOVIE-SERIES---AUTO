@@ -213,7 +213,12 @@ def upload_private_canary_and_schedule(
             creds.refresh(Request())
             token_path.write_text(creds.to_json(), encoding="utf-8")
         except Exception as e:
-            print(f"[Uploader] Warning: Token refresh failed: {e}")
+            raise RuntimeError(
+                f"YouTube OAuth token expired/revoked ({e}). "
+                f"Rendered video is preserved at '{video_path}'. "
+                f"Re-run 'python auth_youtube.py' locally to regenerate config/youtube_token.json "
+                f"(and publish your Google Cloud OAuth app to Production to prevent 7-day expiry)."
+            ) from e
     youtube = build("youtube", "v3", credentials=creds)
 
     body = {

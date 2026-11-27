@@ -76,13 +76,19 @@ COMMON_HEADLINE_VERBS = {
     "rises", "falls", "starts", "stops", "stays", "sparks", "slips", "beats", "earns", "touches",
     "edges", "claims", "denies", "urges", "eyes", "wows", "shocks", "stuns", "rocks", "crushes",
     "speaks", "takes", "gives", "makes", "tells", "wants", "knows", "finds", "leaves", "leads",
+    "becomes", "become", "became", "getting", "making", "being", "having", "going", "coming",
 }
 
 GENERIC_SINGLE_WORDS = {
     # Genres & media categories
     "fantasy", "thriller", "horror", "drama", "comedy", "mystery", "action", "romance",
     "scifi", "anime", "manga", "cinema", "movie", "series", "sitcom", "biopic", "crime",
-    "history", "sequel", "sequels", "prequel", "reboot", "remake", "which",
+    "history", "sequel", "sequels", "prequel", "reboot", "remake", "which", "podcast",
+    # Months, days, pronouns, adverbs & generic places
+    "january", "february", "march", "april", "may", "june", "july", "august", "september",
+    "october", "november", "december", "monday", "tuesday", "wednesday", "thursday",
+    "friday", "saturday", "sunday", "there", "where", "here", "these", "those", "their",
+    "street", "turkey", "ghana", "nana", "eyes", "award", "winning",
     # Indefinite & generic nouns/pronouns
     "everything", "anything", "nothing", "something", "someone", "anyone", "everyone",
     "nobody", "somebody", "anybody", "everybody", "bites", "bitten", "thing", "things",
@@ -441,6 +447,9 @@ def scan_virality(skip_yt: bool = False) -> dict:
     genre_totals: dict[str, dict] = {gid: {"genre": gid, "label": g["label"], "total_score": 0.0, "top_topic": "", "count": 0} for gid, g in groups.items()}
 
     for b in buckets.values():
+        # Filter out noisy 1-word headline artifacts that have zero YouTube & Reddit validation
+        if len(b["topic"].split()) == 1 and b["yt_hits"] == 0 and b["reddit_hits"] == 0:
+            continue
         platforms_hit = {s.split("-")[0].split("(")[0] for s in b["sources"]}
         convergence = min(20.0, max(0, len(platforms_hit) - 1) * 10.0)
         score = round(compute_multi_horizon_score(b["h3d"], b["h7d"], b["h30d"], b["h365d"]) + convergence, 2)

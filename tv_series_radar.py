@@ -72,6 +72,8 @@ def extract_tv_series_entities(title: str) -> List[str]:
             seg_clean,
             flags=re.I,
         )
+        # Also strip trailing standalone numbers left after Ep/Season removal (e.g. 'My Demon 6' -> 'My Demon')
+        seg_clean = re.sub(r"\s+(?:ep|episode|season|part|vol)\.?\s*\d+.*$", "", seg_clean, flags=re.I)
         seg_clean = seg_clean.strip(" -–—|:,'\"()[]")
         if not seg_clean or len(seg_clean) < 4:
             continue
