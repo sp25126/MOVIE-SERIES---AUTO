@@ -1,91 +1,103 @@
 """
-Reusable Category Editing Skills for the Small Multimodal Model (SML) & LLM Director.
-Encodes all production, trimming, framing, font, audio, and QA rules for each of the 4 pillars.
-Injected directly into SML/LLM prompts so the model makes category-accurate editorial decisions.
+Reusable Category Editing Skills & Forensic Production Specifications for the Video Editing Model.
+Encodes exact pacing curves, cut-point specs, safe zones, audio rules, and rejection criteria
+for each of the 4 publishing pillars, injected directly into Qwen2.5-VL-3B / Gemini prompts.
 """
 
 from __future__ import annotations
 
 from typing import Any, Dict
 
+SHORTS_SAFE_ZONES = (
+    "SAFE ZONES (1080x1920): Header inside y=60..220; Left countdown ladder inside x=44..340; "
+    "Right engagement column x=950..1080 clear; Bottom creator credit above y=1580 (clears Shorts title/audio pill)."
+)
+
 CATEGORY_SKILLS: Dict[str, Dict[str, Any]] = {
     "the_mentalist": {
-        "skill_name": "The Mentalist / Patrick Jane Flagship Skill",
+        "skill_name": "The Mentalist / Patrick Jane Flagship Spec (LOCKED)",
         "pillar_day": 3,
         "full_uncut": True,
         "allow_trim": False,
+        "pacing_curve": "Full uncut psychological arcs (25-58s per edit, <180s total); highest-view edit plays LAST (#1).",
         "trimming_rules": (
-            "STRICT ZERO-TRIM RULE: Play every clip 100% FULL & UNCUT from 0.0s to end_sec=duration. "
-            "NEVER cut or trim Patrick Jane edits—they rely on psychological dialogue setups, traps, "
-            "and deadpan reactions (Jane, Lisbon, Cho, Rigsby, Van Pelt). Only skip pure black fade-in (<1.2s)."
+            "STRICT ZERO-TRIM SPEC: Set start_sec=0.0 and end_sec=duration. NEVER cut or trim Patrick Jane edits—"
+            "they rely on full dialogue setups, cold-reading traps, and deadpan reactions "
+            "(Patrick Jane, Teresa Lisbon, Kimball Cho, Wayne Rigsby, Grace Van Pelt, Red John)."
         ),
         "visual_rules": (
-            "Reject sideways/rotated clips, heavy watermark spam, or static quote cards. "
-            "Auto-crop baked-in black sidebars/letterbox bars, 1080x1920 edge-to-edge dual-layer ambient blur, "
-            "zero static top banner pills, bold Anton/Impact outlined typography, Krylo countdown ladder."
+            "True 9:16 full-bleed for vertical clips; dual-layer Gaussian blur for 16:9 with auto-cropped black bars. "
+            "Zero static top banner pills; progressive left ladder (#3 -> #2 -> #1)."
         ),
         "audio_rules": (
-            "100% preserve original dialogue & edit soundtrack (NEVER replace with BGM). "
-            "Master with 48kHz +4% anti-CID shield and -14.0 LUFS loudness."
+            "100% preserve original dialogue & edit soundtrack (NEVER override with BGM). "
+            "Master with 48kHz +4% Anti-CID shield and -14.0 LUFS loudness."
         ),
+        "rejection_criteria": "Reject sideways/rotated clips, heavy watermark spam, raw unedited promo clips, or static quote cards.",
         "hud_label_examples": ["Jane Mind Trap", "Cho Deadpan", "Red John Reveal", "Jane Cold Smile"],
     },
     "cinema": {
-        "skill_name": "Cinema & Blockbuster Edits Skill",
+        "skill_name": "Cinema & Blockbuster Edits Spec (12 Genres)",
         "pillar_day": 1,
         "full_uncut": False,
         "allow_trim": True,
+        "pacing_curve": "Variable escalating pacing: #3 punchy (8-10s) -> #2 build-up (10-12s) -> #1 full climax (12-16s).",
         "trimming_rules": (
-            "AI-DIRECTED PRECISION CUTS: Set start_sec AFTER any black fade-in, studio logo, or static text card "
-            "(usually 0.5s-2.5s if intro exists, else 0.0s). Set end_sec BEFORE any trailing subscribe/follow/outro card "
-            "(trim last 2.0-2.5s if outro card appears). Capture the full VFX/action climax and beat drop."
+            "PRECISION CLIMAX CUT SPEC: Advance start_sec PAST any black fade-in, studio logo, or static text card "
+            "(lock onto first high-motion VFX/character entrance within 0.5s-2.5s). Hold end_sec through the full "
+            "climax/beat-drop, and cut BEFORE trailing subscribe/follow/outro cards (trim last 1.5s-2.5s if outro appears)."
         ),
         "visual_rules": (
-            "Hook visual must land in first 1.0s. Reject static slideshows, anime/AMV on live-action topics, "
-            "sideways rotated video, or heavy watermark spam. Auto-crop black bars, 1080x1920 ambient blur, Rank #3 -> #2 -> #1."
+            "Hook visual must land in <1.0s. True 9:16 full-bleed for vertical edits; dual-layer blur + mid-action "
+            "black-bar crop for 16:9. Apply 1.04x speed + subtle contrast/saturation boost."
         ),
-        "audio_rules": "Preserve theatrical sound design & bass impact; 48kHz +4% shield, -14.0 LUFS.",
+        "audio_rules": "Preserve theatrical sound design & bass impact; 48kHz +4% Anti-CID shield, -14.0 LUFS.",
+        "rejection_criteria": "Reject fake AI/concept trailers (Sora/Kling/Screen Culture), static slideshows, sideways video, or anime AMVs on live-action topics.",
         "hud_label_examples": ["Atomic Breath", "Final Stand", "Hero Entry", "Multiverse Clash"],
     },
     "tv_series": {
-        "skill_name": "TV & Web Series Edits Skill",
+        "skill_name": "TV & Web Series Edits Spec",
         "pillar_day": 2,
         "full_uncut": False,
         "allow_trim": True,
+        "pacing_curve": "Narrative escalation: #3 (9-12s) -> #2 (11-14s) -> #1 (13-18s emotional/twist climax).",
         "trimming_rules": (
-            "AI-DIRECTED NARRATIVE CUTS: Preserve emotional dialogue build-up, character reaction shots, "
-            "and dramatic twist climax. NEVER cut mid-sentence. Set start_sec past black fade-ins/title cards "
-            "and end_sec before trailing creator outro/watermark cards."
+            "NARRATIVE ARC CUT SPEC: Preserve emotional dialogue build-up, character reaction shots, and the dramatic "
+            "twist climax. NEVER cut mid-sentence. Set start_sec past dead-silence/black intros and end_sec before "
+            "trailing creator outro/watermark cards."
         ),
         "visual_rules": (
-            "Reject raw unedited promo clips, static text slides, or sideways video. "
-            "1080x1920 edge-to-edge ambient blur, clean Krylo countdown ladder, zero banner boxes."
+            "True 9:16 full-bleed for vertical clips; dual-layer blur + black-bar crop for 16:9. "
+            "Clean left countdown ladder, zero boxy banner clutter."
         ),
-        "audio_rules": "Preserve original dialogue and tension score; 48kHz +4% shield, -14.0 LUFS.",
+        "audio_rules": "Preserve original dialogue and tension score; 48kHz +4% Anti-CID shield, -14.0 LUFS.",
+        "rejection_criteria": "Reject raw unedited episode clips without edit pacing, recap voiceovers, static slides, or sideways video.",
         "hud_label_examples": ["Final Twist", "Cold Betrayal", "Rooftop Save", "Game Over"],
     },
     "song_trends": {
-        "skill_name": "Song Trend Edits Skill (Zero Voiceover)",
+        "skill_name": "Song Trend Edits Spec (Zero Voiceover, 3 Subcategories)",
         "pillar_day": 4,
         "full_uncut": False,
         "allow_trim": True,
+        "pacing_curve": "Fast beat-synced escalation: #3 (6-7s) -> #2 (7-9s) -> #1 (8-11s) with 0.2s loop-bridge fade.",
         "trimming_rules": (
-            "AI-DIRECTED BEAT-SYNC CUTS: Start right before the vocal/bass drop or first visual cut (start_sec), "
-            "skipping any black/static intro title screen. Hold through the full velocity/transition sequence (end_sec), "
-            "and cut cleanly before silent outros or creator end cards."
+            "BEAT-SYNC CUT SPEC: Skip any black/static intro title or lyric card (start_sec right before the vocal/bass drop "
+            "or first velocity cut). Hold through the full velocity/transition sequence, and cut end_sec cleanly before "
+            "silent outros or creator end cards."
         ),
         "visual_rules": (
-            "Reject static lyric-only images or heavy watermark spam. "
-            "1080x1920 edge-to-edge ambient blur, crisp high-contrast grading, zero banner pills."
+            "True 9:16 full-bleed for vertical edits; 1080x1440 foreground + Gaussian blur for 16:9/1:1. "
+            "Clean stroked header typography, metallic #3/#2/#1 rank badges, 1.03x speed."
         ),
-        "audio_rules": "100% preserve the trending song/phonk audio track with 48kHz +4% anti-CID shield and -14.0 LUFS.",
+        "audio_rules": "ZERO VOICEOVER. 100% preserve trending song/phonk audio with 48kHz +3% Anti-CID shield, smooth afade transitions, and -14.0 LUFS.",
+        "rejection_criteria": "Reject Roblox/Free Fire/gaming edits, static lyric-only images, heavy TikTok watermark spam, or low-effort status clips.",
         "hud_label_examples": ["Spider-Verse", "The Weeknd", "Tenet Neil", "Velocity Drop"],
     },
 }
 
 
 def get_skill_for_topic(topic: str, pillar_day: int = 0) -> Dict[str, Any]:
-    """Resolves the exact reusable editing skill for the active category or topic."""
+    """Resolves the exact reusable editing specification for the active category or topic."""
     tl = (topic or "").lower()
     if pillar_day == 3 or "mentalist" in tl or "patrick jane" in tl:
         return CATEGORY_SKILLS["the_mentalist"]
@@ -97,12 +109,14 @@ def get_skill_for_topic(topic: str, pillar_day: int = 0) -> Dict[str, Any]:
 
 
 def format_skill_prompt_block(topic: str, pillar_day: int = 0) -> str:
-    """Formats the category skill into a concise instruction block for the SML / LLM prompt."""
+    """Formats the category editing specification into a structured prompt block for the VLM."""
     skill = get_skill_for_topic(topic, pillar_day)
     return (
-        f"ACTIVE EDITING SKILL: {skill['skill_name']}\n"
-        f"- TRIMMING RULE: {skill['trimming_rules']}\n"
-        f"- VISUAL RULE: {skill['visual_rules']}\n"
-        f"- AUDIO RULE: {skill['audio_rules']}\n"
+        f"ACTIVE EDITING SPECIFICATION: {skill['skill_name']}\n"
+        f"- PACING CURVE: {skill['pacing_curve']}\n"
+        f"- TRIMMING SPEC: {skill['trimming_rules']}\n"
+        f"- VISUAL SPEC: {skill['visual_rules']} {SHORTS_SAFE_ZONES}\n"
+        f"- AUDIO SPEC: {skill['audio_rules']}\n"
+        f"- REJECTION CRITERIA: {skill['rejection_criteria']}\n"
         f"- HUD LABEL STYLE (2-3 words, unique per clip): {', '.join(skill['hud_label_examples'])}"
     )

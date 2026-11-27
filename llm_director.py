@@ -91,8 +91,10 @@ def run_text_slm(prompt: str, max_new_tokens: int = 240) -> str:
 
 def load_in_process_vlm():
     """
-    Loads Qwen2-VL-2B-Instruct directly in-process via HuggingFace Transformers.
-    Runs on Kaggle / Colab T4 GPU natively (ZERO background daemon, ZERO exit code 44, NO Ollama needed).
+    Loads the best available in-process Vision-Language Model directly via HuggingFace Transformers:
+    1. Primary: Qwen/Qwen2.5-VL-3B-Instruct (~6.5 GB VRAM, superior temporal/OCR/JSON accuracy)
+    2. Fallback: Qwen/Qwen2-VL-2B-Instruct (~4.4 GB VRAM)
+    Runs natively on Colab / Kaggle T4 GPU (ZERO background daemon, NO Ollama needed).
     """
     global _LOCAL_MODEL, _LOCAL_PROCESSOR, _LOCAL_MODEL_TYPE, _LOCAL_MODEL_FAILED
     if _LOCAL_MODEL is not None:
@@ -103,26 +105,38 @@ def load_in_process_vlm():
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
     try:
         import torch
-        from transformers import Qwen2VLForConditionalGeneration, AutoProcessor
+        import transformers
+        from transformers import AutoProcessor
 
         device = "cuda" if torch.cuda.is_available() else "cpu"
-        model_id = "Qwen/Qwen2-VL-2B-Instruct"
-        logger.info(f"[LLM Director] Loading native in-process vision model '{model_id}' on {device}...")
-
         dtype = torch.bfloat16 if (device == "cuda" and torch.cuda.is_bf16_supported()) else (torch.float16 if device == "cuda" else torch.float32)
-        model = Qwen2VLForConditionalGeneration.from_pretrained(
-            model_id,
-            torch_dtype=dtype,
-            device_map="auto" if device == "cuda" else None,
-            low_cpu_mem_usage=True,
-        )
-        processor = AutoProcessor.from_pretrained(model_id)
 
-        _LOCAL_MODEL = model
-        _LOCAL_PROCESSOR = processor
-        _LOCAL_MODEL_TYPE = "qwen2-vl-2b"
-        logger.info(f"[LLM Director] In-process {model_id} loaded successfully!")
-        return _LOCAL_MODEL, _LOCAL_PROCESSOR
+        candidates = []
+        if hasattr(transformers, "Qwen2_5_VLForConditionalGeneration"):
+            candidates.append(("Qwen/Qwen2.5-VL-3B-Instruct", transformers.Qwen2_5_VLForConditionalGeneration, "qwen2.5-vl-3b"))
+        if hasattr(transformers, "Qwen2VLForConditionalGeneration"):
+            candidates.append(("Qwen/Qwen2-VL-2B-Instruct", transformers.Qwen2VLForConditionalGeneration, "qwen2-vl-2b"))
+
+        for model_id, cls, mtype in candidates:
+            try:
+                logger.info(f"[LLM Director] Loading in-process video editing VLM '{model_id}' on {device}...")
+                model = cls.from_pretrained(
+                    model_id,
+                    torch_dtype=dtype,
+                    device_map="auto" if device == "cuda" else None,
+                    low_cpu_mem_usage=True,
+                )
+                processor = AutoProcessor.from_pretrained(model_id)
+                _LOCAL_MODEL = model
+                _LOCAL_PROCESSOR = processor
+                _LOCAL_MODEL_TYPE = mtype
+                logger.info(f"[LLM Director] In-process {model_id} loaded successfully!")
+                return _LOCAL_MODEL, _LOCAL_PROCESSOR
+            except Exception as inner_e:
+                logger.warning(f"[LLM Director] Could not load {model_id} ({inner_e}); trying next VLM...")
+
+        _LOCAL_MODEL_FAILED = True
+        return None, None
     except Exception as e:
         _LOCAL_MODEL_FAILED = True
         logger.warning(f"[LLM Director] In-process VLM load failed ({e}); falling back to Gemini API.")

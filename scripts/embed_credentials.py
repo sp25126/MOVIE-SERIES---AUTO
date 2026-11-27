@@ -73,7 +73,7 @@ def build_cell_source():
         '    "numpy",\n',
         '    "torch",\n',
         '    "torchvision",\n',
-        '    "transformers>=4.45",\n',
+        '    "transformers>=4.49",\n',
         '    "accelerate",\n',
         '    "qwen-vl-utils",\n',
         '    "git+https://github.com/Panniantong/Agent-Reach.git",\n',
