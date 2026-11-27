@@ -37,6 +37,8 @@ TIKTOK_IG_AUDIO_PROBES = [
 NON_SONG_NOISE = {
     "tutorial", "how to", "capcut", "xml", "preset", "after effects", "premiere pro",
     "pack", "free download", "project file", "alight motion", "plug in", "filter",
+    "roblox", "free fire", "ff edit", "bgmi", "pubg", "minecraft", "gta", "fortnite",
+    "valorant", "trending status", "whatsapp status",
 }
 
 
@@ -128,11 +130,23 @@ def scout_song_creator_edits(query: str, count: int = 5) -> List[dict]:
             seen.add(vid)
 
             title = d.get("title") or ""
-            if any(w in title.lower() for w in ("tutorial", "how to", "capcut template", "download link")):
+            low_t = title.lower()
+            if any(w in low_t for w in NON_SONG_NOISE):
                 continue
 
-            creator = d.get("channel") or d.get("uploader") or "Creator"
             views = int(d.get("view_count") or 0)
+            if views < 2500:
+                continue
+
+            try:
+                from clip_harvester import passes_copyright_prefilter
+                ok_cid, _ = passes_copyright_prefilter(d, min_duration=8, check_html=False)
+                if not ok_cid:
+                    continue
+            except Exception:
+                pass
+
+            creator = d.get("channel") or d.get("uploader") or "Creator"
             dur = float(d.get("duration") or 20.0)
 
             yt_edits.append({
@@ -230,8 +244,10 @@ def scan_dynamic_song_virality(max_cache_age_sec: int = 10800) -> dict:
         if not edits:
             continue
         total_views = sum(e["views"] for e in edits)
-        top_views = edits[0]["views"] if edits else 0
-        virality_score = round(math.log10(max(10, total_views)) * 12.0 + math.log10(max(10, top_views)) * 4.0, 2)
+        top_views = max((e["views"] for e in edits), default=0)
+        plats = {e.get("platform", "youtube") for e in edits}
+        conv_bonus = max(0, len(plats) - 1) * 8.0
+        virality_score = round(math.log10(max(10, total_views)) * 11.0 + math.log10(max(10, top_views)) * 4.5 + conv_bonus, 2)
 
         ranked_trends.append({
             "song_name": song,

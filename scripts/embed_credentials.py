@@ -151,7 +151,7 @@ def build_cell_source():
         'import category_skills, proxy_harvester, clip_harvester, channel_intelligence, llm_director, dsp_renderer\n',
         'import metadata_uploader, autonomous_pipeline\n',
         '_MODULES_TO_RELOAD = [category_skills, proxy_harvester, clip_harvester, channel_intelligence, llm_director, dsp_renderer, metadata_uploader, autonomous_pipeline]\n',
-        'for _opt_mod in ("virality_radar", "tv_series_radar", "song_trend_radar", "virality_engine"):\n',
+        'for _opt_mod in ("virality_radar", "tv_series_radar", "song_trend_radar", "virality_engine", "llm_virality_brain", "song_ranking_renderer", "qa_gate", "youtube_agent_skills"):\n',
         '    try:\n',
         '        _MODULES_TO_RELOAD.append(importlib.import_module(_opt_mod))\n',
         '    except ImportError:\n',

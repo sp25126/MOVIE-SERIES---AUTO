@@ -71,22 +71,16 @@ def create_song_ranking_overlay(
     im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     draw = ImageDraw.Draw(im)
 
-    # 1. Top Header Banner Box
-    banner_y = 100
-    banner_h = 130
-    draw.rectangle([(60, banner_y), (w - 60, banner_y + banner_h)], fill=(12, 12, 14, 230), outline=(255, 215, 0, 240), width=4)
-
-    font_banner = _get_font(42, bold=True)
-    # Split title if too long
+    # 1. Top Stacked Header (Clean outlined typography — zero heavy box clutter)
     words = banner_title.upper().split()
     line1 = " ".join(words[:4])
     line2 = " ".join(words[4:]) if len(words) > 4 else ""
 
     if line2:
-        draw.text((w // 2, banner_y + 36), line1, font=_get_font(38, bold=True), fill=(255, 255, 255), anchor="mm")
-        draw.text((w // 2, banner_y + 86), line2, font=_get_font(36, bold=True), fill=(255, 215, 0), anchor="mm")
+        draw.text((w // 2, 110), line1, font=_get_font(48, bold=True), fill=(255, 255, 255), anchor="mm", stroke_width=5, stroke_fill=(0, 0, 0))
+        draw.text((w // 2, 168), line2, font=_get_font(50, bold=True), fill=(255, 215, 0), anchor="mm", stroke_width=5, stroke_fill=(0, 0, 0))
     else:
-        draw.text((w // 2, banner_y + banner_h // 2), line1, font=font_banner, fill=(255, 255, 255), anchor="mm")
+        draw.text((w // 2, 140), line1, font=_get_font(52, bold=True), fill=(255, 215, 0), anchor="mm", stroke_width=5, stroke_fill=(0, 0, 0))
 
     # 2. Ranking Badge (Left Side Pill Stack)
     rank_colors = {
@@ -182,32 +176,56 @@ def render_song_edit_ranking(
         except Exception:
             bar_crop = ""
 
-        # Dual-layer blurred vertical canvas (Preserves 16:9 or native edit with zero stretch)
+        # Dual-layer blurred vertical canvas (scales 9:16 up to 1080x1440 and 16:9 crisply)
         vf = (
-            f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=30,{bar_crop}split=2[bg0][fg0];"
-            f"[bg0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=26,eq=brightness=-0.18[bg];"
-            f"[fg0]scale=1080:1080:force_original_aspect_ratio=decrease,eq=contrast=1.08:saturation=1.15[fg];"
+            f"[0:v]trim=0:{dur:.3f},setpts=(PTS-STARTPTS)/1.03,fps=30,{bar_crop}split=2[bg0][fg0];"
+            f"[bg0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=24,eq=brightness=-0.16[bg];"
+            f"[fg0]crop=trunc(iw*0.97/2)*2:trunc(ih*0.97/2)*2,scale=1080:1440:force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2,eq=contrast=1.08:saturation=1.14[fg];"
             f"[bg][fg]overlay=(W-w)/2:(H-h)/2[comp];"
             f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
         )
 
-        # Pure original edit audio (NO VOICEOVER, normalized to YouTube -14 LUFS)
-        af = (
-            f"atrim=0:{dur:.3f},asetpts=PTS-STARTPTS,"
-            f"loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000,aformat=channel_layouts=stereo[aout]"
-        )
+        # Forensic 48kHz +3% Anti-CID shield + smooth fade transitions + -14.0 LUFS
+        out_dur = dur / 1.03
+        fade_out_st = max(0.2, out_dur - 0.20)
+        try:
+            from dsp_renderer import _has_audio_stream
+            has_aud = _has_audio_stream(src)
+        except Exception:
+            has_aud = True
 
-        cmd = [
-            FFMPEG, "-y",
-            "-ss", f"{ss:.2f}", "-i", str(src),
-            "-i", str(ov_png),
-            "-filter_complex", f"{vf};[0:a]{af}",
-            "-map", "[vout]", "-map", "[aout]",
-            "-t", f"{dur:.3f}",
-            "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-r", "30",
-            "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
-            str(seg_mp4),
-        ]
+        if has_aud:
+            af_cmd = (
+                f"[0:a]aresample=48000,highpass=f=80,asetrate=48000*1.03,atempo=1.0,aresample=48000,"
+                f"aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,"
+                f"atrim=0:{out_dur:.3f},asetpts=PTS-STARTPTS,"
+                f"afade=t=in:st=0:d=0.12,afade=t=out:st={fade_out_st:.3f}:d=0.18,"
+                f"loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000[aout]"
+            )
+            cmd = [
+                FFMPEG, "-y",
+                "-ss", f"{ss:.2f}", "-i", str(src),
+                "-i", str(ov_png),
+                "-filter_complex", f"{vf};{af_cmd}",
+                "-map", "[vout]", "-map", "[aout]",
+                "-t", f"{out_dur:.3f}",
+                "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-r", "30",
+                "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
+                str(seg_mp4),
+            ]
+        else:
+            cmd = [
+                FFMPEG, "-y",
+                "-ss", f"{ss:.2f}", "-i", str(src),
+                "-i", str(ov_png),
+                "-f", "lavfi", "-t", f"{out_dur:.3f}", "-i", "anullsrc=r=48000:cl=stereo",
+                "-filter_complex", vf,
+                "-map", "[vout]", "-map", "2:a",
+                "-t", f"{out_dur:.3f}",
+                "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-r", "30",
+                "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
+                str(seg_mp4),
+            ]
         subprocess.run(cmd, capture_output=True, check=True, timeout=120)
         segment_paths.append(seg_mp4)
 

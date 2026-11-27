@@ -40,7 +40,8 @@ NON_TV_NOISE = (
     "premiere pro", "after effects tutorial", "alight motion xml", "download link",
     "podcast", "interview", "news today", "reaction", "official trailer", "trailer",
     "full episode", "behind the scenes", "doco", "documentary", "teaser", "fmv",
-    "multifemale", "multimale", "compilation",
+    "multifemale", "multimale", "compilation", "roblox", "free fire", "bgmi",
+    "pubg", "minecraft", "gta", "fortnite", "valorant", "edit audio",
 )
 
 SENTENCE_INDICATORS = (
@@ -130,7 +131,7 @@ def scan_dynamic_tv_virality(max_cache_age_sec: int = 10800) -> dict:
                 title = d.get("title") or ""
                 views = int(d.get("view_count") or 0)
                 vid = d.get("id")
-                if not vid or views < 500:
+                if not vid or views < 2000:
                     continue
 
                 entities = extract_tv_series_entities(title)
@@ -154,7 +155,10 @@ def scan_dynamic_tv_virality(max_cache_age_sec: int = 10800) -> dict:
         except Exception as e:
             logger.error(f"[Dynamic TV Radar] Search error ({q}): {e}")
 
-    ranked = sorted(series_buckets.values(), key=lambda x: x["total_views"], reverse=True)
+    for b in series_buckets.values():
+        b["virality_score"] = round(math.log10(max(10, b["total_views"])) * 10.0 + min(b["clip_count"], 5) * 6.0, 2)
+
+    ranked = sorted(series_buckets.values(), key=lambda x: (x["virality_score"], x["total_views"]), reverse=True)
     winner = ranked[0] if ranked else {"series_name": "Breaking Bad", "total_views": 1000000}
 
     report = {

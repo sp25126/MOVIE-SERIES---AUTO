@@ -353,6 +353,11 @@ def analyze_clip_frames(
     from category_skills import get_skill_for_topic, format_skill_prompt_block
     skill = get_skill_for_topic(topic, pillar_day)
     skill_block = format_skill_prompt_block(topic, pillar_day)
+    try:
+        from youtube_agent_skills import get_youtube_analysis_skill_prompt
+        skill_block = f"{skill_block}\n\n{get_youtube_analysis_skill_prompt(compact=use_local_model)}"
+    except Exception:
+        pass
 
     # Inject live channel intelligence and recent performance feedback
     channel_lessons = ""
