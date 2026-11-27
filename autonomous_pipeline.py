@@ -33,6 +33,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 STATE_DIR = ROOT / "state"
 STATE_DIR.mkdir(parents=True, exist_ok=True)
 CADENCE_STATE_FILE = STATE_DIR / "pipeline_cadence_state.json"
+USED_TOPICS_FILE = STATE_DIR / "used_topics.json"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
@@ -67,6 +68,36 @@ def load_cadence_state() -> dict:
 
 def save_cadence_state(state: dict):
     CADENCE_STATE_FILE.write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def _load_used_topics() -> dict:
+    if USED_TOPICS_FILE.exists():
+        try:
+            return json.loads(USED_TOPICS_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {"cinema": [], "tv_series": [], "song_trends": []}
+
+
+def _pick_fresh_topic(cat_key: str, candidates: list, default_topic: str) -> str:
+    """Picks the highest-ranked trending topic not recently used in prior 8h cycles."""
+    used = set(t.lower() for t in _load_used_topics().get(cat_key, []))
+    for c in candidates:
+        name = (c.get("topic") or c.get("series_name") or c.get("song_name") or "").strip()
+        if name and name.lower() not in used:
+            return name
+    return default_topic
+
+
+def _record_used_topic(cat_key: str, topic: str):
+    if not topic or cat_key == "mentalist":
+        return
+    data = _load_used_topics()
+    arr = data.setdefault(cat_key, [])
+    if topic not in arr:
+        arr.append(topic)
+    data[cat_key] = arr[-20:]
+    USED_TOPICS_FILE.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
 def run_autonomous_workflow(
@@ -113,21 +144,24 @@ def run_autonomous_workflow(
             cats = digest.get("categories", {})
             if curr_day == 1:
                 cinema_cat = cats.get("cinema", {})
-                chosen_topic = cinema_cat.get("lead_winner")
+                chosen_topic = _pick_fresh_topic("cinema", cinema_cat.get("top_candidates", []), cinema_cat.get("lead_winner"))
                 chosen_genre = cinema_cat.get("lead_genre", "action_thriller")
-                logging.info(f"🎬 Dynamic Cinema Winner: '{chosen_topic}' (Score: {cinema_cat.get('lead_score')})")
+                _record_used_topic("cinema", chosen_topic)
+                logging.info(f"🎬 Dynamic Cinema Winner (Fresh): '{chosen_topic}' (Score: {cinema_cat.get('lead_score')})")
             elif curr_day == 2:
                 tv_cat = cats.get("tv_series", {})
-                chosen_topic = tv_cat.get("lead_winner")
+                chosen_topic = _pick_fresh_topic("tv_series", tv_cat.get("top_candidates", []), tv_cat.get("lead_winner"))
                 chosen_genre = "tv_thriller"
-                logging.info(f"📺 Dynamic TV Series Winner: '{chosen_topic}' ({tv_cat.get('lead_views', 0):,} views)")
+                _record_used_topic("tv_series", chosen_topic)
+                logging.info(f"📺 Dynamic TV Series Winner (Fresh): '{chosen_topic}' ({tv_cat.get('lead_views', 0):,} views)")
             elif curr_day == 4:
                 sub_idx = state.get("song_subcat_index", 0) % len(SONG_SUBCATEGORIES)
                 current_subcat = SONG_SUBCATEGORIES[sub_idx]
                 song_cat = cats.get("song_trends", {})
-                chosen_topic = song_cat.get("lead_winner")
+                chosen_topic = _pick_fresh_topic("song_trends", song_cat.get("top_candidates", []), song_cat.get("lead_winner"))
                 chosen_genre = "song_trends"
-                logging.info(f"🎵 Dynamic Song Trends Winner: '{chosen_topic}' (Subcategory: {current_subcat})")
+                _record_used_topic("song_trends", chosen_topic)
+                logging.info(f"🎵 Dynamic Song Trends Winner (Fresh): '{chosen_topic}' (Subcategory: {current_subcat})")
 
     if not chosen_topic:
         raise RuntimeError("Virality Engine failed to discover a live winner. Ensure network access is available.")
@@ -143,18 +177,18 @@ def run_autonomous_workflow(
     query = f"{chosen_topic} edit shorts" if curr_day != 4 else f"{chosen_topic} audio edit shorts"
     raw_candidates = []
 
-    # 1. Scout YouTube
+    # 1. Scout YouTube (keep ignore_history=False so clips are NEVER duplicated across 8h cycles)
     is_mentalist = (curr_day == 3) or ("mentalist" in chosen_topic.lower()) or ("patrick jane" in chosen_topic.lower())
-    yt_cands = scout_youtube(query, count=4, ignore_history=True, strict_edit_filter=not is_mentalist)
+    yt_cands = scout_youtube(query, count=4, ignore_history=False, strict_edit_filter=not is_mentalist)
     if len(yt_cands) < 2:
         alt_query = "Patrick Jane edit #shorts" if is_mentalist else f"{chosen_topic} viral edit shorts"
-        yt_cands.extend(scout_youtube(alt_query, count=4, ignore_history=True, strict_edit_filter=not is_mentalist))
+        yt_cands.extend(scout_youtube(alt_query, count=4, ignore_history=False, strict_edit_filter=not is_mentalist))
     raw_candidates.extend(yt_cands)
 
     # 2. Scout Instagram Reels
-    ig_query = "Patrick Jane" if "mentalist" in chosen_topic.lower() else chosen_topic
+    ig_query = "Patrick Jane" if is_mentalist else chosen_topic
     try:
-        ig_cands = scout_instagram_reels(ig_query, count=3, ignore_history=True)
+        ig_cands = scout_instagram_reels(ig_query, count=3, ignore_history=False)
         logging.info(f"  📸 Instagram Reels scouted: {len(ig_cands)}")
         raw_candidates.extend(ig_cands)
     except Exception as e:
@@ -162,7 +196,7 @@ def run_autonomous_workflow(
 
     # 3. Scout TikTok
     try:
-        tt_cands = scout_tiktok_videos(ig_query, count=3, ignore_history=True)
+        tt_cands = scout_tiktok_videos(ig_query, count=3, ignore_history=False)
         logging.info(f"  🎵 TikTok scouted: {len(tt_cands)}")
         raw_candidates.extend(tt_cands)
     except Exception as e:

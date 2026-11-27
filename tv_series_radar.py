@@ -67,18 +67,20 @@ def extract_tv_series_entities(title: str) -> List[str]:
         seg_clean = re.sub(r"\s*\[.*?\]", "", seg_clean)
         seg_clean = re.sub(r"[「」『』【】]", "", seg_clean)
         seg_clean = re.sub(
-            r"\b(?:edit|edits|4k|hd|shorts|viral|scene|scenes|season\s*\d+|episode\s*\d+|amv|fmv|netflix|hbo|hbo max|disney\+?)\b",
+            r"\b(?:edit|edits|4k|hd|shorts|viral|scene|scenes|season\s*\d+|episode\s*\d+|ep\.?\s*\d+|part\s*\d+|amv|fmv|netflix|hbo|hbo max|disney\+?)\b",
             "",
             seg_clean,
             flags=re.I,
         )
         seg_clean = seg_clean.strip(" -–—|:,'\"()[]")
-        if not seg_clean:
+        if not seg_clean or len(seg_clean) < 4:
             continue
         seg_low = seg_clean.lower()
         if any(s in seg_low for s in SENTENCE_INDICATORS):
             continue
         if any(n in seg_low for n in NON_TV_NOISE):
+            continue
+        if seg_low in ("series", "drama", "kdrama", "k drama", "tv show", "web series", "movie"):
             continue
         words = seg_clean.split()
         if 1 <= len(words) <= 4 and len(seg_clean) >= 3:

@@ -310,215 +310,25 @@ def scout_reddit_memes_and_clips(topic: str = "", count: int = 5, video_only: bo
 
 
 def scout_instagram_reels(query: str, count: int = 3, ignore_history: bool = False) -> list[dict]:
-    """Scouts viral Instagram Reels for edits using multi-engine discovery (agent-reach + DDG Lite) + yt-dlp metadata."""
+    """Scouts viral Instagram Reels via dedicated proxy_harvester (agent-reach + DDG Lite + Bing RSS)."""
     used = set() if ignore_history else _load_history()
-    discovered_urls = []
-    clean_q = re.sub(r"[#@]", "", query).strip()
-
-    # 1. Primary Engine: agent-reach web search (Exa index) if CLI is available
-    if shutil.which("agent-reach"):
-        try:
-            cmd = ["agent-reach", "web", "search", f"{clean_q} edit instagram reel", "--limit", str(count * 3)]
-            proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", timeout=8)
-            if proc.returncode == 0:
-                data = json.loads(proc.stdout)
-                for item in data.get("items", []):
-                    blob = f"{item.get('text', '')} {item.get('url', '')}"
-                    found = re.findall(r'https?://(?:www\.)?instagram\.com/(?:[a-zA-Z0-9_\.]+/)?reel/([a-zA-Z0-9_\-]+)', blob)
-                    for code in found:
-                        u = f"https://www.instagram.com/reel/{code}/"
-                        if u not in discovered_urls:
-                            discovered_urls.append(u)
-        except Exception as e:
-            print(f"[Harvester] Instagram scout agent-reach skipped: {e}", file=sys.stderr)
-
-    # 2. Redundant Engine: DuckDuckGo Lite search for instagram.com/reel
-    if len(discovered_urls) < count:
-        try:
-            url = "https://lite.duckduckgo.com/lite/"
-            body = urllib.parse.urlencode({"q": f"site:instagram.com/reel {clean_q} edit"}).encode("utf-8")
-            req = urllib.request.Request(url, data=body, headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=4) as resp:
-                html = resp.read().decode("utf-8", errors="ignore")
-                for code in re.findall(r'instagram\.com/reel/([a-zA-Z0-9_\-]+)', html):
-                    u = f"https://www.instagram.com/reel/{code}/"
-                    if u not in discovered_urls:
-                        discovered_urls.append(u)
-        except Exception as e:
-            print(f"[Harvester] Instagram DDG Lite skipped: {e}", file=sys.stderr)
-
-    # 3. Redundant Engine: Bing RSS search for instagram.com/reel (works on cloud IPs)
-    if len(discovered_urls) < count:
-        try:
-            rss_url = "https://www.bing.com/search?format=rss&q=" + urllib.parse.quote_plus(f"site:instagram.com/reel {clean_q} edit")
-            req = urllib.request.Request(rss_url, headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=6) as resp:
-                xml_text = resp.read().decode("utf-8", errors="ignore")
-                for code in re.findall(r'instagram\.com/reel/([a-zA-Z0-9_\-]+)', xml_text):
-                    u = f"https://www.instagram.com/reel/{code}/"
-                    if u not in discovered_urls:
-                        discovered_urls.append(u)
-        except Exception as e:
-            print(f"[Harvester] Instagram Bing RSS skipped: {e}", file=sys.stderr)
-
-    candidates, seen = [], set()
-    for u in discovered_urls:
-        if len(candidates) >= count:
-            break
-        code = u.rstrip("/").split("/")[-1]
-        cid = f"ig_{code}"
-        if cid in used or cid in seen:
-            continue
-        seen.add(cid)
-        meta_cmd = [
-            sys.executable, "-m", "yt_dlp",
-            "--dump-json", "--no-warnings", u
-        ]
-        try:
-            p = subprocess.run(meta_cmd, capture_output=True, text=True, encoding="utf-8", timeout=15)
-            if p.returncode == 0 and p.stdout.strip():
-                d = json.loads(p.stdout)
-                dur = float(d.get("duration") or 15.0)
-                if 5.0 <= dur <= 65.0:
-                    creator = d.get("uploader") or d.get("channel") or "Instagram Creator"
-                    views = int(d.get("view_count") or d.get("like_count") or 1500) * 8
-                    candidates.append({
-                        "id": cid,
-                        "platform": "instagram",
-                        "title": d.get("title") or f"{clean_q} Instagram Edit",
-                        "creator": f"@{creator.replace(' ', '')} (Insta)" if not creator.startswith("@") else f"{creator} (Insta)",
-                        "views": views,
-                        "duration": dur,
-                        "url": u,
-                    })
-        except Exception:
-            continue
-
-    return candidates
+    try:
+        from proxy_harvester import scout_instagram_robust
+        return scout_instagram_robust(query, count=count, used_ids=used)
+    except Exception as e:
+        print(f"[Harvester] Instagram scout error: {e}", file=sys.stderr)
+        return []
 
 
 def scout_tiktok_videos(query: str, count: int = 3, ignore_history: bool = False) -> list[dict]:
-    """Scouts viral TikTok edits via TikWM public API (direct MP4, works on Colab) + agent-reach + DDG Lite."""
+    """Scouts viral TikTok edits via dedicated proxy_harvester (TikWM proxied + agent-reach + DDG/Bing)."""
     used = set() if ignore_history else _load_history()
-    clean_q = re.sub(r"[#@]", "", query).strip()
-    candidates, seen = [], set()
-
-    # 1. Primary Engine: TikWM public search API (direct -> rotating proxy fallback, fast 4s timeout)
-    api_url = f"https://www.tikwm.com/api/feed/search?keywords={urllib.parse.quote_plus(clean_q + ' edit')}&count={max(count * 3, 10)}&cursor=0&HD=1"
-    tikwm_headers = {
-        "User-Agent": UA,
-        "Accept": "application/json, text/plain, */*",
-        "Referer": "https://www.tikwm.com/",
-        "Origin": "https://www.tikwm.com",
-    }
-    tikwm_data = None
-    for proxy in [None] + _fetch_rotating_proxies(limit=3):
-        try:
-            req = urllib.request.Request(api_url, headers=tikwm_headers)
-            if proxy:
-                opener = urllib.request.build_opener(urllib.request.ProxyHandler({"http": proxy, "https": proxy}))
-                resp_ctx = opener.open(req, timeout=4)
-            else:
-                resp_ctx = urllib.request.urlopen(req, timeout=4)
-            with resp_ctx as resp:
-                tikwm_data = json.loads(resp.read().decode("utf-8", errors="replace"))
-            if (tikwm_data.get("data") or {}).get("videos"):
-                break
-        except Exception:
-            continue
-
-    if tikwm_data:
-        for v in (tikwm_data.get("data") or {}).get("videos") or []:
-            tid = str(v.get("video_id") or v.get("id") or "")
-            play_url = v.get("play") or v.get("hdplay") or ""
-            dur = float(v.get("duration") or 20)
-            if not tid or not play_url or dur < 5 or dur > 65:
-                continue
-            cid = f"tt_{tid}"
-            if cid in used or cid in seen:
-                continue
-            seen.add(cid)
-            author = (v.get("author") or {}).get("unique_id") or "tiktok_creator"
-            candidates.append({
-                "id": cid,
-                "platform": "tiktok",
-                "title": (v.get("title") or f"{clean_q} TikTok Edit")[:90],
-                "creator": f"@{author} (TikTok)",
-                "views": int(v.get("play_count") or 10000),
-                "duration": dur,
-                "url": play_url,
-                "direct_mp4": True,
-            })
-            if len(candidates) >= count:
-                return candidates
-
-    discovered = []
-
-    # 1. Primary Engine: agent-reach web search if CLI is available
-    if shutil.which("agent-reach"):
-        try:
-            cmd = ["agent-reach", "web", "search", f"{clean_q} edit tiktok video", "--limit", str(count * 3)]
-            proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", timeout=8)
-            if proc.returncode == 0:
-                data = json.loads(proc.stdout)
-                for item in data.get("items", []):
-                    blob = f"{item.get('text', '')} {item.get('url', '')}"
-                    full_matches = re.findall(r'tiktok\.com/@([^/\s]+)/video/(\d{15,22})', blob)
-                    author = (item.get("author") or "").lstrip("@")
-                    views = 25000
-                    vm = re.search(r'([\d\.]+)M\s+Views', blob, re.I)
-                    if vm:
-                        views = int(float(vm.group(1)) * 1_000_000)
-                    vk = re.search(r'([\d\.]+)K\s+Views', blob, re.I)
-                    if vk:
-                        views = int(float(vk.group(1)) * 1_000)
-                    for m_auth, tid in full_matches:
-                        u = f"https://www.tiktok.com/@{m_auth}/video/{tid}"
-                        if tid not in [x[0] for x in discovered]:
-                            discovered.append((tid, u, item.get("title") or f"{clean_q} TikTok Edit", m_auth, views))
-                    if not full_matches and author and author != "tiktok_creator":
-                        for tid in re.findall(r'(?:toklytics\.app/video/|/video/)(\d{15,22})', blob):
-                            u = f"https://www.tiktok.com/@{author}/video/{tid}"
-                            if tid not in [x[0] for x in discovered]:
-                                discovered.append((tid, u, item.get("title") or f"{clean_q} TikTok Edit", author, views))
-        except Exception as e:
-            print(f"[Harvester] TikTok scout agent-reach skipped: {e}", file=sys.stderr)
-
-    # 2. Redundant Engine: DuckDuckGo Lite search for tiktok.com/@.../video/...
-    if len(discovered) < count:
-        try:
-            url = "https://lite.duckduckgo.com/lite/"
-            body = urllib.parse.urlencode({"q": f"site:tiktok.com {clean_q} edit"}).encode("utf-8")
-            req = urllib.request.Request(url, data=body, headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=6) as resp:
-                html = resp.read().decode("utf-8", errors="ignore")
-                for m in re.findall(r'tiktok\.com/@([^/]+)/video/(\d{15,22})', html):
-                    author, tid = m[0], m[1]
-                    u = f"https://www.tiktok.com/@{author}/video/{tid}"
-                    if tid not in [x[0] for x in discovered]:
-                        discovered.append((tid, u, f"{clean_q} TikTok Edit", author, 30000))
-        except Exception as e:
-            print(f"[Harvester] TikTok DDG Lite skipped: {e}", file=sys.stderr)
-
-    candidates, seen = [], set()
-    for tid, u, title, author, views in discovered:
-        if len(candidates) >= count:
-            break
-        cid = f"tt_{tid}"
-        if cid in used or cid in seen:
-            continue
-        seen.add(cid)
-        candidates.append({
-            "id": cid,
-            "platform": "tiktok",
-            "title": title[:90],
-            "creator": f"@{author.replace(' ', '')} (TikTok)" if not author.startswith("@") else f"{author} (TikTok)",
-            "views": views,
-            "duration": 20.0,
-            "url": u,
-        })
-
-    return candidates
+    try:
+        from proxy_harvester import scout_tiktok_robust
+        return scout_tiktok_robust(query, count=count, used_ids=used)
+    except Exception as e:
+        print(f"[Harvester] TikTok scout error: {e}", file=sys.stderr)
+        return []
 
 
 def scout_tiktok_public(query: str, count: int = 3) -> list[dict]:
@@ -527,16 +337,10 @@ def scout_tiktok_public(query: str, count: int = 3) -> list[dict]:
 
 
 def _fetch_rotating_proxies(limit: int = 5) -> list[str]:
-    """Fetches fresh free HTTPS proxies for cookieless cloud IP rotation (keeps Google account 100% safe)."""
-    env_proxy = os.environ.get("PROXY_URL", "").strip()
-    if env_proxy:
-        return [env_proxy]
+    """Returns health-checked, verified live rotating HTTPS proxies via proxy_harvester."""
     try:
-        url = "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=3000&country=all&ssl=yes&anonymity=elite"
-        req = urllib.request.Request(url, headers={"User-Agent": UA})
-        with urllib.request.urlopen(req, timeout=8) as resp:
-            lines = [f"http://{l.strip()}" for l in resp.read().decode("utf-8", errors="ignore").splitlines() if ":" in l]
-            return lines[:limit]
+        from proxy_harvester import get_working_proxies
+        return get_working_proxies(limit=limit)
     except Exception:
         return []
 
@@ -578,23 +382,12 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
             _save_history(used)
             return out_mp4
         print(f"[Harvester] Primary download failed ({safe_id}): {proc.stderr[:180]}", file=sys.stderr)
-        # Fallback for TikTok: resolve direct MP4 via TikWM API (direct -> rotating proxy), then proxied yt-dlp
-        if "tiktok.com" in url:
-            tw_api = f"https://www.tikwm.com/api/?url={urllib.parse.quote_plus(url)}&hd=1"
-            tw_headers = {"User-Agent": UA, "Referer": "https://www.tikwm.com/", "Origin": "https://www.tikwm.com"}
-            for proxy in [None] + _fetch_rotating_proxies(limit=4):
-                try:
-                    req_tw = urllib.request.Request(tw_api, headers=tw_headers)
-                    if proxy:
-                        opener = urllib.request.build_opener(urllib.request.ProxyHandler({"http": proxy, "https": proxy}))
-                        resp_ctx = opener.open(req_tw, timeout=5)
-                    else:
-                        resp_ctx = urllib.request.urlopen(req_tw, timeout=5)
-                    with resp_ctx as resp_tw:
-                        tw_data = json.loads(resp_tw.read().decode("utf-8", errors="replace")).get("data") or {}
-                    play_u = tw_data.get("hdplay") or tw_data.get("play") or ""
-                    if play_u.startswith("/"):
-                        play_u = "https://www.tikwm.com" + play_u
+        # Fallback for TikTok & Instagram: TikWM -> Cobalt -> verified rotating proxies
+        if "tiktok.com" in url or "instagram.com" in url:
+            try:
+                from proxy_harvester import resolve_tikwm_mp4, download_via_cobalt, get_working_proxies
+                if "tiktok.com" in url:
+                    play_u = resolve_tikwm_mp4(url)
                     if play_u:
                         req_v = urllib.request.Request(play_u, headers={"User-Agent": UA, "Referer": "https://www.tikwm.com/"})
                         with urllib.request.urlopen(req_v, timeout=25) as vid_r:
@@ -604,18 +397,23 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
                             used.add(tag_id)
                             _save_history(used)
                             return out_mp4
-                except Exception:
-                    continue
-            for proxy in _fetch_rotating_proxies(limit=4):
-                try:
-                    proc_tt = subprocess.run(cmd + ["--proxy", proxy], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=35)
-                    if proc_tt.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
-                        used = _load_history()
-                        used.add(tag_id)
-                        _save_history(used)
-                        return out_mp4
-                except Exception:
-                    continue
+                if download_via_cobalt(url, out_mp4):
+                    used = _load_history()
+                    used.add(tag_id)
+                    _save_history(used)
+                    return out_mp4
+                for proxy in get_working_proxies(limit=4):
+                    try:
+                        proc_px = subprocess.run(cmd + ["--proxy", proxy], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=35)
+                        if proc_px.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
+                            used = _load_history()
+                            used.add(tag_id)
+                            _save_history(used)
+                            return out_mp4
+                    except Exception:
+                        continue
+            except Exception:
+                pass
         # Fallback for cloud/Colab IPs: retry with tv_embedded,ios client
         if "youtube.com" in url or "youtu.be" in url:
             cmd_fb = [c.replace("youtube:player_client=android,web", "youtube:player_client=tv_embedded,ios") for c in cmd]
