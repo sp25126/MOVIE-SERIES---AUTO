@@ -373,15 +373,15 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
 
     cmd = [
         sys.executable, "-m", "yt_dlp",
-        "--extractor-args", "youtube:player_client=android,web",
+        "--extractor-args", "youtube:player_client=android",
         "-f", "best[height<=1080][ext=mp4]/bestvideo[height<=1080]+bestaudio/best[height<=1080]/best",
         "--merge-output-format", "mp4",
         "--no-warnings",
         "--retries", "3",
         "--fragment-retries", "3",
         "--socket-timeout", "15",
-        "--sleep-interval", "2",
-        "--max-sleep-interval", "5",
+        "--sleep-interval", "1",
+        "--max-sleep-interval", "3",
         "-o", str(target_dir / f"{safe_id}.%(ext)s"),
     ]
 
@@ -394,6 +394,9 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
     ]
     cookies_file = next((p for p in candidate_cookies if p.exists() and p.stat().st_size > 50), None)
 
+    # For YouTube, only pass cookies if explicitly provided or in local environment.
+    # Note: On cloud datacenter IPs (Colab/Kaggle), unverified cookies or web client trigger 'Sign in to confirm you’re not a bot'.
+    # Using player_client=android streams cleanly without bot check blocks.
     if cookies_file:
         cmd.extend(["--cookies", str(cookies_file.resolve())])
     elif browser_cookies:
@@ -439,9 +442,10 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
                         continue
             except Exception as e:
                 print(f"[Harvester] Social fallback exception: {e}", file=sys.stderr)
-        # Fallback for cloud/Colab IPs: retry with tv_embedded,ios client
+        # Fallback for cloud/Colab IPs: retry with android_embedded client or clean player client without cookies
         if "youtube.com" in url or "youtu.be" in url:
-            cmd_fb = [c.replace("youtube:player_client=android,web", "youtube:player_client=tv_embedded,ios") for c in cmd]
+            cmd_fb = [c for c in cmd if c not in ("--cookies", str(cookies_file) if cookies_file else "")]
+            cmd_fb = [c.replace("youtube:player_client=android", "youtube:player_client=android") for c in cmd_fb]
             proc2 = subprocess.run(cmd_fb, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120)
             if proc2.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
                 used = _load_history()
@@ -451,7 +455,7 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
             print(f"[Harvester] Fallback download failed ({safe_id}): {proc2.stderr[:180]}", file=sys.stderr)
             # Cookieless rotating proxy fallback (keeps Google account 100% safe)
             for proxy in _fetch_rotating_proxies(limit=8):
-                cmd_px = [c for c in cmd_fb if c not in ("--cookies", str(cookies_file))] + ["--no-cookies", "--proxy", proxy]
+                cmd_px = [c for c in cmd_fb if c not in ("--cookies", str(cookies_file) if cookies_file else "")] + ["--no-cookies", "--proxy", proxy]
                 try:
                     proc3 = subprocess.run(cmd_px, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=45)
                     if proc3.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
