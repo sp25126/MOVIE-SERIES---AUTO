@@ -80,13 +80,18 @@ def _load_used_topics() -> dict:
 
 
 def _pick_fresh_topic(cat_key: str, candidates: list, default_topic: str) -> str:
-    """Picks the highest-ranked trending topic not recently used in prior 8h cycles."""
+    """Picks the highest-ranked trending topic not recently used in prior cycles."""
     used = set(t.lower() for t in _load_used_topics().get(cat_key, []))
     for c in candidates:
         name = (c.get("topic") or c.get("series_name") or c.get("song_name") or "").strip()
-        if name and name.lower() not in used:
+        if not name or len(name) < 4:
+            continue
+        # Filter generic non-franchise noise
+        if name.lower() in ("lifetime", "producer regrets splitting", "movie", "series", "cinema"):
+            continue
+        if name.lower() not in used:
             return name
-    return default_topic
+    return default_topic if default_topic.lower() not in used else "Oppenheimer"
 
 
 def _record_used_topic(cat_key: str, topic: str):

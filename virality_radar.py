@@ -100,6 +100,8 @@ GENERIC_SINGLE_WORDS = {
     # Standalone common names & celebrity tags (not franchise titles)
     "robert", "edward", "david", "john", "james", "michael", "hailee", "steinfeld", "richard", "thomas",
     "charles", "daniel", "matthew", "anthony", "mark", "steven", "paul", "andrew", "george",
+    # Noise phrases from news headlines
+    "lifetime", "producer", "regrets", "splitting", "producer regrets splitting", "interview", "reveal",
     # Common edit/search query tags & buzzwords
     "multifandom", "badass", "mafia", "animation", "animated", "status", "attitude", "fight",
 }
@@ -351,11 +353,12 @@ def scan_virality(skip_yt: bool = False) -> dict:
     if not skip_yt:
         week_probes = [(gid, g["yt_probe"]) for gid, g in groups.items() if g.get("yt_probe")]
         week_probes.extend([
-            ("action_thriller", "godzilla monsterverse 4k edit shorts"),
-            ("superhero_scifi", "trending movie 4k edit shorts"),
-            ("action_thriller", "blockbuster movie epic badass edit #shorts"),
+            ("action_thriller", "blockbuster movie 4k edit shorts"),
+            ("superhero_scifi", "trending sci fi movie edit shorts"),
+            ("crime_mafia", "coldest cinema character edit #shorts"),
+            ("drama_prestige", "viral movie scene transition edit shorts"),
         ])
-        month_probes = week_probes[:5]
+        month_probes = week_probes[:6]
         yt_week = probe_youtube_window(week_probes, YT_SP_WEEK_VIEWS, "week", per_query=5)
         yt_month = probe_youtube_window(month_probes, YT_SP_MONTH_VIEWS, "month", per_query=5)
 
