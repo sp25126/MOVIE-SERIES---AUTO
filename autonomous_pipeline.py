@@ -676,6 +676,23 @@ def run_autonomous_workflow(
 
     logging.info(f"✅ [Step 6 Complete] {out_mp4} ({out_mp4.stat().st_size / 1e6:.2f} MB) | QA={qa_res.get('passed')} | issues={qa_res.get('issues', [])}")
 
+    # Final Copyright Founder Audit & Auto-Remediation before Step 7 upload
+    try:
+        from copyright_guardian import remediate_copyright_if_needed
+        cg_res = remediate_copyright_if_needed(
+            video_path=out_mp4,
+            curated_clips=curated_clips,
+            backup_pool=downloaded,
+            topic=chosen_topic,
+            genre=chosen_genre,
+        )
+        if cg_res.get("swapped_clips"):
+            logging.info("🔄 [Copyright Guardian] Re-rendering after replacing claimed clip...")
+            out_mp4 = _render_master(working_dur)
+            qa_res = qa_gate.verify_video(out_mp4)
+    except Exception as cg_err:
+        logging.warning(f"[Copyright Guardian] Audit skipped: {cg_err}")
+
     # Record topic & series state ONLY after successful render + QA
     if curr_day == 1:
         _record_used_topic("cinema", chosen_topic)
@@ -714,6 +731,16 @@ def run_autonomous_workflow(
                 meta=meta,
                 canary_wait_sec=90,
             )
+            if upload_result.get("flagged"):
+                logging.warning("🛡️ [Copyright Guardian] Private canary flagged by YouTube! Replacing audio with clean BGM + tweaking and re-uploading...")
+                from copyright_guardian import apply_minor_copyright_tweaks
+                apply_minor_copyright_tweaks(out_mp4, topic=chosen_topic, genre=chosen_genre, replace_audio_with_bgm=True)
+                qa_res = qa_gate.verify_video(out_mp4)
+                upload_result = metadata_uploader.upload_private_canary_and_schedule(
+                    video_path=out_mp4,
+                    meta=meta,
+                    canary_wait_sec=90,
+                )
             logging.info(f"✅ Live Scheduled Link: https://youtube.com/shorts/{upload_result.get('video_id')}")
         except Exception as up_err:
             logging.error(f"⚠️ [Step 7 Failsafe] Upload failed ({up_err}); saving to state/pending_uploads.json so video is preserved.")
