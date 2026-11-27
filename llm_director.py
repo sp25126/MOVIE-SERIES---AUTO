@@ -70,6 +70,80 @@ def load_in_process_vlm():
         return None, None
 
 
+def _repair_and_parse_vlm_json(raw_text: str, duration: float, clip_title: str = "", topic: str = "") -> dict:
+    """Robustly cleans, repairs, and parses JSON output from small VLMs (e.g. Qwen2-VL),
+    handling markdown blocks, unescaped quotes, trailing commas, and missing fields."""
+    text = raw_text.strip()
+    text = re.sub(r"^```(?:json)?\s*", "", text, flags=re.MULTILINE)
+    text = re.sub(r"\s*```$", "", text, flags=re.MULTILINE).strip()
+    
+    match = re.search(r"\{.*\}", text, re.DOTALL)
+    candidate = match.group(0) if match else text
+
+    # Attempt 1: direct parse
+    try:
+        return json.loads(candidate)
+    except Exception:
+        pass
+
+    # Attempt 2: clean trailing commas before closing braces
+    cleaned = re.sub(r",\s*([\]}])", r"\1", candidate)
+    try:
+        return json.loads(cleaned)
+    except Exception:
+        pass
+
+    # Attempt 3: fix common single quote issues
+    try:
+        # replace single quotes around keys/values with double quotes if needed
+        sq_fixed = re.sub(r"(?<=\{|\s)'([^']+)'(?=\s*:)", r'"\1"', cleaned)
+        sq_fixed = re.sub(r":\s*'([^']*)'", r': "\1"', sq_fixed)
+        return json.loads(sq_fixed)
+    except Exception:
+        pass
+
+    # Attempt 4: Regex-based field extraction fallback
+    logger.warning("[LLM Director] JSON parser repairing via regex fallback.")
+    res = {
+        "approved": True,
+        "quality_score": 8.0,
+        "has_watermark_spam": False,
+        "scene_label": _derive_label_from_title(clip_title, topic),
+        "optimal_cut": {"start_sec": 0.0, "end_sec": duration, "reason": "AI parsed cut"},
+        "vibe_sentiment": "hype_cool"
+    }
+
+    app_m = re.search(r'"approved"\s*:\s*(true|false)', candidate, re.IGNORECASE)
+    if app_m:
+        res["approved"] = app_m.group(1).lower() == "true"
+
+    score_m = re.search(r'"quality_score"\s*:\s*([0-9.]+)', candidate)
+    if score_m:
+        try:
+            res["quality_score"] = float(score_m.group(1))
+        except Exception:
+            pass
+
+    wm_m = re.search(r'"has_watermark_spam"\s*:\s*(true|false)', candidate, re.IGNORECASE)
+    if wm_m:
+        res["has_watermark_spam"] = wm_m.group(1).lower() == "true"
+
+    label_m = re.search(r'"scene_label"\s*:\s*"([^"]+)"', candidate)
+    if label_m:
+        res["scene_label"] = label_m.group(1).strip()[:30]
+
+    start_m = re.search(r'"start_sec"\s*:\s*([0-9.]+)', candidate)
+    end_m = re.search(r'"end_sec"\s*:\s*([0-9.]+)', candidate)
+    start_val = float(start_m.group(1)) if start_m else 0.0
+    end_val = float(end_m.group(1)) if end_m else duration
+    res["optimal_cut"] = {
+        "start_sec": start_val,
+        "end_sec": end_val,
+        "reason": "Extracted from VLM response"
+    }
+    return res
+
+
 def _analyze_with_qwen2_vl(
     model: Any,
     processor: Any,
@@ -125,11 +199,7 @@ def _analyze_with_qwen2_vl(
     ]
     output_text = processor.batch_decode(generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0].strip()
 
-    output_text = re.sub(r"^```(?:json)?\s*", "", output_text)
-    output_text = re.sub(r"\s*```$", "", output_text).strip()
-    match = re.search(r"\{.*\}", output_text, re.DOTALL)
-    raw_json = match.group(0) if match else output_text
-    res = json.loads(raw_json)
+    res = _repair_and_parse_vlm_json(output_text, duration=duration, clip_title=clip_title, topic=topic)
 
     if skill and not skill.get("allow_trim", True):
         start, end = 0.0, duration

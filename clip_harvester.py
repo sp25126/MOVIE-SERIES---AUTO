@@ -347,13 +347,29 @@ def _fetch_rotating_proxies(limit: int = 5) -> list[str]:
 
 def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, browser_cookies: str = "") -> Path | None:
     """Downloads a public YouTube, TikTok, Reddit, Instagram Reel, or Facebook Watch video via yt_dlp."""
-    # shortcut: IG/FB public reels sometimes require local browser session cookies (--cookies-from-browser chrome)
     target_dir = out_dir or INPUT_DIR
     target_dir.mkdir(parents=True, exist_ok=True)
     safe_id = re.sub(r"[^A-Za-z0-9_\-]", "_", tag_id)[:48]
     out_mp4 = target_dir / f"{safe_id}.mp4"
     if out_mp4.exists() and out_mp4.stat().st_size > 20_000:
         return out_mp4
+
+    # 1. TikTok fast-path: TikWM API bypasses browser blocks and bot detection directly
+    if "tiktok.com" in url:
+        try:
+            from proxy_harvester import resolve_tikwm_mp4
+            play_u = resolve_tikwm_mp4(url)
+            if play_u:
+                req_v = urllib.request.Request(play_u, headers={"User-Agent": UA, "Referer": "https://www.tikwm.com/"})
+                with urllib.request.urlopen(req_v, timeout=35) as vid_r:
+                    out_mp4.write_bytes(vid_r.read())
+                if out_mp4.exists() and out_mp4.stat().st_size > 20_000:
+                    used = _load_history()
+                    used.add(tag_id)
+                    _save_history(used)
+                    return out_mp4
+        except Exception as e:
+            print(f"[Harvester] TikWM fast-path skipped ({safe_id}): {e}", file=sys.stderr)
 
     cmd = [
         sys.executable, "-m", "yt_dlp",
@@ -368,9 +384,18 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
         "--max-sleep-interval", "5",
         "-o", str(target_dir / f"{safe_id}.%(ext)s"),
     ]
-    cookies_file = ROOT / "config" / "cookies.txt"
-    if cookies_file.exists() and cookies_file.stat().st_size > 100:
-        cmd.extend(["--cookies", str(cookies_file)])
+
+    # Resolve cookies.txt dynamically across current dir, ROOT, and environment variables
+    candidate_cookies = [
+        Path("config/cookies.txt"),
+        ROOT / "config" / "cookies.txt",
+        Path("/content/otaku_repo/config/cookies.txt"),
+        Path(os.environ.get("YOUTUBE_COOKIES_PATH", "")),
+    ]
+    cookies_file = next((p for p in candidate_cookies if p.exists() and p.stat().st_size > 50), None)
+
+    if cookies_file:
+        cmd.extend(["--cookies", str(cookies_file.resolve())])
     elif browser_cookies:
         cmd.extend(["--cookies-from-browser", browser_cookies])
     cmd.append(url)
