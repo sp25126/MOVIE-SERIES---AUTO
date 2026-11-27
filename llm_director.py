@@ -24,25 +24,128 @@ logger = logging.getLogger(__name__)
 
 GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
 
-OLLAMA_API_URL = os.environ.get("OLLAMA_HOST", "http://localhost:11434").rstrip("/") + "/api/generate"
-OLLAMA_VISION_MODEL = os.environ.get("OLLAMA_VISION_MODEL", "qwen2.5vl:3b")
+_LOCAL_MODEL = None
+_LOCAL_PROCESSOR = None
+_LOCAL_MODEL_TYPE = None
+_LOCAL_MODEL_FAILED = False
 
 
-def ensure_ollama_ready(model_name: str = OLLAMA_VISION_MODEL) -> bool:
-    """Checks if Ollama server is reachable and has the vision model ready."""
+def load_in_process_vlm():
+    """
+    Loads Qwen2-VL-2B-Instruct directly in-process via HuggingFace Transformers.
+    Runs on Kaggle / Colab T4 GPU natively (ZERO background daemon, ZERO exit code 44, NO Ollama needed).
+    """
+    global _LOCAL_MODEL, _LOCAL_PROCESSOR, _LOCAL_MODEL_TYPE, _LOCAL_MODEL_FAILED
+    if _LOCAL_MODEL is not None:
+        return _LOCAL_MODEL, _LOCAL_PROCESSOR
+    if _LOCAL_MODEL_FAILED:
+        return None, None
+
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
     try:
-        tags_url = OLLAMA_API_URL.replace("/api/generate", "/api/tags")
-        with urllib.request.urlopen(tags_url, timeout=3) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-        models = [m.get("name", "") for m in data.get("models", [])]
-        if any(model_name.split(":")[0] in m for m in models):
-            return True
-        logger.info(f"[LLM Director] Pulling Ollama vision model '{model_name}'...")
-        subprocess.run(["ollama", "pull", model_name], check=True, timeout=300)
-        return True
+        import torch
+        from transformers import Qwen2VLForConditionalGeneration, AutoProcessor
+
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        model_id = "Qwen/Qwen2-VL-2B-Instruct"
+        logger.info(f"[LLM Director] Loading native in-process vision model '{model_id}' on {device}...")
+
+        dtype = torch.bfloat16 if (device == "cuda" and torch.cuda.is_bf16_supported()) else (torch.float16 if device == "cuda" else torch.float32)
+        model = Qwen2VLForConditionalGeneration.from_pretrained(
+            model_id,
+            torch_dtype=dtype,
+            device_map="auto" if device == "cuda" else None,
+            low_cpu_mem_usage=True,
+        )
+        processor = AutoProcessor.from_pretrained(model_id)
+
+        _LOCAL_MODEL = model
+        _LOCAL_PROCESSOR = processor
+        _LOCAL_MODEL_TYPE = "qwen2-vl-2b"
+        logger.info(f"[LLM Director] In-process {model_id} loaded successfully!")
+        return _LOCAL_MODEL, _LOCAL_PROCESSOR
     except Exception as e:
-        logger.warning(f"[LLM Director] Ollama not available ({e}); will fall back to Gemini API.")
-        return False
+        _LOCAL_MODEL_FAILED = True
+        logger.warning(f"[LLM Director] In-process VLM load failed ({e}); falling back to Gemini API.")
+        return None, None
+
+
+def _analyze_with_qwen2_vl(
+    model: Any,
+    processor: Any,
+    frames_data: list,
+    duration: float,
+    topic: str,
+    skill: dict | None = None,
+    clip_title: str = "",
+    skill_block: str = "",
+) -> dict:
+    """Runs frame-by-frame multimodal inference directly on GPU using Qwen2-VL-2B."""
+    import torch
+    # Pick 3 representative frames (start, mid, end) for fast precision cut scoring
+    sample_frames = (
+        [frames_data[0], frames_data[len(frames_data) // 2], frames_data[-1]]
+        if len(frames_data) >= 3
+        else frames_data
+    )
+    pil_images = [img for _, _, img in sample_frames]
+
+    prompt_text = (
+        f"You are an elite Hollywood video editor. {skill_block}\n"
+        f"Analyze these sequential frames for candidate video '{clip_title}' (Topic: {topic}, Duration: {duration:.1f}s).\n"
+        f"Output ONLY a JSON object: "
+        f'{{"approved": true, "quality_score": 8.5, "has_watermark_spam": false, "scene_label": "2-3 word label", '
+        f'"optimal_cut": {{"start_sec": 0.0, "end_sec": {duration:.1f}, "reason": "reason"}}, "vibe_sentiment": "hype_cool"}}'
+    )
+
+    messages = [
+        {
+            "role": "user",
+            "content": [{"type": "image", "image": img} for img in pil_images] + [{"type": "text", "text": prompt_text}],
+        }
+    ]
+
+    try:
+        from qwen_vl_utils import process_vision_info
+        text_prompt = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        image_inputs, video_inputs = process_vision_info(messages)
+        inputs = processor(text=[text_prompt], images=image_inputs, videos=video_inputs, padding=True, return_tensors="pt")
+    except Exception:
+        # Fallback if qwen_vl_utils not installed
+        text_prompt = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        inputs = processor(text=[text_prompt], images=pil_images, padding=True, return_tensors="pt")
+
+    device = next(model.parameters()).device
+    inputs = {k: v.to(device) for k, v in inputs.items()}
+
+    with torch.no_grad():
+        generated_ids = model.generate(**inputs, max_new_tokens=150)
+    generated_ids_trimmed = [
+        out_ids[len(in_ids):] for in_ids, out_ids in zip(inputs["input_ids"], generated_ids)
+    ]
+    output_text = processor.batch_decode(generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0].strip()
+
+    output_text = re.sub(r"^```(?:json)?\s*", "", output_text)
+    output_text = re.sub(r"\s*```$", "", output_text).strip()
+    match = re.search(r"\{.*\}", output_text, re.DOTALL)
+    raw_json = match.group(0) if match else output_text
+    res = json.loads(raw_json)
+
+    if skill and not skill.get("allow_trim", True):
+        start, end = 0.0, duration
+        res.setdefault("optimal_cut", {})["reason"] = f"Skill '{skill['skill_name']}' enforces 100% FULL UNCUT (zero trims)."
+    else:
+        opt = res.get("optimal_cut", {})
+        start = max(0.0, float(opt.get("start_sec", 0.0)))
+        end = min(duration, float(opt.get("end_sec", duration)))
+        if end <= start + 3.0:
+            end = duration
+    res["optimal_cut"]["start_sec"] = round(start, 2)
+    res["optimal_cut"]["end_sec"] = round(end, 2)
+    res["optimal_cut"]["duration"] = round(end - start, 2)
+    if not res.get("scene_label"):
+        res["scene_label"] = _derive_label_from_title(clip_title, topic)
+    return res
 
 
 def get_gemini_api_key(api_key: Optional[str] = None) -> str:
@@ -195,11 +298,12 @@ def analyze_clip_frames(
     dur = frames_data[-1][0] / 0.95 if frames_data else 20.0
 
     if use_local_model:
-        if ensure_ollama_ready(OLLAMA_VISION_MODEL):
+        model, processor = load_in_process_vlm()
+        if model is not None and processor is not None:
             try:
-                return _analyze_with_ollama(frames_data, dur, topic, skill=skill, clip_title=clip_title, skill_block=skill_block)
+                return _analyze_with_qwen2_vl(model, processor, frames_data, dur, topic, skill=skill, clip_title=clip_title, skill_block=skill_block)
             except Exception as e:
-                logger.warning(f"[LLM Director] Ollama inference failed: {e}; falling back to Gemini API.")
+                logger.warning(f"[LLM Director] In-process VLM inference failed: {e}; falling back to Gemini API.")
 
     key = get_gemini_api_key(api_key)
     if not key:
