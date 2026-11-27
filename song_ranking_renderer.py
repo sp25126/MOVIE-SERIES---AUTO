@@ -156,19 +156,35 @@ def render_song_edit_ranking(
 
         seg_mp4 = TEMP_DIR / f"song_seg_{rank}.mp4"
 
-        # Clip Duration calculation
+        # Clip Duration & AI Optimal Cut resolution
         src_dur = float(clip.get("duration") or clip_dur)
-        dur = clip_dur if clip_dur > 0 else src_dur
-        dur = min(dur, src_dur)
+        ai_cut = clip.get("optimal_cut") or {}
+        if ai_cut.get("end_sec") and float(ai_cut.get("end_sec")) > float(ai_cut.get("start_sec", 0.0)) + 3.0:
+            ss = max(0.0, float(ai_cut.get("start_sec", 0.0)))
+            ai_dur = float(ai_cut["end_sec"]) - ss
+            dur = min(clip_dur, ai_dur) if clip_dur > 0 else ai_dur
+        else:
+            dur = clip_dur if clip_dur > 0 else src_dur
+            dur = min(dur, src_dur)
+            # Land right in the causal climax/drop of the edit (around 18% in)
+            ss = 0.0
+            if src_dur > dur + 2.0:
+                ss = min(max(1.0, src_dur * 0.18), src_dur - dur - 0.5)
 
-        # Land right in the causal climax/drop of the edit (around 20-30% in)
-        ss = 0.0
-        if src_dur > dur + 2.0:
-            ss = min(max(1.0, src_dur * 0.18), src_dur - dur - 0.5)
+        try:
+            from dsp_renderer import _detect_black_bar_crop, _safe_start_offset
+            if ss < 0.8 and dur > 6.0:
+                safe_ss = _safe_start_offset(src, src_dur, dur - 1.0)
+                if safe_ss > ss:
+                    dur = max(4.0, dur - (safe_ss - ss))
+                    ss = safe_ss
+            bar_crop = _detect_black_bar_crop(src, ss + min(2.5, dur * 0.35))
+        except Exception:
+            bar_crop = ""
 
         # Dual-layer blurred vertical canvas (Preserves 16:9 or native edit with zero stretch)
         vf = (
-            f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=30,split=2[bg0][fg0];"
+            f"[0:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps=30,{bar_crop}split=2[bg0][fg0];"
             f"[bg0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=26,eq=brightness=-0.18[bg];"
             f"[fg0]scale=1080:1080:force_original_aspect_ratio=decrease,eq=contrast=1.08:saturation=1.15[fg];"
             f"[bg][fg]overlay=(W-w)/2:(H-h)/2[comp];"

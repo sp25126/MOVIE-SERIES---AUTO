@@ -340,7 +340,7 @@ def _harvest_for_topic(
 
     logging.info(f"Scouted {len(interleaved)} multi-platform candidates (YT={len(by_plat['youtube'])}, TT={len(by_plat['tiktok'])}, IG={len(by_plat['instagram'])}). Downloading...")
     downloaded: list[dict] = []
-    for cand in interleaved[:10]:
+    for cand in interleaved[:12]:
         p = download_clip(cand, out_dir=input_dir)
         if p and p.exists() and p.stat().st_size > 20_000:
             cand["local_path"] = str(p)
@@ -348,7 +348,7 @@ def _harvest_for_topic(
             logging.info(f"  ✓ Downloaded ({cand.get('platform')}): {cand['title'][:40]} ({p.stat().st_size / 1e6:.1f}MB)")
         else:
             logging.warning(f"  ✗ Failed ({cand.get('platform')}): {cand.get('title', '')[:40]} ({cand.get('url')})")
-        if len(downloaded) >= max(need + 1, 4):
+        if len(downloaded) >= max(need + 2, 5):
             break
 
     if len(downloaded) < need:

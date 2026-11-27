@@ -17,10 +17,11 @@ CATEGORY_SKILLS: Dict[str, Dict[str, Any]] = {
         "trimming_rules": (
             "STRICT ZERO-TRIM RULE: Play every clip 100% FULL & UNCUT from 0.0s to end_sec=duration. "
             "NEVER cut or trim Patrick Jane edits—they rely on psychological dialogue setups, traps, "
-            "and deadpan reactions (Jane, Lisbon, Cho, Rigsby, Van Pelt)."
+            "and deadpan reactions (Jane, Lisbon, Cho, Rigsby, Van Pelt). Only skip pure black fade-in (<1.2s)."
         ),
         "visual_rules": (
-            "Auto-crop baked-in black sidebars, 1080x1920 edge-to-edge dual-layer ambient blur, "
+            "Reject sideways/rotated clips, heavy watermark spam, or static quote cards. "
+            "Auto-crop baked-in black sidebars/letterbox bars, 1080x1920 edge-to-edge dual-layer ambient blur, "
             "zero static top banner pills, bold Anton/Impact outlined typography, Krylo countdown ladder."
         ),
         "audio_rules": (
@@ -35,13 +36,13 @@ CATEGORY_SKILLS: Dict[str, Dict[str, Any]] = {
         "full_uncut": False,
         "allow_trim": True,
         "trimming_rules": (
-            "AI-DIRECTED PRECISION CUTS: Skip slow studio logos/black fade-ins (start_sec), "
-            "capture the full VFX/action climax and beat drop (end_sec), and trim trailing subscribe/outro cards. "
-            "No arbitrary 22s cap—let the full climax play out."
+            "AI-DIRECTED PRECISION CUTS: Set start_sec AFTER any black fade-in, studio logo, or static text card "
+            "(usually 0.5s-2.5s if intro exists, else 0.0s). Set end_sec BEFORE any trailing subscribe/follow/outro card "
+            "(trim last 2.0-2.5s if outro card appears). Capture the full VFX/action climax and beat drop."
         ),
         "visual_rules": (
-            "Hook visual must land in first 1.5s. Auto-crop black bars, 1080x1920 edge-to-edge ambient blur, "
-            "Rank #3 -> #2 -> #1 escalation."
+            "Hook visual must land in first 1.0s. Reject static slideshows, anime/AMV on live-action topics, "
+            "sideways rotated video, or heavy watermark spam. Auto-crop black bars, 1080x1920 ambient blur, Rank #3 -> #2 -> #1."
         ),
         "audio_rules": "Preserve theatrical sound design & bass impact; 48kHz +4% shield, -14.0 LUFS.",
         "hud_label_examples": ["Atomic Breath", "Final Stand", "Hero Entry", "Multiverse Clash"],
@@ -53,9 +54,13 @@ CATEGORY_SKILLS: Dict[str, Dict[str, Any]] = {
         "allow_trim": True,
         "trimming_rules": (
             "AI-DIRECTED NARRATIVE CUTS: Preserve emotional dialogue build-up, character reaction shots, "
-            "and dramatic twist climax. NEVER cut mid-sentence. Trim only dead silence intros and trailing outros."
+            "and dramatic twist climax. NEVER cut mid-sentence. Set start_sec past black fade-ins/title cards "
+            "and end_sec before trailing creator outro/watermark cards."
         ),
-        "visual_rules": "1080x1920 edge-to-edge ambient blur, clean Krylo countdown ladder, zero banner boxes.",
+        "visual_rules": (
+            "Reject raw unedited promo clips, static text slides, or sideways video. "
+            "1080x1920 edge-to-edge ambient blur, clean Krylo countdown ladder, zero banner boxes."
+        ),
         "audio_rules": "Preserve original dialogue and tension score; 48kHz +4% shield, -14.0 LUFS.",
         "hud_label_examples": ["Final Twist", "Cold Betrayal", "Rooftop Save", "Game Over"],
     },
@@ -65,10 +70,14 @@ CATEGORY_SKILLS: Dict[str, Dict[str, Any]] = {
         "full_uncut": False,
         "allow_trim": True,
         "trimming_rules": (
-            "AI-DIRECTED BEAT-SYNC CUTS: Start right before the vocal/bass drop (start_sec), "
-            "hold through the full velocity/transition sequence (end_sec), and cut cleanly before silent outros."
+            "AI-DIRECTED BEAT-SYNC CUTS: Start right before the vocal/bass drop or first visual cut (start_sec), "
+            "skipping any black/static intro title screen. Hold through the full velocity/transition sequence (end_sec), "
+            "and cut cleanly before silent outros or creator end cards."
         ),
-        "visual_rules": "1080x1920 edge-to-edge ambient blur, crisp high-contrast grading, zero banner pills.",
+        "visual_rules": (
+            "Reject static lyric-only images or heavy watermark spam. "
+            "1080x1920 edge-to-edge ambient blur, crisp high-contrast grading, zero banner pills."
+        ),
         "audio_rules": "100% preserve the trending song/phonk audio track with 48kHz +4% anti-CID shield and -14.0 LUFS.",
         "hud_label_examples": ["Spider-Verse", "The Weeknd", "Tenet Neil", "Velocity Drop"],
     },

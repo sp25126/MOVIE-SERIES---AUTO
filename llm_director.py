@@ -154,22 +154,24 @@ def _analyze_with_qwen2_vl(
     clip_title: str = "",
     skill_block: str = "",
 ) -> dict:
-    """Runs frame-by-frame multimodal inference directly on GPU using Qwen2-VL-2B."""
+    """Runs frame-by-frame multimodal inference directly on GPU using Qwen2-VL-2B with timestamped frames."""
     import torch
-    # Pick 3 representative frames (start, mid, end) for fast precision cut scoring
-    sample_frames = (
-        [frames_data[0], frames_data[len(frames_data) // 2], frames_data[-1]]
-        if len(frames_data) >= 3
-        else frames_data
-    )
+    # Use up to 6 timestamped frames so Qwen2-VL sees intro, build-up, climax, and outro
+    sample_frames = frames_data[:6]
     pil_images = [img for _, _, img in sample_frames]
+    ts_list = ", ".join([f"Frame {i+1}={sec:.1f}s" for i, (sec, _, _) in enumerate(sample_frames)])
 
     prompt_text = (
-        f"You are an elite Hollywood video editor. {skill_block}\n"
-        f"Analyze these sequential frames for candidate video '{clip_title}' (Topic: {topic}, Duration: {duration:.1f}s).\n"
-        f"Output ONLY a JSON object: "
+        f"You are an elite Hollywood short-form video editor.\n{skill_block}\n\n"
+        f"Candidate clip: '{clip_title}' | Topic: '{topic}' | Total Duration: {duration:.1f}s.\n"
+        f"The {len(sample_frames)} sequential images above are at timestamps: {ts_list}.\n"
+        f"Tasks:\n"
+        f"1. Reject (approved=false) ONLY if static text-only slideshow, sideways/rotated video, heavy watermark spam, or completely off-topic.\n"
+        f"2. Choose optimal_cut.start_sec (skip black fade-in or static intro card) and optimal_cut.end_sec (cut before creator outro/subscribe card).\n"
+        f"3. Write a punchy 2-3 word scene_label (never 'Edit #1').\n"
+        f"Output ONLY valid JSON: "
         f'{{"approved": true, "quality_score": 8.5, "has_watermark_spam": false, "scene_label": "2-3 word label", '
-        f'"optimal_cut": {{"start_sec": 0.0, "end_sec": {duration:.1f}, "reason": "reason"}}, "vibe_sentiment": "hype_cool"}}'
+        f'"optimal_cut": {{"start_sec": 0.0, "end_sec": {duration:.1f}, "reason": "short reason"}}, "vibe_sentiment": "hype_cool"}}'
     )
 
     messages = [
@@ -193,7 +195,7 @@ def _analyze_with_qwen2_vl(
     inputs = {k: v.to(device) for k, v in inputs.items()}
 
     with torch.no_grad():
-        generated_ids = model.generate(**inputs, max_new_tokens=150)
+        generated_ids = model.generate(**inputs, max_new_tokens=220)
     generated_ids_trimmed = [
         out_ids[len(in_ids):] for in_ids, out_ids in zip(inputs["input_ids"], generated_ids)
     ]

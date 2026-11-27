@@ -305,12 +305,17 @@ def render_edit_ranking(
         src_dur = float(clip.get("duration") or 30.0)
         ai_cut = clip.get("optimal_cut") or {}
         if full_uncut:
-            # 100% complete uncut edit: ZERO trims, ZERO cuts (e.g. Patrick Jane / The Mentalist)
-            ss = 0.0
-            dur = src_dur
+            # 100% complete uncut edit (e.g. Patrick Jane / The Mentalist): skip only pure black fade-in (<=1.2s)
+            ss = min(_safe_start_offset(src, src_dur, max(1.0, src_dur - 1.5)), 1.2)
+            dur = max(5.0, src_dur - ss)
         elif ai_cut.get("end_sec") and float(ai_cut.get("end_sec")) > float(ai_cut.get("start_sec", 0.0)) + 3.0:
             ss = max(0.0, float(ai_cut.get("start_sec", 0.0)))
             ai_dur = float(ai_cut["end_sec"]) - ss
+            if ss < 0.8 and ai_dur > 8.0:
+                safe_ss = _safe_start_offset(src, src_dur, ai_dur - 1.0)
+                if safe_ss > ss:
+                    ai_dur -= (safe_ss - ss)
+                    ss = safe_ss
             dur = min(clip_dur, ai_dur) if clip_dur > 0 else ai_dur
         elif clip_dur <= 0:
             # Full uncut edit (skip pure black fade-in <=1.5s, trim trailing 2.5s outro logo/cards)
@@ -338,7 +343,7 @@ def render_edit_ranking(
                 f"loudnorm=I=-14.0:TP=-1.5:LRA=7.0,aresample=48000,aformat=channel_layouts=stereo[aout]"
             )
 
-        bar_crop = _detect_black_bar_crop(src, ss)
+        bar_crop = _detect_black_bar_crop(src, ss + min(3.0, dur * 0.35))
         # NOTE: ffmpeg input already seeked with -ss, so the stream starts at ss.
         # We trim to [0, dur] in stream-time (which corresponds to [ss, ss+dur] in source-time).
         # setpts normalises timestamps so the speedup works correctly.
