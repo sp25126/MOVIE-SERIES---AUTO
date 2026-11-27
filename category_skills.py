@@ -34,6 +34,11 @@ CATEGORY_SKILLS: Dict[str, Dict[str, Any]] = {
             "Master with 48kHz +4% Anti-CID shield and -14.0 LUFS loudness."
         ),
         "rejection_criteria": "Reject sideways/rotated clips, heavy watermark spam, raw unedited promo clips, or static quote cards.",
+        "text_spec": (
+            "HEADER: Stacked Impact/Anton font (6px black stroke), Line 1='Ranking' (White) + 'Best' (Neon Green #39FF14), "
+            "Line 2='The Mentalist Edits' (Cyan #00E5FF). LADDER (x=44, y=640): Progressive '3. <2-Word Tag> (<Views>)' -> '1.' "
+            "(Active colors: #1 Red, #2 Cyan, #3 Gold). CREDIT (y=1561): 'Edit Credit: <Creator>' below circular @OtakuSnapster badge."
+        ),
         "hud_label_examples": ["Jane Mind Trap", "Cho Deadpan", "Red John Reveal", "Jane Cold Smile"],
     },
     "cinema": {
@@ -53,6 +58,11 @@ CATEGORY_SKILLS: Dict[str, Dict[str, Any]] = {
         ),
         "audio_rules": "Preserve theatrical sound design & bass impact; 48kHz +4% Anti-CID shield, -14.0 LUFS.",
         "rejection_criteria": "Reject fake AI/concept trailers (Sora/Kling/Screen Culture), static slideshows, sideways video, or anime AMVs on live-action topics.",
+        "text_spec": (
+            "HEADER: Impact/Anton 6px black stroke — for edit_ranking: 'Ranking Best <Topic> Edits' (White/Neon Green/Cyan); "
+            "for scene_commentary/trivia: bold 2-4 word hook line (Yellow #FFE600 + White, no boxy pill). "
+            "LADDER (x=44): 2-word action/VFX tag + view count. CREDIT (y=1561): 'Edit Credit: <Creator>'."
+        ),
         "hud_label_examples": ["Atomic Breath", "Final Stand", "Hero Entry", "Multiverse Clash"],
     },
     "tv_series": {
@@ -72,6 +82,11 @@ CATEGORY_SKILLS: Dict[str, Dict[str, Any]] = {
         ),
         "audio_rules": "Preserve original dialogue and tension score; 48kHz +4% Anti-CID shield, -14.0 LUFS.",
         "rejection_criteria": "Reject raw unedited episode clips without edit pacing, recap voiceovers, static slides, or sideways video.",
+        "text_spec": (
+            "HEADER: Impact/Anton 6px black stroke ('Ranking Best <Series> Edits' or 'Everyone Missed This in <Series>'). "
+            "LADDER (x=44): 2-word character/twist tag (never generic 'Edit #1'). "
+            "CAPTIONS/CREDITS: Keep bottom text above y=1580; 'Edit Credit: <Creator>' cleanly below @OtakuSnapster."
+        ),
         "hud_label_examples": ["Final Twist", "Cold Betrayal", "Rooftop Save", "Game Over"],
     },
     "song_trends": {
@@ -91,6 +106,12 @@ CATEGORY_SKILLS: Dict[str, Dict[str, Any]] = {
         ),
         "audio_rules": "ZERO VOICEOVER. 100% preserve trending song/phonk audio with 48kHz +3% Anti-CID shield, smooth afade transitions, and -14.0 LUFS.",
         "rejection_criteria": "Reject Roblox/Free Fire/gaming edits, static lyric-only images, heavy TikTok watermark spam, or low-effort status clips.",
+        "text_spec": (
+            "HEADER (y=110..168): Clean stroked uppercase Impact/Arial-Bold (NO boxy border), Line 1 White + Line 2 Gold (#FFD700), "
+            "matching subcategory ('RANKING THE BEST <SONG> TREND EDITS' or '<FRANCHISE> <SONG> EDITS'). "
+            "RANK BADGE (x=70, y=270): Metallic '#1' Gold / '#2' Silver / '#3' Bronze pill + '<Views> VIEWS' sub-pill. "
+            "CREDIT (y=1580): 'EDIT BY @CREATOR' pill. ZERO voiceover/lyric captions."
+        ),
         "hud_label_examples": ["Spider-Verse", "The Weeknd", "Tenet Neil", "Velocity Drop"],
     },
 }
@@ -117,6 +138,7 @@ def format_skill_prompt_block(topic: str, pillar_day: int = 0) -> str:
         f"- TRIMMING SPEC: {skill['trimming_rules']}\n"
         f"- VISUAL SPEC: {skill['visual_rules']} {SHORTS_SAFE_ZONES}\n"
         f"- AUDIO SPEC: {skill['audio_rules']}\n"
+        f"- TEXT & TYPOGRAPHY SPEC: {skill['text_spec']}\n"
         f"- REJECTION CRITERIA: {skill['rejection_criteria']}\n"
         f"- HUD LABEL STYLE (2-3 words, unique per clip): {', '.join(skill['hud_label_examples'])}"
     )
