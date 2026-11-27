@@ -425,14 +425,16 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
 
     try:
         if is_youtube:
-            # On cloud/Colab/Kaggle IPs, cookieless mobile/TV clients bypass bot-check cleanly;
-            # passing stale web cookies to android client triggers bot-check.
+            # Try cookieless mobile/TV clients + PO-token/cookies fallbacks
             yt_attempts = [
+                (["--extractor-args", "youtube:player_client=ios", "--no-cookies"], "ios"),
                 (["--extractor-args", "youtube:player_client=android_vr", "--no-cookies"], "android_vr"),
+                (["--extractor-args", "youtube:player_client=mweb", "--no-cookies"], "mweb"),
                 (["--extractor-args", "youtube:player_client=android", "--no-cookies"], "android"),
                 (["--extractor-args", "youtube:player_client=tv_embedded", "--no-cookies"], "tv_embedded"),
             ]
             if cookie_args:
+                yt_attempts.insert(0, (["--extractor-args", "youtube:player_client=mweb"] + cookie_args, "mweb+cookies"))
                 yt_attempts.append((["--extractor-args", "youtube:player_client=web"] + cookie_args, "web+cookies"))
 
             last_err = ""
@@ -446,11 +448,23 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
                 last_err = proc.stderr[:180]
             print(f"[Harvester] YouTube clients failed ({safe_id}): {last_err}", file=sys.stderr)
 
+            # pytubefix fallback (built-in PO-token / Android-VR support)
+            try:
+                from pytubefix import YouTube
+                yt = YouTube(url, client="WEB")
+                stream = yt.streams.filter(progressive=True, file_extension="mp4").order_by("resolution").desc().first()
+                if stream:
+                    stream.download(output_path=str(target_dir), filename=f"{safe_id}.mp4")
+                    if out_mp4.exists() and out_mp4.stat().st_size > 20_000:
+                        return _record_success()
+            except Exception as pt_err:
+                print(f"[Harvester] pytubefix fallback skipped ({safe_id}): {pt_err}", file=sys.stderr)
+
             # Cookieless rotating proxy fallback
             for proxy in _fetch_rotating_proxies(limit=6):
                 try:
                     proc_px = subprocess.run(
-                        base_cmd + ["--extractor-args", "youtube:player_client=android_vr", "--no-cookies", "--proxy", proxy, url],
+                        base_cmd + ["--extractor-args", "youtube:player_client=ios", "--no-cookies", "--proxy", proxy, url],
                         capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=45,
                     )
                     if proc_px.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
@@ -460,7 +474,14 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
             return None
 
         # Non-YouTube (TikTok, Instagram, Reddit, Facebook)
-        cmd = base_cmd + cookie_args + [url]
+        imp_args: list[str] = []
+        if is_tiktok:
+            try:
+                import curl_cffi  # noqa: F401
+                imp_args = ["--impersonate", "chrome"]
+            except ImportError:
+                pass
+        cmd = base_cmd + imp_args + cookie_args + [url]
         proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120)
         if proc.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
             return _record_success()

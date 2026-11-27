@@ -318,15 +318,18 @@ def fetch_rss(url: str, default_source: str, limit: int = 10) -> list[dict]:
 
 
 def fetch_google_trends_daily_rss() -> list[dict]:
-    """100% free real-time Google Trends Daily RSS (US + IN) for breaking cultural/cinema spikes."""
+    """100% free real-time Google Trends Daily RSS (US + IN), filtered strictly to cinema/TV/entertainment."""
     items = []
+    ent_kws = ("movie", "film", "series", "season", "episode", "trailer", "netflix", "disney", "marvel", "cinema", "actor", "actress", "box office", "kdrama", "anime", "show")
     for geo in ("US", "IN"):
         url = f"https://trends.google.com/trending/rss?geo={geo}"
         try:
             root = ET.fromstring(_http_get(url, timeout=8))
             for item in root.findall(".//item")[:20]:
                 title = (item.findtext("title") or "").strip()
-                if title and not any(j in title.lower() for j in NON_MOVIE_JUNK):
+                # Check news_item_title / description context so non-movie terms like 'Rally' are ignored
+                xml_blob = ET.tostring(item, encoding="unicode").lower()
+                if title and not any(j in title.lower() for j in NON_MOVIE_JUNK) and any(k in xml_blob for k in ent_kws):
                     items.append({"title": title, "source": f"GoogleTrends-{geo}", "link": ""})
         except Exception:
             continue
