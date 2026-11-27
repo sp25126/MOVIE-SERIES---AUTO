@@ -179,6 +179,14 @@ def analyze_clip_frames(
     skill = get_skill_for_topic(topic, pillar_day)
     skill_block = format_skill_prompt_block(topic, pillar_day)
 
+    # Inject live channel intelligence and recent performance feedback
+    channel_lessons = ""
+    try:
+        from channel_intelligence import derive_channel_editorial_lessons
+        channel_lessons = derive_channel_editorial_lessons() + "\n\n"
+    except Exception:
+        pass
+
     video_path = Path(video_path)
     frames_data = extract_sample_frames(video_path, num_samples=6)
     if not frames_data:
@@ -199,7 +207,7 @@ def analyze_clip_frames(
 
     frame_list_text = "\n".join([f"- Frame {i+1}: at {sec:.1f}s" for i, (sec, _, _) in enumerate(frames_data)])
     prompt = f"""You are an elite Hollywood & viral short-form video editor for YouTube Shorts and TikTok.
-{skill_block}
+{channel_lessons}{skill_block}
 
 Analyze these {len(frames_data)} sequential frames sampled across a {dur:.1f}-second candidate video for topic '{topic}' (Title: '{clip_title}'):
 {frame_list_text}

@@ -71,12 +71,25 @@ def save_cadence_state(state: dict):
 
 
 def _load_used_topics() -> dict:
+    used = {"cinema": [], "tv_series": [], "song_trends": []}
     if USED_TOPICS_FILE.exists():
         try:
-            return json.loads(USED_TOPICS_FILE.read_text(encoding="utf-8"))
+            data = json.loads(USED_TOPICS_FILE.read_text(encoding="utf-8"))
+            used.update(data)
         except Exception:
             pass
-    return {"cinema": [], "tv_series": [], "song_trends": []}
+    # Cross-reference with live channel uploads to guarantee no duplicate content
+    try:
+        from channel_intelligence import extract_recent_channel_topics
+        ch_topics = extract_recent_channel_topics()
+        for t in ch_topics:
+            if t not in used["cinema"]:
+                used["cinema"].append(t)
+            if t not in used["tv_series"]:
+                used["tv_series"].append(t)
+    except Exception:
+        pass
+    return used
 
 
 def _pick_fresh_topic(cat_key: str, candidates: list, default_topic: str) -> str:
