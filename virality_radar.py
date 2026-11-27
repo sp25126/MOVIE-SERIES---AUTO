@@ -317,6 +317,22 @@ def fetch_rss(url: str, default_source: str, limit: int = 10) -> list[dict]:
     return items
 
 
+def fetch_google_trends_daily_rss() -> list[dict]:
+    """100% free real-time Google Trends Daily RSS (US + IN) for breaking cultural/cinema spikes."""
+    items = []
+    for geo in ("US", "IN"):
+        url = f"https://trends.google.com/trending/rss?geo={geo}"
+        try:
+            root = ET.fromstring(_http_get(url, timeout=8))
+            for item in root.findall(".//item")[:20]:
+                title = (item.findtext("title") or "").strip()
+                if title and not any(j in title.lower() for j in NON_MOVIE_JUNK):
+                    items.append({"title": title, "source": f"GoogleTrends-{geo}", "link": ""})
+        except Exception:
+            continue
+    return items
+
+
 def fetch_social_ig_fb_and_news_buzz() -> tuple[list[dict], list[dict]]:
     """Captures 100% unbiased global blockbusters & social buzz for Today/7d and 30d (no hardcoded franchises)."""
     q_blockbuster_7d = urllib.parse.quote_plus('("box office" OR blockbuster OR "in theaters" OR "trending movie" OR "viral film" OR sequel) (film OR movie OR trailer) when:7d')
@@ -386,6 +402,8 @@ def scan_virality(skip_yt: bool = False) -> dict:
     reddit_7d = fetch_reddit_arcticshift(all_subs, days=7, limit_per_sub=22)
     reddit_30d = fetch_reddit_arcticshift(all_subs[:6], days=30, limit_per_sub=20)
     buzz_7d, buzz_30d = fetch_social_ig_fb_and_news_buzz()
+    gtrends_today = fetch_google_trends_daily_rss()
+    buzz_7d = gtrends_today + buzz_7d
 
     buckets: dict[str, dict] = {}
 

@@ -247,44 +247,31 @@ Return a valid JSON object strictly matching this schema:
             logging.info(f"[LLM Brain] Successfully synthesized zeitgeist! Winner: '{result.get('breaking_winner', {}).get('topic')}' | Hype: {result.get('breaking_winner', {}).get('hype_score')} | Breaking: {result.get('breaking_event_detected')}")
             return result
     except Exception as e:
-        logging.error(f"[LLM Brain] Gemini API execution failed: {e}; falling back to heuristic analysis.")
+        logging.error(f"[LLM Brain] Gemini API execution failed: {e}; trying SLM #2 fallback...")
+        try:
+            from llm_director import run_text_slm
+            slm_raw = run_text_slm(
+                f"Pick the #1 trending entertainment topic from these signals and return JSON with keys "
+                f"breaking_event_detected (false), breaking_winner ({{topic, genre, hype_score}}), top_ranked_contenders ([]). "
+                f"Signals: {json.dumps(signals)[:1500]}",
+                max_new_tokens=220,
+            )
+            if slm_raw:
+                m = re.search(r"\{.*\}", slm_raw, re.DOTALL)
+                if m:
+                    return json.loads(m.group(0))
+        except Exception:
+            pass
         return fallback_heuristic_scoring(signals)
 
 
 def fallback_heuristic_scoring(signals: Dict[str, Any]) -> Dict[str, Any]:
-    """Robust fallback when Gemini is unavailable or rate-limited."""
-    topics = ["Avengers Doomsday", "Godzilla", "The Hunger Games", "Gladiator 2", "Patrick Jane"]
-    winner = {
-        "topic": "Avengers Doomsday",
-        "genre": "superhero_scifi",
-        "hype_score": 92.0,
-        "urgency_level": "BREAKING_IMMEDIATE",
-        "proof_rationale": "High velocity trailer queries and Marvel fandom anticipation across Reddit and YouTube.",
-        "recommended_format": "edit_ranking",
-        "harvest_queries": [
-            "Avengers Doomsday edit #shorts",
-            "Doctor Doom edit #shorts",
-            "Avengers Doomsday trailer edit",
-        ],
-        "high_ctr_title": "Ranking Best Avengers Doomsday Edits! 🔥💀 #shorts #naofloppa #shortsfeed",
-        "pinned_debate_comment": "👇 Did #1 deserve the top spot, or is Doctor Doom taking over? Drop your thoughts!",
-    }
+    """Robust non-preempting fallback when Gemini & SLM #2 are unavailable."""
     return {
-        "breaking_event_detected": True,
-        "breaking_winner": winner,
-        "top_ranked_contenders": [
-            winner,
-            {
-                "topic": "Godzilla",
-                "genre": "action_thriller",
-                "hype_score": 88.0,
-                "urgency_level": "TRENDING_HIGH",
-                "proof_rationale": "Consistent multi-hundred-thousand view fan edit spikes across YouTube Shorts.",
-                "recommended_format": "edit_ranking",
-                "harvest_queries": ["Godzilla edit #shorts", "Godzilla badass edit #shorts"],
-            }
-        ],
-        "reasoning_summary": "Heuristic fallback prioritizing global franchise blockbuster momentum.",
+        "breaking_event_detected": False,
+        "breaking_winner": {},
+        "top_ranked_contenders": [],
+        "reasoning_summary": "Fallback mode: deferring to live multi-platform Virality Radar scores.",
     }
 
 

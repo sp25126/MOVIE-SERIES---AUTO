@@ -106,60 +106,60 @@ def scout_song_creator_edits(query: str, count: int = 5) -> List[dict]:
     except Exception as e:
         logger.debug(f"[Song Radar] TikTok scout error: {e}")
 
-    # 3. YouTube Shorts scout
-    cmd = [
-        sys.executable, "-m", "yt_dlp",
-        "--dump-json", "--no-playlist", "--no-warnings",
-        "--match-filter", "duration <= 60 & duration >= 8",
-        f"ytsearch20:{query}",
-    ]
+    # 3. YouTube Shorts scout (Today & All-Time high-view edits)
+    import urllib.parse
+    today_url = f"https://www.youtube.com/results?search_query={urllib.parse.quote_plus(query)}&sp=CAMSBAgCEAE%3D"
     yt_edits = []
-    try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=35)
-        for line in proc.stdout.splitlines():
-            if not line.strip():
-                continue
-            try:
-                d = json.loads(line)
-            except Exception:
-                continue
-
-            vid = d.get("id")
-            if not vid or vid in seen:
-                continue
-            seen.add(vid)
-
-            title = d.get("title") or ""
-            low_t = title.lower()
-            if any(w in low_t for w in NON_SONG_NOISE):
-                continue
-
-            views = int(d.get("view_count") or 0)
-            if views < 2500:
-                continue
-
-            try:
-                from clip_harvester import passes_copyright_prefilter
-                ok_cid, _ = passes_copyright_prefilter(d, min_duration=8, check_html=False)
-                if not ok_cid:
+    for yt_cmd in (
+        [sys.executable, "-m", "yt_dlp", "--flat-playlist", "--dump-json", "--no-warnings", "--playlist-end", "8", today_url],
+        [sys.executable, "-m", "yt_dlp", "--dump-json", "--no-playlist", "--no-warnings", "--match-filter", "duration <= 60 & duration >= 8", f"ytsearch16:{query}"],
+    ):
+        try:
+            proc = subprocess.run(yt_cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=35)
+            for line in proc.stdout.splitlines():
+                if not line.strip():
                     continue
-            except Exception:
-                pass
+                try:
+                    d = json.loads(line)
+                except Exception:
+                    continue
 
-            creator = d.get("channel") or d.get("uploader") or "Creator"
-            dur = float(d.get("duration") or 20.0)
+                vid = d.get("id")
+                if not vid or vid in seen:
+                    continue
+                seen.add(vid)
 
-            yt_edits.append({
-                "id": f"yt_{vid}",
-                "platform": "youtube",
-                "title": title,
-                "creator": f"@{creator.replace(' ', '')}" if not creator.startswith("@") else creator,
-                "views": views,
-                "duration": dur,
-                "url": d.get("webpage_url") or f"https://youtube.com/watch?v={vid}",
-            })
-    except Exception as e:
-        logger.debug(f"[Song Radar] Search error ({query}): {e}")
+                title = d.get("title") or ""
+                low_t = title.lower()
+                if any(w in low_t for w in NON_SONG_NOISE):
+                    continue
+
+                views = int(d.get("view_count") or 0)
+                if views < 2500:
+                    continue
+
+                try:
+                    from clip_harvester import passes_copyright_prefilter
+                    ok_cid, _ = passes_copyright_prefilter(d, min_duration=8, check_html=False)
+                    if not ok_cid:
+                        continue
+                except Exception:
+                    pass
+
+                creator = d.get("channel") or d.get("uploader") or "Creator"
+                dur = float(d.get("duration") or 20.0)
+
+                yt_edits.append({
+                    "id": f"yt_{vid}",
+                    "platform": "youtube",
+                    "title": title,
+                    "creator": f"@{creator.replace(' ', '')}" if not creator.startswith("@") else creator,
+                    "views": views,
+                    "duration": dur,
+                    "url": d.get("webpage_url") or f"https://youtube.com/watch?v={vid}",
+                })
+        except Exception as e:
+            logger.debug(f"[Song Radar] Search error ({query}): {e}")
 
     # Multi-platform interleaving so Instagram/TikTok edits aren't buried
     by_plat: dict[str, list[dict]] = {}

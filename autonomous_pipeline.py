@@ -192,6 +192,14 @@ def _verify_clips_copyright_and_streams(clips: list[dict]) -> list[dict]:
             if "video" not in streams:
                 logging.warning(f"  ✗ [Stream Check] Rejected {cid}: no video stream")
                 continue
+            if "audio" in streams:
+                vd = subprocess.run(
+                    ["ffmpeg", "-hide_banner", "-t", "10", "-i", str(lp), "-af", "volumedetect", "-f", "null", "-"],
+                    capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=12,
+                )
+                m_vol = re.search(r"mean_volume:\s*([\-0-9.]+)\s*dB", vd.stderr)
+                if m_vol and float(m_vol.group(1)) < -55.0:
+                    logging.warning(f"  ! [Audio Check] {cid} has near-silent audio ({m_vol.group(1)} dB); renderer will apply BGM/pad.")
         except Exception:
             pass
         clean.append(c)
@@ -642,19 +650,28 @@ def run_autonomous_workflow(
     out_mp4 = _render_master(working_dur)
     qa_res = qa_gate.verify_video(out_mp4)
 
-    # LLM Overseer iterates up to 2 refinement passes until QA passes cleanly
-    for refine_iter in range(1, 3):
-        if qa_res.get("passed", False) and not qa_res.get("issues"):
+    # LLM Overseer iterates up to 3 refinement passes (Technical QA + SLM-1 Proof-Sheet Visual QA)
+    for refine_iter in range(1, 4):
+        tech_ok = qa_res.get("passed", False) and not qa_res.get("issues")
+        vis_res = {"passed": True, "issues": []}
+        if tech_ok and qa_res.get("proof_sheet"):
+            vis_res = llm_director.inspect_rendered_proof_sheet(
+                qa_res["proof_sheet"], topic=chosen_topic, use_local_model=use_local_vlm,
+            )
+        all_issues = list(qa_res.get("issues", [])) + list(vis_res.get("issues", []))
+        if tech_ok and vis_res.get("passed", True) and not all_issues:
             break
-        issues = qa_res.get("issues", [])
-        logging.warning(f"⚠️ [LLM Overseer Pass {refine_iter}/2] QA flagged {issues}. Diagnosing & fine-tuning...")
+        logging.warning(f"⚠️ [LLM Overseer Pass {refine_iter}/3] QA flagged {all_issues}. Diagnosing & fine-tuning...")
         repair = llm_director.diagnose_and_repair_defect(
-            qa_issues=issues, video_path=out_mp4, clips=curated_clips, topic=chosen_topic,
+            qa_issues=all_issues, video_path=out_mp4, clips=curated_clips, topic=chosen_topic,
         )
         logging.info(f"🔧 [LLM Overseer] Repair: {repair['diagnosis_summary']}")
         if repair.get("clip_dur_adjustment"):
             working_dur = max(8.0, (working_dur or 14.0) + repair["clip_dur_adjustment"])
-        out_mp4 = _render_master(working_dur)
+        try:
+            out_mp4 = _render_master(working_dur)
+        except Exception:
+            out_mp4 = _render_master(12.0)
         qa_res = qa_gate.verify_video(out_mp4)
 
     logging.info(f"✅ [Step 6 Complete] {out_mp4} ({out_mp4.stat().st_size / 1e6:.2f} MB) | QA={qa_res.get('passed')} | issues={qa_res.get('issues', [])}")
@@ -691,12 +708,20 @@ def run_autonomous_workflow(
     upload_result = {}
     if upload:
         logging.info("\n🚀 STEP 7: Uploading private canary & scheduling (likes hidden, comments enabled)...")
-        upload_result = metadata_uploader.upload_private_canary_and_schedule(
-            video_path=out_mp4,
-            meta=meta,
-            canary_wait_sec=90,
-        )
-        logging.info(f"✅ Live Scheduled Link: https://youtube.com/shorts/{upload_result.get('video_id')}")
+        try:
+            upload_result = metadata_uploader.upload_private_canary_and_schedule(
+                video_path=out_mp4,
+                meta=meta,
+                canary_wait_sec=90,
+            )
+            logging.info(f"✅ Live Scheduled Link: https://youtube.com/shorts/{upload_result.get('video_id')}")
+        except Exception as up_err:
+            logging.error(f"⚠️ [Step 7 Failsafe] Upload failed ({up_err}); saving to state/pending_uploads.json so video is preserved.")
+            pend_file = STATE_DIR / "pending_uploads.json"
+            pend = json.loads(pend_file.read_text(encoding="utf-8")) if pend_file.exists() else []
+            pend.append({"video_path": str(out_mp4), "metadata_json": str(meta_out), "topic": chosen_topic, "error": str(up_err)})
+            pend_file.write_text(json.dumps(pend[-20:], indent=2, ensure_ascii=False), encoding="utf-8")
+            upload_result = {"scheduled": False, "queued_pending": True, "error": str(up_err)}
 
     # Advance 4-day rotating category wheel upon successful production
     state["current_day_index"] = (curr_day % 4) + 1

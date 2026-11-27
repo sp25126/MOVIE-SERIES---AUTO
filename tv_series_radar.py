@@ -113,47 +113,49 @@ def scan_dynamic_tv_virality(max_cache_age_sec: int = 10800) -> dict:
     series_buckets: Dict[str, Dict[str, Any]] = {}
 
     for q in TV_DISCOVERY_QUERIES:
-        cmd = [
-            sys.executable, "-m", "yt_dlp",
-            "--flat-playlist", "--dump-json", "--no-warnings",
-            f"ytsearch8:{q}",
+        encoded_q = urllib.parse.quote_plus(q)
+        today_url = f"https://www.youtube.com/results?search_query={encoded_q}&sp=CAMSBAgCEAE%3D"
+        cmds = [
+            [sys.executable, "-m", "yt_dlp", "--flat-playlist", "--dump-json", "--no-warnings", "--playlist-end", "6", today_url],
+            [sys.executable, "-m", "yt_dlp", "--flat-playlist", "--dump-json", "--no-warnings", f"ytsearch8:{q}"],
         ]
-        try:
-            proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=35)
-            for line in proc.stdout.splitlines():
-                if not line.strip():
-                    continue
-                try:
-                    d = json.loads(line)
-                except Exception:
-                    continue
+        for cmd in cmds:
+            try:
+                proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=35)
+                for line in proc.stdout.splitlines():
+                    if not line.strip():
+                        continue
+                    try:
+                        d = json.loads(line)
+                    except Exception:
+                        continue
 
-                title = d.get("title") or ""
-                views = int(d.get("view_count") or 0)
-                vid = d.get("id")
-                if not vid or views < 2000:
-                    continue
+                    title = d.get("title") or ""
+                    views = int(d.get("view_count") or 0)
+                    vid = d.get("id")
+                    if not vid or views < 2000:
+                        continue
 
-                entities = extract_tv_series_entities(title)
-                for ent in entities:
-                    key = ent.lower()
-                    if key not in series_buckets:
-                        series_buckets[key] = {
-                            "series_name": ent,
-                            "total_views": 0,
-                            "clip_count": 0,
-                            "top_clip_title": title,
-                            "top_clip_url": d.get("webpage_url") or f"https://youtube.com/watch?v={vid}",
-                        }
-                    b = series_buckets[key]
-                    b["total_views"] += views
-                    b["clip_count"] += 1
-                    if views > b.get("max_views", 0):
-                        b["max_views"] = views
-                        b["top_clip_title"] = title
-                        b["top_clip_url"] = d.get("webpage_url") or f"https://youtube.com/watch?v={vid}"
-        except Exception as e:
-            logger.error(f"[Dynamic TV Radar] Search error ({q}): {e}")
+                    entities = extract_tv_series_entities(title)
+                    for ent in entities:
+                        key = ent.lower()
+                        if key not in series_buckets:
+                            series_buckets[key] = {
+                                "series_name": ent,
+                                "total_views": 0,
+                                "clip_count": 0,
+                                "top_clip_title": title,
+                                "top_clip_url": d.get("webpage_url") or f"https://youtube.com/watch?v={vid}",
+                            }
+                        b = series_buckets[key]
+                        b["total_views"] += views
+                        b["clip_count"] += 1
+                        if views > b.get("max_views", 0):
+                            b["max_views"] = views
+                            b["top_clip_title"] = title
+                            b["top_clip_url"] = d.get("webpage_url") or f"https://youtube.com/watch?v={vid}"
+            except Exception as e:
+                logger.error(f"[Dynamic TV Radar] Search error ({q}): {e}")
 
     for b in series_buckets.values():
         b["virality_score"] = round(math.log10(max(10, b["total_views"])) * 10.0 + min(b["clip_count"], 5) * 6.0, 2)

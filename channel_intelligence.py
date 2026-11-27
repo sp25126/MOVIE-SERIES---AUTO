@@ -141,3 +141,22 @@ def derive_channel_editorial_lessons(handle: str = DEFAULT_HANDLE) -> str:
         )
 
     return recent_summary
+
+
+def derive_winning_format_weights(handle: str = DEFAULT_HANDLE) -> Dict[str, float]:
+    """Analyzes @OtakuSnapster's recent uploads to weight formats that drive higher views."""
+    videos = audit_channel_recent_uploads(handle=handle, max_videos=20)
+    weights = {"edit_ranking": 1.0, "scene_commentary": 1.0, "release_hype": 1.0, "song_ranking": 1.0}
+    if not videos:
+        return weights
+    avg_views = sum(v.get("views", 0) for v in videos) / max(1, len(videos))
+    for v in videos:
+        tl = (v.get("title") or "").lower()
+        boost = 0.15 if v.get("views", 0) > avg_views else -0.05
+        if "ranking" in tl:
+            weights["edit_ranking"] = round(max(0.5, weights["edit_ranking"] + boost), 2)
+        elif "missed" in tl or "detail" in tl:
+            weights["scene_commentary"] = round(max(0.5, weights["scene_commentary"] + boost), 2)
+        elif "song" in tl or "audio" in tl:
+            weights["song_ranking"] = round(max(0.5, weights["song_ranking"] + boost), 2)
+    return weights

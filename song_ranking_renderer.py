@@ -166,24 +166,36 @@ def render_song_edit_ranking(
                 ss = min(max(1.0, src_dur * 0.18), src_dur - dur - 0.5)
 
         try:
-            from dsp_renderer import _detect_black_bar_crop, _safe_start_offset
+            from dsp_renderer import _detect_black_bar_crop, _safe_start_offset, _is_vertical_clip
             if ss < 0.8 and dur > 6.0:
                 safe_ss = _safe_start_offset(src, src_dur, dur - 1.0)
                 if safe_ss > ss:
                     dur = max(4.0, dur - (safe_ss - ss))
                     ss = safe_ss
             bar_crop = _detect_black_bar_crop(src, ss + min(2.5, dur * 0.35))
+            is_vert = _is_vertical_clip(src) and not bar_crop
         except Exception:
             bar_crop = ""
+            is_vert = False
 
-        # Dual-layer blurred vertical canvas (scales 9:16 up to 1080x1440 and 16:9 crisply)
-        vf = (
-            f"[0:v]trim=0:{dur:.3f},setpts=(PTS-STARTPTS)/1.03,fps=30,{bar_crop}split=2[bg0][fg0];"
-            f"[bg0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=24,eq=brightness=-0.16[bg];"
-            f"[fg0]crop=trunc(iw*0.97/2)*2:trunc(ih*0.97/2)*2,scale=1080:1440:force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2,eq=contrast=1.08:saturation=1.14[fg];"
-            f"[bg][fg]overlay=(W-w)/2:(H-h)/2[comp];"
-            f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
-        )
+        if is_vert:
+            # True 9:16 full-bleed for vertical song edits
+            vf = (
+                f"[0:v]trim=0:{dur:.3f},setpts=(PTS-STARTPTS)/1.03,fps=30,"
+                f"crop=trunc(iw*0.97/2)*2:trunc(ih*0.97/2)*2,"
+                f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
+                f"eq=contrast=1.08:saturation=1.14[comp];"
+                f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
+            )
+        else:
+            # Dual-layer blurred vertical canvas (scales 9:16 up to 1080x1440 and 16:9 crisply)
+            vf = (
+                f"[0:v]trim=0:{dur:.3f},setpts=(PTS-STARTPTS)/1.03,fps=30,{bar_crop}split=2[bg0][fg0];"
+                f"[bg0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=24,eq=brightness=-0.16[bg];"
+                f"[fg0]crop=trunc(iw*0.97/2)*2:trunc(ih*0.97/2)*2,scale=1080:1440:force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2,eq=contrast=1.08:saturation=1.14[fg];"
+                f"[bg][fg]overlay=(W-w)/2:(H-h)/2[comp];"
+                f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
+            )
 
         # Forensic 48kHz +3% Anti-CID shield + smooth fade transitions + -14.0 LUFS
         out_dur = dur / 1.03

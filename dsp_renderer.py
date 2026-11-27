@@ -252,6 +252,19 @@ def _detect_black_bar_crop(video_path: Path, ss: float) -> str:
     return ""
 
 
+def _is_vertical_clip(video_path: Path) -> bool:
+    """Returns True if source clip is already vertical (height > width) for true 9:16 full-bleed."""
+    try:
+        proc = subprocess.run(
+            ["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height", "-of", "csv=p=0:s=x", str(video_path)],
+            capture_output=True, text=True, timeout=10,
+        )
+        w, h = [int(x) for x in proc.stdout.strip().split("x")[:2]]
+        return h > w
+    except Exception:
+        return False
+
+
 def _safe_start_offset(video_path: Path, src_dur: float, target_dur: float) -> float:
     """Skips dark fade-in intros (>0.2s black frames at start) so renders pass 0-black-frame QA."""
     if src_dur <= target_dur + 2.5:
@@ -344,16 +357,24 @@ def render_edit_ranking(
             )
 
         bar_crop = _detect_black_bar_crop(src, ss + min(3.0, dur * 0.35))
-        # NOTE: ffmpeg input already seeked with -ss, so the stream starts at ss.
-        # We trim to [0, dur] in stream-time (which corresponds to [ss, ss+dur] in source-time).
-        # setpts normalises timestamps so the speedup works correctly.
-        vf = (
-            f"[0:v]trim=start=0:end={dur:.3f},setpts=(PTS-STARTPTS)/1.04,fps=30,{bar_crop}split=2[bg0][fg0];"
-            f"[bg0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=24,eq=brightness=-0.16[bg];"
-            f"[fg0]crop=trunc(iw*0.96/2)*2:trunc(ih*0.96/2)*2,scale=1080:1920:force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2,eq=contrast=1.08:saturation=1.12[fg];"
-            f"[bg][fg]overlay=(W-w)/2:(H-h)/2[comp];"
-            f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
-        )
+        if _is_vertical_clip(src) and not bar_crop:
+            # True 9:16 full-bleed for vertical source edits (zero blurry sidebars)
+            vf = (
+                f"[0:v]trim=start=0:end={dur:.3f},setpts=(PTS-STARTPTS)/1.04,fps=30,"
+                f"crop=trunc(iw*0.97/2)*2:trunc(ih*0.97/2)*2,"
+                f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
+                f"eq=contrast=1.08:saturation=1.12[comp];"
+                f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
+            )
+        else:
+            # Dual-layer blurred vertical canvas for 16:9 / 1:1 / letterboxed clips
+            vf = (
+                f"[0:v]trim=start=0:end={dur:.3f},setpts=(PTS-STARTPTS)/1.04,fps=30,{bar_crop}split=2[bg0][fg0];"
+                f"[bg0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=24,eq=brightness=-0.16[bg];"
+                f"[fg0]crop=trunc(iw*0.96/2)*2:trunc(ih*0.96/2)*2,scale=1080:1920:force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2,eq=contrast=1.08:saturation=1.12[fg];"
+                f"[bg][fg]overlay=(W-w)/2:(H-h)/2[comp];"
+                f"[comp][1:v]overlay=0:0,format=yuv420p[vout]"
+            )
         cmd = [
             FFMPEG, "-y",
             "-ss", f"{ss:.2f}", "-i", str(src), "-i", str(ov), "-stream_loop", "-1", "-i", str(bgm),
