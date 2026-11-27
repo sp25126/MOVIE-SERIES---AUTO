@@ -69,13 +69,20 @@ def run_all_category_virality_scan(force_fresh_yt: bool = True) -> Dict[str, Any
 
         digest["categories"]["cinema"] = {
             "status": "success",
-            "lead_winner": winner.get("topic", "Godzilla"),
+            "lead_winner": winner.get("topic", "Cinema"),
             "lead_genre": winner.get("genre", "action_thriller"),
             "lead_score": winner.get("score", 0.0),
             "top_candidates": top_topics[:10],
+            "top_yt_today": cinema_rep.get("top_yt_today", [])[:5],
+            "top_yt_week": cinema_rep.get("top_yt_week", [])[:5],
+            "top_yt_month": cinema_rep.get("top_yt_month", [])[:5],
             "genre_leaderboard": cinema_rep.get("genre_leaderboard", []),
         }
         logging.info(f"  ✓ Cinema #1 Dynamic Winner: '{winner.get('topic')}' (Score: {winner.get('score')})")
+        for win_label, key in (("TODAY", "top_yt_today"), ("THIS WEEK", "top_yt_week"), ("THIS MONTH", "top_yt_month")):
+            items = cinema_rep.get(key, [])[:3]
+            if items:
+                logging.info(f"    [{win_label}] " + " | ".join(f"{x['title'][:32]} ({x['views']:,})" for x in items))
     except Exception as e:
         logging.error(f"  ✗ Cinema scan error: {e}", exc_info=True)
         digest["categories"]["cinema"] = {"status": "error", "error": str(e)}

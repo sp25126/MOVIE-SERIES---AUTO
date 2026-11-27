@@ -232,6 +232,7 @@ def upload_private_canary_and_schedule(
         "status": {
             "privacyStatus": "private",
             "selfDeclaredMadeForKids": False,
+            "publicStatsViewable": False,
         },
     }
     media = MediaFileUpload(str(video_path), chunksize=5 * 1024 * 1024, resumable=True, mimetype="video/mp4")
@@ -262,6 +263,7 @@ def upload_private_canary_and_schedule(
                 "privacyStatus": "private",
                 "publishAt": meta["recommended_slot_utc"],
                 "selfDeclaredMadeForKids": False,
+                "publicStatsViewable": False,
             },
         },
     ).execute()

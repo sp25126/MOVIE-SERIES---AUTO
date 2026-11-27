@@ -138,21 +138,21 @@ def _clean_series_name(raw_show: str) -> str:
     return s or raw_show.strip()
 
 
-def _get_virality_digest(force_fresh: bool = False) -> dict:
-    """Loads fresh (<4h) daily_virality_digest.json or executes the 360° Virality Engine once."""
+def _get_virality_digest(force_fresh: bool = True) -> dict:
+    """STEP 1 (Virality Engine): Scans what is trending TODAY, THIS WEEK & THIS MONTH before production."""
     import virality_engine
     digest_path = virality_engine.DAILY_DIGEST_PATH
     if not force_fresh and digest_path.exists():
         try:
             age = time.time() - digest_path.stat().st_mtime
-            if age < 4 * 3600:
+            if age < 1800:
                 data = json.loads(digest_path.read_text(encoding="utf-8"))
                 if data.get("categories"):
-                    logging.info(f"[Virality Engine] Using fresh 360° digest ({age / 60:.0f}m old).")
+                    logging.info(f"[Step 1 — Virality Engine] Using fresh 360° digest ({age / 60:.0f}m old).")
                     return data
         except Exception:
             pass
-    logging.info("🔥 [Virality Engine] Executing live 360° virality scan across all 4 pillars + LLM Brain...")
+    logging.info("🔥 [STEP 1 — VIRALITY ENGINE] Scanning TODAY, THIS WEEK & THIS MONTH across all 4 pillars + LLM Brain...")
     try:
         return virality_engine.run_all_category_virality_scan(force_fresh_yt=True)
     except Exception as e:
@@ -160,6 +160,42 @@ def _get_virality_digest(force_fresh: bool = False) -> dict:
         if digest_path.exists():
             return json.loads(digest_path.read_text(encoding="utf-8"))
         return {}
+
+
+def _verify_clips_copyright_and_streams(clips: list[dict]) -> list[dict]:
+    """STEP 4 (Clip & Audio Checker): Verifies copyright/CID safety and valid video+audio streams before editing."""
+    import subprocess
+    from clip_harvester import passes_copyright_prefilter, has_youtube_cid_claim
+
+    clean: list[dict] = []
+    for c in clips:
+        lp = pathlib.Path(c.get("local_path", ""))
+        if not lp.exists() or lp.stat().st_size < 20_000:
+            continue
+        ok_pre, why_pre = passes_copyright_prefilter(c, min_duration=4, check_html=False)
+        if not ok_pre:
+            logging.warning(f"  ✗ [Copyright Check] Rejected {c.get('id')}: {why_pre}")
+            continue
+        cid = str(c.get("id") or "")
+        if cid.startswith("yt_") and len(cid) > 3:
+            claimed, why_cid = has_youtube_cid_claim(cid[3:])
+            if claimed:
+                logging.warning(f"  ✗ [CID Check] Rejected {cid}: {why_cid}")
+                continue
+        # Verify stream integrity via ffprobe
+        try:
+            probe = subprocess.run(
+                ["ffprobe", "-v", "error", "-show_entries", "stream=codec_type", "-of", "csv=p=0", str(lp)],
+                capture_output=True, text=True, timeout=10,
+            )
+            streams = set(probe.stdout.split())
+            if "video" not in streams:
+                logging.warning(f"  ✗ [Stream Check] Rejected {cid}: no video stream")
+                continue
+        except Exception:
+            pass
+        clean.append(c)
+    return clean
 
 
 def _build_cinema_candidates(digest: dict, topic_override: str, used_set: set[str]) -> list[dict]:
@@ -492,14 +528,29 @@ def run_autonomous_workflow(
     if not chosen_topic or not downloaded:
         raise RuntimeError(f"Starvation: Not enough valid clips harvested across candidates for Pillar #{curr_day}.")
 
-    logging.info(f"🏆 Winning Topic: '{chosen_topic}' (Genre={chosen_genre}, Format={chosen_fmt})")
+    logging.info(f"🏆 [Step 2 & 3 Complete] Winning Topic: '{chosen_topic}' (Genre={chosen_genre}, Format={chosen_fmt}, Harvested={len(downloaded)})")
 
     # =========================================================================
-    # STEP 5: MODEL VISUAL INSPECTION, BEAT-DROP & CUT-POINT SCORING
+    # STEP 4: CLIP & AUDIO COPYRIGHT / STREAM CHECKER
     # =========================================================================
-    logging.info("🧠 STEP 5: Model Vision Inspection on Sequential Timeline Frames...")
+    logging.info("🛡️ STEP 4: Clip & Audio Copyright + Stream Integrity Check...")
+    checked_clips = _verify_clips_copyright_and_streams(downloaded)
+    if len(checked_clips) >= (1 if chosen_fmt == "scene_commentary" else 2):
+        downloaded = checked_clips
+    logging.info(f"  ✓ Verified {len(downloaded)} copyright-clean clips.")
+
+    # =========================================================================
+    # STEP 5: YOUTUBE CHANNEL ANALYZER + SEO TITLE, DESCRIPTION, TAGS & SCHEDULE
+    # =========================================================================
+    logging.info("📊 STEP 5: Analyzing @OtakuSnapster Channel & Generating SEO Metadata + Schedule...")
+    try:
+        from channel_intelligence import derive_channel_editorial_lessons
+        ch_lessons = derive_channel_editorial_lessons()
+        logging.info(f"  ✓ Channel Intelligence loaded ({len(ch_lessons)} chars).")
+    except Exception as ce:
+        logging.warning(f"  Channel Intelligence warning: {ce}")
+
     import llm_director
-
     target_cnt = 1 if chosen_fmt == "scene_commentary" else 3
     curated_clips = llm_director.curate_and_rank_clips(
         candidates=downloaded,
@@ -508,7 +559,6 @@ def run_autonomous_workflow(
         use_local_model=use_local_vlm,
         pillar_day=curr_day,
     )
-
     if not curated_clips:
         raise RuntimeError("No candidate clips approved by AI vision filter.")
 
@@ -520,102 +570,94 @@ def run_autonomous_workflow(
             f"Label: '{c.get('short_label')}' | Cut: {cut.get('start_sec', 0.0)}s -> {cut.get('end_sec', 0.0)}s"
         )
 
+    import metadata_uploader
+    meta = metadata_uploader.build_metadata(
+        topic=chosen_topic,
+        fmt="edit_ranking" if chosen_fmt == "song_ranking" else chosen_fmt,
+        clips=curated_clips,
+        genre=chosen_genre,
+    )
+    if is_mentalist and pj_cfg:
+        ep_num = int(pj_cfg.get("completed_episodes", 0)) + 1
+        meta["title"] = f"Ranking Best The Mentalist Edits (Part {ep_num})! 🔥💀 #shorts #thementalist #naofloppa #shortsfeed"[:100]
+    elif chosen_fmt == "song_ranking":
+        meta["title"] = f"Ranking Best {chosen_topic} Edits! 🔥💀 #shorts #naofloppa #shortsfeed"[:100]
+
+    logging.info(f"  ✓ SEO Title: {meta['title']}")
+    logging.info(f"  ✓ Scheduled Slot UTC: {meta['recommended_slot_utc']}")
+
     # =========================================================================
-    # STEP 6: DSP PRECISION EDITING (Format-Routed)
+    # STEP 6: VIDEO EDITOR + ITERATIVE LLM OVERSEER REFINEMENT LOOP
     # =========================================================================
-    logging.info(f"🎬 STEP 6: DSP Master Rendering (Format={chosen_fmt})...")
+    logging.info(f"🎬 STEP 6: Video Editor & LLM Overseer Refinement Loop (Format={chosen_fmt})...")
     import dsp_renderer
+    import qa_gate
     output_dir = ROOT / "output"
     output_dir.mkdir(exist_ok=True)
     slug = "".join(ch for ch in chosen_topic.lower() if ch.isalnum()) or "short"
 
-    if is_mentalist:
-        ep_num = int(pj_cfg.get("completed_episodes", 0)) + 1 if pj_cfg else 1
-        out_mp4 = output_dir / f"thementalist_ep{ep_num:02d}_master_short.mp4"
-        logging.info("🔒 [Patrick Jane Trimming Rules Enforced] Mode=Full Uncut (Dialogue preserved, dark fade-in skipped, outro trimmed).")
+    def _render_master(cur_clip_dur: float) -> pathlib.Path:
+        if is_mentalist:
+            ep_n = int(pj_cfg.get("completed_episodes", 0)) + 1 if pj_cfg else 1
+            p_out = output_dir / f"thementalist_ep{ep_n:02d}_master_short.mp4"
+            dsp_renderer.render_edit_ranking(
+                topic=chosen_topic, clips=curated_clips, output_mp4=p_out,
+                clip_dur=0.0, genre=chosen_genre, full_uncut=True,
+            )
+            return p_out
+        if chosen_fmt == "song_ranking":
+            from song_ranking_renderer import render_song_edit_ranking
+            p_out = output_dir / f"song_ranking_{slug}_{current_subcat}_master.mp4"
+            render_song_edit_ranking(
+                chosen_banner or f"RANKING THE BEST {chosen_topic.upper()} EDITS",
+                curated_clips, p_out, clip_dur=cur_clip_dur if cur_clip_dur > 0 else 8.0,
+            )
+            return p_out
+        if chosen_fmt == "release_hype":
+            from clip_harvester import harvest_intro_hook
+            p_out = output_dir / f"release_hype_{slug}_master_short.mp4"
+            hook = harvest_intro_hook(chosen_topic, exclude_ids={c["id"] for c in curated_clips})
+            dsp_renderer.render_release_hype(
+                f"THIS WEEK CAN'T HOLD THIS MUCH PEAK... ({chosen_topic})",
+                curated_clips, p_out, hook_clip=hook, genre=chosen_genre,
+            )
+            return p_out
+        if chosen_fmt in ("movie_trivia", "scene_commentary"):
+            p_out = output_dir / f"{chosen_fmt}_{slug}_master_short.mp4"
+            for c in curated_clips:
+                c.setdefault("fact_or_commentary", c.get("title", "")[:60])
+            dsp_renderer.render_movie_trivia_or_commentary(
+                chosen_topic, curated_clips, p_out, mode=chosen_fmt, genre=chosen_genre,
+            )
+            return p_out
+        p_out = output_dir / f"{slug}_master_short.mp4"
         dsp_renderer.render_edit_ranking(
-            topic=chosen_topic,
-            clips=curated_clips,
-            output_mp4=out_mp4,
-            clip_dur=0.0,
-            genre=chosen_genre,
-            full_uncut=True,
+            topic=chosen_topic, clips=curated_clips, output_mp4=p_out,
+            clip_dur=0.0 if cur_clip_dur <= 0 else cur_clip_dur,
+            genre=chosen_genre, full_uncut=False,
         )
-    elif chosen_fmt == "song_ranking":
-        from song_ranking_renderer import render_song_edit_ranking
-        out_mp4 = output_dir / f"song_ranking_{slug}_{current_subcat}_master.mp4"
-        render_song_edit_ranking(
-            chosen_banner or f"RANKING THE BEST {chosen_topic.upper()} EDITS",
-            curated_clips,
-            out_mp4,
-            clip_dur=8.0,
-        )
-    elif chosen_fmt == "release_hype":
-        from clip_harvester import harvest_intro_hook
-        out_mp4 = output_dir / f"release_hype_{slug}_master_short.mp4"
-        hook = harvest_intro_hook(chosen_topic, exclude_ids={c["id"] for c in curated_clips})
-        dsp_renderer.render_release_hype(
-            f"THIS WEEK CAN'T HOLD THIS MUCH PEAK... ({chosen_topic})",
-            curated_clips,
-            out_mp4,
-            hook_clip=hook,
-            genre=chosen_genre,
-        )
-    elif chosen_fmt in ("movie_trivia", "scene_commentary"):
-        out_mp4 = output_dir / f"{chosen_fmt}_{slug}_master_short.mp4"
-        for c in curated_clips:
-            c.setdefault("fact_or_commentary", c.get("title", "")[:60])
-        dsp_renderer.render_movie_trivia_or_commentary(
-            chosen_topic,
-            curated_clips,
-            out_mp4,
-            mode=chosen_fmt,
-            genre=chosen_genre,
-        )
-    else:
-        out_mp4 = output_dir / f"{slug}_master_short.mp4"
-        effective_clip_dur = 0.0 if clip_dur <= 0 else clip_dur
-        dsp_renderer.render_edit_ranking(
-            topic=chosen_topic,
-            clips=curated_clips,
-            output_mp4=out_mp4,
-            clip_dur=effective_clip_dur,
-            genre=chosen_genre,
-            full_uncut=False,
-        )
+        return p_out
 
-    logging.info(f"Render completed: {out_mp4} ({out_mp4.stat().st_size / 1e6:.2f} MB)")
-
-    # =========================================================================
-    # STEP 7: QA RECHECKING & MODEL SELF-HEALING LOOP
-    # =========================================================================
-    logging.info("🔍 STEP 7: QA Verification & Model Self-Healing...")
-    import qa_gate
+    working_dur = clip_dur
+    out_mp4 = _render_master(working_dur)
     qa_res = qa_gate.verify_video(out_mp4)
-    passed = qa_res.get("passed", False)
-    issues = qa_res.get("issues", [])
 
-    if (not passed or issues) and chosen_fmt == "edit_ranking" and not is_mentalist:
-        logging.warning(f"⚠️ QA Gate flagged issues: {issues}. Triggering AI Self-Healing Loop...")
+    # LLM Overseer iterates up to 2 refinement passes until QA passes cleanly
+    for refine_iter in range(1, 3):
+        if qa_res.get("passed", False) and not qa_res.get("issues"):
+            break
+        issues = qa_res.get("issues", [])
+        logging.warning(f"⚠️ [LLM Overseer Pass {refine_iter}/2] QA flagged {issues}. Diagnosing & fine-tuning...")
         repair = llm_director.diagnose_and_repair_defect(
-            qa_issues=issues,
-            video_path=out_mp4,
-            clips=curated_clips,
-            topic=chosen_topic,
+            qa_issues=issues, video_path=out_mp4, clips=curated_clips, topic=chosen_topic,
         )
-        logging.info(f"🔧 Model Repair Decision: {repair['diagnosis_summary']}")
-        adjusted_dur = max(10.0, (clip_dur or 16.0) + repair.get("clip_dur_adjustment", 0.0))
-        dsp_renderer.render_edit_ranking(
-            topic=chosen_topic,
-            clips=curated_clips,
-            output_mp4=out_mp4,
-            clip_dur=adjusted_dur,
-            genre=chosen_genre,
-        )
+        logging.info(f"🔧 [LLM Overseer] Repair: {repair['diagnosis_summary']}")
+        if repair.get("clip_dur_adjustment"):
+            working_dur = max(8.0, (working_dur or 14.0) + repair["clip_dur_adjustment"])
+        out_mp4 = _render_master(working_dur)
         qa_res = qa_gate.verify_video(out_mp4)
-        logging.info(f"✅ Post-Repair QA Result: passed={qa_res.get('passed', False)}, issues={qa_res.get('issues', [])}")
-    else:
-        logging.info(f"✅ QA Gate: passed={passed} | issues={issues}")
+
+    logging.info(f"✅ [Step 6 Complete] {out_mp4} ({out_mp4.stat().st_size / 1e6:.2f} MB) | QA={qa_res.get('passed')} | issues={qa_res.get('issues', [])}")
 
     # Record topic & series state ONLY after successful render + QA
     if curr_day == 1:
@@ -631,28 +673,6 @@ def run_autonomous_workflow(
         fresh_cfg["last_run_utc"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         PATRICK_JANE_FILE.write_text(json.dumps(fresh_cfg, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    # =========================================================================
-    # STEP 8: SEO TITLE + VIRAL HASHTAGS + CREDITS + SCHEDULING
-    # =========================================================================
-    logging.info("📝 STEP 8: Generating SEO Metadata & Unrelated Trending Hashtags Cloud...")
-    import metadata_uploader
-    meta = metadata_uploader.build_metadata(
-        topic=chosen_topic,
-        fmt="edit_ranking" if chosen_fmt == "song_ranking" else chosen_fmt,
-        clips=curated_clips,
-        genre=chosen_genre,
-    )
-    if is_mentalist and pj_cfg:
-        ep_num = int(pj_cfg.get("completed_episodes", 0)) + 1
-        meta["title"] = f"Ranking Best The Mentalist Edits (Part {ep_num})! 🔥💀 #shorts #thementalist #naofloppa #shortsfeed"[:100]
-    elif chosen_fmt == "song_ranking":
-        meta["title"] = f"Ranking Best {chosen_topic} Edits! 🔥💀 #shorts #naofloppa #shortsfeed"[:100]
-
-    logging.info("\n--- GENERATED PUBLISHING METADATA ---")
-    logging.info(f"Title: {meta['title']}")
-    logging.info(f"Slot:  {meta['recommended_slot_utc']}")
-    logging.info(f"Tags:  {meta['tags']}")
-
     meta_out = output_dir / f"{slug}_metadata.json"
     meta_out.write_text(json.dumps({
         "pillar_day": curr_day,
@@ -665,9 +685,12 @@ def run_autonomous_workflow(
     }, indent=2, ensure_ascii=False), encoding="utf-8")
     logging.info(f"Saved metadata JSON: {meta_out}")
 
+    # =========================================================================
+    # STEP 7: VIDEO UPLOADER (Like/Dislike Counts Hidden, Comments Enabled)
+    # =========================================================================
     upload_result = {}
     if upload:
-        logging.info("\n🚀 Uploading private canary & scheduling to YouTube Studio...")
+        logging.info("\n🚀 STEP 7: Uploading private canary & scheduling (likes hidden, comments enabled)...")
         upload_result = metadata_uploader.upload_private_canary_and_schedule(
             video_path=out_mp4,
             meta=meta,

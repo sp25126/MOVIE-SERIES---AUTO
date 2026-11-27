@@ -19,7 +19,8 @@ CATALOG_PATH = ROOT / "niche_catalog.json"
 
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
 
-# YouTube native protobuf sp filters (Videos sorted by View Count)
+# YouTube native protobuf sp filters (Videos sorted by View Count: Today / This Week / This Month)
+YT_SP_TODAY_VIEWS = "CAMSBAgCEAE%3D"
 YT_SP_WEEK_VIEWS = "CAMSBAgDEAE%3D"
 YT_SP_MONTH_VIEWS = "CAMSBAgEEAE%3D"
 
@@ -217,20 +218,30 @@ def classify_genre(topic: str, context_text: str, origin_sub: str, groups: dict)
 
 
 def probe_youtube_window(queries: list[tuple[str, str]], sp: str, label: str, per_query: int = 6) -> list[dict]:
-    """Queries YouTube view-sorted search feeds across real movie edits and climaxes."""
+    """Queries YouTube view-sorted search feeds for Today / This Week / This Month using native &sp= filters."""
     results, seen = [], set()
     for gid, q in queries:
-        # Use direct ytsearch with sort by views so view counts are accurately parsed
-        search_query = f"ytsearch{per_query}:{q} edit shorts"
+        encoded_q = urllib.parse.quote_plus(f"{q} edit shorts")
+        search_url = f"https://www.youtube.com/results?search_query={encoded_q}&sp={sp}"
         cmd = [
             sys.executable, "-m", "yt_dlp",
-            "--flat-playlist", "--dump-json", "--no-warnings", search_query,
+            "--flat-playlist", "--dump-json", "--no-warnings",
+            "--playlist-end", str(per_query),
+            search_url,
         ]
         try:
             proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=25)
-            for line in proc.stdout.splitlines():
-                if not line.strip():
-                    continue
+            lines = [l for l in proc.stdout.splitlines() if l.strip()]
+            if not lines:
+                # Fallback to ytsearch if YouTube results URL returned empty
+                fb_cmd = [
+                    sys.executable, "-m", "yt_dlp",
+                    "--flat-playlist", "--dump-json", "--no-warnings",
+                    f"ytsearch{per_query}:{q} edit shorts",
+                ]
+                proc = subprocess.run(fb_cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=25)
+                lines = [l for l in proc.stdout.splitlines() if l.strip()]
+            for line in lines:
                 try:
                     d = json.loads(line)
                 except Exception:
@@ -238,7 +249,8 @@ def probe_youtube_window(queries: list[tuple[str, str]], sp: str, label: str, pe
                 vid = d.get("id")
                 title = d.get("title") or ""
                 views = int(d.get("view_count") or 0)
-                if not vid or vid in seen or views < 25_000 or any(j in title.lower() for j in NON_MOVIE_JUNK):
+                min_views = 2_000 if label == "today" else 15_000
+                if not vid or vid in seen or views < min_views or any(j in title.lower() for j in NON_MOVIE_JUNK):
                     continue
                 seen.add(vid)
                 results.append({
@@ -306,11 +318,11 @@ def fetch_rss(url: str, default_source: str, limit: int = 10) -> list[dict]:
 
 
 def fetch_social_ig_fb_and_news_buzz() -> tuple[list[dict], list[dict]]:
-    """Captures global blockbusters (Godzilla, MonsterVerse, Marvel, DC, A24, Box Office) + Social Buzz for 7d and 30d."""
-    q_blockbuster_7d = urllib.parse.quote_plus('(godzilla OR monsterverse OR "box office" OR blockbuster OR "in theaters" OR "trending movie" OR franchise OR sequel) (film OR movie OR trailer) when:7d')
-    q_ig_fb_7d = urllib.parse.quote_plus('(instagram OR reels OR facebook OR viral OR meme) (movie OR series OR trailer OR finale) when:7d')
+    """Captures 100% unbiased global blockbusters & social buzz for Today/7d and 30d (no hardcoded franchises)."""
+    q_blockbuster_7d = urllib.parse.quote_plus('("box office" OR blockbuster OR "in theaters" OR "trending movie" OR "viral film" OR sequel) (film OR movie OR trailer) when:7d')
+    q_ig_fb_7d = urllib.parse.quote_plus('(instagram OR reels OR facebook OR tiktok OR viral) (movie OR series OR trailer OR finale) when:7d')
     q_ig_fb_30d = urllib.parse.quote_plus('(instagram OR facebook OR viral OR trending) (movie OR "tv series" OR "web series") when:30d')
-    q_blockbuster_30d = urllib.parse.quote_plus('(blockbuster OR "box office" OR franchise OR godzilla OR hollywood OR "trending movie") (film OR movie) when:30d')
+    q_blockbuster_30d = urllib.parse.quote_plus('(blockbuster OR "box office" OR hollywood OR "trending movie" OR "hit film") (film OR movie) when:30d')
     q_in_7d = urllib.parse.quote_plus('(movie OR bollywood OR kdrama OR "box office" OR "web series") when:7d')
 
     buzz_7d = (
@@ -352,10 +364,10 @@ def scan_virality(skip_yt: bool = False) -> dict:
     catalog = _load_catalog()
     groups = catalog.get("groups", {})
     now_iso = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    print(f"[Radar] 100% Dynamic Scan across {len(groups)} genres (YouTube Week/Month + Reddit 7d/30d + IG/FB/News)...")
+    print(f"[Radar] 100% Dynamic Scan across {len(groups)} genres (YouTube Today/Week/Month + Reddit 7d/30d + IG/FB/News)...")
 
     # Build genre-driven probes dynamically from catalog
-    yt_week, yt_month = [], []
+    yt_today, yt_week, yt_month = [], [], []
     if not skip_yt:
         week_probes = [(gid, g["yt_probe"]) for gid, g in groups.items() if g.get("yt_probe")]
         week_probes.extend([
@@ -364,7 +376,9 @@ def scan_virality(skip_yt: bool = False) -> dict:
             ("crime_mafia", "coldest cinema character edit #shorts"),
             ("drama_prestige", "viral movie scene transition edit shorts"),
         ])
+        today_probes = week_probes[:6]
         month_probes = week_probes[:6]
+        yt_today = probe_youtube_window(today_probes, YT_SP_TODAY_VIEWS, "today", per_query=5)
         yt_week = probe_youtube_window(week_probes, YT_SP_WEEK_VIEWS, "week", per_query=5)
         yt_month = probe_youtube_window(month_probes, YT_SP_MONTH_VIEWS, "month", per_query=5)
 
@@ -405,6 +419,11 @@ def scan_virality(skip_yt: bool = False) -> dict:
             b["news_hits"] += 1
             if headline not in b["headlines"] and len(b["headlines"]) < 4:
                 b["headlines"].append(headline)
+
+    for v in yt_today:
+        pts = min(75.0, math.log1p(v["views"]) * 5.8)
+        for ent in extract_social_entities(v["title"]):
+            _add(ent, h3d=pts, h7d=pts * 0.7, source="YT-Today", yt_v=v["views"], genre_hint=v["genre_hint"])
 
     for v in yt_week:
         pts = min(65.0, math.log1p(v["views"]) * 4.8)
@@ -487,6 +506,7 @@ def scan_virality(skip_yt: bool = False) -> dict:
         "winner": ranked[0] if ranked else {"topic": "Cinema", "genre": "action_thriller", "subcategory": "action_fight_ranking", "recommended_format": "edit_ranking", "query_suffix": "edit shorts", "score": 0.0, "headlines": []},
         "genre_leaderboard": genre_board,
         "top_topics": ranked[:20],
+        "top_yt_today": yt_today[:10],
         "top_yt_week": yt_week[:10],
         "top_yt_month": yt_month[:10],
         "top_reddit_week": reddit_7d[:10],
