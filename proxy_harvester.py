@@ -120,13 +120,14 @@ def _urlopen_with_proxy(req: urllib.request.Request, proxy: Optional[str] = None
 
 def resolve_tikwm_mp4(tiktok_url: str) -> Optional[str]:
     """Resolves a direct watermark-free MP4 URL from TikTok via TikWM (direct + verified rotating proxies)."""
-    tw_api = f"https://www.tikwm.com/api/?url={urllib.parse.quote_plus(tiktok_url)}&hd=1"
+    clean_url = tiktok_url.split("?")[0]
+    tw_api = f"https://www.tikwm.com/api/?url={urllib.parse.quote_plus(clean_url)}&hd=1"
     headers = {"User-Agent": UA, "Referer": "https://www.tikwm.com/", "Origin": "https://www.tikwm.com"}
     proxies = [None] + get_working_proxies(limit=5)
     for proxy in proxies:
         try:
             req = urllib.request.Request(tw_api, headers=headers)
-            with _urlopen_with_proxy(req, proxy=proxy, timeout=5.0) as resp:
+            with _urlopen_with_proxy(req, proxy=proxy, timeout=12.0) as resp:
                 data = json.loads(resp.read().decode("utf-8", errors="replace")).get("data") or {}
             play_u = data.get("hdplay") or data.get("play") or ""
             if play_u.startswith("/"):

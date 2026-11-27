@@ -390,7 +390,7 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
                     play_u = resolve_tikwm_mp4(url)
                     if play_u:
                         req_v = urllib.request.Request(play_u, headers={"User-Agent": UA, "Referer": "https://www.tikwm.com/"})
-                        with urllib.request.urlopen(req_v, timeout=25) as vid_r:
+                        with urllib.request.urlopen(req_v, timeout=35) as vid_r:
                             out_mp4.write_bytes(vid_r.read())
                         if out_mp4.exists() and out_mp4.stat().st_size > 20_000:
                             used = _load_history()
@@ -404,7 +404,7 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
                     return out_mp4
                 for proxy in get_working_proxies(limit=4):
                     try:
-                        proc_px = subprocess.run(cmd + ["--proxy", proxy], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=35)
+                        proc_px = subprocess.run(cmd + ["--proxy", proxy], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=45)
                         if proc_px.returncode == 0 and out_mp4.exists() and out_mp4.stat().st_size > 20_000:
                             used = _load_history()
                             used.add(tag_id)
@@ -412,8 +412,8 @@ def download_social_url(url: str, tag_id: str, out_dir: Path | None = None, brow
                             return out_mp4
                     except Exception:
                         continue
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"[Harvester] Social fallback exception: {e}", file=sys.stderr)
         # Fallback for cloud/Colab IPs: retry with tv_embedded,ios client
         if "youtube.com" in url or "youtu.be" in url:
             cmd_fb = [c.replace("youtube:player_client=android,web", "youtube:player_client=tv_embedded,ios") for c in cmd]
