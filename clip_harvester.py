@@ -408,11 +408,13 @@ def _matches_topic(candidate: dict, required_topic: str, allowed_entities: list[
                 return True
 
     clean_req = re.sub(r"\b(?:Ep|Episode|Season|Part|Vol)\.?\s*\d+\b", "", required_topic, flags=re.I).strip()
-    tokens = [t for t in re.findall(r"[a-z0-9]+", (clean_req or required_topic).lower()) if len(t) >= 3]
+    stop = {"the", "and", "for", "with", "from", "edit", "edits", "shorts", "song", "trend"}
+    tokens = [t for t in re.findall(r"[a-z0-9]+", (clean_req or required_topic).lower()) if len(t) >= 3 and t not in stop]
     if not tokens:
         return True
-    # Require at least 1 primary franchise token to match
-    return any(t in hay for t in tokens)
+    # Require ALL tokens for 1-2 word topics (e.g. 'Squid Game', 'Breaking Bad'), >=2 for longer titles
+    need_hits = len(tokens) if len(tokens) <= 2 else max(2, len(tokens) - 1)
+    return sum(1 for t in tokens if t in hay) >= need_hits
 
 
 def scout_fb_ig_fallback(query: str, count: int = 3) -> list[dict]:

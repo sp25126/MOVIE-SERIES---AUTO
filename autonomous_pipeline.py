@@ -325,9 +325,10 @@ def _harvest_for_topic(
     use_mentalist_cfg: dict | None = None,
 ) -> list[dict]:
     """Multi-platform clip harvester (YouTube + Instagram + TikTok + Reddit fallback)."""
-    from clip_harvester import scout_youtube, scout_instagram_reels, scout_tiktok_videos, download_clip
+    from clip_harvester import scout_youtube, scout_instagram_reels, scout_tiktok_videos, download_clip, _matches_topic, is_genuine_fan_edit
 
     is_mentalist = (curr_day == 3) or ("mentalist" in topic.lower()) or ("patrick jane" in topic.lower())
+    allowed_ents = (use_mentalist_cfg or {}).get("ensemble_characters") if is_mentalist else None
     input_dir = ROOT / "input"
     input_dir.mkdir(exist_ok=True)
     need = 1 if fmt == "scene_commentary" else 3
@@ -382,9 +383,16 @@ def _harvest_for_topic(
             if i < len(by_plat.get(p_name, [])):
                 interleaved.append(by_plat[p_name][i])
 
-    logging.info(f"Scouted {len(interleaved)} multi-platform candidates (YT={len(by_plat['youtube'])}, TT={len(by_plat['tiktok'])}, IG={len(by_plat['instagram'])}). Downloading...")
+    logging.info(f"Scouted {len(interleaved)} multi-platform candidates (YT={len(by_plat['youtube'])}, TT={len(by_plat['tiktok'])}, IG={len(by_plat['instagram'])}). Filtering & downloading...")
     downloaded: list[dict] = []
-    for cand in interleaved[:12]:
+    for cand in interleaved[:14]:
+        if not _matches_topic(cand, topic, allowed_ents):
+            logging.info(f"  ✗ Skipped unrelated ({cand.get('platform')}): {cand.get('title', '')[:45]}")
+            continue
+        ok_edit, why_edit = is_genuine_fan_edit(cand, strict=not is_mentalist)
+        if not ok_edit:
+            logging.info(f"  ✗ Skipped non-edit ({cand.get('platform')}): {why_edit}")
+            continue
         p = download_clip(cand, out_dir=input_dir)
         if p and p.exists() and p.stat().st_size > 20_000:
             cand["local_path"] = str(p)
@@ -505,7 +513,7 @@ def run_autonomous_workflow(
             used_set = {t.lower() for t in used_topics.get("song_trends", [])}
             song_list = _build_song_candidates(digest, topic_override.strip(), used_set)
             from song_trend_radar import scout_song_subcategories
-            from clip_harvester import download_clip
+            from clip_harvester import download_clip, _matches_topic
             input_dir = ROOT / "input"
             input_dir.mkdir(exist_ok=True)
 
@@ -513,8 +521,11 @@ def run_autonomous_workflow(
                 logging.info(f"🎵 Trying Song Trend Candidate: '{cand_song}' | Subcategory={current_subcat}")
                 sub_data = scout_song_subcategories(current_subcat, cand_song)
                 edits = sub_data.get("edits", [])
+                subj = sub_data.get("subject", cand_song)
                 cand_dl: list[dict] = []
                 for e in edits:
+                    if not _matches_topic(e, cand_song) and not _matches_topic(e, subj):
+                        continue
                     p = download_clip(e, out_dir=input_dir)
                     if p and p.exists() and p.stat().st_size > 20_000:
                         e["local_path"] = str(p)
