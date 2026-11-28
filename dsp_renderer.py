@@ -36,8 +36,14 @@ def _font(size: int, bold: bool = True) -> ImageFont.FreeTypeFont:
     )
     for fp in candidates:
         if os.path.exists(fp):
-            return ImageFont.truetype(fp, size)
-    return ImageFont.load_default()
+            try:
+                return ImageFont.truetype(fp, size)
+            except Exception:
+                pass
+    try:
+        return ImageFont.load_default(size=size)
+    except TypeError:
+        return ImageFont.load_default()
 
 
 GENRE_BGM_MAP = {
