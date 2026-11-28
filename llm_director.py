@@ -705,6 +705,30 @@ def curate_and_rank_clips(
     analyzed.sort(key=score_fn, reverse=True)
     curated = analyzed[:target_count]
 
+    # Model 2 (SLM #2 Text/Strategist): Refine HUD labels & verify #1-#3 ranking order
+    if curated:
+        try:
+            summary_lines = [
+                f"{idx+1}. title='{c.get('title', '')[:45]}' | label='{c.get('short_label')}' | views={c.get('views', 0)} | score={c.get('quality_score')}"
+                for idx, c in enumerate(curated)
+            ]
+            refined_raw = run_text_slm(
+                f"You are a top-1% YouTube Shorts ranking strategist for '{topic}'. "
+                f"Sharpen each 2-3 word HUD label below so it is punchy and unique (never 'Edit #1'). "
+                f"Clips:\n" + "\n".join(summary_lines) +
+                f'\nReturn ONLY JSON: {{"labels": ["Label1", "Label2", "Label3"]}}',
+                max_new_tokens=90,
+            )
+            if refined_raw:
+                m_lbl = re.search(r"\{.*\}", refined_raw, re.DOTALL)
+                if m_lbl:
+                    lbls = json.loads(m_lbl.group(0)).get("labels") or []
+                    for idx, new_lbl in enumerate(lbls[:len(curated)]):
+                        if isinstance(new_lbl, str) and 2 <= len(new_lbl.strip()) <= 24:
+                            curated[idx]["short_label"] = new_lbl.strip()
+        except Exception:
+            pass
+
     # Enforce tight high-retention Shorts pacing caps (unless full_uncut / Mentalist)
     is_mentalist = (pillar_day == 3) or ("mentalist" in (topic or "").lower()) or ("patrick jane" in (topic or "").lower())
     if not is_mentalist and len(curated) >= 2:
@@ -851,6 +875,38 @@ def inspect_rendered_proof_sheet(
                 }
             except Exception as e:
                 logger.warning(f"[LLM Overseer] Proof-sheet SLM-1 audit skipped ({e})")
+
+    # Model 3 (Gemini 2.5 Flash Critic) second-opinion visual audit on rendered proof sheet
+    key = get_gemini_api_key(api_key)
+    if key:
+        try:
+            with open(p, "rb") as f:
+                b64_sheet = base64.b64encode(f.read()).decode("utf-8")
+            payload = {
+                "contents": [{"parts": [
+                    {"text": prompt},
+                    {"inline_data": {"mime_type": "image/jpeg", "data": b64_sheet}},
+                ]}]
+            }
+            req = urllib.request.Request(
+                f"{GEMINI_API_URL}?key={key}",
+                data=json.dumps(payload).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+            )
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                raw_g = json.loads(resp.read().decode("utf-8"))["candidates"][0]["content"]["parts"][0]["text"]
+            parsed_g = _repair_and_parse_vlm_json(raw_g, duration=30.0, topic=topic)
+            g_issues = [
+                str(x.get("description") or x.get("issue") or x) if isinstance(x, dict) else str(x)
+                for x in (parsed_g.get("issues") or [])
+            ]
+            return {
+                "passed": bool(parsed_g.get("approved", True)) and not g_issues,
+                "issues": g_issues,
+                "summary": parsed_g.get("summary") or "Model 3 (Gemini) proof-sheet audit complete",
+            }
+        except Exception as ge:
+            logger.warning(f"[Model 3 Critic] Gemini proof-sheet audit skipped ({ge})")
 
     return {"passed": True, "issues": [], "summary": "Technical QA passed"}
 
