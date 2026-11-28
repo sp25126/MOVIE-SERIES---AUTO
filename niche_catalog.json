@@ -1,5 +1,5 @@
 {
-  "last_3day_sync_utc": "2026-11-27T13:59:55Z",
+  "last_3day_sync_utc": "2026-11-28T11:33:55Z",
   "recent_topics": [
     "Mr Darcy",
     "Drive to Survive",
@@ -28,72 +28,79 @@
     {
       "genre": "action_thriller",
       "label": "Action, Spy & Crime Thriller",
-      "total_score": 2423.2,
+      "total_score": 2326.8,
       "top_topic": "Wolf Pack Ambush",
-      "count": 121
-    },
-    {
-      "genre": "superhero_scifi",
-      "label": "Superhero & Sci-Fi",
-      "total_score": 797.6,
-      "top_topic": "Hunger Games",
-      "count": 40
-    },
-    {
-      "genre": "world_indian_cinema",
-      "label": "Indian Cinema, K-Drama & Global Hits",
-      "total_score": 589.8,
-      "top_topic": "Doomsday",
-      "count": 33
-    },
-    {
-      "genre": "crime_mafia",
-      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
-      "total_score": 498.6,
-      "top_topic": "Ex-Mob",
-      "count": 12
+      "count": 115
     },
     {
       "genre": "comedy_sitcom",
       "label": "Comedy, Sitcoms & Cast Memes",
-      "total_score": 472.7,
-      "top_topic": "Dumb and Dumber",
-      "count": 25
+      "total_score": 727.2,
+      "top_topic": "Arrested Development",
+      "count": 33
+    },
+    {
+      "genre": "superhero_scifi",
+      "label": "Superhero & Sci-Fi",
+      "total_score": 554.9,
+      "top_topic": "Back",
+      "count": 30
+    },
+    {
+      "genre": "world_indian_cinema",
+      "label": "Indian Cinema, K-Drama & Global Hits",
+      "total_score": 509.2,
+      "top_topic": "Mayya Mayya",
+      "count": 34
     },
     {
       "genre": "drama_prestige",
       "label": "Prestige Drama & Biopics",
-      "total_score": 461.6,
+      "total_score": 436.8,
       "top_topic": "Lines",
-      "count": 14
+      "count": 11
     },
     {
-      "genre": "sports_underdog",
-      "label": "Sports Movies, Boxing, Racing & Comebacks",
-      "total_score": 453.7,
-      "top_topic": "Anger",
-      "count": 14
-    },
-    {
-      "genre": "fantasy_mythology",
-      "label": "Epic Fantasy, Historical & Mythology",
-      "total_score": 352.7,
-      "top_topic": "Cinematic",
-      "count": 15
+      "genre": "crime_mafia",
+      "label": "Crime, Gangsters, Cartels & Legal Thrillers",
+      "total_score": 380.6,
+      "top_topic": "Ex-Mob",
+      "count": 9
     },
     {
       "genre": "animated_cinema",
       "label": "Animated Movies (Pixar, DreamWorks, Spider-Verse)",
-      "total_score": 230.6,
+      "total_score": 380.1,
       "top_topic": "Kung Fu Panda",
-      "count": 7
+      "count": 13
+    },
+    {
+      "genre": "sports_underdog",
+      "label": "Sports Movies, Boxing, Racing & Comebacks",
+      "total_score": 374.7,
+      "top_topic": "Weight",
+      "count": 11
+    },
+    {
+      "genre": "fantasy_mythology",
+      "label": "Epic Fantasy, Historical & Mythology",
+      "total_score": 341.4,
+      "top_topic": "Cinematic",
+      "count": 20
     },
     {
       "genre": "horror_mystery",
       "label": "Horror & Psychological Mystery",
-      "total_score": 203.2,
-      "top_topic": "Black Christmas",
-      "count": 13
+      "total_score": 166.8,
+      "top_topic": "JAFF Market",
+      "count": 11
+    },
+    {
+      "genre": "war_historical",
+      "label": "War Epics, Battles & Historical Biopics",
+      "total_score": 35.5,
+      "top_topic": "Physique",
+      "count": 1
     },
     {
       "genre": "romance_teen_drama",
@@ -101,40 +108,9 @@
       "total_score": 0.0,
       "top_topic": "",
       "count": 0
-    },
-    {
-      "genre": "war_historical",
-      "label": "War Epics, Battles & Historical Biopics",
-      "total_score": 0.0,
-      "top_topic": "",
-      "count": 0
     }
   ],
   "live_3day_top_topics": [
-    {
-      "topic": "Wolf Pack Ambush",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 82.0,
-      "sources": [
-        "YT-Month",
-        "YT-Today",
-        "YT-Week"
-      ]
-    },
-    {
-      "topic": "HEART OF THE BEAST",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 82.0,
-      "sources": [
-        "YT-Month",
-        "YT-Today",
-        "YT-Week"
-      ]
-    },
     {
       "topic": "Lines",
       "genre": "drama_prestige",
@@ -184,14 +160,47 @@
       ]
     },
     {
-      "topic": "Cinematic",
-      "genre": "fantasy_mythology",
-      "subcategory": "mythology_epic_edits",
+      "topic": "Wolf Pack Ambush",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 76.38,
+      "score": 70.0,
       "sources": [
-        "YT-Month",
-        "YT-Today"
+        "YT-Today",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "HEART OF THE BEAST",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 70.0,
+      "sources": [
+        "YT-Today",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Arrested Development",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "format": "edit_ranking",
+      "score": 70.0,
+      "sources": [
+        "YT-Today",
+        "YT-Week"
+      ]
+    },
+    {
+      "topic": "Chosen",
+      "genre": "comedy_sitcom",
+      "subcategory": "funniest_character_ranking",
+      "format": "edit_ranking",
+      "score": 70.0,
+      "sources": [
+        "YT-Today",
+        "YT-Week"
       ]
     },
     {
@@ -205,25 +214,60 @@
       ]
     },
     {
-      "topic": "Hunger Games",
-      "genre": "superhero_scifi",
-      "subcategory": "scifi_release_hype",
-      "format": "release_hype",
-      "score": 67.51,
+      "topic": "Cinematic",
+      "genre": "fantasy_mythology",
+      "subcategory": "mythology_epic_edits",
+      "format": "edit_ranking",
+      "score": 67.95,
       "sources": [
-        "Reddit-7d(r/boxoffice)",
-        "The Hollywood Reporter",
-        "WTOP News"
+        "YT-Today"
       ]
     },
     {
-      "topic": "Rules",
-      "genre": "crime_mafia",
-      "subcategory": "crime_coldest_boss_ranking",
-      "format": "edit_ranking",
-      "score": 64.0,
+      "topic": "Back",
+      "genre": "superhero_scifi",
+      "subcategory": "superhero_spoiler_commentary",
+      "format": "scene_commentary",
+      "score": 64.39,
       "sources": [
-        "JoBlo",
+        "IndieWire",
+        "Reddit-30d(r/DC_Cinematic)",
+        "Reddit-7d(r/DC_Cinematic)",
+        "Reddit-7d(r/marvelmemes)"
+      ]
+    },
+    {
+      "topic": "Wanda Dench and Jamal Hinton",
+      "genre": "action_thriller",
+      "subcategory": "action_fight_ranking",
+      "format": "edit_ranking",
+      "score": 54.0,
+      "sources": [
+        "FOX 10 Phoenix",
+        "FOX 13 Tampa Bay",
+        "Ponca City Now"
+      ]
+    },
+    {
+      "topic": "Change",
+      "genre": "action_thriller",
+      "subcategory": "thriller_plot_twist_commentary",
+      "format": "scene_commentary",
+      "score": 49.21,
+      "sources": [
+        "Reddit-30d(r/ActionMovies)",
+        "Reddit-7d(r/ActionMovies)",
+        "THR"
+      ]
+    },
+    {
+      "topic": "Weight",
+      "genre": "sports_underdog",
+      "subcategory": "sports_comeback_ranking",
+      "format": "edit_ranking",
+      "score": 46.33,
+      "sources": [
+        "Time Magazine",
         "YT-Week"
       ]
     },
@@ -232,53 +276,8 @@
       "genre": "action_thriller",
       "subcategory": "action_fight_ranking",
       "format": "edit_ranking",
-      "score": 57.75,
+      "score": 45.75,
       "sources": [
-        "YT-Month",
-        "YT-Today"
-      ]
-    },
-    {
-      "topic": "Guard",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 57.75,
-      "sources": [
-        "YT-Month",
-        "YT-Today"
-      ]
-    },
-    {
-      "topic": "Gina",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 57.75,
-      "sources": [
-        "YT-Month",
-        "YT-Today"
-      ]
-    },
-    {
-      "topic": "Carano",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 57.75,
-      "sources": [
-        "YT-Month",
-        "YT-Today"
-      ]
-    },
-    {
-      "topic": "Rally",
-      "genre": "action_thriller",
-      "subcategory": "action_fight_ranking",
-      "format": "edit_ranking",
-      "score": 57.75,
-      "sources": [
-        "YT-Month",
         "YT-Today"
       ]
     }
