@@ -449,6 +449,13 @@ def analyze_clip_frames(
     dur = frames_data[-1][0] / 0.95 if frames_data else 20.0
 
     if use_local_model:
+        # 1. Try Ollama first (qwen2.5vl:7b / qwen2.5vl:3b) if running
+        try:
+            urllib.request.urlopen("http://127.0.0.1:11434/api/tags", timeout=2)
+            return _analyze_with_ollama(frames_data, dur, topic, skill=skill, clip_title=clip_title, skill_block=skill_block)
+        except Exception:
+            pass
+        # 2. Fallback to in-process HuggingFace VLM (Qwen2.5-VL-3B / Qwen2-VL-2B)
         model, processor = load_in_process_vlm()
         if model is not None and processor is not None:
             try:
@@ -710,7 +717,10 @@ def diagnose_and_repair_defect(
         "diagnosis_summary": "",
     }
 
-    issues_str = " ".join(qa_issues).lower()
+    issues_str = " ".join(
+        str(x.get("description") or x.get("issue") or x) if isinstance(x, dict) else str(x)
+        for x in (qa_issues or [])
+    ).lower()
 
     if "black" in issues_str:
         logger.info("[Self-Healing] Detected black frame intro/transition. Advancing start offsets.")
@@ -800,9 +810,14 @@ def inspect_rendered_proof_sheet(
                 trimmed = [o[len(i):] for i, o in zip(inputs["input_ids"], gen_ids)]
                 raw = processor.batch_decode(trimmed, skip_special_tokens=True)[0].strip()
                 parsed = _repair_and_parse_vlm_json(raw, duration=30.0, topic=topic)
+                raw_issues = parsed.get("issues") or ([] if parsed.get("approved", True) else ["VLM flagged visual defect"])
+                norm_issues = [
+                    str(x.get("description") or x.get("issue") or x) if isinstance(x, dict) else str(x)
+                    for x in raw_issues
+                ]
                 return {
-                    "passed": bool(parsed.get("approved", True)) and not parsed.get("issues"),
-                    "issues": parsed.get("issues") or ([] if parsed.get("approved", True) else ["VLM flagged visual defect"]),
+                    "passed": bool(parsed.get("approved", True)) and not norm_issues,
+                    "issues": norm_issues,
                     "summary": parsed.get("summary") or "SLM-1 proof-sheet audit complete",
                 }
             except Exception as e:
