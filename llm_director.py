@@ -682,13 +682,29 @@ def curate_and_rank_clips(
         c_copy["optimal_cut"] = analysis.get("optimal_cut", {})
         analyzed.append(c_copy)
 
-    def score_fn(item: dict) -> float:
-        ai_score = item.get("quality_score", 7.0) * 10_000
-        views = float(item.get("views") or 1000)
-        return ai_score + min(views, 100_000)
+    def score_fn(item: dict) -> tuple:
+        # Rank primarily by AI quality tier (rounded to 0.5) then strictly by view count
+        # so high-view viral edits always take Rank #1 (played last as climax)
+        q_tier = round(float(item.get("quality_score", 7.0)) * 2) / 2.0
+        views = int(item.get("views") or 0)
+        return (q_tier, views)
 
     analyzed.sort(key=score_fn, reverse=True)
     curated = analyzed[:target_count]
+
+    # Enforce tight high-retention Shorts pacing caps (unless full_uncut / Mentalist)
+    is_mentalist = (pillar_day == 3) or ("mentalist" in (topic or "").lower()) or ("patrick jane" in (topic or "").lower())
+    if not is_mentalist and len(curated) >= 2:
+        # Escalating duration caps: Rank #1 (index 0) gets longest climax, #3 gets punchiest
+        max_durs = [15.0, 12.0, 9.5] if pillar_day != 4 else [11.0, 8.5, 6.5]
+        for idx, item in enumerate(curated):
+            cap = max_durs[idx] if idx < len(max_durs) else 9.0
+            opt = item.setdefault("optimal_cut", {})
+            st = float(opt.get("start_sec", 0.0))
+            en = float(opt.get("end_sec", cap))
+            if en - st > cap:
+                opt["end_sec"] = round(st + cap, 2)
+                opt["duration"] = round(cap, 2)
 
     for i, item in enumerate(curated, 1):
         item["rank"] = i
