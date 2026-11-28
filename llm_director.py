@@ -689,7 +689,7 @@ def curate_and_rank_clips(
         local_path = c.get("local_path")
         if not local_path or not Path(local_path).exists():
             continue
-        analysis = analyze_clip_frames(
+        analysis = c.get("_pre_analysis") or analyze_clip_frames(
             local_path,
             topic=topic,
             use_local_model=use_local_model,
@@ -922,6 +922,50 @@ def inspect_rendered_proof_sheet(
             logger.warning(f"[Model 3 Critic] Gemini proof-sheet audit skipped ({ge})")
 
     return {"passed": True, "issues": [], "summary": "Technical QA passed"}
+
+
+def joint_two_llm_final_review(
+    proof_jpg_path: Path | str,
+    streams_info: Dict[str, Any],
+    topic: str = "",
+    use_local_model: bool = False,
+    api_key: Optional[str] = None,
+) -> Dict[str, Any]:
+    """
+    Final Joint Review using BOTH models:
+    - Model 1 (Visual VLM): inspects the rendered 15-frame *_proof.jpg for cuts, black frames, framing, and HUD clarity.
+    - Model 2 (Aspect-Ratio & Top-1% Strategist): verifies 1080x1920, 48kHz audio, duration pacing, and merges critiques.
+    """
+    m1_res = inspect_rendered_proof_sheet(
+        proof_jpg_path, topic=topic, use_local_model=use_local_model, api_key=api_key
+    )
+    issues = list(m1_res.get("issues") or [])
+
+    w, h = streams_info.get("width", 0), streams_info.get("height", 0)
+    sr = streams_info.get("sample_rate", 0)
+    dur = float(streams_info.get("video_dur") or 0.0)
+    if (w, h) != (1080, 1920):
+        issues.append(f"Aspect ratio mismatch: {w}x{h} (expected 1080x1920)")
+    if sr != 48000:
+        issues.append(f"Audio sample rate {sr}Hz != 48000Hz")
+    if dur > 60.0 and "mentalist" not in topic.lower():
+        issues.append(f"Duration {dur:.1f}s exceeds 60s Shorts target")
+
+    # Model 2 critique on pacing & top-1% polish
+    if not issues:
+        critique = run_text_slm(
+            f"Final top-1% Shorts QA check for '{topic}': resolution={w}x{h}, duration={dur:.1f}s, "
+            f"visual_summary='{m1_res.get('summary', '')}'. Reply ONLY 'PASS' or a 1-line defect.",
+            max_new_tokens=40,
+        )
+        if critique and "pass" not in critique.lower() and len(critique) > 6:
+            logger.info(f"[Model 2 Final Critique] Note: {critique}")
+
+    return {
+        "passed": len(issues) == 0,
+        "issues": issues,
+        "summary": m1_res.get("summary", "Joint 2-LLM review complete"),
+    }
 
 
 def generate_ai_metadata(

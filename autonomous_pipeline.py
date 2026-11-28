@@ -323,6 +323,7 @@ def _harvest_for_topic(
     fmt: str,
     q_suffix: str,
     use_mentalist_cfg: dict | None = None,
+    use_local_vlm: bool = False,
 ) -> list[dict]:
     """Multi-platform clip harvester (YouTube + Instagram + TikTok + Reddit fallback)."""
     from clip_harvester import scout_youtube, scout_instagram_reels, scout_tiktok_videos, download_clip, _matches_topic, is_genuine_fan_edit
@@ -383,9 +384,10 @@ def _harvest_for_topic(
             if i < len(by_plat.get(p_name, [])):
                 interleaved.append(by_plat[p_name][i])
 
-    logging.info(f"Scouted {len(interleaved)} multi-platform candidates (YT={len(by_plat['youtube'])}, TT={len(by_plat['tiktok'])}, IG={len(by_plat['instagram'])}). Filtering & downloading...")
+    logging.info(f"Scouted {len(interleaved)} multi-platform candidates (YT={len(by_plat['youtube'])}, TT={len(by_plat['tiktok'])}, IG={len(by_plat['instagram'])}). LLM #1 1fps Inspect & Harvest...")
+    import llm_director
     downloaded: list[dict] = []
-    for cand in interleaved[:14]:
+    for cand in interleaved[:18]:
         if not _matches_topic(cand, topic, allowed_ents):
             logging.info(f"  ✗ Skipped unrelated ({cand.get('platform')}): {cand.get('title', '')[:45]}")
             continue
@@ -395,6 +397,16 @@ def _harvest_for_topic(
             continue
         p = download_clip(cand, out_dir=input_dir)
         if p and p.exists() and p.stat().st_size > 20_000:
+            # LLM #1 analyzes each clip at 1fps immediately; if it doesn't fit, scrape/delete & try next!
+            analysis = llm_director.analyze_clip_frames(
+                p, topic=topic, use_local_model=use_local_vlm, clip_title=cand.get("title", ""), pillar_day=curr_day
+            ) if os.environ.get("SKIP_INLINE_1FPS_VLM") != "1" else None
+            if analysis and not analysis.get("approved", True):
+                logging.info(f"  ✗ [LLM #1 1fps Reject] Discarding {p.name} and scraping next candidate...")
+                p.unlink(missing_ok=True)
+                continue
+            if analysis:
+                cand["_pre_analysis"] = analysis
             cand["local_path"] = str(p)
             downloaded.append(cand)
             logging.info(f"  ✓ Downloaded ({cand.get('platform')}): {cand['title'][:40]} ({p.stat().st_size / 1e6:.1f}MB)")
@@ -463,7 +475,7 @@ def run_autonomous_workflow(
             pj_cfg = json.loads(PATRICK_JANE_FILE.read_text(encoding="utf-8"))
             os.environ["CLIP_HISTORY_PATH"] = str(PATRICK_JANE_FILE.resolve())
         try:
-            downloaded = _harvest_for_topic(chosen_topic, curr_day, chosen_fmt, "edit shorts", use_mentalist_cfg=pj_cfg)
+            downloaded = _harvest_for_topic(chosen_topic, curr_day, chosen_fmt, "edit shorts", use_mentalist_cfg=pj_cfg, use_local_vlm=use_local_vlm)
         finally:
             os.environ.pop("CLIP_HISTORY_PATH", None)
         if len(downloaded) < 2:
@@ -480,7 +492,7 @@ def run_autonomous_workflow(
                 c_fmt = cand.get("recommended_format", "edit_ranking")
                 c_sfx = cand.get("query_suffix", "edit shorts")
                 logging.info(f"🎬 Trying Cinema Candidate: '{t_name}' | Format={c_fmt} | Genre={cand.get('genre')}")
-                dl = _harvest_for_topic(t_name, curr_day, c_fmt, c_sfx)
+                dl = _harvest_for_topic(t_name, curr_day, c_fmt, c_sfx, use_local_vlm=use_local_vlm)
                 min_need = 1 if c_fmt == "scene_commentary" else 2
                 if len(dl) >= min_need:
                     chosen_topic = t_name
@@ -497,7 +509,7 @@ def run_autonomous_workflow(
                 t_name = cand["topic"]
                 c_fmt = cand.get("recommended_format", "edit_ranking")
                 logging.info(f"📺 Trying TV Series Candidate: '{t_name}' | Format={c_fmt}")
-                dl = _harvest_for_topic(t_name, curr_day, c_fmt, "edit shorts")
+                dl = _harvest_for_topic(t_name, curr_day, c_fmt, "edit shorts", use_local_vlm=use_local_vlm)
                 min_need = 1 if c_fmt == "scene_commentary" else 2
                 if len(dl) >= min_need:
                     chosen_topic = t_name
@@ -534,7 +546,7 @@ def run_autonomous_workflow(
                             break
                 if len(cand_dl) < 2:
                     # Fallback direct multi-platform harvest for this song
-                    cand_dl = _harvest_for_topic(cand_song, curr_day, "song_ranking", "trend edit shorts")
+                    cand_dl = _harvest_for_topic(cand_song, curr_day, "song_ranking", "trend edit shorts", use_local_vlm=use_local_vlm)
                 if len(cand_dl) >= 2:
                     chosen_topic = cand_song
                     chosen_genre = "song_trends"
@@ -661,13 +673,16 @@ def run_autonomous_workflow(
     out_mp4 = _render_master(working_dur)
     qa_res = qa_gate.verify_video(out_mp4)
 
-    # LLM Overseer iterates up to 3 refinement passes (Technical QA + SLM-1 Proof-Sheet Visual QA)
+    # Joint 2-LLM Overseer iterates up to 3 refinement passes (Technical QA + Joint Visual/Aspect-Ratio Review)
     for refine_iter in range(1, 4):
         tech_ok = qa_res.get("passed", False) and not qa_res.get("issues")
         vis_res = {"passed": True, "issues": []}
         if tech_ok and qa_res.get("proof_sheet"):
-            vis_res = llm_director.inspect_rendered_proof_sheet(
-                qa_res["proof_sheet"], topic=chosen_topic, use_local_model=use_local_vlm,
+            vis_res = llm_director.joint_two_llm_final_review(
+                qa_res["proof_sheet"],
+                streams_info=qa_res.get("streams", {}),
+                topic=chosen_topic,
+                use_local_model=use_local_vlm,
             )
         all_issues = list(qa_res.get("issues", [])) + list(vis_res.get("issues", []))
         if tech_ok and vis_res.get("passed", True) and not all_issues:
