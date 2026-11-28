@@ -135,6 +135,11 @@ def load_in_process_vlm():
             except Exception as inner_e:
                 logger.warning(f"[LLM Director] Could not load {model_id} ({inner_e}); trying next VLM...")
 
+        # Fallback to moondream2 if Qwen2.5-VL-3B fails to load
+        try:
+            return load_local_vision_model("moondream2")
+        except Exception:
+            pass
         _LOCAL_MODEL_FAILED = True
         return None, None
     except Exception as e:
@@ -230,7 +235,7 @@ def _analyze_with_qwen2_vl(
     """Runs frame-by-frame multimodal inference directly on GPU using Qwen2-VL-2B with timestamped frames."""
     import torch
     # Use up to 6 timestamped frames so Qwen2-VL sees intro, build-up, climax, and outro
-    sample_frames = frames_data[:6]
+    sample_frames = frames_data[:24]
     pil_images = [img for _, _, img in sample_frames]
     motion_scores = compute_frame_motion_scores("", sample_frames)
     ts_list = ", ".join([f"Frame {i+1}={sec:.1f}s (motion={motion_scores[i]}/10)" for i, (sec, _, _) in enumerate(sample_frames)])
@@ -373,9 +378,12 @@ def load_local_vision_model(model_name: str = "moondream2"):
 
 def extract_sample_frames(
     video_path: Path | str,
-    num_samples: int = 6,
+    num_samples: int = 0,
     max_dimension: int = 480,
+    target_fps: float = 1.0,
+    max_frames: int = 24,
 ) -> List[Tuple[float, str, Any]]:
+    """Extracts frames at 1 fps (capped at max_frames to fit T4 VRAM) for 1-second precision VLM analysis."""
     import cv2
     from PIL import Image
 
@@ -391,13 +399,18 @@ def extract_sample_frames(
         cap.release()
         return []
 
-    ratios = [0.10, 0.25, 0.45, 0.65, 0.85, 0.95] if num_samples == 6 else [
-        i / (num_samples + 1) for i in range(1, num_samples + 1)
-    ]
+    if num_samples > 0:
+        timestamps = [duration * (i / (num_samples + 1)) for i in range(1, num_samples + 1)]
+    else:
+        step = max(1.0 / max(target_fps, 0.25), duration / max_frames)
+        timestamps = []
+        t = 0.0
+        while t < duration and len(timestamps) < max_frames:
+            timestamps.append(t)
+            t += step
 
     results = []
-    for r in ratios:
-        sec = r * duration
+    for sec in timestamps:
         cap.set(cv2.CAP_PROP_POS_FRAMES, int(sec * fps))
         ret, frame = cap.read()
         if not ret or frame is None:
@@ -442,7 +455,7 @@ def analyze_clip_frames(
         pass
 
     video_path = Path(video_path)
-    frames_data = extract_sample_frames(video_path, num_samples=6)
+    frames_data = extract_sample_frames(video_path, target_fps=1.0, max_frames=24)
     if not frames_data:
         return _fallback_heuristic_analysis(video_path, topic=topic, clip_title=clip_title, skill=skill)
 
