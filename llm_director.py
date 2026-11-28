@@ -44,6 +44,16 @@ def load_in_process_text_slm():
         return _TEXT_SLM_MODEL, _TEXT_SLM_TOKENIZER
     if _TEXT_SLM_FAILED:
         return None, None
+    # Prevent T4 15GB VRAM OOM: if VLM is already loaded in GPU memory, skip loading a second 3GB model
+    if _LOCAL_MODEL is not None:
+        try:
+            import torch
+            if torch.cuda.is_available():
+                free_gb = torch.cuda.mem_get_info()[0] / (1024 ** 3)
+                if free_gb < 4.5:
+                    return None, None
+        except Exception:
+            pass
 
     try:
         import torch
@@ -232,10 +242,10 @@ def _analyze_with_qwen2_vl(
     clip_title: str = "",
     skill_block: str = "",
 ) -> dict:
-    """Runs frame-by-frame multimodal inference directly on GPU using Qwen2-VL-2B with timestamped frames."""
+    """Runs frame-by-frame multimodal inference directly on GPU using Qwen2.5-VL / Qwen2-VL with timestamped frames."""
     import torch
-    # Use up to 6 timestamped frames so Qwen2-VL sees intro, build-up, climax, and outro
-    sample_frames = frames_data[:24]
+    # Cap at 8 frames on T4 GPU so inference never triggers CUDA OOM
+    sample_frames = frames_data[:8]
     pil_images = [img for _, _, img in sample_frames]
     motion_scores = compute_frame_motion_scores("", sample_frames)
     ts_list = ", ".join([f"Frame {i+1}={sec:.1f}s (motion={motion_scores[i]}/10)" for i, (sec, _, _) in enumerate(sample_frames)])
@@ -279,6 +289,9 @@ def _analyze_with_qwen2_vl(
         out_ids[len(in_ids):] for in_ids, out_ids in zip(inputs["input_ids"], generated_ids)
     ]
     output_text = processor.batch_decode(generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0].strip()
+    del inputs, generated_ids
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
     res = _repair_and_parse_vlm_json(output_text, duration=duration, clip_title=clip_title, topic=topic)
 
@@ -455,7 +468,7 @@ def analyze_clip_frames(
         pass
 
     video_path = Path(video_path)
-    frames_data = extract_sample_frames(video_path, target_fps=1.0, max_frames=24)
+    frames_data = extract_sample_frames(video_path, target_fps=1.0, max_frames=8, max_dimension=384)
     if not frames_data:
         return _fallback_heuristic_analysis(video_path, topic=topic, clip_title=clip_title, skill=skill)
 

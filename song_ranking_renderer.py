@@ -30,9 +30,11 @@ FFMPEG = "ffmpeg"
 
 def _get_font(size: int, bold: bool = True) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
     font_paths = [
+        str(ROOT / "assets" / "fonts" / "Anton-Regular.ttf"),
         "C:/Windows/Fonts/impact.ttf",
         "C:/Windows/Fonts/arialbd.ttf" if bold else "C:/Windows/Fonts/arial.ttf",
         "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
     ]
     for p in font_paths:
         if os.path.exists(p):
@@ -40,7 +42,10 @@ def _get_font(size: int, bold: bool = True) -> ImageFont.FreeTypeFont | ImageFon
                 return ImageFont.truetype(p, size)
             except Exception:
                 pass
-    return ImageFont.load_default()
+    try:
+        return ImageFont.load_default(size=size)
+    except TypeError:
+        return ImageFont.load_default()
 
 
 def _format_views(n: int) -> str:

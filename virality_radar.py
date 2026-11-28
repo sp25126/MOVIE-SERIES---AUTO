@@ -111,6 +111,7 @@ GENERIC_SINGLE_WORDS = {
     "lifetime", "producer", "regrets", "splitting", "producer regrets splitting", "interview", "reveal",
     # Common edit/search query tags & buzzwords
     "multifandom", "badass", "mafia", "animation", "animated", "status", "attitude", "fight",
+    "rally", "drift", "racing", "car", "cars", "bike", "bikes", "supra",
 }
 
 
